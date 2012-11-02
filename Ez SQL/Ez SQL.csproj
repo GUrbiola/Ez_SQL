@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ez_SQL</RootNamespace>
+    <AssemblyName>Ez SQL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AddressBarExt">
+      <HintPath>..\References\AddressBarExt\AddressBarEx_2.0\bin\Release\AddressBarExt.dll</HintPath>
+    </Reference>
+    <Reference Include="HDesarrollo">
+      <HintPath>..\References\HDesarrollo\HDesarrollo.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.TextEditor">
+      <HintPath>..\References\TextEditor\Lib\ICSharpCode.TextEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="PopupControl">
+      <HintPath>..\References\SimplePopup\PopupControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>..\References\Weifen Luo Docking Lib\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConnectionManagement\ConnectionGroup.cs" />
+    <Compile Include="ConnectionManagement\ConnectionInfo.cs" />
+    <Compile Include="ConnectionBarNodes\ConxGroupNode.cs" />
+    <Compile Include="ConnectionBarNodes\ConxNode.cs" />
+    <Compile Include="ConnectionBarNodes\RootConxNode.cs" />
+    <Compile Include="ConnectionManagement\ConxAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectionManagement\ConxAdmin.designer.cs">
+      <DependentUpon>ConxAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectionManagement\InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectionManagement\InputBox.designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectionManagement\SQLConnectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectionManagement\SQLConnectForm.designer.cs">
+      <DependentUpon>SQLConnectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\StatusStripIcon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataBaseObjects\Alias.cs" />
+    <Compile Include="DataBaseObjects\Enums.cs" />
+    <Compile Include="DataBaseObjects\Field.cs" />
+    <Compile Include="DataBaseObjects\IDataCompletion.cs" />
+    <Compile Include="DataBaseObjects\ISqlChild.cs" />
+    <Compile Include="DataBaseObjects\ISqlObject.cs" />
+    <Compile Include="DataBaseObjects\Parameter.cs" />
+    <Compile Include="DataBaseObjects\Procedure.cs" />
+    <Compile Include="DataBaseObjects\ScalarFunction.cs" />
+    <Compile Include="DataBaseObjects\Scheme.cs" />
+    <Compile Include="DataBaseObjects\SQLConnector.cs" />
+    <Compile Include="DataBaseObjects\Table.cs" />
+    <Compile Include="DataBaseObjects\TableFunction.cs" />
+    <Compile Include="DataBaseObjects\View.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Globals.cs" />
+    <Compile Include="LoadControl\LoadingInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LoadControl\LoadingInfo.designer.cs">
+      <DependentUpon>LoadingInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultiQueryForm\AutocompleteWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MultiQueryForm\CompletionDataProvider.cs" />
+    <Compile Include="MultiQueryForm\TextRange.cs" />
+    <Compile Include="ProgressObject.cs" />
+    <Compile Include="QueryLog\HistoricForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QueryLog\HistoricForm.designer.cs">
+      <DependentUpon>HistoricForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QueryLog\QueryLogClasses.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultiQueryForm\QueryExecutor.cs" />
+    <Compile Include="MultiQueryForm\QueryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MultiQueryForm\QueryForm.Designer.cs">
+      <DependentUpon>QueryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Snippets\Snippet.cs" />
+    <Compile Include="Snippets\SnippetEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snippets\SnippetEditor.Designer.cs">
+      <DependentUpon>SnippetEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlTokenizer.cs" />
+    <Compile Include="TextEditorClasses\FoldingStrategy.cs" />
+    <Compile Include="Token.cs" />
+    <EmbeddedResource Include="ConnectionManagement\ConxAdmin.resx">
+      <DependentUpon>ConxAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConnectionManagement\InputBox.resx">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConnectionManagement\SQLConnectForm.resx">
+      <DependentUpon>SQLConnectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadControl\LoadingInfo.resx">
+      <DependentUpon>LoadingInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QueryLog\HistoricForm.resx">
+      <DependentUpon>HistoricForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultiQueryForm\QueryForm.resx">
+      <DependentUpon>QueryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Snippets\SnippetEditor.resx">
+      <DependentUpon>SnippetEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="bin\Debug\SintaxHighLight\SQL.xshd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddConnection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AppIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ConxPlug.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CopyConnectionString.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CSharp.xshd" />
+    <None Include="Resources\Database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DB_Search32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DBGroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Function.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Historic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImportToDB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Maximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MoveWindow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New_Window32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Remove_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Restore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Comment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CSharp32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DelBookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExcelDoc_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RedAlert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SQL.xshd" />
+    <None Include="Resources\Stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UnComment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppIcon.ico" />
+    <None Include="Resources\SnippetEditor.png" />
+    <None Include="Resources\Book_32.png" />
+    <None Include="Resources\ResizeIcon.png" />
+    <None Include="Resources\Resize.png" />
+    <None Include="Resources\CSharp_22.png" />
+    <None Include="Resources\CSharp321.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
