@@ -1,0 +1,2222 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Yogesh.ExcelXml</name>
+    </assembly>
+    <members>
+        <member name="T:Yogesh.ExcelXml.FontOptions">
+            <summary>
+            Gets or sets cell's font options
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.IFontOptions">
+            <summary>
+            Style font options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IFontOptions.Name">
+            <summary>
+            Name of font
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IFontOptions.Size">
+            <summary>
+            Size of font
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IFontOptions.Bold">
+            <summary>
+            Bold?
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IFontOptions.Underline">
+            <summary>
+            Underline?
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IFontOptions.Italic">
+            <summary>
+            Italic?
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IFontOptions.Strikeout">
+            <summary>
+            Strikeout?
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IFontOptions.Color">
+            <summary>
+            Font foreground color
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.FontOptions.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.FontOptions.#ctor(Yogesh.ExcelXml.IFontOptions)">
+            <summary>
+            Creates a new instance based on another instance
+            </summary>
+            <param name="fo">Instance to copy</param>
+        </member>
+        <member name="P:Yogesh.ExcelXml.FontOptions.Name">
+            <summary>
+            Gets or sets the name of the font
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.FontOptions.Size">
+            <summary>
+            Gets or sets the size of the font
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.FontOptions.Bold">
+            <summary>
+            Gets or sets font's bold property
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.FontOptions.Underline">
+            <summary>
+            Gets or sets font's underline property
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.FontOptions.Italic">
+            <summary>
+            Gets or sets font's italic property
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.FontOptions.Strikeout">
+            <summary>
+            Gets or sets font's strike-through property
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.FontOptions.Color">
+            <summary>
+            Gets or sets font's color
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.InteriorOptions">
+            <summary>
+            Gets or sets cell's interior options
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.IInteriorOptions">
+            <summary>
+            Cell interior options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IInteriorOptions.Color">
+            <summary>
+            Cell fill color
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IInteriorOptions.PatternColor">
+            <summary>
+            Pattern color
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IInteriorOptions.Pattern">
+            <summary>
+            Pattern style
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.InteriorOptions.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.InteriorOptions.#ctor(Yogesh.ExcelXml.IInteriorOptions)">
+            <summary>
+            Creates a new instance based on another instance
+            </summary>
+            <param name="io">Instance to copy</param>
+        </member>
+        <member name="P:Yogesh.ExcelXml.InteriorOptions.Color">
+            <summary>
+            Gets or sets cell background color
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.InteriorOptions.PatternColor">
+            <summary>
+            Gets or sets cell pattern color
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.InteriorOptions.Pattern">
+            <summary>
+            Gets or sets cell pattern
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.AlignmentOptions">
+            <summary>
+            Gets or sets cell's alignment options
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.IAlignmentOptions">
+            <summary>
+            Cell alignment options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IAlignmentOptions.Vertical">
+            <summary>
+            Vertical alignment settings
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IAlignmentOptions.Horizontal">
+            <summary>
+            Horizontal alignment settings
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IAlignmentOptions.Indent">
+            <summary>
+            Cell indent
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IAlignmentOptions.Rotate">
+            <summary>
+            Rotation angle
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IAlignmentOptions.WrapText">
+            <summary>
+            Wrap enabled?
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IAlignmentOptions.ShrinkToFit">
+            <summary>
+            Shrink the text to fit cell?
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.AlignmentOptions.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.AlignmentOptions.#ctor(Yogesh.ExcelXml.IAlignmentOptions)">
+            <summary>
+            Creates a new instance based on another instance
+            </summary>
+            <param name="ao">Instance to copy</param>
+        </member>
+        <member name="P:Yogesh.ExcelXml.AlignmentOptions.Vertical">
+            <summary>
+            Gets or sets vertical alignment of the cell
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.AlignmentOptions.Horizontal">
+            <summary>
+            Gets or sets horizontal alignment of the cell
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.AlignmentOptions.Indent">
+            <summary>
+            Gets or sets the indent
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.AlignmentOptions.Rotate">
+            <summary>
+            Gets or sets the text rotation
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.AlignmentOptions.WrapText">
+            <summary>
+            Gets or sets text wrap setting
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.AlignmentOptions.ShrinkToFit">
+            <summary>
+            Gets or sets cell's shrink to cell setting
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.BorderOptions">
+            <summary>
+            Gets or sets the border options
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.IBorderOptions">
+            <summary>
+            Cell border options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IBorderOptions.Sides">
+            <summary>
+            Border sides
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IBorderOptions.Weight">
+            <summary>
+            Width of border
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IBorderOptions.LineStyle">
+            <summary>
+            Border line style
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IBorderOptions.Color">
+            <summary>
+            Border color
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.BorderOptions.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.BorderOptions.#ctor(Yogesh.ExcelXml.IBorderOptions)">
+            <summary>
+            Creates a new instance based on another instance
+            </summary>
+            <param name="borderOptions">Instance to copy</param>
+        </member>
+        <member name="P:Yogesh.ExcelXml.BorderOptions.Sides">
+            <summary>
+            Gets or sets the border side flags
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.BorderOptions.LineStyle">
+            <summary>
+            Gets or sets the border line style
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.BorderOptions.Weight">
+            <summary>
+            Gets or sets the width of the border
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.BorderOptions.Color">
+            <summary>
+            Gets or sets border color
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.XmlStyle">
+            <summary>
+            Style class for cells, rows and worksheets
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.IStyle">
+            <summary>
+            Style settings container
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IStyle.Font">
+            <summary>
+            Font options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IStyle.Alignment">
+            <summary>
+            Alignment options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IStyle.Interior">
+            <summary>
+            Cell fill options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IStyle.Border">
+            <summary>
+            Cell border options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IStyle.DisplayFormat">
+            <summary>
+            Cell display format
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.IStyle.CustomFormatString">
+            <summary>
+            Custom display format string
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.XmlStyle.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.XmlStyle.#ctor(Yogesh.ExcelXml.XmlStyle)">
+            <summary>
+            Creates a new instance from another instance of XmlStyle
+            </summary>
+            <param name="style">Instance to copy</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.XmlStyle.op_Equality(Yogesh.ExcelXml.XmlStyle,Yogesh.ExcelXml.XmlStyle)">
+            <summary>
+            Equality operator
+            </summary>
+            <param name="cellOne">Instance one to compare</param>
+            <param name="cellTwo">Instance two to compare</param>
+            <returns>true if all the values of the styles match, false otherwise</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.XmlStyle.op_Inequality(Yogesh.ExcelXml.XmlStyle,Yogesh.ExcelXml.XmlStyle)">
+            <summary>
+            Inequality operator
+            </summary>
+            <param name="cellOne">Instance one to compare</param>
+            <param name="cellTwo">Instance two to compare</param>
+            <returns>true if the values of the styles dont match, false otherwise</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.XmlStyle.Equals(System.Object)">
+            <summary>
+            Equality operator
+            </summary>
+            <param name="obj">Instance to compare</param>
+            <returns>true if all the values of the styles match, false otherwise</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.XmlStyle.GetHashCode">
+            <summary>
+            Returns the hash code of the class
+            </summary>
+            <returns>Hash code of the class</returns>
+        </member>
+        <member name="P:Yogesh.ExcelXml.XmlStyle.Font">
+            <summary>
+            Gets or sets the font options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.XmlStyle.Alignment">
+            <summary>
+            Gets or sets cell alignment options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.XmlStyle.Interior">
+            <summary>
+            Gets or sets interior options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.XmlStyle.Border">
+            <summary>
+            Gets or sets border settings
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.XmlStyle.DisplayFormat">
+            <summary>
+            Gets or sets the cell display format
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.XmlStyle.CustomFormatString">
+            <summary>
+            Gets or sets a custom display string
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.Worksheet">
+            <summary>
+            Worksheet class represents a single sheet in a workbook
+            </summary>
+            <remarks>
+            Worksheet class represents a single sheet in a workbook.
+            <para>You cannot directly declare a instance of a sheet from your code by using
+            <c>new</c> keyword. The only way to access a sheet is to retrieve it from
+            a workbook.</para>
+            </remarks>
+        </member>
+        <member name="T:Yogesh.ExcelXml.Styles">
+            <summary>
+            Style class for cells, rows and worksheets
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.CellSettingsApplier">
+            <summary>
+            Gets and sets various cell and range properties
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Styles.Font">
+            <summary>
+            Gets or sets the font options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Styles.Alignment">
+            <summary>
+            Gets or sets cell alignment options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Styles.Interior">
+            <summary>
+            Gets or sets interior options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Styles.Border">
+            <summary>
+            Gets or sets border settings
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Styles.DisplayFormat">
+            <summary>
+            Gets or sets the cell display format
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Styles.CustomFormatString">
+            <summary>
+            Gets or sets custom dispkay format string
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Styles.Style">
+            <summary>
+            Returns the <see cref="T:Yogesh.ExcelXml.XmlStyle"/> reference of the cell
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.AddNamedRange(Yogesh.ExcelXml.Range,System.String)">
+            <summary>
+            Add a named range to the book with limited scope with this sheet
+            </summary>
+            <param name="range">Range to be named</param>
+            <param name="name">Name of the range</param>
+            <remarks>This property always adds sheet level named ranges. To add globally valid 
+            ranges, use <see cref="P:Yogesh.ExcelXml.Range.Name"/> property in
+            <see cref="T:Yogesh.ExcelXml.Range"/>.</remarks>
+            <remarks>Range may not necessarily reside in this sheet</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.RemovePrintArea">
+            <summary>
+            Removes the current print area, if set
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.Columns(System.Int32)">
+            <summary>
+            Returns the column at a given position
+            </summary>
+            <param name="colIndex">Index of the <see cref="T:Yogesh.ExcelXml.Column"/> starting from 0</param>
+            <returns><see cref="T:Yogesh.ExcelXml.Column"/> reference to the requested column</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.GetEnumerator">
+            <summary>
+            Get a cell enumerator
+            </summary>
+            <returns>returns IEnumerator&gt;Cell&lt;</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Get a object enumerator
+            </summary>
+            <returns>returns IEnumerator&gt;Cell&lt;</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.Delete">
+            <summary>
+            Delete this sheet from the workbook
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.DeleteRows(System.Int32,System.Int32)">
+            <summary>
+            Delete a specific number of rows starting from a row index
+            </summary>
+            <param name="index">Index of row from which the rows are deleted</param>
+            <param name="numberOfRows">Number of rows to delete</param>
+            <remarks>The rows are removed and rows after the row specified 
+            are cascaded upwards.</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.DeleteRows(Yogesh.ExcelXml.Row,System.Int32)">
+            <summary>
+            Delete a specific number of rows starting from a row instance
+            </summary>
+            <param name="row">Instance of row from which the rows are deleted</param>
+            <param name="numberOfRows">Number of rows to delete</param>
+            <remarks>The rows are removed and rows after the row specified 
+            are cascaded upwards.</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.DeleteRows(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Delete a specific number of rows starting from a row index
+            </summary>
+            <param name="index">Index of row from which the rows are deleted</param>
+            <param name="numberOfRows">Number of rows to delete</param>
+            <param name="cascade">if true, the rows are removed and rows after the row
+            specified are cascaded upwards. if false, the rows are only emptied</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.DeleteRows(Yogesh.ExcelXml.Row,System.Int32,System.Boolean)">
+            <summary>
+            Delete a specific number of rows starting from a row instance
+            </summary>
+            <param name="row">Instance of row from which the rows are deleted</param>
+            <param name="numberOfRows">Number of rows to delete</param>
+            <param name="cascade">if true, the rows are removed and rows after the row
+            specified are cascaded upwards. if false, the rows are only emptied</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.DeleteRow(System.Int32)">
+            <summary>
+            Deletes a row
+            </summary>
+            <param name="index">Index of row to delete</param>
+            <remarks>The row is removed and rows after the row specified 
+            are cascaded upwards.</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.DeleteRow(Yogesh.ExcelXml.Row)">
+            <summary>
+            Deletes a row
+            </summary>
+            <param name="row">Instance of row to delete</param>
+            <remarks>The row is removed and rows after the row specified 
+            are cascaded upwards.</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.DeleteRow(System.Int32,System.Boolean)">
+            <summary>
+            Deletes a row
+            </summary>
+            <param name="index">Index of row to delete</param>
+            <param name="cascade">if true, the row is removed and rows after the row
+            specified are cascaded upwards. if false, the rows are only emptied</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.DeleteRow(Yogesh.ExcelXml.Row,System.Boolean)">
+            <summary>
+            Deletes a row
+            </summary>
+            <param name="row">Instance of row to delete</param>
+            <param name="cascade">if true, the row is removed and rows after the row
+            specified are cascaded upwards. if false, the rows are only emptied</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.InsertRowsBefore(System.Int32,System.Int32)">
+            <summary>
+            Inserts a specific number of rows before a row
+            </summary>
+            <param name="index">Index of row before which the new rows are inserted</param>
+            <param name="rows">Number of rows to insert</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.InsertRowsBefore(Yogesh.ExcelXml.Row,System.Int32)">
+            <summary>
+            Inserts a specific number of rows before a row
+            </summary>
+            <param name="row">Instance of row before which the new rows are inserted</param>
+            <param name="rows">Number of rows to insert</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.InsertRowBefore(System.Int32)">
+            <summary>
+            Inserts a row before another row
+            </summary>
+            <param name="index">Index of row before which the new row is to be inserted</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.InsertRowBefore(Yogesh.ExcelXml.Row)">
+            <summary>
+            Inserts a row before another row
+            </summary>
+            <param name="row">Instance of row before which the new row is to be inserted</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.InsertRowsAfter(System.Int32,System.Int32)">
+            <summary>
+            Inserts a specific number of rows after a cell
+            </summary>
+            <param name="index">Index of row after which the new rows are inserted</param>
+            <param name="rows">Number of rows to insert</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.InsertRowsAfter(Yogesh.ExcelXml.Row,System.Int32)">
+            <summary>
+            Inserts a specific number of rows after a cell
+            </summary>
+            <param name="row">Instance of row after which the new rows are inserted</param>
+            <param name="rows">Number of rows to insert</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.InsertRowAfter(System.Int32)">
+            <summary>
+            Inserts a row after another row
+            </summary>
+            <param name="index">Index of row after which the new row is to be inserted</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.InsertRowAfter(Yogesh.ExcelXml.Row)">
+            <summary>
+            Inserts a row after another row
+            </summary>
+            <param name="row">Instance of row after which the new row is to be inserted</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.AddRow">
+            <summary>
+            Adds a row at the end of the sheet
+            </summary>
+            <returns>The new row instance which is added</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.DeleteColumns(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Completely removes a specified a number of columns from a given index
+            </summary>
+            <param name="index">Index of column to delete columns from</param>
+            <param name="numberOfColumns">Number of columns to delete</param>
+            <param name="cascade">if true, the columns are removed and columns to the right
+            are cascaded leftwards. if false, the columns are only emptied</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.DeleteColumns(System.Int32,System.Int32)">
+            <summary>
+            Completely removes a specified a number of columns from a given index
+            </summary>
+            <param name="index">Index of column to delete columns from</param>
+            <param name="numberOfColumns">Number of columns to delete</param>
+            <remarks>The columns are removed and columns to the right
+            are cascaded leftwards</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.DeleteColumn(System.Int32,System.Boolean)">
+            <summary>
+            Completely removes a column at a given index
+            </summary>
+            <param name="index">Index of column to delete columns from</param>
+            <param name="cascade">if true, the columns are removed and columns to the right
+            are cascaded leftwards. if false, the columns are only emptied</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.DeleteColumn(System.Int32)">
+            <summary>
+            Completely removes a column at a given index
+            </summary>
+            <param name="index">Index of column to delete columns from</param>
+            <remarks>The column is removed and columns to the right
+            are cascaded leftwards</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.InsertColumnsBefore(System.Int32,System.Int32)">
+            <summary>
+            Inserts a specified number of columns before a given column index
+            </summary>
+            <param name="index">Index of column before which columns should be inserted</param>
+            <param name="numberOfColumns">Number of columns to insert</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.InsertColumnBefore(System.Int32)">
+            <summary>
+            Inserts a column before a given column index
+            </summary>
+            <param name="index">Index of column before which new column should be inserted</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.InsertColumnsAfter(System.Int32,System.Int32)">
+            <summary>
+            Inserts a specified number of columns after a given column index
+            </summary>
+            <param name="index">Index of column after which columns should be inserted</param>
+            <param name="numberOfColumns">Number of columns to insert</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Worksheet.InsertColumnAfter(System.Int32)">
+            <summary>
+            Inserts a column after a given column index
+            </summary>
+            <param name="index">Index of column after which new column should be inserted</param>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Worksheet.PrintOptions">
+            <summary>
+            Gets or sets various sheet printing options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Worksheet.Name">
+            <summary>
+            Gets or sets the sheet name
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Worksheet.FreezeTopRows">
+            <summary>
+            Gets or sets top freezed row setting
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Worksheet.FreezeLeftColumns">
+            <summary>
+            Gets or sets left freezed column setting
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Worksheet.TabColor">
+            <summary>
+            Gets or sets the tab color
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Worksheet.IsPrintAreaSet">
+            <summary>
+            Checks if print area is set
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Worksheet.Item(System.Int32,System.Int32)">
+            <summary>
+            Returns the cell at a given position
+            </summary>
+            <param name="colIndex">Index of the <see cref="T:Yogesh.ExcelXml.Cell"/> starting from 0</param>
+            <param name="rowIndex">Index of the <see cref="T:Yogesh.ExcelXml.Row"/> starting from 0</param>
+            <returns><see cref="T:Yogesh.ExcelXml.Cell"/> reference to the requested cell</returns>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Worksheet.Item(System.Int32)">
+            <summary>
+            Returns the row at a given position
+            </summary>
+            <param name="rowIndex">Index of the <see cref="T:Yogesh.ExcelXml.Row"/> starting from 0</param>
+            <returns><see cref="T:Yogesh.ExcelXml.Row"/> reference to the requested row</returns>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Worksheet.RowCount">
+            <summary>
+            Returns the number of rows present in the sheet
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Worksheet.ColumnCount">
+            <summary>
+            Number of columns in this worksheet
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.ExcelXmlWorkbook">
+            <summary>
+            This class represents a excel workbook
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.Import(System.String)">
+            <summary>
+            Imports a excel xml workbook into a ExcelXmlWorkbook instance
+            </summary>
+            <param name="importFile">File to import</param>
+            <returns>If import was successful, the ExcelXmlWorkbook instance, null otherwise</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.Import(System.IO.Stream)">
+            <summary>
+            Imports a excel xml workbook into a ExcelXmlWorkbook instance
+            </summary>
+            <param name="stream">Stream to import</param>
+            <returns>If import was successful, the ExcelXmlWorkbook instance, null otherwise</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.AddNamedRange(Yogesh.ExcelXml.Range,System.String)">
+            <summary>
+            Add a named range to the book with a book scope
+            </summary>
+            <param name="range">Range to be named</param>
+            <param name="name">Name of the range</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.GetSheetByName(System.String)">
+            <summary>
+            Gets a Worksheet reference matching a particular name
+            </summary>
+            <param name="sheetName">Name to find</param>
+            <returns>returns instance of matching sheet, null otherwise</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.DeleteSheet(System.Int32)">
+            <summary>
+            Delete a sheet by index
+            </summary>
+            <param name="index">Index number of sheet to delete</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.DeleteSheet(System.String)">
+            <summary>
+            Delete a sheet by name
+            </summary>
+            <param name="sheetName">Name of sheet to delete</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.DeleteSheet(Yogesh.ExcelXml.Worksheet)">
+            <summary>
+            Delete a sheet by instance
+            </summary>
+            <param name="ws">Instance of sheet to delete</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.InsertBefore(System.Int32)">
+            <summary>
+            Insert a new sheet before another sheet
+            </summary>
+            <param name="index">Index of sheet before which new sheet will be added</param>
+            <returns>New worksheet instance</returns>
+            <remarks>If index is less than 0, the new sheet is added to the end of all sheets</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.InsertBefore(System.String)">
+            <summary>
+            Insert a new sheet before another sheet
+            </summary>
+            <param name="sheetName">Name of sheet before which new sheet will be added</param>
+            <returns>New worksheet instance</returns>
+            <remarks>If sheet is not found, the new sheet is added to the end of all sheets</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.InsertBefore(Yogesh.ExcelXml.Worksheet)">
+            <summary>
+            Insert a new sheet before another sheet
+            </summary>
+            <param name="ws">Instance of sheet before which new sheet will be added</param>
+            <returns>New worksheet instance</returns>
+            <remarks>If sheet is not found, the new sheet is added to the end of all sheets</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.InsertAfter(System.Int32)">
+            <summary>
+            Insert a new sheet after another sheet
+            </summary>
+            <param name="index">Index of sheet after which new sheet will be added</param>
+            <returns>New worksheet instance</returns>
+            <remarks>If index is not in bounds, the new sheet is added to the end of all sheets</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.InsertAfter(System.String)">
+            <summary>
+            Insert a new sheet after another sheet
+            </summary>
+            <param name="sheetName">Name of sheet after which new sheet will be added</param>
+            <returns>New worksheet instance</returns>
+            <remarks>If sheet is not found, the new sheet is added to the end of all sheets</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.InsertAfter(Yogesh.ExcelXml.Worksheet)">
+            <summary>
+            Insert a new sheet after another sheet
+            </summary>
+            <param name="ws">Instance of sheet after which new sheet will be added</param>
+            <returns>New worksheet instance</returns>
+            <remarks>If sheet is not found, the new sheet is added to the end of all sheets</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.Add">
+            <summary>
+            Adds a new sheet at the end of all sheets
+            </summary>
+            <returns>New Worksheet instance</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.Add(System.String)">
+            <summary>
+            Adds a new sheet at the end of all sheets
+            </summary>
+            <param name="sheetName">Sheet name</param>
+            <returns>New Worksheet instance</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.Export(System.String)">
+            <summary>
+            Export the workbook to a file
+            </summary>
+            <param name="fileName">Output file name</param>
+            <returns>true if the export was successful, false otherwise</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.Export(System.IO.Stream)">
+            <summary>
+            Export the workbook to a stream
+            </summary>
+            <param name="stream">Output stream</param>
+            <returns>true if the export was successful, false otherwise</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.ExcelXmlWorkbook.DataSetToWorkbook(System.Data.DataSet)">
+            <summary>
+            Converts a dataset to a work book
+            </summary>
+            <param name="source">The source dataset to convert to a work book</param>
+            <returns>Returns the <see cref="T:Yogesh.ExcelXml.ExcelXmlWorkbook"/>
+            for the dataset.</returns>
+            <remarks>All the tables are converted into sheets with sheet names as table + table number, 
+            eg. "Table0" "Table1" etc. Supported types which can be successfully
+            converted to cells are the same as described in <see cref="T:Yogesh.ExcelXml.Cell"/>
+            except <see cref="T:Yogesh.ExcelXml.Cell"/> and 
+            <see cref="T:Yogesh.ExcelXml.Formula"/></remarks>
+        </member>
+        <member name="P:Yogesh.ExcelXml.ExcelXmlWorkbook.Properties">
+            <summary>
+            Gets or sets document properties
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.ExcelXmlWorkbook.DefaultStyle">
+            <summary>
+            Gets or sets default font options of the sheet
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.ExcelXmlWorkbook.Item(System.Int32)">
+            <summary>
+            Returns the sheet at a given position
+            </summary>
+            <param name="index">Index of the <see cref="T:Yogesh.ExcelXml.Worksheet"/> starting from 0</param>
+            <returns><see cref="T:Yogesh.ExcelXml.Worksheet"/> reference to the requested sheet</returns>
+        </member>
+        <member name="P:Yogesh.ExcelXml.ExcelXmlWorkbook.Item(System.String)">
+            <summary>
+            Returns the sheet by sheet name
+            </summary>
+            <param name="sheetName">Name of <see cref="T:Yogesh.ExcelXml.Worksheet"/></param>
+            <returns><see cref="T:Yogesh.ExcelXml.Worksheet"/> reference to the requested sheet</returns>
+        </member>
+        <member name="P:Yogesh.ExcelXml.ExcelXmlWorkbook.SheetCount">
+            <summary>
+            The number of sheets in this boook
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.Parameter">
+            <summary>
+            Parameter denotes a single parameter in a formula 
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Parameter.ParameterType">
+            <summary>
+            Parameter type
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Parameter.Value">
+            <summary>
+            Value of the parameter
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.Formula">
+            <summary>
+            Formula is a formula builder class which can be stored directly in a cell
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Formula.#ctor">
+            <summary>
+            Formula constructor
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Formula.Add(System.Char)">
+            <summary>
+            Adds a operator as a parameter in a formula
+            </summary>
+            <param name="op">Operator to add as parameter</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Formula.Operator(System.Char)">
+            <summary>
+            Adds a operator as a parameter in a formula
+            </summary>
+            <param name="op">Operator to add as parameter</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Formula.StartGroup">
+            <summary>
+            Starts a new group
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Formula.EndGroup">
+            <summary>
+            Ends a group
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Formula.EmptyGroup">
+            <summary>
+            Adds a empty group to the formula
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Formula.Add(Yogesh.ExcelXml.Cell)">
+            <summary>
+            Adds a cell as a parameter in a formula
+            </summary>
+            <param name="cell">Cell to add as parameter</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Formula.Add(Yogesh.ExcelXml.Range)">
+            <summary>
+            Adds a range as a parameter in a formula
+            </summary>
+            <param name="range">Range to add as parameter</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Formula.Add(System.String)">
+            <summary>
+            Adds a string as a parameter in a formula
+            </summary>
+            <param name="parameter">String to add as parameter</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Formula.Add(Yogesh.ExcelXml.Formula)">
+            <summary>
+            Adds another formula as a parameter in a formula
+            </summary>
+            <param name="formula">Another formula to add to this formula's parameter list</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Formula.Add(Yogesh.ExcelXml.Range,System.Predicate{Yogesh.ExcelXml.Cell})">
+            <summary>
+            Adds a filtered range as a parameter
+            </summary>
+            <param name="range">Range to add as parameter</param>
+            <param name="cellCompare">A custom defined cell to compare the values of the range</param>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Formula.Parameters">
+            <summary>
+            Readonly list of formula paramters
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Formula.MustHaveParameters">
+            <summary>
+            Check to force parameters in function
+            </summary>
+            <remarks>In case if this flag is set and formula does not contain one or more parameters
+            then when the formula is assigned to a cell, the cell is left empty.</remarks>
+            <example><code>
+            sheet[0, 0].Value = 2;
+            sheet[1, 0].Value = 12;
+            sheet[2, 0].Value = 9;
+            sheet[3, 0].Value = 7;
+            
+            Formula formula1 = new Formula("Sum", new Range(sheet[0, 0], sheet[3, 0]),
+            						delegate (Cell cell) { return cell.GetValue() > 10; });
+            					
+            formula1.MustHaveParameters = false; // default value
+            sheet[4, 0].Value = formula; // cell value will be '=SUM()')
+            
+            Formula formula2 = new Formula("Sum", new Range(sheet[0, 0], sheet[3, 0]),
+            						delegate (Cell cell) { return cell.GetValue() > 10; });
+            					
+            formula2.MustHaveParameters = true;
+            sheet[5, 0].Value = formula; // cell will be empty
+            </code></example>
+        </member>
+        <member name="T:Yogesh.ExcelXml.FontOptionsBase">
+            <summary>
+            Gets or sets cell's font options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.FontOptionsBase.Name">
+            <summary>
+            Gets or sets the name of the font
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.FontOptionsBase.Size">
+            <summary>
+            Gets or sets the size of the font
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.FontOptionsBase.Bold">
+            <summary>
+            Gets or sets font's bold property
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.FontOptionsBase.Underline">
+            <summary>
+            Gets or sets font's underline property
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.FontOptionsBase.Italic">
+            <summary>
+            Gets or sets font's italic property
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.FontOptionsBase.Strikeout">
+            <summary>
+            Gets or sets font's strike-through property
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.FontOptionsBase.Color">
+            <summary>
+            Gets or sets font's color
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.InteriorOptionsBase">
+            <summary>
+            Gets or sets cell's interior options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.InteriorOptionsBase.Color">
+            <summary>
+            Gets or sets cell background color
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.InteriorOptionsBase.PatternColor">
+            <summary>
+            Gets or sets cell pattern color
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.InteriorOptionsBase.Pattern">
+            <summary>
+            Gets or sets cell background color
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.AlignmentOptionsBase">
+            <summary>
+            Gets or sets cell's alignment options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.AlignmentOptionsBase.Vertical">
+            <summary>
+            Gets or sets vertical alignment of the cell
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.AlignmentOptionsBase.Horizontal">
+            <summary>
+            Gets or sets horizontal alignment of the cell
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.AlignmentOptionsBase.WrapText">
+            <summary>
+            Gets or sets text wrap setting
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.AlignmentOptionsBase.Indent">
+            <summary>
+            Gets or sets the indent
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.AlignmentOptionsBase.Rotate">
+            <summary>
+            Gets or sets the text rotation
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.AlignmentOptionsBase.ShrinkToFit">
+            <summary>
+            Gets or sets cell's shrink to cell setting
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.BorderOptionsBase">
+            <summary>
+            Gets or sets the border options
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.BorderOptionsBase.Sides">
+            <summary>
+            Gets or sets the border side flags
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.BorderOptionsBase.Color">
+            <summary>
+            Gets or sets border color
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.BorderOptionsBase.Weight">
+            <summary>
+            Gets or sets the width of the border
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.BorderOptionsBase.LineStyle">
+            <summary>
+            Gets or sets the border line style
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.PrintOptions">
+            <summary>
+            Gets or sets various sheet printing options
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.PrintOptions.SetTitleRows(System.Int32,System.Int32)">
+            <summary>
+            Sets print header rows which are repeated at top on every page
+            </summary>
+            <param name="top">Top print row</param>
+            <param name="bottom">Bottom print row</param>
+            <remarks>Important Note: Top and bottom row parameters are <b>NOT</b> zero based like row 
+            and column indexers</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.PrintOptions.SetTitleColumns(System.Int32,System.Int32)">
+            <summary>
+            Sets print header columns which are repeated at left on every page
+            </summary>
+            <param name="left">Left print column</param>
+            <param name="right">Right print column</param>
+            <remarks>Important Note: Left and right column parameters are <b>NOT</b> zero based like row 
+            and column indexers</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.PrintOptions.ResetMargins">
+            <summary>
+            Resets print margins
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.PrintOptions.ResetHeaders">
+            <summary>
+            Resets header rows/columns.
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.PrintOptions.SetMargins(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Sets print margins
+            </summary>
+            <param name="left">Left margin</param>
+            <param name="top">Top margin</param>
+            <param name="right">Right margin</param>
+            <param name="bottom">Bottom margin</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.PrintOptions.SetHeaderFooterMargins(System.Double,System.Double)">
+            <summary>
+            Sets print header and footer margins
+            </summary>
+            <param name="header">Header margin</param>
+            <param name="footer">Footer margin</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.PrintOptions.SetFitToPage(System.Int32,System.Int32)">
+            <summary>
+            Sets excel's fit to page property
+            </summary>
+            <param name="width">Number of pages to fit the page horizontally</param>
+            <param name="height">Number of pages to fit the page vertically</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.PrintOptions.SetScaleToSize(System.Int32)">
+            <summary>
+            Sets excel's scale or zoom property
+            </summary>
+            <param name="scale">Scale to size</param>
+        </member>
+        <member name="P:Yogesh.ExcelXml.PrintOptions.Layout">
+            <summary>
+            Gets or sets page layout
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.PrintOptions.Orientation">
+            <summary>
+            Gets or sets page orientation
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.Row">
+            <summary>
+            Row class represents a single row in a worksheet
+            </summary>
+            <remarks>
+            Row class represents a single row in a worksheet.
+            <para>You cannot directly declare a instance of a row from your code by using
+            <c>new</c> keyword. The only way to access a row is to retrieve it from
+            a worksheet.</para>
+            </remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.Delete">
+            <summary>
+            Deletes the row from the parent sheet
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.GetEnumerator">
+            <summary>
+            Get a cell enumerator
+            </summary>
+            <returns>returns IEnumerator&gt;Cell&lt;</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Get a object enumerator
+            </summary>
+            <returns>returns IEnumerator&gt;Cell&lt;</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.DeleteCells(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Delete a specific number of cells starting from a cell index
+            </summary>
+            <param name="index">Index of cell from which the cells are deleted</param>
+            <param name="numberOfCells">Number of cells to delete</param>
+            <param name="cascade">if true, the cells are removed and cells to the right
+            are cascaded leftwards. if false, the cells are only emptied</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.DeleteCells(Yogesh.ExcelXml.Cell,System.Int32,System.Boolean)">
+            <summary>
+            Delete a specific number of cells starting from a cell instance
+            </summary>
+            <param name="cell">Instance of cell from which the cells are deleted</param>
+            <param name="numberOfCells">Number of cells to delete</param>
+            <param name="cascade">if true, the cells are removed and cells to the right
+            are cascaded leftwards. if false, the cells are only emptied</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.DeleteCells(System.Int32,System.Int32)">
+            <summary>
+            Delete a specific number of cells starting from a cell index
+            </summary>
+            <param name="index">Index of cell from which the cells are deleted</param>
+            <param name="numberOfCells">Number of cells to delete</param>
+            <remarks>The cells are removed and cells to the right are cascaded
+            leftwards.</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.DeleteCells(Yogesh.ExcelXml.Cell,System.Int32)">
+            <summary>
+            Delete a specific number of cells starting from a cell instance
+            </summary>
+            <param name="cell">Instance of cell from which the cells are deleted</param>
+            <param name="numberOfCells">Number of cells to delete</param>
+            <remarks>The cells are removed and cells to the right are cascaded
+            leftwards.</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.DeleteCell(System.Int32)">
+            <summary>
+            Deletes a cell
+            </summary>
+            <param name="index">Index of cell to delete</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.DeleteCell(Yogesh.ExcelXml.Cell)">
+            <summary>
+            Deletes a cell
+            </summary>
+            <param name="cell">Instance of cell to delete</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.DeleteCell(System.Int32,System.Boolean)">
+            <summary>
+            Deletes a cell
+            </summary>
+            <param name="index">Index of cell to delete</param>
+            <param name="cascade">if true, the cell is removed and cells to the right
+            are cascaded leftwards. if false, the cell is only emptied</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.DeleteCell(Yogesh.ExcelXml.Cell,System.Boolean)">
+            <summary>
+            Deletes a cell
+            </summary>
+            <param name="cell">Instance of cell to delete</param>
+            <param name="cascade">if true, the cell is removed and cells to the right
+            are cascaded leftwards. if false, the cell is only emptied</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.InsertCellsBefore(System.Int32,System.Int32)">
+            <summary>
+            Inserts a specific number of cells before a cell
+            </summary>
+            <param name="index">Index of cell before which the cells are to be inserted</param>
+            <param name="cells">Number of cells to insert</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.InsertCellsBefore(Yogesh.ExcelXml.Cell,System.Int32)">
+            <summary>
+            Inserts a specific number of cells before a cell
+            </summary>
+            <param name="cell">Instance of cell before which the cells are to be inserted</param>
+            <param name="cells">Number of cells to insert</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.InsertCellBefore(System.Int32)">
+            <summary>
+            Inserts a cell before another cell
+            </summary>
+            <param name="index">Index of cell before which the cell is to be inserted</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.InsertCellBefore(Yogesh.ExcelXml.Cell)">
+            <summary>
+            Inserts a cell before another cell
+            </summary>
+            <param name="cell">Instance of cell before which the cell is to be inserted</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.InsertCellsAfter(System.Int32,System.Int32)">
+            <summary>
+            Inserts a specific number of cells after a cell
+            </summary>
+            <param name="index">Index of cell after which the cells are to be inserted</param>
+            <param name="cells">Number of cells to insert</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.InsertCellsAfter(Yogesh.ExcelXml.Cell,System.Int32)">
+            <summary>
+            Inserts a specific number of cells after a cell
+            </summary>
+            <param name="cell">Instance of cell after which the cells are to be inserted</param>
+            <param name="cells">Number of cells to insert</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.InsertCellAfter(System.Int32)">
+            <summary>
+            Inserts a cell after another cell
+            </summary>
+            <param name="index">Index of cell after which the cell is to be inserted</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.InsertCellAfter(Yogesh.ExcelXml.Cell)">
+            <summary>
+            Inserts a cell after another cell
+            </summary>
+            <param name="cell">Instance of cell after which the cell is to be inserted</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Row.AddCell">
+            <summary>
+            Adds a cells to the end of the row
+            </summary>
+            <returns>Instance of the newly created cell</returns>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Row.Height">
+            <summary>
+            Gets or sets the row height
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Row.Hidden">
+            <summary>
+            Row is hidden?
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Row.Item(System.Int32)">
+            <summary>
+            Returns the cell at a given position
+            </summary>
+            <param name="colIndex">Index of the <see cref="T:Yogesh.ExcelXml.Cell"/> starting from 0</param>
+            <returns><see cref="T:Yogesh.ExcelXml.Cell"/> reference to the requested cell</returns>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Row.CellCount">
+            <summary>
+            Returns the number of cell in a row
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.FormulaHelper">
+            <summary>
+            FormulaHelper makes formulae the way previous Formula
+            constructor made. Only for backward compatibility.
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.FormulaHelper.Formula(System.String)">
+            <summary>
+            Constructs a formula without any parameters
+            </summary>
+            <param name="function">Function name</param>
+            <example><code>Formula formula = new Formula("sum");</code></example>
+        </member>
+        <member name="M:Yogesh.ExcelXml.FormulaHelper.Formula(System.String,Yogesh.ExcelXml.Range)">
+            <summary>
+            Constructs a formula and adds a range as the first parameter
+            </summary>
+            <param name="function">Function name</param>
+            <param name="range">Range to add as parameter</param>
+            <example><code>Formula formula = new Formula("sum", new Range(cell1, cell2));</code></example>
+        </member>
+        <member name="M:Yogesh.ExcelXml.FormulaHelper.Formula(System.String,System.String)">
+            <summary>
+            Constructs a formula and adds a string as the first parameter
+            </summary>
+            <param name="function">Function name</param>
+            <param name="parameter">String to add as parameter</param>
+            <example><code>Formula formula = new Formula("sum", "0,1");</code></example>
+        </member>
+        <member name="M:Yogesh.ExcelXml.FormulaHelper.Formula(System.String,Yogesh.ExcelXml.Formula)">
+            <summary>
+            Constructs a formula and adds another formula as the first parameter
+            </summary>
+            <param name="function">Function name</param>
+            <param name="parameter">Another formula to add to this formula's parameter list</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.FormulaHelper.Formula(System.String,Yogesh.ExcelXml.Range,System.Predicate{Yogesh.ExcelXml.Cell})">
+            <summary>
+            Constructs a formula and adds a filtered range as the first parameter
+            </summary>
+            <param name="function">Function name</param>
+            <param name="range">Range to add as parameter</param>
+            <param name="cellCompare">A custom defined to compare the values of the range</param>
+            <remarks>
+            Custom delegates can filter all cells and auto add them to the parameter list of a formula 
+            by passing a System.Predicate&gt;Cell&lt;, i.e. a 
+            delegate which accepts Cell as its value and returns bool 
+            to both Formula constructor or Add. All the values accessors (i.e. Value, NumericValue etc.) 
+            and cell style can be checked.
+            </remarks>
+            <example>
+            Lets assume column 1,2,3,6 and 7 are bold...
+            <code>
+            XmlStyle style = new XmlStyle();
+            style.Font.Bold = true;
+            
+            // VS2008 style
+            sheet[7, 3].Value = new Formula("sum", new Range(sheet[0, 3], sheet[6, 3]), 
+            		cell =&gt; cell.Style == style);
+            
+            // or VS2005 style
+            sheet[7, 3].Value = new Formula("sum", new Range(sheet[0, 3], sheet[6, 3]), 
+            		delegate (Cell cell) { return cell.Style == style; } );
+            </code>
+            In the first example of style, the value of the cell will be =SUM(A4:C4, F4:G4).
+            <para><b>Continuous ranges matching to true will be joined as one parameter, i.e. A4:C4 
+            and not as seperate parameters, i.e. A4,B4,C4</b></para>
+            
+            Using value accessors...
+            <code>
+            sheet[7, 3].Value = new Formula("sum", new Range(sheet[0, 3], sheet[6, 3]), 
+            			cell =&gt; cell.NumericValue > 10000 &amp; cell.NumericValue &lt;= 50000);
+            </code>
+            </example>
+        </member>
+        <member name="T:Yogesh.ExcelXml.Column">
+            <summary>
+            Column class represents a column properties of a single column in a worksheet
+            </summary>
+            <remarks>
+            Column class represents a column properties of a single column in a worksheet.
+            <para>You cannot directly declare a instance of a column class from your code by using
+            <c>new</c> keyword. The only way to access a column is to retrieve it from
+            a worksheet by using the <see cref="M:Yogesh.ExcelXml.Worksheet.Columns(System.Int32)"/>
+            method of the <see cref="T:Yogesh.ExcelXml.Worksheet"/> class.</para>
+            </remarks>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Column.Width">
+            <summary>
+            Gets or sets the default width of the column
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Column.Hidden">
+            <summary>
+            Gets or sets the hidden status of the column
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Column.Style">
+            <summary>
+            Gets or sets the <see cref="T:Yogesh.ExcelXml.XmlStyle"/> reference of the column.
+            <para>Setting this option only affects cells which are added after this value is set. The 
+            cells which are added in the same column retain their original style settings.</para>
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.ParameterType">
+            <summary>
+            Formula parameter types
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.ParameterType.String">
+            <summary>
+            A unknown string parameter
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.ParameterType.Range">
+            <summary>
+            A Range
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.ParameterType.Formula">
+            <summary>
+            A Formula
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.DisplayFormatType">
+            <summary>
+            The default display format of the cell in excel
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.DisplayFormatType.None">
+            <summary>
+            General format
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.DisplayFormatType.Text">
+            <summary>
+            Displays anything as text (i.e. Left aligned without formatting)
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.DisplayFormatType.Fixed">
+            <summary>
+            Displays numeric values with two fixed decimals
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.DisplayFormatType.Standard">
+            <summary>
+            Displays numeric values with two fixed decimals and digit grouping
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.DisplayFormatType.Percent">
+            <summary>
+            Displays numeric values as percentage values
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.DisplayFormatType.Scientific">
+            <summary>
+            Displays numeric values in scientific notation
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.DisplayFormatType.GeneralDate">
+            <summary>
+            Displays numeric or date values as formatted date values
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.DisplayFormatType.ShortDate">
+            <summary>
+            Displays numeric or date values as short date format
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.DisplayFormatType.LongDate">
+            <summary>
+            Displays numeric or date values as long date format
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.DisplayFormatType.Time">
+            <summary>
+            Displays numeric or date values in time format
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.DisplayFormatType.Custom">
+            <summary>
+            Custom defined format
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.ContentType">
+            <summary>
+            The cell content type
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.ContentType.None">
+            <summary>
+            Cell does not contain anything
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.ContentType.String">
+            <summary>
+            Cell contains a string
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.ContentType.Number">
+            <summary>
+            Cell contains a number
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.ContentType.DateTime">
+            <summary>
+            Cell contains a DateTime value
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.ContentType.Boolean">
+            <summary>
+            Cell contains a bool value
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.ContentType.Formula">
+            <summary>
+            Cell contains a formula
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.ContentType.UnresolvedValue">
+            <summary>
+            Cell contains a formula which cannot be resolved
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.VerticalAlignment">
+            <summary>
+            Cell's vertical alignment values
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.VerticalAlignment.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.VerticalAlignment.Top">
+            <summary>
+            Top aligned
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.VerticalAlignment.Center">
+            <summary>
+            Centered
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.VerticalAlignment.Bottom">
+            <summary>
+            Bottom aligned
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.VerticalAlignment.Justify">
+            <summary>
+            Justified
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.VerticalAlignment.Distributed">
+            <summary>
+            Distributed
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.HorizontalAlignment">
+            <summary>
+            Cell's horizontal alignment values
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.HorizontalAlignment.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.HorizontalAlignment.Left">
+            <summary>
+            Left aligned
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.HorizontalAlignment.Center">
+            <summary>
+            Centered
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.HorizontalAlignment.Right">
+            <summary>
+            Right aligned
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.HorizontalAlignment.Fill">
+            <summary>
+            Streched to fill
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.HorizontalAlignment.Justify">
+            <summary>
+            Justified
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.HorizontalAlignment.Distributed">
+            <summary>
+            Distributed
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.Borderline">
+            <summary>
+            Different style of border lines
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Borderline.Continuous">
+            <summary>
+            Continuous line
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Borderline.Dash">
+            <summary>
+            Dash line
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Borderline.DashDot">
+            <summary>
+            DashDot line
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Borderline.DashDotDot">
+            <summary>
+            DashDotDot line
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Borderline.Double">
+            <summary>
+            Double line
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Borderline.Dot">
+            <summary>
+            Dot line
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Borderline.SlantDashDot">
+            <summary>
+            SlantDashDot line
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.BorderSides">
+            <summary>
+            Different type of border sides.
+            </summary>
+            <remarks>Multiple values can be combined by an or (i.e. "|") operation.</remarks>
+        </member>
+        <member name="F:Yogesh.ExcelXml.BorderSides.None">
+            <summary>
+            No border
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.BorderSides.Top">
+            <summary>
+            Cell has a top border
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.BorderSides.Left">
+            <summary>
+            Cell has a left border
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.BorderSides.Bottom">
+            <summary>
+            Cell has a botom border
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.BorderSides.Right">
+            <summary>
+            Cell has a right border
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.BorderSides.All">
+            <summary>
+            Cell has full border on all sides
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.Pattern">
+            <summary>
+            Different types of cell background patterns
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.Solid">
+            <summary>
+            Solid
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.Gray25">
+            <summary>
+            Gray25
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.Gray50">
+            <summary>
+            Gray50
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.Gray75">
+            <summary>
+            Gray75
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.Gray125">
+            <summary>
+            Gray125
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.Gray0625">
+            <summary>
+            Gray0625
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.HorzStripe">
+            <summary>
+            HorzStripe
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.VertStripe">
+            <summary>
+            VertStripe
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.ReverseDiagStripe">
+            <summary>
+            ReverseDiagStripe
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.DiagStripe">
+            <summary>
+            DiagStripe
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.DiagCross">
+            <summary>
+            DiagCross
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.ThickDiagCross">
+            <summary>
+            ThickDiagCross
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.ThinHorzStripe">
+            <summary>
+            ThinHorzStripe
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.ThinVertStripe">
+            <summary>
+            ThinVertStripe
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.ThinReverseDiagStripe">
+            <summary>
+            ThinReverseDiagStripe
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.ThinDiagStripe">
+            <summary>
+            ThinDiagStripe
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.ThinHorzCross">
+            <summary>
+            ThinHorzCross
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.Pattern.ThinDiagCross">
+            <summary>
+            ThinDiagCross
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.PageLayout">
+            <summary>
+            Page layout
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.PageLayout.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.PageLayout.CenterHorizontal">
+            <summary>
+            Centers the page horizontally
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.PageLayout.CenterVertical">
+            <summary>
+            Centers the page vertically
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.PageLayout.CenterVerticalAndHorizontal">
+            <summary>
+            Centers the page vertically and horizontally
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.PageOrientation">
+            <summary>
+            Orientation mode
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.PageOrientation.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.PageOrientation.Landscape">
+            <summary>
+            Landscape orientation
+            </summary>
+        </member>
+        <member name="F:Yogesh.ExcelXml.PageOrientation.Portrait">
+            <summary>
+            Portrait orientation
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.Range">
+            <summary>
+            Defines a range of cells
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Range.#ctor(System.String)">
+            <summary>
+            Defines a unresolved range
+            </summary>
+            <param name="range">Unresolved range address</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Range.#ctor(Yogesh.ExcelXml.Cell)">
+            <summary>
+            Defines a range
+            </summary>
+            <param name="cell">A single cell as a range</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Range.#ctor(Yogesh.ExcelXml.Cell,Yogesh.ExcelXml.Cell)">
+            <summary>
+            Defines a range
+            </summary>
+            <param name="cellFrom">Starting cell</param>
+            <param name="cellTo">Ending cell</param>
+            <remarks>Defines a rectangular area of a sheet with a starting cell and a ending cell</remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Range.GetEnumerator">
+            <summary>
+            Get a cell enumerator
+            </summary>
+            <returns>returns IEnumerator&gt;Cell&lt;</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Range.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Get a object enumerator
+            </summary>
+            <returns>returns IEnumerator&gt;Cell&lt;</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Range.Contains(Yogesh.ExcelXml.Cell)">
+            <summary>
+            Checks if a particular cell is present in a range or not
+            </summary>
+            <param name="cell">Cell to check</param>
+            <returns>true if cell is present, false otherwise</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Range.AutoFilter">
+            <summary>
+            Sets this range as a auto-filter range in the sheet
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Range.SetAsPrintArea">
+            <summary>
+            Sets this range as the current print area in the sheet
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Range.Merge">
+            <summary>
+            Merges a range into one cell
+            </summary>
+            <returns>true if merge was successful, false otherwise</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Range.Unmerge">
+            <summary>
+            Unmerges a merged range
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Range.Absolute">
+            <summary>
+            Gets or sets the range's flag to return a absolute reference or otherwise
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Range.Name">
+            <summary>
+            Gets or sets the name of the range
+            </summary>
+            <remarks>This property always adds global (i.e. Workbook level)
+            named ranges. To add sheet limited ranges, use Worksheet's
+            AddNamedRange method of <see cref="T:Yogesh.ExcelXml.Worksheet"/>
+            class.</remarks>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Range.RowCount">
+            <summary>
+            Gets the number of rows in a range
+            </summary>
+            <returns>Number of rows in a range</returns>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Range.ColumnCount">
+            <summary>
+            Gets the number of columns in a range
+            </summary>
+            <returns>Number of columns in a range</returns>
+        </member>
+        <member name="T:Yogesh.ExcelXml.CellCollection">
+            <summary>
+            Represents a strongly typed list of cells that can be accessed by index.
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.CellCollection.Add(Yogesh.ExcelXml.Range)">
+            <summary>
+            Adds a range to the collection
+            </summary>
+            <param name="range">Range to add</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.CellCollection.Add(Yogesh.ExcelXml.Worksheet)">
+            <summary>
+            Adds a worksheet to the collection
+            </summary>
+            <param name="ws">Worksheet to add</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.CellCollection.Add(Yogesh.ExcelXml.Row)">
+            <summary>
+            Adds a row to the collection
+            </summary>
+            <param name="row">Row to add</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.CellCollection.Add(Yogesh.ExcelXml.Cell,System.Predicate{Yogesh.ExcelXml.Cell})">
+            <summary>
+            Adds a single cell to the collection if it matches the filter condition
+            </summary>
+            <param name="cell">Cell to add</param>
+            <param name="filterCondition">Filter predicate</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.CellCollection.Add(Yogesh.ExcelXml.Range,System.Predicate{Yogesh.ExcelXml.Cell})">
+            <summary>
+            Adds a range to the collection if it matches the filter condition
+            </summary>
+            <param name="range">Range to add</param>
+            <param name="filterCondition">Filter predicate</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.CellCollection.Add(Yogesh.ExcelXml.Worksheet,System.Predicate{Yogesh.ExcelXml.Cell})">
+            <summary>
+            Adds a worksheet to the collection if it matches the filter condition
+            </summary>
+            <param name="ws">Worksheet to add</param>
+            <param name="filterCondition">Filter predicate</param>
+        </member>
+        <member name="M:Yogesh.ExcelXml.CellCollection.Add(Yogesh.ExcelXml.Row,System.Predicate{Yogesh.ExcelXml.Cell})">
+            <summary>
+            Adds a row to the collection if it matches the filter condition
+            </summary>
+            <param name="row">Row to add</param>
+            <param name="filterCondition">Filter predicate</param>
+        </member>
+        <member name="T:Yogesh.ExcelXml.CellIndexInfo">
+            <summary>
+            Cell Index Information
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.CellIndexInfo.RowIndex">
+            <summary>
+            Row index starting from 0
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.CellIndexInfo.ColumnIndex">
+            <summary>
+            Column index starting from 0
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.CellIndexInfo.ExcelColumnIndex">
+            <summary>
+            Index in excel format, eg. A1
+            </summary>
+        </member>
+        <member name="T:Yogesh.ExcelXml.Cell">
+            <summary>
+            Cell class represents a single cell in a worksheet
+            </summary>
+            <remarks>
+            Cell class represents a single cell in a worksheet.
+            <para>You cannot directly declare a instance of a cell from your code by using
+            <c>new</c> keyword. The only way to access a cell is to retrieve it from
+            a worksheet or a row.</para>
+            </remarks>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Cell.GetValue``1">
+            <summary>
+            Gets the value of a cell converted to a system type
+            </summary>
+            <typeparam name="T">Type to convert to</typeparam>
+            <returns>Cell value converted to system type</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Cell.IsEmpty">
+            <summary>
+            Checks whether the cell has no content and no comment
+            </summary>
+            <returns>true if empty, false otherwise</returns>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Cell.Empty">
+            <summary>
+            Empties the content of a cell
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Cell.Unmerge">
+            <summary>
+            Unmerges a cell
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.Cell.Delete">
+            <summary>
+            Deletes a cell from the parent row
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Cell.ContentType">
+            <summary>
+            Returns the cell content type
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Cell.Index">
+            <summary>
+            Index information of the cell
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Cell.Comment">
+            <summary>
+            Gets or sets the comment for the cell
+            </summary>
+            <remarks>Comment is in raw html format which means you can insert
+            bold and italics markers just like regular html</remarks>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Cell.ColumnSpan">
+            <summary>
+            Gets the number of columns merged together, starting with this cell
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Cell.RowSpan">
+            <summary>
+            Gets the number of rows merged together, starting with this cell
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Cell.HRef">
+            <summary>
+            Gets or sets the a external reference as a link
+            </summary>
+            <remarks>The value of HRef is not verified.</remarks>
+        </member>
+        <member name="P:Yogesh.ExcelXml.Cell.Value">
+            <summary>
+            Gets or sets the value of the cell
+            </summary>
+            <remarks>
+            Value returns a boxed <see cref="T:System.String"/> value of the cell or sets the value of the cell to...
+            <list type="number">
+            <item>
+            <term><see cref="T:System.String"/></term><description></description>
+            </item>
+            <item>
+            <term><see cref="T:System.Boolean"/></term><description></description>
+            </item>
+            <item>
+            <term><see cref="T:System.Byte"/></term><description></description>
+            </item>
+            <item>
+            <term><see cref="T:System.Int16"/></term><description></description>
+            </item>
+            <item>
+            <term><see cref="T:System.Int32"/></term><description></description>
+            </item>
+            <item>
+            <term><see cref="T:System.Int64"/></term><description></description>
+            </item>
+            <item>
+            <term><see cref="T:System.Double"/></term><description></description>
+            </item>
+            <item>
+            <term><see cref="T:System.Decimal"/></term><description></description>
+            </item>
+            <item>
+            <term><see cref="T:System.DateTime"/></term><description></description>
+            </item>
+            <item>
+            <term><see cref="T:Yogesh.ExcelXml.Cell"/></term><description></description>
+            </item>
+            <item>
+            <term><see cref="T:Yogesh.ExcelXml.Formula"/></term><description></description>
+            </item>
+            </list>
+            <para>If the type is not any of the above, cell value is set to null.</para></remarks>
+        </member>
+        <member name="T:Yogesh.ExcelXml.DocumentProperties">
+            <summary>
+            Gets or sets document properties
+            </summary>
+        </member>
+        <member name="M:Yogesh.ExcelXml.DocumentProperties.#ctor">
+            <summary>
+            Creates an instance with empty document properties
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.DocumentProperties.Author">
+            <summary>
+            Gets or sets the author of the workbook
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.DocumentProperties.LastAuthor">
+            <summary>
+            Gets or sets the last author of the workbook
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.DocumentProperties.Manager">
+            <summary>
+            Gets or sets the manager of the workbook
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.DocumentProperties.Company">
+            <summary>
+            Gets or sets the company of the workbook
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.DocumentProperties.Subject">
+            <summary>
+            Gets or sets the subject of the workbook
+            </summary>
+        </member>
+        <member name="P:Yogesh.ExcelXml.DocumentProperties.Title">
+            <summary>
+            Gets or sets the title of the workbook
+            </summary>
+        </member>
+    </members>
+</doc>

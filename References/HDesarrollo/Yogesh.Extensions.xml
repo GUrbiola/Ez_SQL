@@ -1,0 +1,501 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Yogesh.Extensions</name>
+    </assembly>
+    <members>
+        <member name="T:Yogesh.Extensions.XmlReaderAttributeItem">
+            <summary>
+            Extended xml attribute
+            </summary>
+        </member>
+        <member name="P:Yogesh.Extensions.XmlReaderAttributeItem.Name">
+            <summary>
+            Name of attribute
+            </summary>
+        </member>
+        <member name="P:Yogesh.Extensions.XmlReaderAttributeItem.LocalName">
+            <summary>
+            Local name of attribute
+            </summary>
+        </member>
+        <member name="P:Yogesh.Extensions.XmlReaderAttributeItem.Value">
+            <summary>
+            Value of attribute
+            </summary>
+        </member>
+        <member name="P:Yogesh.Extensions.XmlReaderAttributeItem.Prefix">
+            <summary>
+            Prefix if any
+            </summary>
+        </member>
+        <member name="P:Yogesh.Extensions.XmlReaderAttributeItem.HasValue">
+            <summary>
+            Has a value?
+            </summary>
+        </member>
+        <member name="T:Yogesh.Extensions.DateSpan">
+            <summary>
+            DateSpan class used to computer difference of two dates
+            </summary>
+        </member>
+        <member name="P:Yogesh.Extensions.DateSpan.Days">
+            <summary>
+            Difference in days
+            </summary>
+        </member>
+        <member name="P:Yogesh.Extensions.DateSpan.Months">
+            <summary>
+            Difference in months
+            </summary>
+        </member>
+        <member name="P:Yogesh.Extensions.DateSpan.Years">
+            <summary>
+            Difference in years
+            </summary>
+        </member>
+        <member name="T:Yogesh.Extensions.ObjectExtensions">
+            <summary>
+            Object extensions methods which are available if you are using VS2008
+            </summary>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.Left(System.String,System.Int32)">
+            <summary>
+            Returns specified number of characters from the left of string
+            </summary>
+            <param name="text">String on which extension method is used</param>
+            <param name="chars">Number of chars to return</param>
+            <returns>Returns specified number of characters from the left of string</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.Right(System.String,System.Int32)">
+            <summary>
+            Returns specified number of characters from the right of string
+            </summary>
+            <param name="text">String on which extension method is used</param>
+            <param name="chars">Number of chars to return</param>
+            <returns>Returns specified number of characters from the right of string</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.IsNullOrEmpty(System.String)">
+            <summary>
+            Checks if the string is empty or only contains spaces
+            </summary>
+            <param name="text">String on which extension method is used</param>
+            <returns>true if empty, false otherwise</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.IsValidEmail(System.String)">
+            <summary>
+            Checks if the string is a valid email address
+            </summary>
+            <param name="inputEmail">String on which extension method is used</param>
+            <returns>true if valid email address, false otherwise</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.IsValidEmail(System.String,System.Boolean)">
+            <summary>
+            Checks if the string is empty or only contains spaces
+            </summary>
+            <param name="inputEmail">String on which extension method is used</param>
+            <param name="isEmptyValid">Is a empty string is considered a valid email address?</param>
+            <returns>true if empty, false otherwise</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.XmlEncode(System.String)">
+            <summary>
+            XML encodes a string
+            </summary>
+            <param name="text">String on which extension method is used</param>
+            <returns>returns the encoded string</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.ParseToInt``1(System.String,``0@)">
+            <summary>
+            Parses a string to a integar form
+            </summary>
+            <typeparam name="T">Integar type</typeparam>
+            <param name="text">String to parse</param>
+            <param name="variable">Variable to store value to</param>
+            <returns>true if parse was successful, false otherwiseParsed string</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.IsValid(System.Enum)">
+            <summary>
+            Checks whether a enum value is correct or not
+            </summary>
+            <param name="enumerator">Enumerator on which extension method is used</param>
+            <returns>returns true if valid, false otherwise</returns>
+            <remarks>
+            This is a interesting function. If you set a enum to a int value, you can use
+            this function to test the value to be correct or not. What is special about this
+            function is that if you use the Flags attribute for the enum, it will check if the
+            value is a right bit wise match. This can better be understood with the example
+            provided.
+            </remarks>
+            <example>
+            <code>
+            public enum NonFlagEnum
+            {
+            	One = 1,
+            	Two = 2,
+            	Three = 4,
+            	Four = 8,
+            	Five = 16
+            }
+            
+            [Flags]
+            public enum FlagEnum
+            {
+            	One = 1,
+            	Two = 2,
+            	Three = 4,
+            	Four = 8,
+            	Five = 16,
+            }
+            
+            // Non flaged
+            NonFlagEnum nfe = NonFlagEnum.One;
+            nfe.IsValid(); // true
+            
+            nfe = (NonFlagEnum) 5;
+            nfe.IsValid(); // false
+            
+            nfe = (NonFlagEnum) 21;
+            nfe.IsValid(); // false
+            
+            nfe = (NonFlagEnum) 32;
+            nfe.IsValid(); // false
+            
+            nfe = NonFlagEnum.One | NonFlagEnum.Four;
+            nfe.IsValid(); // false because 9 is not present in the enum
+            
+            // Flaged
+            FlagEnum fe = FlagEnum.One;
+            fe.IsValid(); // true
+            
+            fe = (FlagEnum) 5;
+            // true because value will be FlagEnum.One | FlagEnum.Three
+            fe.IsValid();
+            
+            fe = (FlagEnum) 21;
+            // true because value will be: 
+            // FlagEnum.Five | FlagEnum.Three | FlagEnum.One
+            fe.IsValid();
+            
+            fe = (FlagEnum) 32;
+            fe.IsValid(); // false
+            
+            fe = FlagEnum.One | FlagEnum.Four;
+            fe.IsValid(); // true
+            </code>
+            </example>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.GetDescription(System.Enum)">
+            <summary>
+            Returns enum's description
+            </summary>
+            <param name="enumerator">Enumerator on which extension method is used</param>
+            <returns>If the enum value has a <code>DescriptionAttribute</code>, returns the
+            description, otherwise returns <code>ToString()</code></returns>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.IsFlagSet(System.Enum,System.Enum)">
+            <summary>
+            Check whether a flag is set in a particular enum value
+            </summary>
+            <param name="enumerator">Enumerator on which extension method is used</param>
+            <param name="enumFlag">Enumerator flag to check</param>
+            <returns>returns true if flag set, false otherwise</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.DateDifference(System.DateTime,System.DateTime)">
+            <summary>
+            Returns difference of two dates
+            </summary>
+            <param name="date">DateTime on which extension method is used</param>
+            <param name="dateToCompare">The second date to compare difference with</param>
+            <returns>return DateSpan instance of the calculated date difference</returns>
+            <remarks>The computation always is date - dateToCompare, so dateToCompare should be
+            lesser than date. If it is not, the answer is always a little bit... ahem... weird.</remarks>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.GetSingleAttribute(System.Xml.XmlReader,System.String)">
+            <summary>
+            Extension method to get a single attribute and its value
+            </summary>
+            <param name="reader">XmlReader on which extension method is used</param>
+            <param name="attribute">Attribute to read</param>
+            <returns>XmlReaderAttributeItem instance if attribute found, null otherwise</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.GetSingleAttribute(System.Xml.XmlReader,System.String,System.Boolean)">
+            <summary>
+            Extension method to get a single attribute and its value
+            </summary>
+            <param name="reader">XmlReader on which extension method is used</param>
+            <param name="attribute">Attribute to read</param>
+            <param name="moveToEnd">Move to the end of the element?</param>
+            <returns>XmlReaderAttributeItem instance if attribute found, null otherwise</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.GetAttributes(System.Xml.XmlReader)">
+            <summary>
+            Extension method to get a all attribute of a element
+            </summary>
+            <param name="reader">XmlReader on which extension method is used</param>
+            <returns>List of all attributes as XmlReaderAttributeItem</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.ParseEnum``1(System.String)">
+            <summary>
+            Parses a enum from a string 
+            </summary>
+            <typeparam name="T">Enum type</typeparam>
+            <param name="value">String to parse</param>
+            <returns>Parsed enum value</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.ObjectExtensions.IsNumericType(System.Type)">
+            <summary>
+            Checks where a type is a numeric type
+            </summary>
+            <param name="type">Type to check</param>
+            <returns>true if type is numeric type, false otherwise</returns>
+        </member>
+        <member name="T:Yogesh.Extensions.FileExtensions">
+            <summary>
+            Static file helper methods
+            </summary>
+        </member>
+        <member name="M:Yogesh.Extensions.FileExtensions.UploadToFTP(System.String,System.String,System.String,System.String)">
+            <summary>
+            Upload a file to FTP
+            </summary>
+            <param name="filePath">File to upload</param>
+            <param name="remotePath">Remote path</param>
+            <param name="logOn">User logOn</param>
+            <param name="password">User password</param>
+        </member>
+        <member name="M:Yogesh.Extensions.FileExtensions.MergeFiles(System.String,System.String,System.String)">
+            <summary>
+            Merge two files into single file
+            </summary>
+            <param name="firstFile">First file</param>
+            <param name="secondFile">Second file</param>
+            <param name="mergedFile">Path to save the merged file to</param>
+            <returns></returns>
+        </member>
+        <member name="M:Yogesh.Extensions.FileExtensions.NumberOfLines(System.String)">
+            <summary>
+            Count the number of lines in a file
+            </summary>
+            <param name="fileName">File name</param>
+            <returns>Number of lines in a file or -1 on error</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.FileExtensions.CompareFile(System.String,System.String)">
+            <summary>
+            Compare the last modified date stamp of two files
+            </summary>
+            <param name="firstFile">First file</param>
+            <param name="secondFile">Second file</param>
+            <returns>-1 if firstFile is newer, 0 if files are same and 1 if secondFile is newer.</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.FileExtensions.GetRelativePath(System.String,System.String)">
+            <summary>
+            Convert a path to relative path
+            </summary>
+            <param name="fromDirectory">Convert from path</param>
+            <param name="toPath">To relative path</param>
+            <returns>Relative path of the conversion path given</returns>
+        </member>
+        <member name="T:Yogesh.Extensions.FolderExtensions">
+            <summary>
+            Static folder helper methods
+            </summary>
+        </member>
+        <member name="M:Yogesh.Extensions.FolderExtensions.GetFileList(System.String)">
+            <summary>
+            Returns all files in a directory and its subdirectories as a string array
+            </summary>
+            <param name="rootPath">Path of the directory</param>
+            <returns>String array containing all the files</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.FolderExtensions.GetFileList(System.String,System.String)">
+            <summary>
+            Returns all files in a directory and its subdirectories as a string array matching to a pattern
+            </summary>
+            <param name="rootPath">Path of the directory</param>
+            <param name="pattern">Pattern to match</param>
+            <returns>String array containing all the files</returns>
+        </member>
+        <member name="T:Yogesh.Extensions.XmlSettingIgnoreAttribute">
+            <summary>
+            Mark a property of this class to exclude this property from getting saved
+            </summary>
+        </member>
+        <member name="T:Yogesh.Extensions.XmlSettingAttribute">
+            <summary>
+            Define the name of a property, or force encryption or both
+            </summary>
+        </member>
+        <member name="M:Yogesh.Extensions.XmlSettingAttribute.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Yogesh.Extensions.XmlSettingAttribute.#ctor(System.String)">
+            <summary>
+            Define the name of a property
+            </summary>
+            <param name="name">Description of the property</param>
+        </member>
+        <member name="P:Yogesh.Extensions.XmlSettingAttribute.Name">
+            <summary>
+            Description of the property which will be shown in the settings file
+            </summary>
+        </member>
+        <member name="P:Yogesh.Extensions.XmlSettingAttribute.Encrypt">
+            <summary>
+            If true, the value of the property will be encrypted
+            </summary>
+        </member>
+        <member name="T:Yogesh.Extensions.XmlSettings">
+            <summary>
+            A implementation of a base application settings class
+            </summary>
+            <remarks>
+            XmlSettings is a application settings class which saves all properties of all classes
+            derived from it to the a .settings.xml file of the same name as of the application. All
+            base types and any classes which support serialization (like generic lists and arrays or 
+            even custom classes which support xml serialization) can be members of the derived class.
+            If any other member is found, a exception is thrown.
+            <para><code>XmlSettingAttribute</code> and <code>XmlSettingIgnore</code> attributes
+            can be applied to the properties</para>
+            </remarks>
+            <example>
+            <code>
+            public class TestSettings : XmlSettings
+            {
+            	[XmlSettingIgnore]
+            	public string TestString { get; set; }
+            	
+            	[XmlSetting("Integar")]
+            	public int TestIntegar { get; set; }
+            	
+            	public List&lt;string&gt; GenericListOfString { get; set; }
+            
+            	public TestSettings()
+            	{
+            		TestString = "Hello";
+            		TestIntegar = 0;
+            
+            		GenericListOfString = new List&lt;string&gt;();
+            		GenericListOfString.Add("item0");
+            		GenericListOfString.Add("item1");
+            		GenericListOfString.Add("item2");
+            		GenericListOfString.Add("item3");
+            		GenericListOfString.Add("item4");
+            		GenericListOfString.Add("item5");
+            	}
+            }
+            </code>
+            Somewhere in the code...
+            <code>
+            TestSettings ts = new TestSettings();
+            ts.Save();
+            </code>
+            This outputs this xml file...
+            <code>
+            &lt;Configuration&gt;
+              &lt;Settings&gt;
+                &lt;TestSettings&gt;
+                  &lt;Integar&gt;0&lt;/Integar&gt;
+                  &lt;GenericListOfString&gt;
+                    &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+                      &lt;string&gt;item0&lt;/string&gt;
+                      &lt;string&gt;item1&lt;/string&gt;
+                      &lt;string&gt;item2&lt;/string&gt;
+                      &lt;string&gt;item3&lt;/string&gt;
+                      &lt;string&gt;item4&lt;/string&gt;
+                      &lt;string&gt;item5&lt;/string&gt;
+                    &lt;/ArrayOfString&gt;
+                  &lt;/GenericListOfString&gt;
+                &lt;/TestSettings&gt;
+              &lt;/Settings&gt;
+            &lt;/Configuration&gt;
+            </code>
+            Note that TestString is not outputed, because of the use of XmlIgnore attribute and name
+            of Integar is outputed instead of TestIntegar because of the use of XmlAttribute(attributeName)
+            attribute.
+            </example>
+        </member>
+        <member name="M:Yogesh.Extensions.XmlSettings.Save">
+            <summary>
+            Saves the derived class to settings file
+            </summary>
+        </member>
+        <member name="M:Yogesh.Extensions.XmlSettings.Load">
+            <summary>
+            Loads the derived class from settings file
+            </summary>
+        </member>
+        <member name="T:Yogesh.Extensions.EncryptDecrypt">
+            <summary>
+            Encryption and decryption methods based on a password key.
+            </summary>
+        </member>
+        <member name="M:Yogesh.Extensions.EncryptDecrypt.Encrypt(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Encrypt a byte array into a byte array using a key and an IV
+            </summary>
+            <param name="clearData">Byte array to encrypt</param>
+            <param name="key">Key</param>
+            <param name="IV">IV</param>
+            <returns>Encrypted byte array</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.EncryptDecrypt.Encrypt(System.String,System.String)">
+            <summary>
+            Encrypt a string into a string using a password
+            </summary>
+            <param name="clearText">String to encrypt</param>
+            <param name="password">Password</param>
+            <returns>Encrypted string</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.EncryptDecrypt.Encrypt(System.Byte[],System.String)">
+            <summary>
+            Encrypt bytes into bytes using a password
+            </summary>
+            <param name="clearData">Byte array to encrypt</param>
+            <param name="password">Password</param>
+            <returns>Encrypted byte array</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.EncryptDecrypt.Encrypt(System.String,System.String,System.String)">
+            <summary>
+            Encrypt a file into another file using a password
+            </summary>
+            <param name="fileIn">File to be encrypted</param>
+            <param name="fileOut">Filename where encrypted data will be saved</param>
+            <param name="password">Password</param>
+        </member>
+        <member name="M:Yogesh.Extensions.EncryptDecrypt.Decrypt(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Decrypt a byte array into a byte array using a key and an IV
+            </summary>
+            <param name="cipherData">Byte array to decrypt</param>
+            <param name="key">Password Key</param>
+            <param name="IV">IV</param>
+            <returns>Returns decrypted byte array</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.EncryptDecrypt.Decrypt(System.String,System.String)">
+            <summary>
+            Decrypt a string into a string using a password
+            </summary>
+            <param name="cipherText">String to decrypt</param>
+            <param name="password">password</param>
+            <returns>Decrypted string</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.EncryptDecrypt.Decrypt(System.Byte[],System.String)">
+            <summary>
+            Decrypt bytes into bytes using a password
+            </summary>
+            <param name="cipherData">Byte array to decrypt</param>
+            <param name="password">password</param>
+            <returns>Returns decrypted byte array</returns>
+        </member>
+        <member name="M:Yogesh.Extensions.EncryptDecrypt.Decrypt(System.String,System.String,System.String)">
+            <summary>
+            Decrypt a file into another file using a password
+            </summary>
+            <param name="fileIn">File to decrypt</param>
+            <param name="fileOut">Filename where decrypted data will be saved</param>
+            <param name="password">password</param>
+        </member>
+    </members>
+</doc>

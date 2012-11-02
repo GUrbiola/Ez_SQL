@@ -1,0 +1,36 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="_AppDomain`0" priority="0" />
+      <Item value="Windows" priority="0" />
+      <Item value="ComponentModel" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="E2891E95-F6B2-400D-B410-2BB71F6315FA/d:Controls/f:AddressBarExt.Designer.cs" caret="2584" fromTop="42" />
+      <File id="E2891E95-F6B2-400D-B410-2BB71F6315FA/d:Controls/f:AddressBarExt.cs" caret="2834" fromTop="11" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="E2891E95-F6B2-400D-B410-2BB71F6315FA/d:Controls/f:AddressBarExt.cs" caret="1699" fromTop="6" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False">
+    </NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+</Configuration>
