@@ -1,5 +1,5 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
-ReSharper.Ez SQL
+_ReSharper.Ez SQL
 
 # mstest test results
 TestResults
