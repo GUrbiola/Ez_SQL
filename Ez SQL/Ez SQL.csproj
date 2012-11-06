@@ -102,7 +102,8 @@
     <Compile Include="DataBaseObjects\Table.cs" />
     <Compile Include="DataBaseObjects\TableFunction.cs" />
     <Compile Include="DataBaseObjects\View.cs" />
-    <Compile Include="Extensions.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Extensions\XmlSerializer.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="LoadControl\LoadingInfo.cs">
       <SubType>UserControl</SubType>
@@ -114,6 +115,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MultiQueryForm\CompletionDataProvider.cs" />
+    <Compile Include="MultiQueryForm\ObjectSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MultiQueryForm\ObjectSelector.Designer.cs">
+      <DependentUpon>ObjectSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="MultiQueryForm\TextRange.cs" />
     <Compile Include="ProgressObject.cs" />
     <Compile Include="QueryLog\HistoricForm.cs">
@@ -159,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoadControl\LoadingInfo.resx">
       <DependentUpon>LoadingInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultiQueryForm\ObjectSelector.resx">
+      <DependentUpon>ObjectSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QueryLog\HistoricForm.resx">
       <DependentUpon>HistoricForm.cs</DependentUpon>

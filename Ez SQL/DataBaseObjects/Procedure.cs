@@ -57,7 +57,7 @@ namespace Ez_SQL.DataBaseObjects
         public Procedure()
         {
             Childs = new List<ISqlChild>();
-            _Kind = ObjectType.View;
+            _Kind = ObjectType.Procedure;
             _Script = "";
         }
         public bool IsScriptLoaded { get { return !String.IsNullOrEmpty(_Script); } }

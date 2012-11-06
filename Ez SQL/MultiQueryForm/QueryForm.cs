@@ -18,6 +18,7 @@ namespace Ez_SQL.MultiQueryForm
     public delegate void ExecutionEvent();
     public partial class QueryForm : WeifenLuo.WinFormsUI.Docking.DockContent
     {
+        Keys KeyBefore;
         AutoCompleteWindow AutocompleteDialog;
         public bool IsIntellisenseOn
         {
@@ -43,7 +44,6 @@ namespace Ez_SQL.MultiQueryForm
 
         public QueryForm(MainForm Parent, SQLConnector DataProvider, string Script = "")
         {
-            
             InitializeComponent();
             this.Parent = Parent;
             this.DataProvider = DataProvider;
@@ -100,6 +100,8 @@ namespace Ez_SQL.MultiQueryForm
             Query.ActiveTextAreaControl.TextArea.DoProcessDialogKey += Query_DoProcessDialogKey;
             //Methos that refresh the folding
             Query.Document.DocumentChanged += Query_DocumentChanged;
+            //just to catch @ input and # input
+            Query.ActiveTextAreaControl.TextArea.KeyEventHandler += new ICSharpCode.TextEditor.KeyEventHandler(TextArea_KeyEventHandler);
             #endregion
 
             //capture mouse click, to manage ctr + click
@@ -107,6 +109,27 @@ namespace Ez_SQL.MultiQueryForm
 
             this.AutoScroll = false;
         }
+
+        bool TextArea_KeyEventHandler(char ch)
+        {
+            if (ch == '@')
+            {
+                var helper = DataProvider.DbObjects.Where(XX => XX.Kind == ObjectType.Procedure && XX.Childs.Count > 0).FirstOrDefault();
+                ObjectSelector X = new ObjectSelector(
+                    "Object selector test",
+                    "This emulates a selection of tables or something",
+                    helper.Childs,
+                    "Text");
+                if (X.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    Query.InsertString(((ISqlChild)X.SelectedObject).Text);
+                    return true;
+                }
+                
+            }
+            return false;
+        }
+
 
         #region Code for the actions in the toolstrip of the query form
         private void BtnExecute_Click(object sender, EventArgs e)
@@ -1071,7 +1094,13 @@ namespace Ez_SQL.MultiQueryForm
                         //AddVariables();
                         //ShowIntellisense();
                         return true;
-                    //case (Keys)393266://aroba, @
+                    //case Keys.Alt | Keys.NumPad4://aroba, @
+                    //    if (KeyBefore == (Keys.Alt | Keys.NumPad6))
+                    //    {
+                    //        Text = "@ FTW!!!!!!";
+                    //        return false;
+                    //    }
+                    //    break;
                     ////case Keys.RButton | Keys.ShiftKey | Keys.Space | Keys.Control | Keys.Alt:
                     //    Query.Document.Insert(CurOffset, "@");
                     //    CurrentFilter = FilteringTypeValues.Variables;
@@ -1083,6 +1112,10 @@ namespace Ez_SQL.MultiQueryForm
                     //    return true;
                     case Keys.S | Keys.Control://ctrl + s , mostrar snippets
                         MessageBox.Show("Ctr + S");
+                        break;
+                    default:
+                        KeyBefore = keyData;
+                        //this.Text = keyData.ToString();
                         break;
                 }
                 

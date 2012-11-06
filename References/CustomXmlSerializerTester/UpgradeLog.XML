@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="CustomXmlSerializerTester">
+</Property><Property Name="Solution File" Value="C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\CustomXmlSerializerTester.sln">
+</Property><Property Name="Date" Value="sábado, 03 de noviembre de 2012">
+</Property><Property Name="Time" Value="15:40 p.m.">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="CustomXmlSerializerTester.sln" Description="File successfully backed up as C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\Backup\CustomXmlSerializerTester.sln">
+</Event><Event ErrorLevel="0" Project="CustomXmlSerializerTester" Source="CustomXmlSerializerTester\CustomXmlSerializerTester.csproj" Description="Project file successfully backed up as C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\Backup\CustomXmlSerializerTester\CustomXmlSerializerTester.csproj">
+</Event><Event ErrorLevel="0" Project="CustomXmlSerializerTester" Source="CustomXmlSerializerTester\CustomXmlDeserializer.cs" Description="File successfully backed up as C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\Backup\CustomXmlSerializerTester\CustomXmlDeserializer.cs">
+</Event><Event ErrorLevel="0" Project="CustomXmlSerializerTester" Source="CustomXmlSerializerTester\CustomXmlSerializer.cs" Description="File successfully backed up as C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\Backup\CustomXmlSerializerTester\CustomXmlSerializer.cs">
+</Event><Event ErrorLevel="0" Project="CustomXmlSerializerTester" Source="CustomXmlSerializerTester\CustomXmlSerializerBase.cs" Description="File successfully backed up as C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\Backup\CustomXmlSerializerTester\CustomXmlSerializerBase.cs">
+</Event><Event ErrorLevel="0" Project="CustomXmlSerializerTester" Source="CustomXmlSerializerTester\TestMeTypeConverter.cs" Description="File successfully backed up as C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\Backup\CustomXmlSerializerTester\TestMeTypeConverter.cs">
+</Event><Event ErrorLevel="0" Project="CustomXmlSerializerTester" Source="CustomXmlSerializerTester\Program.cs" Description="File successfully backed up as C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\Backup\CustomXmlSerializerTester\Program.cs">
+</Event><Event ErrorLevel="0" Project="CustomXmlSerializerTester" Source="CustomXmlSerializerTester\Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\Backup\CustomXmlSerializerTester\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="CustomXmlSerializerTester" Source="CustomXmlSerializerTester\CustomXmlAttributes.cs" Description="File successfully backed up as C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\Backup\CustomXmlSerializerTester\CustomXmlAttributes.cs">
+</Event><Event ErrorLevel="1" Project="CustomXmlSerializerTester" Source="CustomXmlSerializerTester\CustomXmlSerializerTester.csproj" Description="Your project is targeting .NET Framework 2.0 or 3.0. If your project uses assemblies requiring a newer .NET Framework, your project will fail to build. You can change the .NET Framework version by clicking Properties on the project menu and then selecting a new version in the '.NET Framework' dropdown box. (In Visual Basic, this is located on the Compile tab by clicking the 'Advanced Compiler Options...' button.)">
+</Event><Event ErrorLevel="0" Project="CustomXmlSerializerTester" Source="CustomXmlSerializerTester\CustomXmlSerializerTester.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="CustomXmlSerializerTester" Source="CustomXmlSerializerTester\CustomXmlSerializerTester.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="CustomXmlSerializerTester.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="CustomXmlSerializerTester.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="CustomXmlSerializerTester" Source="CustomXmlSerializerTester\CustomXmlSerializerTester.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

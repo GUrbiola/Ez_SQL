@@ -71,6 +71,7 @@ namespace Ez_SQL
             get { return _Connectors; } 
             set { _Connectors = value; } 
         }
+        SnippetEditor Sform;
         //public List<Snippet> Snippets;
 
         public MainForm()
@@ -104,8 +105,8 @@ namespace Ez_SQL
             ExecDir = Application.StartupPath;
             ConDataFileName = String.Format("{0}\\GruposConexion.xml", ExecDir);
 
-            //if (!Directory.Exists(String.Format("{0}\\Snippets", ExecDir)))
-            //    Directory.CreateDirectory(String.Format("{0}\\Snippets", ExecDir));
+            if (!Directory.Exists(String.Format("{0}\\Snippets", ExecDir)))
+                Directory.CreateDirectory(String.Format("{0}\\Snippets", ExecDir));
             //if (!Directory.Exists(String.Format("{0}\\Templates", ExecDir)))
             //    Directory.CreateDirectory(String.Format("{0}\\Templates", ExecDir));
             if (!Directory.Exists(String.Format("{0}\\QueriesLog", ExecDir)))
@@ -292,10 +293,16 @@ namespace Ez_SQL
         }
         private void BtnSnippetEditor_Click(object sender, EventArgs e)
         {
-            SnippetEditor Sform = new SnippetEditor();
-            Sform.TabText = "Snippet Editor";
-            Sform.Width = 400;
-            Sform.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft);
+            if (Sform == null)
+            {
+                Sform = new SnippetEditor();
+                Sform.TabText = "Snippet Editor";
+                Sform.Width = 400;
+            }
+            if (!Sform.Visible)
+            {
+                Sform.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft);
+            }
         }
 
         #region Method to add a new tab query from an already opened query form

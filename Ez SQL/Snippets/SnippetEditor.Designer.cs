@@ -39,6 +39,7 @@
             this.BtnSave = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.CmbSnippet = new System.Windows.Forms.ComboBox();
+            this.BtnDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -115,18 +116,19 @@
             this.ScriptText.Name = "ScriptText";
             this.ScriptText.Padding = new System.Windows.Forms.Padding(2);
             this.ScriptText.ShowVRuler = false;
-            this.ScriptText.Size = new System.Drawing.Size(670, 288);
+            this.ScriptText.Size = new System.Drawing.Size(670, 256);
             this.ScriptText.TabIndex = 7;
             // 
             // BtnSave
             // 
             this.BtnSave.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BtnSave.Location = new System.Drawing.Point(0, 434);
+            this.BtnSave.Location = new System.Drawing.Point(0, 402);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(670, 32);
             this.BtnSave.TabIndex = 9;
             this.BtnSave.Text = "Save Snippet";
             this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // label5
             // 
@@ -146,6 +148,18 @@
             this.CmbSnippet.Name = "CmbSnippet";
             this.CmbSnippet.Size = new System.Drawing.Size(670, 21);
             this.CmbSnippet.TabIndex = 11;
+            this.CmbSnippet.SelectedIndexChanged += new System.EventHandler(this.CmbSnippet_SelectedIndexChanged);
+            // 
+            // BtnDelete
+            // 
+            this.BtnDelete.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BtnDelete.Location = new System.Drawing.Point(0, 434);
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(670, 32);
+            this.BtnDelete.TabIndex = 12;
+            this.BtnDelete.Text = "Delete Snippet";
+            this.BtnDelete.UseVisualStyleBackColor = true;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // SnippetEditor
             // 
@@ -163,9 +177,12 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CmbSnippet);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.BtnDelete);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HideOnClose = true;
             this.Name = "SnippetEditor";
             this.Text = "SnippetEditor";
+            this.VisibleChanged += new System.EventHandler(this.SnippetEditor_VisibleChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,5 +201,6 @@
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox CmbSnippet;
+        private System.Windows.Forms.Button BtnDelete;
     }
 }
