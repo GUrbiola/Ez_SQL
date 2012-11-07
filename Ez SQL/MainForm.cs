@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
-
+using XmlSerializationExtensions;
 using System.Runtime.InteropServices;
 using Ez_SQL.ConnectionBarNodes;
 using Ez_SQL.DataBaseObjects;
@@ -72,7 +72,7 @@ namespace Ez_SQL
             set { _Connectors = value; } 
         }
         SnippetEditor Sform;
-        //public List<Snippet> Snippets;
+        private List<Snippet> Snippets;
 
         public MainForm()
         {
@@ -111,8 +111,10 @@ namespace Ez_SQL
             //    Directory.CreateDirectory(String.Format("{0}\\Templates", ExecDir));
             if (!Directory.Exists(String.Format("{0}\\QueriesLog", ExecDir)))
                 Directory.CreateDirectory(String.Format("{0}\\QueriesLog", ExecDir));
-
+            LoadSnippets();
         }
+
+
 
         #region Basic Functionality, minimize, maximize, restore, move dialog and resizing
         private bool _IsMinimized = false;
@@ -280,6 +282,7 @@ namespace Ez_SQL
         {
             if (CurrentConnection != null && !CurrentConnection.Busy)
                 CurrentConnection.Initialize(LoadingDialogPosition, CurrentConnection.FullLoaded);
+            LoadSnippets();
         }
         private void BtnCopyConnectionString_Click(object sender, EventArgs e)
         {
@@ -317,6 +320,44 @@ namespace Ez_SQL
         #endregion
 
 
+
+        internal string IsInsertSnippet(string Shortcut)
+        {
+            Snippet Got = Snippets.FindAll(X => X.ShortCut.Equals(Shortcut, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            if (Got != null)
+                return Got.Script;
+            return "";
+        }
+        private void LoadSnippets()
+        {
+            if (Snippets == null)
+                Snippets = new List<Snippet>();
+            else
+                Snippets.Clear();
+
+            if (Directory.Exists(String.Format("{0}\\Snippets", MainForm.ExecDir)))
+            {
+                string[] Files = Directory.GetFiles(String.Format("{0}\\Snippets", MainForm.ExecDir), "*.snp");
+                foreach (string f in Files)
+                {
+                    try
+                    {
+                        Snippets.Add((Snippet)f.DeserializeFromXmlFile());
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show
+                        (
+                            String.Format("Reading {0} file, raised exception: {1}", f.Substring(f.LastIndexOf('\\') + 1), ex.Message),
+                            "Error while reading a snippet file",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+                    }
+                }
+                Snippets.Sort((X, Y) => String.Compare(X.Name, Y.Name));
+            }
+        }
     }
 
 

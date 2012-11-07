@@ -112,21 +112,21 @@ namespace Ez_SQL.MultiQueryForm
 
         bool TextArea_KeyEventHandler(char ch)
         {
-            if (ch == '@')
-            {
-                var helper = DataProvider.DbObjects.Where(XX => XX.Kind == ObjectType.Procedure && XX.Childs.Count > 0).FirstOrDefault();
-                ObjectSelector X = new ObjectSelector(
-                    "Object selector test",
-                    "This emulates a selection of tables or something",
-                    helper.Childs,
-                    "Text");
-                if (X.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    Query.InsertString(((ISqlChild)X.SelectedObject).Text);
-                    return true;
-                }
+            //if (ch == '@')
+            //{
+            //    var helper = DataProvider.DbObjects.Where(XX => XX.Kind == ObjectType.Procedure && XX.Childs.Count > 0).FirstOrDefault();
+            //    ObjectSelector X = new ObjectSelector(
+            //        "Object selector test",
+            //        "This emulates a selection of tables or something",
+            //        helper.Childs.Select(x => x.Name).ToList()
+            //        );
+            //    if (X.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //    {
+            //        Query.InsertString(X.SelectedObject);
+            //        return true;
+            //    }
                 
-            }
+            //}
             return false;
         }
 
@@ -673,9 +673,10 @@ namespace Ez_SQL.MultiQueryForm
         #endregion
         bool Query_DoProcessDialogKey(Keys keyData)//Process hot keys
         {
+            bool NoEcho = true, Echo = false;
             int CurPos;
             string TxtBef, TxtAft, CurrentWord;
-            Token CurrentToken;
+            Token CurrentToken, LastToken;
 
             // Echo == true, then NoEcho == false
             #region Key shortcut processing
@@ -684,59 +685,59 @@ namespace Ez_SQL.MultiQueryForm
                 case Keys.F5://Execute query
                     if (BtnExecute.Enabled)
                         BtnExecute_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.Shift | Keys.F5://Stop execution
                     if (BtnStop.Enabled)
                         BtnStop_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.Control | Keys.F5://Forced stop execution
                     if (BtnExtremeStop.Enabled)
                         BtnExtremeStop_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.Control | Keys.K://Comment selection
                     if (Query.Enabled)
                         BtnComment_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.Control | Keys.U://Uncomment selection
                     if (Query.Enabled)
                         BtnUncomment_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.Control | Keys.F://Open search dialog
                     BtnSearch_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.F3://Search next (forward)
                     //FindNext(true, false, String.Format("Cadena de Texto: {0}, no encontrada.", _findForm.LookFor));
-                    return true;
+                    return NoEcho;
                 case Keys.Shift | Keys.F3://Search next (Backward)
                     //FindNext(true, true, String.Format("Cadena de Texto: {0}, no encontrada.", _findForm.LookFor));
-                    return true;
+                    return NoEcho;
                 case Keys.F2://Toggle bookmark
                     BtnBookmark_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.Shift | Keys.F2://Go to previous bookmark
                     BtnPrevious_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.Control | Keys.F2://Go to next bookmark
                     BtnNext_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.Control | Keys.Shift | Keys.F2://Clear bookmarks
                     BtnClearBookmarks_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.Control | Keys.S://Save to file
                     BtnSave_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.Control | Keys.L://Load file
                     BtnLoad_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.Control | Keys.W://Hide/show results tab
                     BtnShowHideResults_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.Control | Keys.E://Export results tab to excel
                     BtnXportAll_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.Control | Keys.Shift | Keys.C://Create C# class from results tab(1 class for each grid)
                     BtnXportCSharp_Click(null, null);
-                    return true;
+                    return NoEcho;
                 case Keys.F12:
                     Token Last, Next, SelToken;
                     CurPos = Query.CurrentOffset();
@@ -759,7 +760,7 @@ namespace Ez_SQL.MultiQueryForm
                     {
                         Parent.AddQueryForm(Obj.Name, Obj.Script, DataProvider);
                     }
-                    return true;
+                    return NoEcho;
             }
             #endregion
 
@@ -772,7 +773,6 @@ namespace Ez_SQL.MultiQueryForm
             if (IsIntellisenseOn)
             {
                 #region Codigo para el Manejo de Teclas si el "IntelliSense" esta Activado
-                
                 switch (keyData)
                 {
                     case Keys.Back:
@@ -783,18 +783,18 @@ namespace Ez_SQL.MultiQueryForm
                             CancelAutoCompleteClosure = true;
                             ShowIntellisense(CurrentFilterString, GetAliasesAndAuxiliarTables(Query.Text), FilteringType.Smart);
                         }
-                        return true;
+                        return NoEcho;
                     case Keys.Escape:
                         AutocompleteDialog.Close();
                         break;
                     case Keys.OemMinus:
                         CurrentFilterString += "-";
                         ShowIntellisense(CurrentFilterString, GetAliasesAndAuxiliarTables(Query.Text), FilteringType.Smart);
-                        return false;
+                        return Echo;
                     case Keys.OemMinus | Keys.Shift:
                         CurrentFilterString += "_";
                         ShowIntellisense(CurrentFilterString, GetAliasesAndAuxiliarTables(Query.Text), FilteringType.Smart);
-                        return false;
+                        return Echo;
                     case (Keys)65601:
                     case Keys.A:
                     case (Keys)65602:
@@ -869,16 +869,16 @@ namespace Ez_SQL.MultiQueryForm
                     case System.Windows.Forms.Keys.ShiftKey | System.Windows.Forms.Keys.Space:
                         CurrentFilterString += ((char)keyData).ToString();
                         ShowIntellisense(CurrentFilterString, GetAliasesAndAuxiliarTables(Query.Text), FilteringType.Smart);
-                        return false;
+                        return Echo;
                     case Keys.Delete:
                     case Keys.Left:
                     case Keys.Right:
-                        return true;
+                        return NoEcho;
                     default:
                         if (IsIntellisenseOn)
-                            return true;
+                            return Echo;
                         else
-                            return false;
+                            return NoEcho;
                 }
                 
                 #endregion
@@ -903,7 +903,7 @@ namespace Ez_SQL.MultiQueryForm
                         CurrentFilterString = CurrentWord;
                         AutoCompleteStartOffset = CurPos - CurrentWord.Length;
                         ShowIntellisense(CurrentWord, GetAliasesAndAuxiliarTables(Query.Text), FilteringType.Smart);
-                        return true;
+                        return NoEcho;
                     case Keys.Space:
                         //string WordBehind = GetWordAtOffset();
                         //int auxoffset2 = Query.Document.PositionToOffset(Query.ActiveTextAreaControl.Caret.Position);
@@ -946,7 +946,7 @@ namespace Ez_SQL.MultiQueryForm
                         //    ShowIntellisense();
                         //    return true;
                         //}
-                        return false;
+                        return Echo;
                     case Keys.OemPeriod:
                     case Keys.Decimal:
                         Query.InsertString(".");
@@ -1069,7 +1069,7 @@ namespace Ez_SQL.MultiQueryForm
                         //    }
                         //}
                         #endregion
-                        return true;
+                        return NoEcho;
                     case Keys.T | Keys.Control://ctrl + t , mostrar tablas + vistas
                         
                     
@@ -1113,17 +1113,87 @@ namespace Ez_SQL.MultiQueryForm
                     case Keys.S | Keys.Control://ctrl + s , mostrar snippets
                         MessageBox.Show("Ctr + S");
                         break;
+                    case Keys.Tab:
+                        LastToken = TxtBef.GetLastToken();
+                        if (LastToken.Text == "@")
+                        {
+                            List<Token> Tokens = Query.Text.GetTokens();
+                            List<string> Helper = new List<string>();
+                            foreach (Token t in Tokens.Where(X => X.Type == TokenType.VARIABLE))
+                            {
+                                string buff = t.Text.Contains(".") ? t.Text.Split('.')[0] : t.Text;
+                                if (!Helper.Contains(buff, StringComparer.CurrentCultureIgnoreCase))
+                                    Helper.Add(buff);
+                            }
+                            if(Helper.Count > 0)
+                            {
+                                ObjectSelector Os = new ObjectSelector("Variables detected on script", "Select variable", Helper);
+                                if (Os.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                                {
+                                    Query.InsertString(Os.SelectedObject.Length > 0 && Os.SelectedObject.StartsWith("@") ? Os.SelectedObject.Substring(1) : Os.SelectedObject);
+                                    return NoEcho;
+                                }
+                                else
+                                {
+                                    return Echo;
+                                }
+                            }
+                            return Echo;
+                        }
+                        else if (LastToken.Text == "#")
+                        {
+                            List<Token> Tokens = Query.Text.GetTokens();
+                            List<string> Helper = new List<string>();
+                            foreach (Token t in Tokens.Where(X => X.Type == TokenType.TEMPTABLE))
+                            {
+                                string buff = t.Text.Contains(".") ? t.Text.Split('.')[0] : t.Text;
+                                if (!Helper.Contains(buff, StringComparer.CurrentCultureIgnoreCase))
+                                    Helper.Add(buff);
+                            }
+                            if (Helper.Count > 0)
+                            {
+                                ObjectSelector Os = new ObjectSelector("Variables temp tables on script", "Select table", Helper);
+                                if (Os.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                                {
+                                    Query.InsertString(Os.SelectedObject.Length > 0 && Os.SelectedObject.StartsWith("#") ? Os.SelectedObject.Substring(1) : Os.SelectedObject);
+                                    return NoEcho;
+                                }
+                                else
+                                {
+                                    return Echo;
+                                }
+                            }
+                            return Echo;
+                        }
+                        else if (LastToken.Type == TokenType.WORD)
+                        {//check for snippet
+                            string SnippetScript = Parent.IsInsertSnippet(LastToken.Text);
+                            if (!String.IsNullOrEmpty(SnippetScript))
+                            {
+                                int Offset = Query.CurrentOffset();
+                                Query.SetSelectionByOffset(Offset - LastToken.Text.Length, Offset); 
+                                InsertSnippet(SnippetScript);
+                                return NoEcho;
+                            }
+                            return Echo;
+                        }
+                        break;
                     default:
                         KeyBefore = keyData;
                         //this.Text = keyData.ToString();
-                        break;
+                        return Echo;
                 }
                 
                 #endregion
             }
             #endregion
             
-            return false;
+            return Echo;
+        }
+
+        private void InsertSnippet(string SnippetScript)
+        {
+            Query.InsertString(SnippetScript);
         }
 
         private List<ISqlObject> GetAliasesAndAuxiliarTables(string FullScript)

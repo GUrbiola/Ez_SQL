@@ -42,18 +42,27 @@ namespace Ez_SQL
         }
         public static void InsertString(this TextEditorControl TxtEditor, string InsStr, int Position = -1)
         {
+            int SelectionLength = 0;
             if (String.IsNullOrEmpty(InsStr))
                 return;
-            if(Position == -1)
-                Position = TxtEditor.CurrentOffset();
-            if (TxtEditor.ActiveTextAreaControl.TextArea.SelectionManager.HasSomethingSelected)
+            if (Position == -1)
             {
-                TxtEditor.ActiveTextAreaControl.TextArea.Caret.Position = TxtEditor.ActiveTextAreaControl.TextArea.SelectionManager.SelectionCollection[0].StartPosition;
-                TxtEditor.ActiveTextAreaControl.TextArea.SelectionManager.RemoveSelectedText();
+                Position = TxtEditor.CurrentOffset();
+                if (TxtEditor.ActiveTextAreaControl.TextArea.SelectionManager.HasSomethingSelected)
+                {
+                    SelectionLength = TxtEditor.ActiveTextAreaControl.TextArea.SelectionManager.SelectedText.Length;
+                    TxtEditor.ActiveTextAreaControl.TextArea.Caret.Position = TxtEditor.ActiveTextAreaControl.TextArea.SelectionManager.SelectionCollection[0].StartPosition;
+                    TxtEditor.ActiveTextAreaControl.TextArea.SelectionManager.RemoveSelectedText();
+                }
             }
 
-            TxtEditor.Document.Insert(Position, InsStr);
+            TxtEditor.Document.Insert(Position - SelectionLength, InsStr);
             TxtEditor.ActiveTextAreaControl.Caret.Column += InsStr.Length;
+        }
+        public static void SetSelectionByOffset(this TextEditorControl TxtEditor, int StartOffset, int EndOffset)
+        {
+            TxtEditor.ActiveTextAreaControl.SelectionManager.ClearSelection();
+            TxtEditor.ActiveTextAreaControl.SelectionManager.SetSelection(TxtEditor.Document.OffsetToPosition(StartOffset), TxtEditor.Document.OffsetToPosition(EndOffset));
         }
         #endregion
 
@@ -89,116 +98,184 @@ namespace Ez_SQL
         }
         public static Token GetLastToken(this string Text)
         {
-            Token Back = new Token(TokenType.EMPTYSPACE, "");
+            List<Token> Back = new List<Token>();
             int StringLength = String.IsNullOrEmpty(Text) ? 0 : Text.Length;
-            for (int index = Text.Length - 1; index >= 0; index--)
+            Token Current = null;
+
+            for (int index = StringLength - 1; index >= 0; index--)
             {
+                if (Back.Count > 0)
+                    break;
                 char CurChar = Text[index];
-                if(String.IsNullOrEmpty(Back.Text))
+
+                if (IsWhiteSpace(CurChar))
                 {
-                    if (IsWhiteSpace(CurChar))
-                    {
-                        Back.Type = TokenType.EMPTYSPACE;
-                        Back.Text = Back.Text.Insert(0, CurChar.ToString());
+                    if (Current == null)
+                    {//no previous token, so create a new token
+                        Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
                     }
-                    else if(CurChar == ',')
-                    {
-                        Back.Type = TokenType.COMMA;
-                        Back.Text = Back.Text.Insert(0, CurChar.ToString());
-                        return Back;
+                    else if (Current.Type == TokenType.EMPTYSPACE)
+                    {//previous token is the same, an empty space, so append to text
+                        Current.Text = CurChar.ToString() + Current.Text;
                     }
                     else
-                    {
-                        Back.Type = TokenType.WORD;
-                        Back.Text = Back.Text.Insert(0, CurChar.ToString());
+                    {//previous token is different, add the last token and create a new emptyspace token
+                        AddToken(Back, Current);
+                        Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
                     }
-
+                }
+                else if (IsComma(CurChar))
+                {
+                    if (Current == null)
+                    {//no previous token, in this just add the new token and continue
+                        AddToken(Back, new Token(TokenType.COMMA, ","));
+                    }
+                    else
+                    {//if last token not empty, add now, because this char means its end, also add the new token found
+                        AddToken(Back, Current);
+                        AddToken(Back, new Token(TokenType.COMMA, ","));
+                        Current = null;
+                    }
+                }
+                else if (IsOpenBracket(CurChar))
+                {
+                    if (Current == null)
+                    {//no previous token, in this just add the new token and continue
+                        AddToken(Back, new Token(TokenType.OPENBRACKET, CurChar.ToString()));
+                    }
+                    else
+                    {//if last token not empty, add now, because this char means its end, also add the new token found
+                        AddToken(Back, Current);
+                        AddToken(Back, new Token(TokenType.OPENBRACKET, CurChar.ToString()));
+                        Current = null;
+                    }
+                }
+                else if (IsCloseBracket(CurChar))
+                {
+                    if (Current == null)
+                    {//no previous token, in this just add the new token and continue
+                        AddToken(Back, new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
+                    }
+                    else
+                    {//if last token not empty, add now, because this char means its end, also add the new token found
+                        AddToken(Back, Current);
+                        AddToken(Back, new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
+                        Current = null;
+                    }
                 }
                 else
                 {
-                    switch (Back.Type)
-                    {
-                        case TokenType.EMPTYSPACE:
-                            if (IsWhiteSpace(CurChar))
-                            {
-                                Back.Text = Back.Text.Insert(0, CurChar.ToString());
-                            }
-                            else
-                            {
-                                return Back;
-                            }
-                        break;
-                        case TokenType.WORD:
-                            if (IsWhiteSpace(CurChar) || CurChar == ',')
-                            {
-                                return Back;
-                            }
-                            else
-                            {
-                                Back.Text = Back.Text.Insert(0, CurChar.ToString());
-                            }
-                        break;
+                    if (Current == null)
+                    {//no previous token, in this just add the new token and continue
+                        Current = new Token(TokenType.WORD, CurChar.ToString());
+                    }
+                    else if (Current.Type == TokenType.WORD)
+                    {//last token is a word, so append the text
+                        Current.Text = CurChar.ToString() + Current.Text;
+                    }
+                    else
+                    {//last token is different, add the last token and create a new word token
+                        AddToken(Back, Current);
+                        Current = new Token(TokenType.WORD, CurChar.ToString());
                     }
                 }
             }
 
-            return Back;
+            if (Current != null)
+                AddToken(Back, Current);
+
+            return Back.Count > 0 ? Back[0] : new Token(TokenType.EMPTYSPACE, "");
         }
         public static Token GetFirstToken(this string Text)
         {
-            Token Back = new Token(TokenType.EMPTYSPACE, "");
+            List<Token> Back = new List<Token>();
             int StringLength = String.IsNullOrEmpty(Text) ? 0 : Text.Length;
-            for (int index = 0; index < Text.Length; index++)
+            Token Current = null;
+
+            for (int index = 0; index < StringLength; index++)
             {
+                if (Back.Count > 0)
+                    break;
                 char CurChar = Text[index];
-                if (String.IsNullOrEmpty(Back.Text))
+
+                if (IsWhiteSpace(CurChar))
                 {
-                    if (IsWhiteSpace(CurChar))
-                    {
-                        Back.Type = TokenType.EMPTYSPACE;
-                        Back.Text = Back.Text.AppendChar(CurChar);
+                    if (Current == null)
+                    {//no previous token, so create a new token
+                        Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
                     }
-                    else if (CurChar == ',')
-                    {
-                        Back.Type = TokenType.COMMA;
-                        Back.Text = Back.Text.AppendChar(CurChar);
-                        return Back;
+                    else if (Current.Type == TokenType.EMPTYSPACE)
+                    {//previous token is the same, an empty space, so append to text
+                        Current.Text = Current.Text.AppendChar(CurChar);
                     }
                     else
-                    {
-                        Back.Type = TokenType.WORD;
-                        Back.Text = Back.Text.AppendChar(CurChar);
+                    {//previous token is different, add the last token and create a new emptyspace token
+                        AddToken(Back, Current);
+                        Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
+                    }
+                }
+                else if (IsComma(CurChar))
+                {
+                    if (Current == null)
+                    {//no previous token, in this just add the new token and continue
+                        AddToken(Back, new Token(TokenType.COMMA, ","));
+                    }
+                    else
+                    {//if last token not empty, add now, because this char means its end, also add the new token found
+                        AddToken(Back, Current);
+                        AddToken(Back, new Token(TokenType.COMMA, ","));
+                        Current = null;
+                    }
+                }
+                else if (IsOpenBracket(CurChar))
+                {
+                    if (Current == null)
+                    {//no previous token, in this just add the new token and continue
+                        AddToken(Back, new Token(TokenType.OPENBRACKET, CurChar.ToString()));
+                    }
+                    else
+                    {//if last token not empty, add now, because this char means its end, also add the new token found
+                        AddToken(Back, Current);
+                        AddToken(Back, new Token(TokenType.OPENBRACKET, CurChar.ToString()));
+                        Current = null;
+                    }
+                }
+                else if (IsCloseBracket(CurChar))
+                {
+                    if (Current == null)
+                    {//no previous token, in this just add the new token and continue
+                        AddToken(Back, new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
+                    }
+                    else
+                    {//if last token not empty, add now, because this char means its end, also add the new token found
+                        AddToken(Back, Current);
+                        AddToken(Back, new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
+                        Current = null;
                     }
                 }
                 else
                 {
-                    switch (Back.Type)
-                    {
-                        case TokenType.EMPTYSPACE:
-                            if (IsWhiteSpace(CurChar))
-                            {
-                                Back.Text = Back.Text.AppendChar(CurChar);
-                            }
-                            else
-                            {
-                                return Back;
-                            }
-                            break;
-                        case TokenType.WORD:
-                            if (IsWhiteSpace(CurChar) || CurChar == ',')
-                            {
-                                return Back;
-                            }
-                            else
-                            {
-                                Back.Text = Back.Text.AppendChar(CurChar);
-                            }
-                            break;
+                    if (Current == null)
+                    {//no previous token, in this just add the new token and continue
+                        Current = new Token(TokenType.WORD, CurChar.ToString());
+                    }
+                    else if (Current.Type == TokenType.WORD)
+                    {//last token is a word, so append the text
+                        Current.Text = Current.Text.AppendChar(CurChar);
+                    }
+                    else
+                    {//last token is different, add the last token and create a new word token
+                        AddToken(Back, Current);
+                        Current = new Token(TokenType.WORD, CurChar.ToString());
                     }
                 }
             }
 
-            return Back;
+            if (Current != null)
+                AddToken(Back, Current);
+
+            return Back.Count > 0 ? Back[0] : new Token(TokenType.EMPTYSPACE, "");
+
         }
         public static List<Token> GetTokens(this string Text)
         {
@@ -212,52 +289,73 @@ namespace Ez_SQL
 
                 if (IsWhiteSpace(CurChar))
                 {
-                    if (Current != null)
-                    {
-                        if (Current.Type != TokenType.EMPTYSPACE)
-                        {
-                            AddToken(Back, Current);
-                            Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
-                        }
-                        else
-                        {
-                            Current.Text = Current.Text.AppendChar(CurChar);
-                        }
+                    if (Current == null)
+                    {//no previous token, so create a new token
+                        Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
+                    }
+                    else if (Current.Type == TokenType.EMPTYSPACE)
+                    {//previous token is the same, an empty space, so append to text
+                        Current.Text = Current.Text.AppendChar(CurChar);
                     }
                     else
-                    {
+                    {//previous token is different, add the last token and create a new emptyspace token
+                        AddToken(Back, Current);
                         Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
                     }
                 }
-                else
+                else if (IsComma(CurChar))
                 {
-                    if (Current != null && Current.Type == TokenType.EMPTYSPACE)
-                    {
-                        AddToken(Back, Current);
-                        Current = null;
-                    }
-
-                    if (CurChar == ',')
-                    {
-                        if (Current == null)
-                        {
-                            Current = new Token(TokenType.COMMA, ",");
-                            AddToken(Back, Current);
-                            Current = null;
-                        }
-                        else
-                        {
-                            AddToken(Back, Current);
-                            Current = new Token(TokenType.COMMA, ",");
-                            AddToken(Back, Current);
-                            Current = null;
-                        }
+                    if (Current == null)
+                    {//no previous token, in this just add the new token and continue
+                        AddToken(Back, new Token(TokenType.COMMA, ","));
                     }
                     else
-                    {
-                        if (Current == null)
-                            Current = new Token(TokenType.WORD, "");
+                    {//if last token not empty, add now, because this char means its end, also add the new token found
+                        AddToken(Back, Current);
+                        AddToken(Back, new Token(TokenType.COMMA, ","));
+                        Current = null;
+                    }
+                }
+                else if (IsOpenBracket(CurChar))
+                {
+                    if (Current == null)
+                    {//no previous token, in this just add the new token and continue
+                        AddToken(Back, new Token(TokenType.OPENBRACKET, CurChar.ToString()));
+                    }
+                    else
+                    {//if last token not empty, add now, because this char means its end, also add the new token found
+                        AddToken(Back, Current);
+                        AddToken(Back, new Token(TokenType.OPENBRACKET, CurChar.ToString()));
+                        Current = null;
+                    }
+                }
+                else if (IsCloseBracket(CurChar))
+                {
+                    if (Current == null)
+                    {//no previous token, in this just add the new token and continue
+                        AddToken(Back, new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
+                    }
+                    else
+                    {//if last token not empty, add now, because this char means its end, also add the new token found
+                        AddToken(Back, Current);
+                        AddToken(Back, new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
+                        Current = null;
+                    }
+                }
+                else 
+                {
+                    if (Current == null)
+                    {//no previous token, in this just add the new token and continue
+                        Current = new Token(TokenType.WORD, CurChar.ToString());
+                    }
+                    else if(Current.Type == TokenType.WORD)
+                    {//last token is a word, so append the text
                         Current.Text = Current.Text.AppendChar(CurChar);
+                    }
+                    else 
+                    {//last token is different, add the last token and create a new word token
+                        AddToken(Back, Current);
+                        Current = new Token(TokenType.WORD, CurChar.ToString());
                     }
                 }
             }
@@ -265,7 +363,7 @@ namespace Ez_SQL
             if (Current != null)
                 AddToken(Back, Current);
 
-            return Back;
+            return Back.Count == 0 ? new List<Token>(){new Token(TokenType.EMPTYSPACE, "")} : Back;
         }
         public static bool IsReserved(this string Word)
         {
@@ -309,6 +407,26 @@ namespace Ez_SQL
                                                       "TSEQUAL","UNION","UNIQUE","UPDATE","UPDATETEXT","USE","USER","VALUES","VARYING","VIEW","WAITFOR",
                                                       "WHEN","WHERE","WHILE","WITH","WRITETEXT"};
         #endregion
+        private static bool IsComma(char c)
+        {
+            return c == ',';
+        }
+        private static bool IsOpenBracket(char c)
+        {
+            if (c == '(' || c == '[' || c == '{')
+            {
+                return true;
+            }
+            return false;
+        }
+        private static bool IsCloseBracket(char c)
+        {
+            if (c == ')' || c == ']' || c == '}')
+            {
+                return true;
+            }
+            return false;
+        }
         private static bool IsWhiteSpace(char c)
         {
             char[] EMPTYTOKENS = { ' ', '\t', '\r', '\n' };
@@ -319,81 +437,75 @@ namespace Ez_SQL
             }
             return false;
         }
-        private static bool IsWhiteSpace(string str)
-        {
-            char[] EMPTYTOKENS = { ' ', '\t', '\r', '\n' };
-            if (String.IsNullOrEmpty(str))
-                return false;
-            str = str.Trim(EMPTYTOKENS);
-            return str.Length == 0;
-        }
         private static void AddToken(List<Token> TokenList, Token Current)
         {
+            if (TokenList == null)
+                TokenList = new List<Token>();
             if (Current == null || Current.IsEmpty)
                 return;
 
-            if (TokenList == null)
-                TokenList = new List<Token>();
-
-            if (IsWhiteSpace(Current.Text))
+            switch (Current.Type)
             {
-                Current.Type = TokenType.EMPTYSPACE;
+                default:
+                case TokenType.EMPTYSPACE:
+                case TokenType.CLOSEBRACKET:
+                case TokenType.OPENBRACKET:
+                case TokenType.COMMA:
+                    TokenList.Add(Current);
+                    break;
+                case TokenType.WORD:
+                    if (Current.Text.StartsWith("@") && Current.Text.Length > 1)
+                    {
+                        Current.Type = TokenType.VARIABLE;
+                    }
+                    else if (Current.Text.StartsWith("#") && Current.Text.Length > 1)
+                    {
+                        Current.Type = TokenType.TEMPTABLE;
+                    }
+                    else if (ReservedWords.Contains(Current.Text.ToUpper()))
+                    {
+                        Current.Type = TokenType.RESERVED;
+                    }
+                    TokenList.Add(Current);
+                    break;
             }
-            else if (Current.Text == ",")
-            {
-                Current.Type = TokenType.COMMA;
-            }
-            else if (ReservedWords.Contains(Current.Text.ToUpper()))
-            {
-                Current.Type = TokenType.RESERVED;
-            }
-            else if (Current.Text.StartsWith("@"))
-            {
-                Current.Type = TokenType.VARIABLE;
-            }
-            else if (Current.Text.StartsWith("#"))
-            {
-                Current.Type = TokenType.TEMPTABLE;
-            }
-            else
-            {
-                Current.Type = TokenType.WORD;
-            }
-            
-            TokenList.Add(Current);
-            
-            //if (Current == null || Current.IsEmpty)
-            //    return;
-
-            //if (IsWhiteSpace(Current.Text))
-            //{
-            //    Current.Type = TokenType.EMPTYSPACE;
-            //    Current.Text = " ";
-            //}
-            //else if (Current.Type != TokenType.COMMA)
-            //{
-
-            //    Current.Type = TokenType.WORD;
-            //}
-
-            //if (TokenList.Count == 0)
-            //{
-            //    TokenList.Add(Current);
-            //}
-            //else
-            //{
-            //    if (Current.Type != TokenType.EMPTYSPACE)
-            //    {
-            //        TokenList.Add(Current);
-            //    }
-            //    else
-            //    {
-            //        if (TokenList.Last().Type != TokenType.EMPTYSPACE)
-            //            TokenList.Add(Current);
-            //    }
-            //}
-
         }
+        //private static void AddToken(List<Token> TokenList, Token Current)
+        //{
+        //    if (Current == null || Current.IsEmpty)
+        //        return;
+
+        //    if (TokenList == null)
+        //        TokenList = new List<Token>();
+
+        //    if (IsWhiteSpace(Current.Text))
+        //    {
+        //        Current.Type = TokenType.EMPTYSPACE;
+        //    }
+        //    else if (Current.Text == ",")
+        //    {
+        //        Current.Type = TokenType.COMMA;
+        //    }
+        //    else if (ReservedWords.Contains(Current.Text.ToUpper()))
+        //    {
+        //        Current.Type = TokenType.RESERVED;
+        //    }
+        //    else if (Current.Text.StartsWith("@"))
+        //    {
+        //        Current.Type = TokenType.VARIABLE;
+        //    }
+        //    else if (Current.Text.StartsWith("#"))
+        //    {
+        //        Current.Type = TokenType.TEMPTABLE;
+        //    }
+        //    else
+        //    {
+        //        Current.Type = TokenType.WORD;
+        //    }
+            
+        //    TokenList.Add(Current);
+
+        //}
         #endregion
     }
 

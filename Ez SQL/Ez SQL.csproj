@@ -85,6 +85,12 @@
     <Compile Include="ConnectionManagement\SQLConnectForm.designer.cs">
       <DependentUpon>SQLConnectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom Controls\AnimatedWaitTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom Controls\AnimatedWaitTextBox.designer.cs">
+      <DependentUpon>AnimatedWaitTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom Controls\StatusStripIcon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -163,6 +169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConnectionManagement\SQLConnectForm.resx">
       <DependentUpon>SQLConnectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom Controls\AnimatedWaitTextBox.resx">
+      <DependentUpon>AnimatedWaitTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadControl\LoadingInfo.resx">
       <DependentUpon>LoadingInfo.cs</DependentUpon>
