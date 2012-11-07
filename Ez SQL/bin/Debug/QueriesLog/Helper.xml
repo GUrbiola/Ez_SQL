@@ -1,0 +1,1526 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<QueriesRoot>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 01:34:27.381" EndTime="20121024 01:34:28.701" Lapse="1320" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 01:35:06.706" EndTime="20121024 01:35:07.266" Lapse="560" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 01:35:08.743" EndTime="20121024 01:35:09.402" Lapse="659" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 01:35:23.066" EndTime="20121024 01:35:23.271" Lapse="205" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from TFN.MASTER"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;TFN.MASTER&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 09:29:51.751" EndTime="20121024 09:30:06.627" Lapse="14875" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from dnis.numbers"</Code>
+		<Error Line="0" Message="A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)"/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 09:32:43.506" EndTime="20121024 09:32:44.509" Lapse="1002" Correct="1" RecordsAffected="0" RecordsRead="501" GridCount="1" />
+		<Code>"select * from dnis.numbers"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 09:33:36.963" EndTime="20121024 09:33:37.138" Lapse="175" Correct="1" RecordsAffected="0" RecordsRead="501" GridCount="1" />
+		<Code>"select * from dnis.numbers"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 09:33:38.030" EndTime="20121024 09:33:38.194" Lapse="164" Correct="1" RecordsAffected="0" RecordsRead="501" GridCount="1" />
+		<Code>"select * from dnis.numbers"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 09:33:40.418" EndTime="20121024 09:33:40.592" Lapse="174" Correct="1" RecordsAffected="0" RecordsRead="501" GridCount="1" />
+		<Code>"select * from dnis.numbers"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 09:33:53.273" EndTime="20121024 09:33:54.033" Lapse="759" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 09:35:24.288" EndTime="20121024 09:35:24.928" Lapse="640" Correct="1" RecordsAffected="0" RecordsRead="514" GridCount="1" />
+		<Code>"select * from Sys.objects"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 09:35:37.320" EndTime="20121024 09:35:37.639" Lapse="319" Correct="1" RecordsAffected="0" RecordsRead="143" GridCount="1" />
+		<Code>"select * from Sys.objects where Type = &amp;apos;P&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 09:39:28.433" EndTime="20121024 09:39:28.681" Lapse="248" Correct="1" RecordsAffected="0" RecordsRead="143" GridCount="1" />
+		<Code>"select * from Sys.objects where Type = &amp;apos;P&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 09:40:26.013" EndTime="20121024 09:40:26.320" Lapse="307" Correct="1" RecordsAffected="0" RecordsRead="143" GridCount="1" />
+		<Code>"select 
+	* 
+from 
+	Sys.objects 
+where 
+	Type = &amp;apos;P&amp;apos;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 09:58:19.543" EndTime="20121024 09:58:20.256" Lapse="713" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from Calls.Calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:22:34.846" EndTime="20121024 10:22:35.478" Lapse="632" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from Calls.Calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:22:40.694" EndTime="20121024 10:22:41.306" Lapse="612" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from Calls.Calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:22:44.988" EndTime="20121024 10:22:45.516" Lapse="528" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from Calls.Calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:34:35.073" EndTime="20121024 10:34:36.077" Lapse="1004" Correct="1" RecordsAffected="0" RecordsRead="513" GridCount="1" />
+		<Code>"SELECT   
+	sobj.id as OwnerId,  
+	sobj.name as OwnerName,  
+	cols.name as Nombre,     
+	type_name(cols.xusertype) as Tipo,     
+	isnull(cols.prec, 0) as Longitud,     
+	isnull(cols.Scale, 0) as Escala,     
+	isnull(cols.isnullable, 1) as Nullable,     
+	isnull(cols.iscomputed, 0) as Calculated,  
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,     
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,   
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,   
+	isnull(fk.rkeyid, 0) as ReferenceID,  
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable, 
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceField, 
+	isnull(indx.name, &amp;apos;&amp;apos;) as IndexName, 
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity, 
+	Seed = IDENT_SEED(sobj.name), 
+	Increment = IDENT_INCR (sobj.name) 
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id  
+      LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid  
+      LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey 
+      LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id  
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)  
+      LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid  
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid  
+      LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;  
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;   
+order by   
+	sobj.name, cols.colid  
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:35:50.308" EndTime="20121024 10:35:50.597" Lapse="289" Correct="1" RecordsAffected="0" RecordsRead="514" GridCount="1" />
+		<Code>"SELECT
+	*
+FROM
+	Sys.Objects"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:36:18.612" EndTime="20121024 10:36:18.863" Lapse="251" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT
+	*
+FROM
+	Sys.Objects Objs
+WHERE
+	Objs.xtype = &amp;apos;U&amp;apos;   
+	and Objs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;"</Code>
+		<Error Line="1" Message="Invalid column name &amp;apos;xtype&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:36:22.530" EndTime="20121024 10:36:22.789" Lapse="259" Correct="1" RecordsAffected="0" RecordsRead="514" GridCount="1" />
+		<Code>"SELECT
+	*
+FROM
+	Sys.Objects Objs"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:36:45.852" EndTime="20121024 10:36:46.122" Lapse="270" Correct="1" RecordsAffected="0" RecordsRead="70" GridCount="1" />
+		<Code>"SELECT
+	*
+FROM
+	Sys.Objects Objs
+WHERE
+	Objs.type = &amp;apos;U&amp;apos;   "</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:37:01.514" EndTime="20121024 10:37:01.841" Lapse="327" Correct="1" RecordsAffected="0" RecordsRead="33" GridCount="1" />
+		<Code>"select * from __RefactorLog"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:37:09.189" EndTime="20121024 10:37:09.594" Lapse="405" Correct="1" RecordsAffected="0" RecordsRead="103" GridCount="2" />
+		<Code>"SELECT
+	*
+FROM
+	Sys.Objects Objs
+WHERE
+	Objs.type = &amp;apos;U&amp;apos;   
+	and Objs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	
+select * from __RefactorLog"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:38:24.079" EndTime="20121024 10:38:24.713" Lapse="634" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="1" />
+		<Code>"SELECT *
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = N&amp;apos;Customers&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:38:29.487" EndTime="20121024 10:38:30.454" Lapse="967" Correct="1" RecordsAffected="0" RecordsRead="489" GridCount="1" />
+		<Code>"SELECT *
+FROM INFORMATION_SCHEMA.COLUMNS"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:39:13.423" EndTime="20121024 10:39:18.981" Lapse="5558" Correct="1" RecordsAffected="0" RecordsRead="167" GridCount="1" />
+		<Code>"SELECT *
+FROM INFORMATION_SCHEMA.ROUTINES"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:41:00.530" EndTime="20121024 10:41:00.810" Lapse="280" Correct="1" RecordsAffected="0" RecordsRead="70" GridCount="1" />
+		<Code>"SELECT *
+FROM INFORMATION_SCHEMA.TABLES"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:41:50.275" EndTime="20121024 10:41:50.822" Lapse="547" Correct="1" RecordsAffected="0" RecordsRead="489" GridCount="1" />
+		<Code>"SELECT *
+FROM INFORMATION_SCHEMA.COLUMNS"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:43:35.976" EndTime="20121024 10:43:36.116" Lapse="140" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT
+	*
+FROM
+	Sys.Objects Tabs --INNER JOIN 
+WHERE
+	Objs.type = &amp;apos;U&amp;apos;   "</Code>
+		<Error Line="1" Message="The multi-part identifier &amp;quot;Objs.type&amp;quot; could not be bound."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:43:41.276" EndTime="20121024 10:43:41.573" Lapse="297" Correct="1" RecordsAffected="0" RecordsRead="514" GridCount="1" />
+		<Code>"SELECT
+	*
+FROM
+	Sys.Objects Tabs --INNER JOIN"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:43:53.153" EndTime="20121024 10:43:53.484" Lapse="331" Correct="1" RecordsAffected="0" RecordsRead="70" GridCount="1" />
+		<Code>"SELECT
+	*
+FROM
+	Sys.Objects Tabs --INNER JOIN 
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   "</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:44:38.337" EndTime="20121024 10:44:38.509" Lapse="172" Correct="1" RecordsAffected="0" RecordsRead="70" GridCount="1" />
+		<Code>"SELECT
+	object_id as Id,
+	name as TableName
+	
+FROM
+	Sys.Objects Tabs --INNER JOIN 
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	and Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:45:43.468" EndTime="20121024 10:45:43.653" Lapse="185" Correct="1" RecordsAffected="0" RecordsRead="33" GridCount="1" />
+		<Code>"select * from sys.schemas"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:46:10.845" EndTime="20121024 10:46:11.202" Lapse="357" Correct="1" RecordsAffected="0" RecordsRead="547" GridCount="2" />
+		<Code>"SELECT
+	*
+FROM
+	Sys.Objects Tabs
+select * from sys.schemas"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:48:54.206" EndTime="20121024 10:48:58.251" Lapse="4045" Correct="1" RecordsAffected="0" RecordsRead="51" GridCount="8" />
+		<Code>"sp_help &amp;apos;Calls.Calls&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:54:31.524" EndTime="20121024 10:54:31.681" Lapse="157" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT
+	object_id as TableId,
+	name as TableName,
+	Sch.name as Schema,
+	&amp;apos;&amp;apos; as Comment,
+	
+	
+FROM
+	Sys.Objects Tabs INNER JOIN Sys.Schemas Sch ON Tabs.schema_id = Sch.schema_id
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	and Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;"</Code>
+		<Error Line="4" Message="Incorrect syntax near the keyword &amp;apos;Schema&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:54:36.777" EndTime="20121024 10:54:36.854" Lapse="77" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT
+	object_id as TableId,
+	name as TableName,
+	Sch.name as Schema,
+	&amp;apos;&amp;apos; as Comment
+	
+	
+FROM
+	Sys.Objects Tabs INNER JOIN Sys.Schemas Sch ON Tabs.schema_id = Sch.schema_id
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	and Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;"</Code>
+		<Error Line="4" Message="Incorrect syntax near the keyword &amp;apos;Schema&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:54:45.632" EndTime="20121024 10:54:45.762" Lapse="130" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT
+	object_id as TableId,
+	name as TableName,
+	Sch.name as Schema,
+	&amp;apos;&amp;apos; as Comment
+	
+	
+FROM
+	Sys.Objects Tabs INNER JOIN Sys.Schemas Sch ON Tabs.schema_id = Sch.schema_id
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	and Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;"</Code>
+		<Error Line="4" Message="Incorrect syntax near the keyword &amp;apos;Schema&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:54:58.593" EndTime="20121024 10:54:58.661" Lapse="68" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT
+	Tabs.object_id as TableId,
+	Tabs.name as TableName,
+	Sch.name as Schema,
+	&amp;apos;&amp;apos; as Comment
+	
+	
+FROM
+	Sys.Objects Tabs INNER JOIN Sys.Schemas Sch ON Tabs.schema_id = Sch.schema_id
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	and Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;"</Code>
+		<Error Line="4" Message="Incorrect syntax near the keyword &amp;apos;Schema&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:55:04.943" EndTime="20121024 10:55:05.357" Lapse="414" Correct="1" RecordsAffected="0" RecordsRead="547" GridCount="2" />
+		<Code>"
+SELECT
+	*
+FROM
+	Sys.Objects Tabs
+select * from sys.schemas"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:56:14.320" EndTime="20121024 10:56:14.537" Lapse="217" Correct="1" RecordsAffected="0" RecordsRead="70" GridCount="1" />
+		<Code>"SELECT
+	Tabs.object_id as TableId,
+	Tabs.name as TableName,
+	Sch.name as &amp;apos;Schema&amp;apos;,
+	&amp;apos;&amp;apos; as Comment
+	
+	
+FROM
+	Sys.Objects Tabs INNER JOIN Sys.Schemas Sch ON Tabs.schema_id = Sch.schema_id
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	and Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:56:39.914" EndTime="20121024 10:56:40.483" Lapse="569" Correct="1" RecordsAffected="0" RecordsRead="1016" GridCount="1" />
+		<Code>"select * from Sys.Columns"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 10:56:53.580" EndTime="20121024 10:56:54.355" Lapse="775" Correct="1" RecordsAffected="0" RecordsRead="1530" GridCount="2" />
+		<Code>"
+SELECT
+	*
+FROM
+	Sys.Objects Tabs
+select * from Sys.Columns"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:00:27.861" EndTime="20121024 11:00:28.173" Lapse="312" Correct="1" RecordsAffected="0" RecordsRead="489" GridCount="1" />
+		<Code>"SELECT
+	Tabs.object_id as TableId,
+	Tabs.name as TableName,
+	Sch.name as &amp;apos;Schema&amp;apos;,
+	&amp;apos;&amp;apos; as Comment,
+	Cols.name as ColumnName,
+	Cols.column_id as ColumnId
+	
+FROM
+	Sys.Objects Tabs INNER JOIN Sys.Schemas Sch ON Tabs.schema_id = Sch.schema_id
+	INNER JOIN Sys.Columns Cols ON Tabs.object_id = Cols.object_id
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	and Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:01:01.761" EndTime="20121024 11:01:02.337" Lapse="576" Correct="1" RecordsAffected="0" RecordsRead="1016" GridCount="1" />
+		<Code>"select * from Sys.Columns"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:06:57.158" EndTime="20121024 11:06:57.490" Lapse="332" Correct="1" RecordsAffected="0" RecordsRead="34" GridCount="1" />
+		<Code>"select * from Sys.Types"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:07:55.745" EndTime="20121024 11:07:56.231" Lapse="486" Correct="1" RecordsAffected="0" RecordsRead="16626" GridCount="1" />
+		<Code>"SELECT
+	Tabs.object_id as TableId,
+	Tabs.name as TableName,
+	Sch.name as &amp;apos;Schema&amp;apos;,
+	&amp;apos;&amp;apos; as Comment,
+	Cols.name as ColumnName,
+	Cols.column_id as ColumnId
+	
+FROM
+	Sys.Objects Tabs INNER JOIN Sys.Schemas Sch ON Tabs.schema_id = Sch.schema_id
+	INNER JOIN Sys.Columns Cols ON Tabs.object_id = Cols.object_id
+	INNER JOIN Sys.Types Typ ON Cols.system_type_id = Cols.system_type_id
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	and Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+ORDER BY
+	Tabs.object_id, Cols.column_id"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:08:23.609" EndTime="20121024 11:08:23.840" Lapse="231" Correct="1" RecordsAffected="0" RecordsRead="748" GridCount="1" />
+		<Code>"SELECT
+	Tabs.object_id as TableId,
+	Tabs.name as TableName,
+	Sch.name as &amp;apos;Schema&amp;apos;,
+	&amp;apos;&amp;apos; as Comment,
+	Cols.name as ColumnName,
+	Cols.column_id as ColumnId
+	
+FROM
+	Sys.Objects Tabs INNER JOIN Sys.Schemas Sch ON Tabs.schema_id = Sch.schema_id
+	INNER JOIN Sys.Columns Cols ON Tabs.object_id = Cols.object_id
+	INNER JOIN Sys.Types Typ ON Cols.system_type_id = Cols.system_type_id
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	AND Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	AND Tabs.name = &amp;apos;Calls&amp;apos;
+ORDER BY
+	Tabs.object_id, Cols.column_id"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:08:40.152" EndTime="20121024 11:08:40.377" Lapse="224" Correct="1" RecordsAffected="0" RecordsRead="22" GridCount="1" />
+		<Code>"SELECT
+	Tabs.object_id as TableId,
+	Tabs.name as TableName,
+	Sch.name as &amp;apos;Schema&amp;apos;,
+	&amp;apos;&amp;apos; as Comment,
+	Cols.name as ColumnName,
+	Cols.column_id as ColumnId
+	
+FROM
+	Sys.Objects Tabs INNER JOIN Sys.Schemas Sch ON Tabs.schema_id = Sch.schema_id
+	INNER JOIN Sys.Columns Cols ON Tabs.object_id = Cols.object_id
+	--INNER JOIN Sys.Types Typ ON Cols.system_type_id = Cols.system_type_id
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	AND Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	AND Tabs.name = &amp;apos;Calls&amp;apos;
+ORDER BY
+	Tabs.object_id, Cols.column_id"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:09:07.093" EndTime="20121024 11:09:07.622" Lapse="529" Correct="1" RecordsAffected="0" RecordsRead="1016" GridCount="1" />
+		<Code>"select * from Sys.Columns"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:09:19.455" EndTime="20121024 11:09:19.660" Lapse="205" Correct="1" RecordsAffected="0" RecordsRead="748" GridCount="1" />
+		<Code>"SELECT
+	Tabs.object_id as TableId,
+	Tabs.name as TableName,
+	Sch.name as &amp;apos;Schema&amp;apos;,
+	&amp;apos;&amp;apos; as Comment,
+	Cols.name as ColumnName,
+	Cols.column_id as ColumnId
+	
+FROM
+	Sys.Objects Tabs INNER JOIN Sys.Schemas Sch ON Tabs.schema_id = Sch.schema_id
+	INNER JOIN Sys.Columns Cols ON Tabs.object_id = Cols.object_id
+	INNER JOIN Sys.Types Typ ON Cols.system_type_id = Cols.system_type_id
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	AND Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	AND Tabs.name = &amp;apos;Calls&amp;apos;
+ORDER BY
+	Tabs.object_id, Cols.column_id"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:09:40.611" EndTime="20121024 11:09:40.815" Lapse="204" Correct="1" RecordsAffected="0" RecordsRead="22" GridCount="1" />
+		<Code>"SELECT
+	Tabs.object_id as TableId,
+	Tabs.name as TableName,
+	Sch.name as &amp;apos;Schema&amp;apos;,
+	&amp;apos;&amp;apos; as Comment,
+	Cols.name as ColumnName,
+	Cols.column_id as ColumnId
+	
+FROM
+	Sys.Objects Tabs INNER JOIN Sys.Schemas Sch ON Tabs.schema_id = Sch.schema_id
+	INNER JOIN Sys.Columns Cols ON Tabs.object_id = Cols.object_id
+	INNER JOIN Sys.Types Typ ON Typ.system_type_id = Cols.system_type_id
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	AND Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	AND Tabs.name = &amp;apos;Calls&amp;apos;
+ORDER BY
+	Tabs.object_id, Cols.column_id"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:09:51.350" EndTime="20121024 11:09:51.700" Lapse="350" Correct="1" RecordsAffected="0" RecordsRead="34" GridCount="1" />
+		<Code>"select * from Sys.Types"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:10:08.064" EndTime="20121024 11:10:08.286" Lapse="222" Correct="1" RecordsAffected="0" RecordsRead="22" GridCount="1" />
+		<Code>"SELECT
+	Tabs.object_id as TableId,
+	Tabs.name as TableName,
+	Sch.name as &amp;apos;Schema&amp;apos;,
+	&amp;apos;&amp;apos; as Comment,
+	Cols.name as ColumnName,
+	Cols.column_id as ColumnId,
+	Typ.name as &amp;apos;Type&amp;apos;
+	
+FROM
+	Sys.Objects Tabs INNER JOIN Sys.Schemas Sch ON Tabs.schema_id = Sch.schema_id
+	INNER JOIN Sys.Columns Cols ON Tabs.object_id = Cols.object_id
+	INNER JOIN Sys.Types Typ ON Typ.system_type_id = Cols.system_type_id
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	AND Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	AND Tabs.name = &amp;apos;Calls&amp;apos;
+ORDER BY
+	Tabs.object_id, Cols.column_id"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:10:44.260" EndTime="20121024 11:10:44.845" Lapse="585" Correct="1" RecordsAffected="0" RecordsRead="1016" GridCount="1" />
+		<Code>"select * from Sys.Columns"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:12:13.320" EndTime="20121024 11:12:13.586" Lapse="266" Correct="1" RecordsAffected="0" RecordsRead="1" GridCount="1" />
+		<Code>"select * from sys.objects where object_id = 251147940"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:14:17.857" EndTime="20121024 11:14:18.402" Lapse="545" Correct="1" RecordsAffected="0" RecordsRead="1016" GridCount="1" />
+		<Code>"select * from Sys.Columns"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:14:47.499" EndTime="20121024 11:14:47.595" Lapse="96" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from Sys.Keys"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;Sys.Keys&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:14:54.115" EndTime="20121024 11:14:54.185" Lapse="70" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from Sys.PrimaryKeys"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;Sys.PrimaryKeys&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:14:56.900" EndTime="20121024 11:14:56.971" Lapse="71" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from Sys.PrimaryKey"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;Sys.PrimaryKey&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:15:57.712" EndTime="20121024 11:15:57.807" Lapse="95" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from Sys.Key_Contraint"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;Sys.Key_Contraint&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:15:58.385" EndTime="20121024 11:15:58.460" Lapse="75" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from Sys.Key_Contraint"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;Sys.Key_Contraint&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:16:04.820" EndTime="20121024 11:16:05.137" Lapse="317" Correct="1" RecordsAffected="0" RecordsRead="74" GridCount="1" />
+		<Code>"select * from Sys.Key_Constraints"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:17:01.849" EndTime="20121024 11:17:02.147" Lapse="298" Correct="1" RecordsAffected="0" RecordsRead="61" GridCount="1" />
+		<Code>"select * from sys.objects where type = &amp;apos;PK&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:17:52.432" EndTime="20121024 11:17:53.049" Lapse="617" Correct="1" RecordsAffected="0" RecordsRead="1016" GridCount="1" />
+		<Code>"select * from Sys.Columns"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:18:26.565" EndTime="20121024 11:18:26.844" Lapse="279" Correct="1" RecordsAffected="0" RecordsRead="61" GridCount="1" />
+		<Code>"select * from sys.objects where type = &amp;apos;PK&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:18:36.009" EndTime="20121024 11:18:36.324" Lapse="315" Correct="1" RecordsAffected="0" RecordsRead="514" GridCount="1" />
+		<Code>"select * from sys.objects"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:21:03.496" EndTime="20121024 11:21:03.758" Lapse="262" Correct="1" RecordsAffected="0" RecordsRead="198" GridCount="1" />
+		<Code>"SELECT
+	Tabs.object_id as TableId,
+	Tabs.name as TableName,
+	Sch.name as &amp;apos;Schema&amp;apos;,
+	&amp;apos;&amp;apos; as Comment,
+	Cols.name as ColumnName,
+	Cols.column_id as ColumnId,
+	Typ.name as &amp;apos;Type&amp;apos;,
+	Cols.precision as Precision,
+	Cols.is_nullable as Nullable,
+	Cols.is_computed as Computed,
+	CASE WHEN Pk.object_id IS NULL THEN 0 ELSE 1 END AS Pk
+	
+FROM
+	Sys.Objects Tabs INNER JOIN Sys.Schemas Sch ON Tabs.schema_id = Sch.schema_id
+	INNER JOIN Sys.Columns Cols ON Tabs.object_id = Cols.object_id
+	INNER JOIN Sys.Types Typ ON Typ.system_type_id = Cols.system_type_id
+	LEFT OUTER JOIN Sys.Objects Pk ON Pk.parent_object_id = Tabs.object_id
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	AND Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	AND Tabs.name = &amp;apos;Calls&amp;apos;
+ORDER BY
+	Tabs.object_id, Cols.column_id"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:21:29.769" EndTime="20121024 11:21:30.049" Lapse="280" Correct="1" RecordsAffected="0" RecordsRead="22" GridCount="1" />
+		<Code>"SELECT
+	Tabs.object_id as TableId,
+	Tabs.name as TableName,
+	Sch.name as &amp;apos;Schema&amp;apos;,
+	&amp;apos;&amp;apos; as Comment,
+	Cols.name as ColumnName,
+	Cols.column_id as ColumnId,
+	Typ.name as &amp;apos;Type&amp;apos;,
+	Cols.precision as Precision,
+	Cols.is_nullable as Nullable,
+	Cols.is_computed as Computed,
+	CASE WHEN Pk.object_id IS NULL THEN 0 ELSE 1 END AS Pk
+	
+FROM
+	Sys.Objects Tabs INNER JOIN Sys.Schemas Sch ON Tabs.schema_id = Sch.schema_id
+	INNER JOIN Sys.Columns Cols ON Tabs.object_id = Cols.object_id
+	INNER JOIN Sys.Types Typ ON Typ.system_type_id = Cols.system_type_id
+	LEFT OUTER JOIN Sys.Objects Pk ON Pk.Type = &amp;apos;PK&amp;apos; AND Pk.parent_object_id = Tabs.object_id
+WHERE
+	Tabs.type = &amp;apos;U&amp;apos;   
+	AND Tabs.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	AND Tabs.name = &amp;apos;Calls&amp;apos;
+ORDER BY
+	Tabs.object_id, Cols.column_id"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:22:03.675" EndTime="20121024 11:22:03.979" Lapse="304" Correct="1" RecordsAffected="0" RecordsRead="61" GridCount="1" />
+		<Code>"
+select * from sys.objects where type = &amp;apos;PK&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:22:56.474" EndTime="20121024 11:22:56.833" Lapse="359" Correct="1" RecordsAffected="0" RecordsRead="197" GridCount="1" />
+		<Code>"select * from Sys.Indexes"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:23:19.024" EndTime="20121024 11:23:19.599" Lapse="575" Correct="1" RecordsAffected="0" RecordsRead="1016" GridCount="1" />
+		<Code>"select * from Sys.Columns"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:24:00.891" EndTime="20121024 11:24:01.268" Lapse="377" Correct="1" RecordsAffected="0" RecordsRead="197" GridCount="1" />
+		<Code>"select * from Sys.Indexes"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:29:02.302" EndTime="20121024 11:29:02.429" Lapse="127" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from sysschemas"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;sysschemas&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:29:06.235" EndTime="20121024 11:29:06.404" Lapse="169" Correct="1" RecordsAffected="0" RecordsRead="33" GridCount="1" />
+		<Code>"select * from sys.schemas"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:29:21.683" EndTime="20121024 11:29:22.001" Lapse="318" Correct="1" RecordsAffected="0" RecordsRead="514" GridCount="1" />
+		<Code>"select * from sys.objects"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:29:30.192" EndTime="20121024 11:29:30.886" Lapse="694" Correct="1" RecordsAffected="0" RecordsRead="514" GridCount="1" />
+		<Code>"select * from sysobjects"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:32:45.392" EndTime="20121024 11:32:45.512" Lapse="120" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT
+	sch.name as &amp;apos;Schema&amp;apos;
+	sobj.id as TableId,  
+	sobj.name as TableName,  
+	cols.name as ColumnName,     
+	type_name(cols.xusertype) as ColumnType,     
+	isnull(cols.prec, 0) as Precision,     
+	isnull(cols.Scale, 0) as Scale,     
+	isnull(cols.isnullable, 1) as Nullable,     
+	isnull(cols.iscomputed, 0) as Calculated,  
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,     
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,   
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,   
+	isnull(fk.rkeyid, 0) as ReferenceID,  
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable, 
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceField, 
+	isnull(indx.name, &amp;apos;&amp;apos;) as IndexName, 
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity, 
+	Seed = IDENT_SEED(sobj.name), 
+	Increment = IDENT_INCR (sobj.name) 
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id  
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid  
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey 
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id  
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)  
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid  
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid  
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;   
+order by   
+	sobj.name, cols.colid  "</Code>
+		<Error Line="3" Message="Incorrect syntax near &amp;apos;sobj&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:33:08.953" EndTime="20121024 11:33:09.053" Lapse="100" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT
+	sch.name as &amp;apos;Schema&amp;apos;
+	sobj.id as TableId,  
+	sobj.name as TableName,  
+	cols.name as ColumnName,     
+	type_name(cols.xusertype) as ColumnType,     
+	isnull(cols.prec, 0) as Precision,     
+	isnull(cols.Scale, 0) as Scale,     
+	isnull(cols.isnullable, 1) as Nullable,     
+	isnull(cols.iscomputed, 0) as Calculated,  
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,     
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,   
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,   
+	isnull(fk.rkeyid, 0) as ReferenceID,  
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable, 
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceField, 
+	isnull(indx.name, &amp;apos;&amp;apos;) as IndexName, 
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity, 
+	Seed = IDENT_SEED(sobj.name), 
+	Increment = IDENT_INCR (sobj.name) 
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id  
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid  
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey 
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id  
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)  
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid  
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid  
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;   
+order by   
+	sobj.name, cols.colid  "</Code>
+		<Error Line="3" Message="Incorrect syntax near &amp;apos;sobj&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:33:19.226" EndTime="20121024 11:33:20.119" Lapse="893" Correct="1" RecordsAffected="0" RecordsRead="513" GridCount="1" />
+		<Code>"SELECT
+	sch.name as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,  
+	sobj.name as TableName,  
+	cols.name as ColumnName,     
+	type_name(cols.xusertype) as ColumnType,     
+	isnull(cols.prec, 0) as Precision,     
+	isnull(cols.Scale, 0) as Scale,     
+	isnull(cols.isnullable, 1) as Nullable,     
+	isnull(cols.iscomputed, 0) as Calculated,  
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,     
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,   
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,   
+	isnull(fk.rkeyid, 0) as ReferenceID,  
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable, 
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceField, 
+	isnull(indx.name, &amp;apos;&amp;apos;) as IndexName, 
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity, 
+	Seed = IDENT_SEED(sobj.name), 
+	Increment = IDENT_INCR (sobj.name) 
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id  
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid  
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey 
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id  
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)  
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid  
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid  
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;   
+order by   
+	sobj.name, cols.colid  
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:34:02.592" EndTime="20121024 11:34:03.474" Lapse="882" Correct="1" RecordsAffected="0" RecordsRead="513" GridCount="1" />
+		<Code>"SELECT
+	sch.name as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,  
+	sobj.name as TableName,  
+	cols.name as ColumnName,     
+	type_name(cols.xusertype) as ColumnType,     
+	isnull(cols.prec, 0) as Precision,     
+	isnull(cols.Scale, 0) as Scale,     
+	isnull(cols.isnullable, 1) as Nullable,     
+	isnull(cols.iscomputed, 0) as Calculated,  
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,     
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,   
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,   
+	isnull(fk.rkeyid, 0) as ReferenceID,  
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable, 
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceField, 
+	isnull(indx.name, &amp;apos;&amp;apos;) as IndexName, 
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity, 
+	IDENT_SEED(sobj.name) as Seed, 
+	IDENT_INCR(sobj.name) as Increment 
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id  
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid  
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey 
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id  
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)  
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid  
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid  
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;   
+order by   
+	sobj.name, cols.colid  
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:46:59.429" EndTime="20121024 11:47:00.293" Lapse="864" Correct="1" RecordsAffected="0" RecordsRead="513" GridCount="1" />
+		<Code>"SELECT
+	sch.name as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceField,
+	isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity,
+	IDENT_SEED(sobj.name) as Seed,
+	IDENT_INCR(sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;   
+order by   
+	sobj.name, cols.colid"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:50:21.495" EndTime="20121024 11:50:21.761" Lapse="266" Correct="1" RecordsAffected="0" RecordsRead="262" GridCount="1" />
+		<Code>"select * from syscomments"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:50:59.756" EndTime="20121024 11:51:00.415" Lapse="659" Correct="1" RecordsAffected="0" RecordsRead="513" GridCount="1" />
+		<Code>"SELECT
+	sch.name as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceField,
+	isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity,
+	IDENT_SEED(sobj.name) as Seed,
+	IDENT_INCR(sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;   
+order by   
+	sobj.name, cols.colid"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:56:21.117" EndTime="20121024 11:56:22.085" Lapse="968" Correct="1" RecordsAffected="0" RecordsRead="1617" GridCount="1" />
+		<Code>"select * from syscolumns"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:57:46.631" EndTime="20121024 11:57:47.569" Lapse="938" Correct="1" RecordsAffected="0" RecordsRead="1617" GridCount="1" />
+		<Code>"select * from syscolumns"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:58:20.289" EndTime="20121024 11:58:20.714" Lapse="425" Correct="1" RecordsAffected="0" RecordsRead="1016" GridCount="1" />
+		<Code>"select * from Sys.Columns"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121024 11:59:27.496" EndTime="20121024 11:59:28.450" Lapse="954" Correct="1" RecordsAffected="0" RecordsRead="1617" GridCount="1" />
+		<Code>"select * from syscolumns order by id, colid"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121025 12:00:37.146" EndTime="20121025 12:00:38.020" Lapse="874" Correct="1" RecordsAffected="0" RecordsRead="513" GridCount="1" />
+		<Code>"SELECT
+	sch.name as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.colid as ColumnId,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceField,
+	isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity,
+	IDENT_SEED(sobj.name) as Seed,
+	IDENT_INCR(sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;   
+order by   
+	sobj.name, cols.colid
+	"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 12:41:09.762" EndTime="20121026 12:41:11.033" Lapse="1271" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 12:42:01.936" EndTime="20121026 12:42:02.560" Lapse="624" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 12:42:57.770" EndTime="20121026 12:42:58.113" Lapse="343" Correct="1" RecordsAffected="0" RecordsRead="6" GridCount="1" />
+		<Code>"select * from Vendors.Vendors"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 10:35:28.171" EndTime="20121026 10:35:29.381" Lapse="1210" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:02:13.922" EndTime="20121026 11:02:14.218" Lapse="296" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="1" />
+		<Code>"SELECT  
+	sobj.id as ViewId, 
+	sobj.name as ViewName, 
+	cols.name as FieldName,    
+	type_name(cols.xusertype) as Type,    
+	isnull(cols.prec, 0) as Length,    
+	isnull(cols.Scale, 0) as Scale,    
+	isnull(cols.isnullable, 1) as Nullable,    
+	isnull(cols.iscomputed, 0) as Calculated	 
+FROM  
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id=cols.id 
+WHERE  
+	sobj.xtype = &amp;apos;V&amp;apos;  "</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:02:48.874" EndTime="20121026 11:02:49.030" Lapse="156" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"CREATE VIEW DBO.FirstView AS
+	select
+		*
+	from
+		Calls.Calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:03:03.008" EndTime="20121026 11:03:03.086" Lapse="78" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"CREATE VIEW DBO.SecondView AS
+	select
+		*
+	from
+		Dnis.LicensedNumbers"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:03:34.929" EndTime="20121026 11:03:35.287" Lapse="358" Correct="1" RecordsAffected="0" RecordsRead="25" GridCount="1" />
+		<Code>"SELECT  
+	sobj.id as ViewId, 
+	sobj.name as ViewName, 
+	cols.name as FieldName,    
+	type_name(cols.xusertype) as Type,    
+	isnull(cols.prec, 0) as Length,    
+	isnull(cols.Scale, 0) as Scale,    
+	isnull(cols.isnullable, 1) as Nullable,    
+	isnull(cols.iscomputed, 0) as Calculated	 
+FROM  
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id=cols.id 
+WHERE  
+	sobj.xtype = &amp;apos;V&amp;apos;  "</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:03:45.427" EndTime="20121026 11:03:48.223" Lapse="2795" Correct="1" RecordsAffected="0" RecordsRead="25" GridCount="1" />
+		<Code>"SELECT  
+--	sobj.id as ViewId, 
+--	sobj.name as ViewName, 
+--	cols.name as FieldName,    
+--	type_name(cols.xusertype) as Type,    
+--	isnull(cols.prec, 0) as Length,    
+--	isnull(cols.Scale, 0) as Scale,    
+--	isnull(cols.isnullable, 1) as Nullable,    
+--	isnull(cols.iscomputed, 0) as Calculated	 
+	*
+FROM  
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id=cols.id 
+WHERE  
+	sobj.xtype = &amp;apos;V&amp;apos;  "</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:07:07.829" EndTime="20121026 11:07:08.139" Lapse="310" Correct="1" RecordsAffected="0" RecordsRead="25" GridCount="1" />
+		<Code>"SELECT  
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as ViewId, 
+	sobj.name as ViewName, 
+	cols.name as FieldName,    
+	type_name(cols.xusertype) as Type,    
+	isnull(cols.prec, 0) as Length,    
+	isnull(cols.Scale, 0) as Scale,    
+	isnull(cols.isnullable, 1) as Nullable,    
+	isnull(cols.iscomputed, 0) as Calculated	 
+FROM  
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id=cols.id 
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE  
+	sobj.xtype = &amp;apos;V&amp;apos; 
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:07:13.927" EndTime="20121026 11:07:14.161" Lapse="234" Correct="1" RecordsAffected="0" RecordsRead="25" GridCount="1" />
+		<Code>"SELECT  
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as ViewId, 
+	sobj.name as ViewName, 
+	cols.name as FieldName,    
+	type_name(cols.xusertype) as Type,    
+	isnull(cols.prec, 0) as Length,    
+	isnull(cols.Scale, 0) as Scale,    
+	isnull(cols.isnullable, 1) as Nullable,    
+	isnull(cols.iscomputed, 0) as Calculated	 
+FROM  
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id=cols.id 
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE  
+	sobj.xtype = &amp;apos;V&amp;apos; 
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:08:29.546" EndTime="20121026 11:08:29.780" Lapse="234" Correct="1" RecordsAffected="0" RecordsRead="25" GridCount="1" />
+		<Code>"SELECT  
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as ViewId, 
+	sobj.name as ViewName, 
+	cols.name as FieldName,    
+	type_name(cols.xusertype) as Type,    
+	isnull(cols.prec, 0) as Length,    
+	isnull(cols.Scale, 0) as Scale,    
+	isnull(cols.isnullable, 1) as Nullable,    
+	isnull(cols.iscomputed, 0) as Calculated	 
+FROM  
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id=cols.id 
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE  
+	sobj.xtype = &amp;apos;V&amp;apos; 
+ORDER BY
+	sobj.id, cols.name"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:08:54.100" EndTime="20121026 11:08:54.209" Lapse="109" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"CREATE VIEW Dnis.ThirdView AS
+	select
+		*
+	from
+		Dnis.LicensingDetails"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:09:21.614" EndTime="20121026 11:09:21.786" Lapse="171" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"	select
+		*
+	from
+		Alerts.AlertService"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;Alerts.AlertService&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:09:29.898" EndTime="20121026 11:09:29.960" Lapse="62" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"CREATE VIEW Calls.FourthView AS
+	select
+		*
+	from
+		Clients.Clients"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:09:31.941" EndTime="20121026 11:09:32.160" Lapse="218" Correct="1" RecordsAffected="0" RecordsRead="44" GridCount="1" />
+		<Code>"SELECT  
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as ViewId, 
+	sobj.name as ViewName, 
+	cols.name as FieldName,    
+	type_name(cols.xusertype) as Type,    
+	isnull(cols.prec, 0) as Length,    
+	isnull(cols.Scale, 0) as Scale,    
+	isnull(cols.isnullable, 1) as Nullable,    
+	isnull(cols.iscomputed, 0) as Calculated	 
+FROM  
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id=cols.id 
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE  
+	sobj.xtype = &amp;apos;V&amp;apos; 
+ORDER BY
+	sobj.id, cols.name"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:29:29.788" EndTime="20121026 11:29:30.178" Lapse="390" Correct="1" RecordsAffected="0" RecordsRead="498" GridCount="1" />
+		<Code>"SELECT  
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as ViewId, 
+	sobj.name as ViewName, 
+	cols.name as FieldName,    
+	type_name(cols.xusertype) as Type,    
+	isnull(cols.prec, 0) as Length,    
+	isnull(cols.Scale, 0) as Scale,    
+	isnull(cols.isnullable, 1) as Nullable,    
+	isnull(cols.iscomputed, 0) as Calculated	 
+FROM  
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id=cols.id 
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE  
+	sobj.xtype = &amp;apos;P&amp;apos; 
+ORDER BY
+	sobj.id, cols.name"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:29:46.324" EndTime="20121026 11:29:46.558" Lapse="234" Correct="1" RecordsAffected="0" RecordsRead="511" GridCount="1" />
+		<Code>"SELECT  
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as ViewId, 
+	sobj.name as ViewName, 
+	cols.name as FieldName,    
+	type_name(cols.xusertype) as Type,    
+	isnull(cols.prec, 0) as Length,    
+	isnull(cols.Scale, 0) as Scale,    
+	isnull(cols.isnullable, 1) as Nullable,    
+	isnull(cols.iscomputed, 0) as Calculated	 
+FROM  
+	sysobjects sobj LEFT OUTER JOIN syscolumns cols ON sobj.id=cols.id 
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE  
+	sobj.xtype = &amp;apos;P&amp;apos; 
+ORDER BY
+	sobj.id, cols.name"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:30:35.300" EndTime="20121026 11:30:35.503" Lapse="202" Correct="1" RecordsAffected="0" RecordsRead="511" GridCount="1" />
+		<Code>"SELECT  
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as ViewId, 
+	sobj.name as ViewName, 
+	cols.name as FieldName,    
+	type_name(cols.xusertype) as Type,    
+	isnull(cols.prec, 0) as Length,    
+	isnull(cols.Scale, 0) as Scale,    
+	isnull(cols.isnullable, 1) as Nullable,    
+	isnull(cols.iscomputed, 0) as Calculated	 
+FROM  
+	sysobjects sobj LEFT OUTER JOIN syscolumns cols ON sobj.id=cols.id 
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE  
+	sobj.xtype = &amp;apos;P&amp;apos; 
+	AND sobj.category = 0
+ORDER BY
+	sobj.id, cols.name"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:40:33.232" EndTime="20121026 11:40:33.715" Lapse="483" Correct="1" RecordsAffected="0" RecordsRead="22" GridCount="1" />
+		<Code>"SELECT *
+FROM sys.objects
+WHERE type IN (&amp;apos;FN&amp;apos;, &amp;apos;IF&amp;apos;, &amp;apos;TF&amp;apos;) "</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:40:49.041" EndTime="20121026 11:40:49.681" Lapse="639" Correct="1" RecordsAffected="0" RecordsRead="22" GridCount="1" />
+		<Code>"SELECT *
+FROM sysobjects
+WHERE type IN (&amp;apos;FN&amp;apos;, &amp;apos;IF&amp;apos;, &amp;apos;TF&amp;apos;) "</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:41:20.454" EndTime="20121026 11:41:20.563" Lapse="109" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from syscomment"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;syscomment&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:41:22.950" EndTime="20121026 11:41:23.293" Lapse="343" Correct="1" RecordsAffected="0" RecordsRead="266" GridCount="1" />
+		<Code>"select * from syscomments"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:41:41.920" EndTime="20121026 11:41:42.201" Lapse="280" Correct="1" RecordsAffected="0" RecordsRead="1" GridCount="1" />
+		<Code>"select * from syscomments where id = 619149251"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:41:59.474" EndTime="20121026 11:41:59.677" Lapse="202" Correct="1" RecordsAffected="0" RecordsRead="1" GridCount="1" />
+		<Code>"select text from syscomments where id = 619149251"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:56:34.402" EndTime="20121026 11:56:34.742" Lapse="340" Correct="1" RecordsAffected="0" RecordsRead="38" GridCount="1" />
+		<Code>"SELECT  
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as FunctionId, 
+	sobj.name as FunctionName, 
+	cols.name as ParamName,    
+	type_name(cols.xusertype) as Type,    
+	isnull(cols.prec, 0) as Length,    
+	isnull(cols.Scale, 0) as Scale,    
+	isnull(cols.isnullable, 1) as Nullable,    
+	isnull(cols.iscomputed, 0) as Calculated	 
+FROM  
+	sysobjects sobj LEFT OUTER JOIN syscolumns cols ON sobj.id=cols.id 
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE  
+	sobj.xtype = &amp;apos;TF&amp;apos; 
+ORDER BY
+	sobj.id, cols.name"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:57:19.183" EndTime="20121026 11:57:19.323" Lapse="140" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from GetTagsForUser(5494, 7)"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;GetTagsForUser&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121026 11:57:28.563" EndTime="20121026 11:57:29.453" Lapse="890" Correct="1" RecordsAffected="0" RecordsRead="12" GridCount="1" />
+		<Code>"select * from Security.GetTagsForUser(5494, 7)"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:13:16.553" EndTime="20121027 12:13:16.673" Lapse="120" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>""</Code>
+		<Error Line="-1" Message="ExecuteReader: CommandText property has not been initialized"/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:13:31.623" EndTime="20121027 12:13:31.673" Lapse="50" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>""</Code>
+		<Error Line="-1" Message="The connection was not closed. The connection&amp;apos;s current state is open."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:13:46.113" EndTime="20121027 12:13:46.153" Lapse="40" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from calls.calls"</Code>
+		<Error Line="-1" Message="The connection was not closed. The connection&amp;apos;s current state is open."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:14:57.261" EndTime="20121027 12:14:57.901" Lapse="639" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:15:01.161" EndTime="20121027 12:15:02.035" Lapse="873" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:15:02.965" EndTime="20121027 12:15:03.480" Lapse="514" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:15:09.845" EndTime="20121027 12:15:10.360" Lapse="514" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:15:15.040" EndTime="20121027 12:15:16.179" Lapse="1138" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:15:17.520" EndTime="20121027 12:15:18.082" Lapse="561" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:15:21.280" EndTime="20121027 12:15:21.342" Lapse="62" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>""</Code>
+		<Error Line="-1" Message="ExecuteReader: CommandText property has not been initialized"/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:15:24.587" EndTime="20121027 12:15:24.634" Lapse="46" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>""</Code>
+		<Error Line="-1" Message="The connection was not closed. The connection&amp;apos;s current state is open."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:16:17.738" EndTime="20121027 12:16:17.972" Lapse="234" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"adsasdasasddas"</Code>
+		<Error Line="1" Message="Could not find stored procedure &amp;apos;adsasdasasddas&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:16:18.627" EndTime="20121027 12:16:18.689" Lapse="62" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"adsasdasasddas"</Code>
+		<Error Line="1" Message="Could not find stored procedure &amp;apos;adsasdasasddas&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:16:19.188" EndTime="20121027 12:16:19.251" Lapse="62" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"adsasdasasddas"</Code>
+		<Error Line="1" Message="Could not find stored procedure &amp;apos;adsasdasasddas&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:16:19.391" EndTime="20121027 12:16:19.469" Lapse="78" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"adsasdasasddas"</Code>
+		<Error Line="1" Message="Could not find stored procedure &amp;apos;adsasdasasddas&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:16:25.912" EndTime="20121027 12:16:26.505" Lapse="592" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:16:33.394" EndTime="20121027 12:16:33.488" Lapse="93" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>""</Code>
+		<Error Line="-1" Message="ExecuteReader: CommandText property has not been initialized"/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:16:35.407" EndTime="20121027 12:16:35.469" Lapse="62" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>""</Code>
+		<Error Line="-1" Message="The connection was not closed. The connection&amp;apos;s current state is open."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:20:55.913" EndTime="20121027 12:20:56.022" Lapse="109" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"                 ssd"</Code>
+		<Error Line="1" Message="Could not find stored procedure &amp;apos;ssd&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 12:21:07.551" EndTime="20121027 12:21:08.112" Lapse="561" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+</QueriesRoot>

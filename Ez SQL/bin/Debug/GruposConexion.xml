@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Groups>
+  <Group Name="Locals">
+    <Connections>
+      <Connection Name="Dial 800 V2" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=Dial800_V2;Integrated Security=True;Persist Security Info=True" />
+    </Connections>
+  </Group>
+</Groups>

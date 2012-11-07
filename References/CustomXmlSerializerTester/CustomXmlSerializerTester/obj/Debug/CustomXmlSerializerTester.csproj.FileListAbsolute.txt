@@ -1,0 +1,9 @@
+C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\CustomXmlSerializerTester\bin\Debug\CustomXmlSerializerTester.exe
+C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\CustomXmlSerializerTester\bin\Debug\CustomXmlSerializerTester.pdb
+C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\CustomXmlSerializerTester\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\CustomXmlSerializerTester\obj\Debug\CustomXmlSerializerTester.exe
+C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\CustomXmlSerializerTester\obj\Debug\CustomXmlSerializerTester.pdb
+C:\Users\gonzalo abel\Desktop\CustomXmlSerializerTester\CustomXmlSerializerTester\bin\Debug\CustomXmlSerializerTester.exe.config
+C:\JustForFun\Ez SQL\References\CustomXmlSerializerTester\CustomXmlSerializerTester\bin\Debug\CustomXmlSerializerTester.exe.config
+C:\JustForFun\Ez SQL\References\CustomXmlSerializerTester\CustomXmlSerializerTester\obj\Debug\CustomXmlSerializerTester.exe
+C:\JustForFun\Ez SQL\References\CustomXmlSerializerTester\CustomXmlSerializerTester\obj\Debug\CustomXmlSerializerTester.pdb
