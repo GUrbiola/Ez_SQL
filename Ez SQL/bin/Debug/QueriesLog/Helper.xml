@@ -1523,4 +1523,4762 @@ ORDER BY
 		<Execution StartTime="20121027 12:21:07.551" EndTime="20121027 12:21:08.112" Lapse="561" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
 		<Code>"select * from calls.calls"</Code>
 	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 07:24:46.391" EndTime="20121027 07:24:47.341" Lapse="950" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 07:26:19.633" EndTime="20121027 07:26:20.043" Lapse="410" Correct="1" RecordsAffected="0" RecordsRead="501" GridCount="1" />
+		<Code>"select * from dnis.numbers"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121027 07:29:03.513" EndTime="20121027 07:29:04.033" Lapse="520" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121028 11:39:59.525" EndTime="20121028 11:40:00.492" Lapse="967" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from calls.calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121028 11:40:42.519" EndTime="20121028 11:40:42.753" Lapse="234" Correct="1" RecordsAffected="0" RecordsRead="6" GridCount="1" />
+		<Code>"select * from vendors.vendors"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121028 11:06:07.126" EndTime="20121028 11:06:07.626" Lapse="500" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from Calls.GetCallByID"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;Calls.GetCallByID&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121028 11:07:00.616" EndTime="20121028 11:07:01.686" Lapse="1070" Correct="1" RecordsAffected="0" RecordsRead="501" GridCount="1" />
+		<Code>"select * from Dnis.Numbers"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121028 11:54:34.110" EndTime="20121028 11:54:34.370" Lapse="260" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select
+	*
+from
+	Calls.Call
+order by
+	Id desc"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;Calls.Call&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121028 11:54:37.560" EndTime="20121028 11:54:39.030" Lapse="1470" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select
+	*
+from
+	Calls.Calls
+order by
+	Id desc"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121029 12:38:43.774" EndTime="20121029 12:38:44.159" Lapse="384" Correct="1" RecordsAffected="0" RecordsRead="346" GridCount="1" />
+		<Code>"select
+	*
+from
+	Dnis.Catalog_AreaCode"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121030 10:45:59.903" EndTime="20121030 10:46:00.853" Lapse="950" Correct="1" RecordsAffected="0" RecordsRead="513" GridCount="1" />
+		<Code>"
+SELECT
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.colid as ColumnId,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceFieldName,
+	isnull(cols2.colid, 0) as ReferenceFieldId,
+	isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity,
+	IDENT_SEED(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Seed,
+	IDENT_INCR(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;   
+order by   
+	sobj.name, cols.colid"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121030 10:47:24.793" EndTime="20121030 10:47:25.453" Lapse="660" Correct="1" RecordsAffected="0" RecordsRead="37" GridCount="1" />
+		<Code>"SELECT
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.colid as ColumnId,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceFieldName,
+	isnull(cols2.colid, 0) as ReferenceFieldId,
+	isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity,
+	IDENT_SEED(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Seed,
+	IDENT_INCR(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	and ISNULL(sch.name, &amp;apos;dbo&amp;apos;) = &amp;apos;Calls&amp;apos;
+	and sobj.name = &amp;apos;Calls&amp;apos;
+order by   
+	sobj.name, cols.colid"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121030 10:49:28.005" EndTime="20121030 10:49:28.595" Lapse="590" Correct="1" RecordsAffected="0" RecordsRead="37" GridCount="1" />
+		<Code>"SELECT
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.colid as ColumnId,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceFieldName,
+	isnull(cols2.colid, 0) as ReferenceFieldId,
+	&amp;apos;&amp;apos; as IndexName,--isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity,
+	IDENT_SEED(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Seed,
+	IDENT_INCR(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	and ISNULL(sch.name, &amp;apos;dbo&amp;apos;) = &amp;apos;Calls&amp;apos;
+	and sobj.name = &amp;apos;Calls&amp;apos;
+order by   
+	sobj.name, cols.colid"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121030 10:49:33.735" EndTime="20121030 10:49:35.115" Lapse="1380" Correct="1" RecordsAffected="0" RecordsRead="24" GridCount="1" />
+		<Code>"SELECT DISTINCT
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.colid as ColumnId,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceFieldName,
+	isnull(cols2.colid, 0) as ReferenceFieldId,
+	&amp;apos;&amp;apos; as IndexName,--isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity,
+	IDENT_SEED(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Seed,
+	IDENT_INCR(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	and ISNULL(sch.name, &amp;apos;dbo&amp;apos;) = &amp;apos;Calls&amp;apos;
+	and sobj.name = &amp;apos;Calls&amp;apos;
+order by   
+	sobj.name, cols.colid"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121030 10:50:54.335" EndTime="20121030 10:50:54.495" Lapse="160" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT DISTINCT
+	--ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.colid as ColumnId,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceFieldName,
+	isnull(cols2.colid, 0) as ReferenceFieldId,
+	&amp;apos;&amp;apos; as IndexName,--isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity,
+	IDENT_SEED(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Seed,
+	IDENT_INCR(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+--	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+--	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	and ISNULL(sch.name, &amp;apos;dbo&amp;apos;) = &amp;apos;Calls&amp;apos;
+	and sobj.name = &amp;apos;Calls&amp;apos;
+order by   
+	sobj.name, cols.colid"</Code>
+		<Error Line="37" Message="The multi-part identifier &amp;quot;sch.name&amp;quot; could not be bound."/>
+		<Error Line="21" Message="The multi-part identifier &amp;quot;sch.name&amp;quot; could not be bound."/>
+		<Error Line="22" Message="The multi-part identifier &amp;quot;sch.name&amp;quot; could not be bound."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121030 10:51:06.405" EndTime="20121030 10:51:06.525" Lapse="120" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT DISTINCT
+	--ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.colid as ColumnId,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceFieldName,
+	isnull(cols2.colid, 0) as ReferenceFieldId,
+	&amp;apos;&amp;apos; as IndexName,--isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity,
+	IDENT_SEED(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Seed,
+	IDENT_INCR(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+--	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+--	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	--and ISNULL(sch.name, &amp;apos;dbo&amp;apos;) = &amp;apos;Calls&amp;apos;
+	and sobj.name = &amp;apos;Calls&amp;apos;
+order by   
+	sobj.name, cols.colid"</Code>
+		<Error Line="21" Message="The multi-part identifier &amp;quot;sch.name&amp;quot; could not be bound."/>
+		<Error Line="22" Message="The multi-part identifier &amp;quot;sch.name&amp;quot; could not be bound."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121030 10:51:19.195" EndTime="20121030 10:51:19.645" Lapse="450" Correct="1" RecordsAffected="0" RecordsRead="24" GridCount="1" />
+		<Code>"SELECT DISTINCT
+	--ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.colid as ColumnId,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceFieldName,
+	isnull(cols2.colid, 0) as ReferenceFieldId,
+	&amp;apos;&amp;apos; as IndexName,--isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity
+--	IDENT_SEED(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Seed,
+--	IDENT_INCR(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+--	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+--	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	--and ISNULL(sch.name, &amp;apos;dbo&amp;apos;) = &amp;apos;Calls&amp;apos;
+	and sobj.name = &amp;apos;Calls&amp;apos;
+order by   
+	sobj.name, cols.colid"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121030 10:51:46.445" EndTime="20121030 10:51:46.575" Lapse="130" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.colid as ColumnId,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceFieldName,
+	isnull(cols2.colid, 0) as ReferenceFieldId,
+	&amp;apos;&amp;apos; as IndexName,--isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity
+	IDENT_SEED(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Seed,
+	IDENT_INCR(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+--	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+--	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	--and ISNULL(sch.name, &amp;apos;dbo&amp;apos;) = &amp;apos;Calls&amp;apos;
+	and sobj.name = &amp;apos;Calls&amp;apos;
+order by   
+	sobj.name, cols.colid"</Code>
+		<Error Line="21" Message="Incorrect syntax near &amp;apos;IDENT_SEED&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121030 10:51:57.245" EndTime="20121030 10:51:57.355" Lapse="110" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.colid as ColumnId,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceFieldName,
+	isnull(cols2.colid, 0) as ReferenceFieldId,
+	&amp;apos;&amp;apos; as IndexName,--isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity
+	IDENT_SEED(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Seed,
+	IDENT_INCR(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	and ISNULL(sch.name, &amp;apos;dbo&amp;apos;) = &amp;apos;Calls&amp;apos;
+	and sobj.name = &amp;apos;Calls&amp;apos;
+order by   
+	sobj.name, cols.colid"</Code>
+		<Error Line="21" Message="Incorrect syntax near &amp;apos;IDENT_SEED&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121030 10:52:02.935" EndTime="20121030 10:52:03.475" Lapse="540" Correct="1" RecordsAffected="0" RecordsRead="37" GridCount="1" />
+		<Code>"SELECT
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.colid as ColumnId,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceFieldName,
+	isnull(cols2.colid, 0) as ReferenceFieldId,
+	&amp;apos;&amp;apos; as IndexName,--isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity,
+	IDENT_SEED(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Seed,
+	IDENT_INCR(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	and ISNULL(sch.name, &amp;apos;dbo&amp;apos;) = &amp;apos;Calls&amp;apos;
+	and sobj.name = &amp;apos;Calls&amp;apos;
+order by   
+	sobj.name, cols.colid"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121030 10:52:11.565" EndTime="20121030 10:52:12.145" Lapse="580" Correct="1" RecordsAffected="0" RecordsRead="37" GridCount="1" />
+		<Code>"SELECT
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.colid as ColumnId,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceFieldName,
+	isnull(cols2.colid, 0) as ReferenceFieldId,
+	isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity,
+	IDENT_SEED(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Seed,
+	IDENT_INCR(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;
+	and ISNULL(sch.name, &amp;apos;dbo&amp;apos;) = &amp;apos;Calls&amp;apos;
+	and sobj.name = &amp;apos;Calls&amp;apos;
+order by   
+	sobj.name, cols.colid"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 06:52:13.806" EndTime="20121031 06:52:14.820" Lapse="1014" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from Calls.Calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 07:27:12.533" EndTime="20121031 07:27:13.157" Lapse="624" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from Calls.Calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 07:27:35.342" EndTime="20121031 07:27:35.862" Lapse="520" Correct="1" RecordsAffected="0" RecordsRead="500" GridCount="1" />
+		<Code>"select * from Calls.Calls where Calls.Calls.ID &amp;gt; 500"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 07:27:43.884" EndTime="20121031 07:27:44.448" Lapse="564" Correct="1" RecordsAffected="0" RecordsRead="500" GridCount="1" />
+		<Code>"select * from Calls.Calls where Calls.Calls.ID &amp;gt; 500 order by ID "</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 07:27:49.835" EndTime="20121031 07:27:50.287" Lapse="452" Correct="1" RecordsAffected="0" RecordsRead="500" GridCount="1" />
+		<Code>"select * from Calls.Calls where Calls.Calls.ID &amp;gt; 500 order by ID"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 07:30:26.324" EndTime="20121031 07:30:26.543" Lapse="218" Correct="1" RecordsAffected="0" RecordsRead="469" GridCount="1" />
+		<Code>"select * from Calls.Tags"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 08:46:29.375" EndTime="20121031 08:46:29.905" Lapse="530" Correct="1" RecordsAffected="0" RecordsRead="817" GridCount="1" />
+		<Code>"select
+	*
+from
+	Clients.Tags T inner join Clients.TagAssignments Ta on T.ID = Ta.TagID
+where
+	T.ID &amp;gt; 100
+	
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 08:55:15.294" EndTime="20121031 08:55:16.154" Lapse="860" Correct="1" RecordsAffected="0" RecordsRead="499" GridCount="1" />
+		<Code>"
+SELECT DISTINCT
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.colid as ColumnId,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceFieldName,
+	isnull(cols2.colid, 0) as ReferenceFieldId,
+	&amp;apos;&amp;apos; as IndexName,--isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity,
+	IDENT_SEED(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Seed,
+	IDENT_INCR(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;   
+order by   
+	sobj.name, cols.colid"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 09:00:58.411" EndTime="20121031 09:00:59.216" Lapse="804" Correct="1" RecordsAffected="0" RecordsRead="499" GridCount="1" />
+		<Code>"
+SELECT DISTINCT
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as TableId,
+	sobj.name as TableName,
+	cols.colid as ColumnId,
+	cols.name as ColumnName,
+	type_name(cols.xusertype) as ColumnType,
+	isnull(cols.prec, 0) as Precision,
+	isnull(cols.Scale, 0) as Scale,
+	isnull(cols.isnullable, 1) as Nullable,
+	isnull(cols.iscomputed, 0) as Calculated,
+	isnull(comm.text, &amp;apos;&amp;apos;) as DefaultValue,
+	case when pk.xtype is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as PKey,
+	case when fk.fkey is null then &amp;apos;0&amp;apos; else &amp;apos;1&amp;apos; end as FKey,
+	isnull(fk.rkeyid, 0) as ReferenceID,
+	isnull(fk2.name, &amp;apos;&amp;apos;) as ReferenceTable,
+	isnull(cols2.name, &amp;apos;&amp;apos;) as ReferenceFieldName,
+	isnull(cols2.colid, 0) as ReferenceFieldId,
+	&amp;apos;&amp;apos; as IndexName,--isnull(indx.name, &amp;apos;&amp;apos;) as IndexName,
+	isnull(COLUMNPROPERTY(sobj.id,cols.name,&amp;apos;IsIdentity&amp;apos;), 0) IsIdentity,
+	IDENT_SEED(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Seed,
+	IDENT_INCR(sch.name + &amp;apos;.&amp;apos; + sobj.name) as Increment
+FROM   
+	sysobjects sobj INNER JOIN syscolumns cols ON sobj.id = cols.id
+	LEFT JOIN sysforeignkeys fk ON fk.fkeyid = cols.id AND fk.fkey = cols.colid
+	LEFT JOIN syscolumns cols2 ON cols2.id = fk.rkeyid AND cols2.colid = fk.rkey
+	LEFT JOIN sysobjects fk2 ON fk.rkeyid = fk2.id
+	LEFT JOIN syscomments comm ON cols.cdefault = comm.id OR (cols.id = comm.id and cols.colid = comm.number)
+	LEFT JOIN sysindexkeys ik ON ik.id = cols.id AND ik.colid = cols.colid
+	LEFT JOIN sysindexes indx ON indx.id = ik.id AND indx.indid = ik.indid
+	LEFT JOIN sysobjects pk ON indx.name = pk.name AND pk.parent_obj = indx.id AND pk.xtype = &amp;apos;PK&amp;apos;
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE   
+	sobj.xtype = &amp;apos;U&amp;apos;   
+	and sobj.name &amp;lt;&amp;gt; &amp;apos;sysdiagrams&amp;apos;   
+order by   
+	sobj.name, cols.colid"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 09:28:15.279" EndTime="20121031 09:28:15.759" Lapse="480" Correct="1" RecordsAffected="0" RecordsRead="3" GridCount="1" />
+		<Code>"select
+	*
+from
+	Clients.Tags T inner join Clients.TagAssignments Ta on T.ID = Ta.TagID
+where
+	Ta.AppliesSince &amp;gt; GetDate()
+	
+	"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 09:37:43.278" EndTime="20121031 09:37:43.481" Lapse="202" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select
+	*
+from
+	Clients.Tags T inner join Clients.TagAssignments Ta on T.ID = Ta.TagID
+	Calls.Calls T
+where
+	T.ID &amp;gt; 100
+	
+	 "</Code>
+		<Error Line="5" Message="Incorrect syntax near &amp;apos;Calls&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 09:37:59.660" EndTime="20121031 09:37:59.863" Lapse="202" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select
+	*
+from
+	Clients.Tags T inner join Clients.TagAssignments Ta on T.ID = Ta.TagID
+	inner join Calls.Calls T on T.ID = T.ID
+where
+	T.ID &amp;gt; 100
+	
+	 "</Code>
+		<Error Line="1" Message="The correlation name &amp;apos;T&amp;apos; is specified multiple times in a FROM clause."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 09:40:47.237" EndTime="20121031 09:40:47.346" Lapse="109" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select
+	*
+from
+	Clients.Tags as Tg inner join Clients.TagAssignments Ta on T.ID = Ta.TagID
+	inner join Calls.Calls T on T.ID = T.ID
+where
+	Tg.ID &amp;gt; 100"</Code>
+		<Error Line="4" Message="The multi-part identifier &amp;quot;T.ID&amp;quot; could not be bound."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 09:41:22.259" EndTime="20121031 09:41:22.352" Lapse="93" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select
+	*
+from
+	Clients.Tags as Tg inner join Clients.TagAssignments Ta on T.ID = Ta.TagID
+	inner join Calls.Calls T on T.ID = T.ID
+--where
+--	Tg.ID &amp;gt; 100"</Code>
+		<Error Line="4" Message="The multi-part identifier &amp;quot;T.ID&amp;quot; could not be bound."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 09:41:27.429" EndTime="20121031 09:41:27.507" Lapse="78" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select
+	*
+from
+	Clients.Tags as Tg inner join Clients.TagAssignments Ta on T.ID = Ta.TagID
+--where
+--	Tg.ID &amp;gt; 100"</Code>
+		<Error Line="4" Message="The multi-part identifier &amp;quot;T.ID&amp;quot; could not be bound."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 09:41:33.956" EndTime="20121031 09:41:34.315" Lapse="358" Correct="1" RecordsAffected="0" RecordsRead="1499" GridCount="1" />
+		<Code>"select
+	*
+from
+	Clients.Tags as Tg inner join Clients.TagAssignments Ta on Tg.ID = Ta.TagID
+--where
+--	Tg.ID &amp;gt; 100"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 09:45:35.234" EndTime="20121031 09:45:35.452" Lapse="218" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="1" />
+		<Code>"select
+	*
+from
+	Clients.Configuration"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 10:22:45.769" EndTime="20121031 10:22:46.199" Lapse="430" Correct="1" RecordsAffected="0" RecordsRead="1" GridCount="1" />
+		<Code>"select
+	*
+from
+	Util.SplitString (&amp;apos;,&amp;apos;/*char*/, &amp;apos;Texto1,Texto2,Texto3,Texto4&amp;apos;/*varchar*/) as Al"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 10:23:35.199" EndTime="20121031 10:23:35.409" Lapse="210" Correct="1" RecordsAffected="0" RecordsRead="38" GridCount="1" />
+		<Code>"SELECT  
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as FunctionId, 
+	sobj.name as FunctionName, 
+	cols.name as ParamName,    
+	type_name(cols.xusertype) as Type,    
+	isnull(cols.prec, 0) as Length,    
+	isnull(cols.Scale, 0) as Scale,    
+	isnull(cols.isnullable, 1) as Nullable,    
+	isnull(cols.iscomputed, 0) as Calculated	 
+FROM  
+	sysobjects sobj LEFT OUTER JOIN syscolumns cols ON sobj.id=cols.id 
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE  
+	sobj.xtype = &amp;apos;TF&amp;apos; 
+ORDER BY
+	sobj.id, cols.name"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 10:24:32.940" EndTime="20121031 10:24:33.060" Lapse="120" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from syscolumns where cols.id = 619149251"</Code>
+		<Error Line="1" Message="The multi-part identifier &amp;quot;cols.id&amp;quot; could not be bound."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 10:24:38.930" EndTime="20121031 10:24:39.890" Lapse="960" Correct="1" RecordsAffected="0" RecordsRead="3" GridCount="1" />
+		<Code>"select * from syscolumns where id = 619149251"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 10:24:59.287" EndTime="20121031 10:24:59.507" Lapse="220" Correct="1" RecordsAffected="0" RecordsRead="38" GridCount="1" />
+		<Code>"SELECT  
+	ISNULL(sch.name, &amp;apos;dbo&amp;apos;) as &amp;apos;Schema&amp;apos;,
+	sobj.id as FunctionId, 
+	sobj.name as FunctionName, 
+	cols.name as ParamName,    
+	type_name(cols.xusertype) as Type,    
+	isnull(cols.prec, 0) as Length,    
+	isnull(cols.Scale, 0) as Scale,    
+	isnull(cols.isnullable, 1) as Nullable,    
+	isnull(cols.iscomputed, 0) as Calculated
+FROM  
+	sysobjects sobj LEFT OUTER JOIN syscolumns cols ON sobj.id=cols.id 
+	LEFT JOIN Sys.Objects ObjAux ON sobj.id = ObjAux.object_id
+	LEFT JOIN Sys.Schemas sch ON ObjAux.schema_id = sch.schema_id
+WHERE  
+	sobj.xtype = &amp;apos;TF&amp;apos; 
+ORDER BY
+	sobj.id, cols.colid"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 10:26:50.859" EndTime="20121031 10:26:51.079" Lapse="220" Correct="1" RecordsAffected="0" RecordsRead="1" GridCount="1" />
+		<Code>"select * from syscomments where id = 603149194"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 11:08:44.132" EndTime="20121031 11:08:44.402" Lapse="270" Correct="1" RecordsAffected="0" RecordsRead="10" GridCount="1" />
+		<Code>"
+select Ss.Item from Util.SplitString (&amp;apos;t1,t2,t3,t4,t5,t6,t7,t8,t9,t20&amp;apos;/*varchar*/, &amp;apos;,&amp;apos;/*char*/) as Ss"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 11:08:52.392" EndTime="20121031 11:08:52.552" Lapse="160" Correct="1" RecordsAffected="0" RecordsRead="10" GridCount="1" />
+		<Code>"
+select Ss.Item from Util.SplitString (&amp;apos;t1,t2,t3,t4,t5,t6,t7,t8,t9,t20&amp;apos;/*varchar*/, &amp;apos;,&amp;apos;/*char*/) as Ss"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 11:09:57.951" EndTime="20121031 11:09:58.171" Lapse="220" Correct="1" RecordsAffected="0" RecordsRead="10" GridCount="1" />
+		<Code>"
+select Ss.Item from Util.SplitString (&amp;apos;t1,t2,t3,t4,t5,t6,t7,t8,t9,t20&amp;apos;/*varchar*/, &amp;apos;,&amp;apos;/*char*/) as Ss"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 11:11:07.181" EndTime="20121031 11:11:07.371" Lapse="190" Correct="1" RecordsAffected="0" RecordsRead="100" GridCount="1" />
+		<Code>"
+select 
+	Ss.Item 
+from 
+	Util.SplitString (&amp;apos;t1,t2,t3,t4,t5,t6,t7,t8,t9,t10&amp;apos;/*varchar*/, &amp;apos;,&amp;apos;/*char*/) as Ss,
+	dbo.fnSplit (&amp;apos;t1,t2,t3,t4,t5,t6,t7,t8,t9,t10&amp;apos;/*varchar*/, &amp;apos;,&amp;apos;/*varchar*/) as Ss2"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 11:15:53.950" EndTime="20121031 11:15:54.160" Lapse="210" Correct="1" RecordsAffected="0" RecordsRead="100" GridCount="1" />
+		<Code>"select 
+	Ss.Item as Item1,
+	Ss2.item as Item2
+from 
+	Util.SplitString (&amp;apos;t1,t2,t3,t4,t5,t6,t7,t8,t9,t10&amp;apos;/*varchar*/, &amp;apos;,&amp;apos;/*char*/) as Ss,
+	dbo.fnSplit (&amp;apos;t11,t12,t13,t14,t15,t16,t17,t18,t19,t20&amp;apos;/*varchar*/, &amp;apos;,&amp;apos;/*varchar*/) as Ss2"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 11:20:50.169" EndTime="20121031 11:20:50.699" Lapse="530" Correct="1" RecordsAffected="0" RecordsRead="1499" GridCount="1" />
+		<Code>"select
+	*
+from
+	Clients.Tags T inner join Clients.TagAssignments Ta on T.ID = Ta.TagID
+where
+	T.ID = Ta.TagID"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 11:22:40.383" EndTime="20121031 11:22:40.803" Lapse="420" Correct="1" RecordsAffected="0" RecordsRead="554" GridCount="1" />
+		<Code>"select
+	*
+from
+	Clients.Tags T inner join Clients.TagAssignments Ta on T.ID = Ta.TagID
+where
+	T.ID = Ta.TagID
+	and Ta.AppliesUntil IS NULL OR Ta.AppliesUntil &amp;gt; GETDATE()"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 11:33:16.531" EndTime="20121031 11:33:16.781" Lapse="250" Correct="1" RecordsAffected="0" RecordsRead="1499" GridCount="1" />
+		<Code>"SELECT t.ClientID FROM Clients.TagAssignments t"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121031 11:33:34.641" EndTime="20121031 11:33:34.891" Lapse="250" Correct="1" RecordsAffected="0" RecordsRead="1499" GridCount="1" />
+		<Code>"SELECT t.SourceID FROM Clients.TagAssignments t"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 12:25:58.078" EndTime="20121101 12:25:58.452" Lapse="374" Correct="1" RecordsAffected="0" RecordsRead="171" GridCount="1" />
+		<Code>"select * from Clients.Tags T where T.ID &amp;gt; 25"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 12:26:13.756" EndTime="20121101 12:26:14.052" Lapse="296" Correct="1" RecordsAffected="0" RecordsRead="171" GridCount="1" />
+		<Code>"select *,GETUTCDATE() from Clients.Tags T where T.ID &amp;gt; 25
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 06:16:14.709" EndTime="20121101 06:16:15.083" Lapse="374" Correct="1" RecordsAffected="0" RecordsRead="346" GridCount="1" />
+		<Code>"select * from Dnis.Catalog_AreaCode"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 06:17:49.661" EndTime="20121101 06:17:49.811" Lapse="150" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"CREATE VIEW V_LicensingData AS
+	SELECT 
+		* 
+	FROM 
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		Dnis.Catalog_AreaCode CA ON CS.Id = CA.State"</Code>
+		<Error Line="6" Message="Incorrect syntax near &amp;apos;Dnis&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 06:18:02.568" EndTime="20121101 06:18:02.833" Lapse="265" Correct="1" RecordsAffected="0" RecordsRead="346" GridCount="1" />
+		<Code>"	SELECT 
+		* 
+	FROM 
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 06:19:59.269" EndTime="20121101 06:19:59.440" Lapse="171" Correct="1" RecordsAffected="0" RecordsRead="346" GridCount="1" />
+		<Code>"	SELECT 
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS CountryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	FROM 
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 06:20:48.585" EndTime="20121101 06:20:48.648" Lapse="62" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"CREATE VIEW V_LicensingData AS
+	SELECT 
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS CountryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	FROM 
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 06:29:07.787" EndTime="20121101 06:29:08.047" Lapse="260" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="1" />
+		<Code>"SELECT
+	*
+FROM
+	dbo.V_LicensingData V
+WHERE
+	V.AreaCode like &amp;apos;1%&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 06:29:12.332" EndTime="20121101 06:29:12.503" Lapse="171" Correct="1" RecordsAffected="0" RecordsRead="346" GridCount="1" />
+		<Code>"SELECT
+	*
+FROM
+	dbo.V_LicensingData V"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 06:29:17.121" EndTime="20121101 06:29:17.301" Lapse="180" Correct="1" RecordsAffected="0" RecordsRead="48" GridCount="1" />
+		<Code>"SELECT
+	*
+FROM
+	dbo.V_LicensingData V
+WHERE
+	V.AreaCode like &amp;apos;2%&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 06:30:28.565" EndTime="20121101 06:30:28.752" Lapse="187" Correct="1" RecordsAffected="0" RecordsRead="48" GridCount="1" />
+		<Code>"SELECT
+	*
+FROM
+	dbo.V_LicensingData V OUTER APPLY Util.SplitString ( V.AreaCode /*varchar*/, &amp;apos;,&amp;apos;/*char*/)
+WHERE
+	V.AreaCode like &amp;apos;2%&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 06:30:34.774" EndTime="20121101 06:30:34.986" Lapse="212" Correct="1" RecordsAffected="0" RecordsRead="346" GridCount="1" />
+		<Code>"SELECT
+	*
+FROM
+	dbo.V_LicensingData V OUTER APPLY Util.SplitString ( V.AreaCode /*varchar*/, &amp;apos;,&amp;apos;/*char*/)"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 06:32:24.287" EndTime="20121101 06:32:24.505" Lapse="218" Correct="1" RecordsAffected="0" RecordsRead="48" GridCount="1" />
+		<Code>"SELECT
+	*
+FROM
+	dbo.V_LicensingData V OUTER APPLY Util.SplitString ( V.AreaCode /*varchar*/, &amp;apos;,&amp;apos;/*char*/)
+WHERE
+	V.AreaCode like &amp;apos;2%&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 06:32:26.970" EndTime="20121101 06:32:27.123" Lapse="153" Correct="1" RecordsAffected="0" RecordsRead="48" GridCount="1" />
+		<Code>"SELECT
+	*
+FROM
+	dbo.V_LicensingData V OUTER APPLY Util.SplitString ( V.AreaCode /*varchar*/, &amp;apos;,&amp;apos;/*char*/)
+WHERE
+	V.AreaCode like &amp;apos;2%&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 06:32:31.109" EndTime="20121101 06:32:31.312" Lapse="202" Correct="1" RecordsAffected="0" RecordsRead="346" GridCount="1" />
+		<Code>"SELECT
+	*
+FROM
+	dbo.V_LicensingData V OUTER APPLY Util.SplitString ( V.AreaCode /*varchar*/, &amp;apos;,&amp;apos;/*char*/)"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 07:11:38.209" EndTime="20121101 07:11:38.474" Lapse="265" Correct="1" RecordsAffected="0" RecordsRead="346" GridCount="1" />
+		<Code>"	SELECT 
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS CountryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	FROM 
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 07:31:29.415" EndTime="20121101 07:31:29.580" Lapse="164" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"ALTER PROCEDURE [Searches].[GetRapidRecallList]
+(  
+--DECLARE
+  @ClientId    INT  
+ ,@DNIS     VARCHAR(1000)
+ ,@Tags     VARCHAR(1000)  
+ ,@Status    VARCHAR(50)
+ ,@LicensingType   INT = 0  
+ ,@LicensingDetails  VARCHAR(1000)  
+ ,@Vendor    VARCHAR(100)
+ ,@PageNumber  INT = 1
+ ,@RowsPerPage  INT = 10
+ ,@SortColumn  VARCHAR(30) = &amp;apos;DNIS&amp;apos;  
+ ,@IsAscendentSort BIT = 1   
+)
+ AS  
+BEGIN  
+
+ 
+  DECLARE  
+   @SqlCommand  VARCHAR(max)  
+  ,@SortColumnReal VARCHAR(30)  
+  ,@SortType   VARCHAR(4)  
+  
+  
+ CREATE TABLE #tblTemp(
+     DNIS  VARCHAR(50)
+    ,Tag1	VARCHAR	(300)
+    ,Tag2	VARCHAR	(300)
+    ,Tag3	VARCHAR	(300)
+    ,Tag4	VARCHAR	(300)
+    ,Tag5	VARCHAR	(300)
+    ,Tag6	VARCHAR	(300)
+    ,Tag7	VARCHAR	(300)
+    ,Tag8	VARCHAR	(300)
+    ,Tag9	VARCHAR	(300)
+    ,Tag10	VARCHAR	(300)
+    ,Licensed XML
+    ,[Status] INT
+    ,LastCDR DATETIME
+    ,Vendor  VARCHAR(100)
+    ,RespOrg VARCHAR(100)
+    ,ClientId INT
+    ,ClientName VARCHAR(100)
+    ,[Owner] VARCHAR(100)
+    ,LicensingType INT
+    ,LicensingFilter INT DEFAULT(1),
+    RowNumber int
+   )
+   
+ ----------------------------  
+ -- Define column to sort  
+ ---------------------------- 
+ IF (@SortColumn IS NOT NULL) 
+	 SET  @SortColumnReal = CASE @SortColumn   
+								 WHEN &amp;apos;DNIS&amp;apos; THEN &amp;apos;n.Number&amp;apos;  
+								 WHEN &amp;apos;Campaign&amp;apos; THEN &amp;apos;dtmf.CampaignIdentifier&amp;apos;     
+								 WHEN &amp;apos;LastCDR&amp;apos; THEN &amp;apos;LastCDR&amp;apos;--&amp;apos;c.[Start]&amp;apos;  
+								 WHEN &amp;apos;Vendor&amp;apos; THEN &amp;apos;v.Name&amp;apos;  
+								 WHEN &amp;apos;RespOrg&amp;apos; THEN &amp;apos;RespOrg&amp;apos;  
+								 WHEN &amp;apos;ClientId&amp;apos; THEN &amp;apos;cl.ID&amp;apos;  
+								 WHEN &amp;apos;ClientName&amp;apos; THEN &amp;apos;cl.Name&amp;apos;  
+								 WHEN &amp;apos;Owner&amp;apos; THEN &amp;apos;Owner&amp;apos;
+								 WHEN &amp;apos;&amp;apos; THEN &amp;apos;n.Number&amp;apos; 
+								 ELSE @SortColumn 
+
+							END  
+	ELSE
+	 SET  @SortColumnReal = &amp;apos;n.Number&amp;apos; 
+								
+
+ ----------------------------  
+ -- Define Type Sort  
+ ----------------------------  
+ SET @SortType = CASE WHEN @IsAscendentSort = 1 THEN &amp;apos;ASC&amp;apos; ELSE &amp;apos;DESC&amp;apos; END  
+   
+ ----------------------------  
+ -- Define Sql query  
+ ----------------------------   
+   
+	SELECT  @SqlCommand = &amp;apos;  
+	SELECT 
+					c1.ClientID, 
+					c1.DNIS, 
+					c1.[Start], 
+					c1.VendorID
+					INTO #calls
+				FROM 
+					Calls.Calls c1,
+					(
+						SELECT 
+							c2.ClientID, 
+							c2.DNIS, 
+							MAX(c2.[Start]) AS LastDate 
+						FROM  
+							Calls.Calls c2 
+						WHERE c2.ClientId = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;
+						GROUP BY 
+							c2.ClientID, 
+							c2.DNIS
+					) AS c3
+				WHERE 
+					c1.ClientID = c3.ClientID
+					AND c1.DNIS = c3.DNIS
+					AND c1.[Start] = c3.LastDate 
+					AND c1.ClientID = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;;
+	
+	
+	WITH PaginatedQuery AS
+	(
+	SELECT DISTINCT    
+		n.Number AS DNIS
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 1) as Tag1
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 2) as Tag2
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 3) as Tag3
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 4) as Tag4
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 5) as Tag5
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 6) as Tag6
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 7) as Tag7
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 8) as Tag8
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 9) as Tag9
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 10) as Tag10
+		
+		,CASE   
+		WHEN n.IsProvisioned = 1   
+		 THEN 1   
+		 ELSE 2  
+		END AS Status  
+		,c.[Start] as LastCDR  
+		,v.Name AS Vendor     
+		,&amp;apos; + CHAR(39) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS RespOrg  
+		,cl.ID AS ClientId   
+		,cl.Name AS ClientName  
+		,&amp;apos; + CHAR(3
+9) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS Owner  
+		,ROW_NUMBER() OVER (ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  + &amp;apos;) AS RowNumber
+	FROM   
+		Dnis.Numbers n  
+		JOIN Dnis.LicensedNumbers ln ON ln.Number = n.Number  
+		JOIN Dnis.LicensingDetails ld ON ld.ClientID = ln.ClientID AND ld.Number = ln.Number  
+		JOIN #calls AS c ON c.ClientID = ld.ClientID AND c.DNIS = ld.Number		
+		JOIN Vendors.Vendors v ON v.ID = c.VendorID  
+		JOIN Clients.Clients cl ON cl.ID = ln.ClientID  
+	WHERE 1=1 &amp;apos;  
+   
+	IF (@ClientId IS NOT NULL AND @ClientId &amp;lt;&amp;gt; -1) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND ln.ClientID = &amp;apos; + CONVERT (VARCHAR (15),@ClientId)  
+	END  
+  
+	IF (@DNIS IS NOT NULL)  
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND n.Number IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@DNIS + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END   
+    
+	IF (@Tags IS NOT NULL)  BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos;AND EXISTS (SELECT TOP 1 1 
+					FROM Clients.Tags T
+					INNER JOIN Clients.TagAssignments TA ON ta.TagID = t.ID AND ta.ClientID = ln.ClientID AND ta.SourceID = n.Number
+					WHERE t.ClientId = ln.ClientId
+					AND t.Id in (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@Tags + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))
+					AND ta.AppliesSince &amp;lt;= SYSUTCDATETIME() 
+					AND (ta.AppliesUntil IS NULL OR ta.AppliesUntil &amp;gt;=  SYSUTCDATETIME() ))&amp;apos;
+	END     
+   
+	IF (@Status IS NOT NULL) 
+	BEGIN  
+		SET @SqlCommand = @SqlCommand +   
+	&amp;apos; AND CASE   
+	WHEN n.IsProvisioned = 1  
+	THEN 1 --Ready  
+	ELSE 2 --Pending  
+	END IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Status + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) +  &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END     
+    
+	IF (@Vendor IS NOT NULL) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand + &amp;apos; AND v.ID IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Vendor + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END  
+
+	--SET  
+	--	@SqlCommand = @SqlCommand + &amp;apos; GROUP BY n.Number, dtmf.CampaignIdentifier, dtmf.MediaSource, dtmf.ProductCode, n.IsProvisioned, c.[Start], v.Name, cl.ID, cl.Name&amp;apos;  
+
+	--SET 
+	--	@SqlCommand = @SqlCommand + &amp;apos; ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  
+   
+
+	SET @SqlCommand = @SqlCommand + &amp;apos;) &amp;apos;
+
+	DECLARE @SqlPagination VARCHAR(MAX)
+	SET @SqlPagination = &amp;apos;SELECT *
+	FROM PaginatedQuery
+	WHERE RowNumber BETWEEN ((&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;) - (&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;-1)) 
+	AND (&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;); &amp;apos;
+
+	--INSERT INTO #tblTemp(DNIS, Campaign, Media, Product, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner])  
+	INSERT INTO #tblTemp(DNIS,Tag1, Tag2, Tag3, Tag4, Tag5, Tag6, Tag7, Tag8, Tag9,
+	            Tag10, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner], RowNumber)  
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlPagination)
+
+	UPDATE 
+		#tblTemp
+	SET 
+		#tblTemp.Licensed = Dnis.LicensingDetails.Details,
+		#tblTemp.LicensingType = Dnis.LicensingDetails.LicensingType
+	FROM 
+		#tblTemp INNER JOIN Dnis.LicensingDetails ON #tblTemp.ClientId = Dnis.LicensingDetails.ClientID AND
+		#tblTemp.DNIS = Dnis.LicensingDetails.Number
+
+	IF @LicensingType &amp;gt; 0
+	BEGIN
+		--PRINT &amp;apos;Licensing Type: &amp;apos; + CONVERT(VARCHAR(20), @LicensingType)
+		
+		UPDATE
+			#tblTemp
+		SET
+			LicensingFilter = 0
+		WHERE
+			LicensingType &amp;lt;&amp;gt; @LicensingType
+		
+		IF LEN(ISNULL(@LicensingDetails, &amp;apos;&amp;apos;)) &amp;gt; 0 
+		BEGIN
+		
+			DECLARE Ptr CURSOR FOR
+			SELECT DNIS, Licensed, ClientId FROM #tblTemp WHERE LicensingFilter = 1
+
+			DECLARE @IdDnis VARCHAR(20), @XMLData XML, @IdCurClient INT
+
+			OPEN Ptr
+			 
+			FETCH NEXT FROM Ptr
+			INTO @IdDnis, @XMLData, @IdCurClient
+			
+			
+			WHILE @@FETCH_STATUS = 0
+			BEGIN
+
+				IF @LicensingType = 1 --Region
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.Region FROM Dnis.GetRegionFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetail
+s, &amp;apos;,&amp;apos;) AS YYY ON XXX.Region = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END		
+				END
+				ELSE IF @LicensingType = 2 --States
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.[State] FROM Dnis.GetStatesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.[State] = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END
+				END
+				ELSE IF @LicensingType = 3--AreaCode
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.AreaCode FROM Dnis.GetAreaCodesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.AreaCode = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END	
+				
+				END
+				
+				FETCH NEXT FROM Ptr
+				INTO @IdDnis, @XMLData, @IdCurClient
+			END   
+
+			CLOSE Ptr
+			DEALLOCATE Ptr
+		
+		END
+		
+		DELETE 
+			#tblTemp
+		WHERE
+			LicensingFilter = 0
+	END
+   
+
+ ------------------------------  
+ ---- Return final records  
+ ------------------------------  
+	SELECT
+		t.DNIS 
+		,t.Licensed
+		,ISNULL(t.Tag1,&amp;apos;&amp;apos;) Tag1
+		,ISNULL(t.Tag2,&amp;apos;&amp;apos;) Tag2
+		,ISNULL(t.Tag3,&amp;apos;&amp;apos;) Tag3
+		,ISNULL(t.Tag4,&amp;apos;&amp;apos;) Tag4
+		,ISNULL(t.Tag5,&amp;apos;&amp;apos;) Tag5
+		,ISNULL(t.Tag6,&amp;apos;&amp;apos;) Tag6
+		,ISNULL(t.Tag7,&amp;apos;&amp;apos;) Tag7
+		,ISNULL(t.Tag8,&amp;apos;&amp;apos;) Tag8
+		,ISNULL(t.Tag9,&amp;apos;&amp;apos;) Tag9
+		,ISNULL(t.Tag10,&amp;apos;&amp;apos;)	Tag10
+		,t.[Status]
+		,t.LastCDR
+		,t.Vendor  
+		,t.RespOrg
+		,t.ClientId
+		,t.ClientName   
+		,t.[Owner]
+		,t.LicensingType
+	FROM #tblTemp t
+	ORDER BY 
+		t. RowNumber  
+  
+ ------------------------------  
+ ---- Return Totals  
+ ------------------------------          
+	DECLARE @SqlTotals as Varchar(max)
+	SET @SqlTotals = &amp;apos;SELECT T.Total as TotalRows, 
+							CASE WHEN T.Total%&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos; = 0  
+								THEN  T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;
+								ELSE (T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;)+1 
+								END AS TotalPages  
+					From
+		(SELECT COUNT(1) AS Total FROM PaginatedQuery) T&amp;apos;
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlTotals)	
+
+	DROP TABLE #tblTemp  
+	
+END
+"</Code>
+		<Error Line="135" Message="Incorrect syntax near &amp;apos;9&amp;apos;."/>
+		<Error Line="247" Message="Must declare the scalar variable &amp;quot;@LicensingDetail&amp;quot;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 07:31:34.834" EndTime="20121101 07:31:34.958" Lapse="124" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"ALTER PROCEDURE [Searches].[GetRapidRecallList]
+(  
+--DECLARE
+  @ClientId    INT  
+ ,@DNIS     VARCHAR(1000)
+ ,@Tags     VARCHAR(1000)  
+ ,@Status    VARCHAR(50)
+ ,@LicensingType   INT = 0  
+ ,@LicensingDetails  VARCHAR(1000)  
+ ,@Vendor    VARCHAR(100)
+ ,@PageNumber  INT = 1
+ ,@RowsPerPage  INT = 10
+ ,@SortColumn  VARCHAR(30) = &amp;apos;DNIS&amp;apos;  
+ ,@IsAscendentSort BIT = 1   
+)
+ AS  
+BEGIN  
+
+ 
+  DECLARE  
+   @SqlCommand  VARCHAR(max)  
+  ,@SortColumnReal VARCHAR(30)  
+  ,@SortType   VARCHAR(4)  
+  
+  
+ CREATE TABLE #tblTemp(
+     DNIS  VARCHAR(50)
+    ,Tag1	VARCHAR	(300)
+    ,Tag2	VARCHAR	(300)
+    ,Tag3	VARCHAR	(300)
+    ,Tag4	VARCHAR	(300)
+    ,Tag5	VARCHAR	(300)
+    ,Tag6	VARCHAR	(300)
+    ,Tag7	VARCHAR	(300)
+    ,Tag8	VARCHAR	(300)
+    ,Tag9	VARCHAR	(300)
+    ,Tag10	VARCHAR	(300)
+    ,Licensed XML
+    ,[Status] INT
+    ,LastCDR DATETIME
+    ,Vendor  VARCHAR(100)
+    ,RespOrg VARCHAR(100)
+    ,ClientId INT
+    ,ClientName VARCHAR(100)
+    ,[Owner] VARCHAR(100)
+    ,LicensingType INT
+    ,LicensingFilter INT DEFAULT(1),
+    RowNumber int
+   )
+   
+ ----------------------------  
+ -- Define column to sort  
+ ---------------------------- 
+ IF (@SortColumn IS NOT NULL) 
+	 SET  @SortColumnReal = CASE @SortColumn   
+								 WHEN &amp;apos;DNIS&amp;apos; THEN &amp;apos;n.Number&amp;apos;  
+								 WHEN &amp;apos;Campaign&amp;apos; THEN &amp;apos;dtmf.CampaignIdentifier&amp;apos;     
+								 WHEN &amp;apos;LastCDR&amp;apos; THEN &amp;apos;LastCDR&amp;apos;--&amp;apos;c.[Start]&amp;apos;  
+								 WHEN &amp;apos;Vendor&amp;apos; THEN &amp;apos;v.Name&amp;apos;  
+								 WHEN &amp;apos;RespOrg&amp;apos; THEN &amp;apos;RespOrg&amp;apos;  
+								 WHEN &amp;apos;ClientId&amp;apos; THEN &amp;apos;cl.ID&amp;apos;  
+								 WHEN &amp;apos;ClientName&amp;apos; THEN &amp;apos;cl.Name&amp;apos;  
+								 WHEN &amp;apos;Owner&amp;apos; THEN &amp;apos;Owner&amp;apos;
+								 WHEN &amp;apos;&amp;apos; THEN &amp;apos;n.Number&amp;apos; 
+								 ELSE @SortColumn 
+
+							END  
+	ELSE
+	 SET  @SortColumnReal = &amp;apos;n.Number&amp;apos; 
+								
+
+ ----------------------------  
+ -- Define Type Sort  
+ ----------------------------  
+ SET @SortType = CASE WHEN @IsAscendentSort = 1 THEN &amp;apos;ASC&amp;apos; ELSE &amp;apos;DESC&amp;apos; END  
+   
+ ----------------------------  
+ -- Define Sql query  
+ ----------------------------   
+   
+	SELECT  @SqlCommand = &amp;apos;  
+	SELECT 
+					c1.ClientID, 
+					c1.DNIS, 
+					c1.[Start], 
+					c1.VendorID
+					INTO #calls
+				FROM 
+					Calls.Calls c1,
+					(
+						SELECT 
+							c2.ClientID, 
+							c2.DNIS, 
+							MAX(c2.[Start]) AS LastDate 
+						FROM  
+							Calls.Calls c2 
+						WHERE c2.ClientId = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;
+						GROUP BY 
+							c2.ClientID, 
+							c2.DNIS
+					) AS c3
+				WHERE 
+					c1.ClientID = c3.ClientID
+					AND c1.DNIS = c3.DNIS
+					AND c1.[Start] = c3.LastDate 
+					AND c1.ClientID = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;;
+	
+	
+	WITH PaginatedQuery AS
+	(
+	SELECT DISTINCT    
+		n.Number AS DNIS
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 1) as Tag1
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 2) as Tag2
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 3) as Tag3
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 4) as Tag4
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 5) as Tag5
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 6) as Tag6
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 7) as Tag7
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 8) as Tag8
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 9) as Tag9
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 10) as Tag10
+		
+		,CASE   
+		WHEN n.IsProvisioned = 1   
+		 THEN 1   
+		 ELSE 2  
+		END AS Status  
+		,c.[Start] as LastCDR  
+		,v.Name AS Vendor     
+		,&amp;apos; + CHAR(39) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS RespOrg  
+		,cl.ID AS ClientId   
+		,cl.Name AS ClientName  
+		,&amp;apos; + CHAR(3
+9) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS Owner  
+		,ROW_NUMBER() OVER (ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  + &amp;apos;) AS RowNumber
+	FROM   
+		Dnis.Numbers n  
+		JOIN Dnis.LicensedNumbers ln ON ln.Number = n.Number  
+		JOIN Dnis.LicensingDetails ld ON ld.ClientID = ln.ClientID AND ld.Number = ln.Number  
+		JOIN #calls AS c ON c.ClientID = ld.ClientID AND c.DNIS = ld.Number		
+		JOIN Vendors.Vendors v ON v.ID = c.VendorID  
+		JOIN Clients.Clients cl ON cl.ID = ln.ClientID  
+	WHERE 1=1 &amp;apos;  
+   
+	IF (@ClientId IS NOT NULL AND @ClientId &amp;lt;&amp;gt; -1) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND ln.ClientID = &amp;apos; + CONVERT (VARCHAR (15),@ClientId)  
+	END  
+  
+	IF (@DNIS IS NOT NULL)  
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND n.Number IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@DNIS + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END   
+    
+	IF (@Tags IS NOT NULL)  BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos;AND EXISTS (SELECT TOP 1 1 
+					FROM Clients.Tags T
+					INNER JOIN Clients.TagAssignments TA ON ta.TagID = t.ID AND ta.ClientID = ln.ClientID AND ta.SourceID = n.Number
+					WHERE t.ClientId = ln.ClientId
+					AND t.Id in (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@Tags + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))
+					AND ta.AppliesSince &amp;lt;= SYSUTCDATETIME() 
+					AND (ta.AppliesUntil IS NULL OR ta.AppliesUntil &amp;gt;=  SYSUTCDATETIME() ))&amp;apos;
+	END     
+   
+	IF (@Status IS NOT NULL) 
+	BEGIN  
+		SET @SqlCommand = @SqlCommand +   
+	&amp;apos; AND CASE   
+	WHEN n.IsProvisioned = 1  
+	THEN 1 --Ready  
+	ELSE 2 --Pending  
+	END IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Status + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) +  &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END     
+    
+	IF (@Vendor IS NOT NULL) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand + &amp;apos; AND v.ID IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Vendor + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END  
+
+	--SET  
+	--	@SqlCommand = @SqlCommand + &amp;apos; GROUP BY n.Number, dtmf.CampaignIdentifier, dtmf.MediaSource, dtmf.ProductCode, n.IsProvisioned, c.[Start], v.Name, cl.ID, cl.Name&amp;apos;  
+
+	--SET 
+	--	@SqlCommand = @SqlCommand + &amp;apos; ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  
+   
+
+	SET @SqlCommand = @SqlCommand + &amp;apos;) &amp;apos;
+
+	DECLARE @SqlPagination VARCHAR(MAX)
+	SET @SqlPagination = &amp;apos;SELECT *
+	FROM PaginatedQuery
+	WHERE RowNumber BETWEEN ((&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;) - (&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;-1)) 
+	AND (&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;); &amp;apos;
+
+	--INSERT INTO #tblTemp(DNIS, Campaign, Media, Product, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner])  
+	INSERT INTO #tblTemp(DNIS,Tag1, Tag2, Tag3, Tag4, Tag5, Tag6, Tag7, Tag8, Tag9,
+	            Tag10, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner], RowNumber)  
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlPagination)
+
+	UPDATE 
+		#tblTemp
+	SET 
+		#tblTemp.Licensed = Dnis.LicensingDetails.Details,
+		#tblTemp.LicensingType = Dnis.LicensingDetails.LicensingType
+	FROM 
+		#tblTemp INNER JOIN Dnis.LicensingDetails ON #tblTemp.ClientId = Dnis.LicensingDetails.ClientID AND
+		#tblTemp.DNIS = Dnis.LicensingDetails.Number
+
+	IF @LicensingType &amp;gt; 0
+	BEGIN
+		--PRINT &amp;apos;Licensing Type: &amp;apos; + CONVERT(VARCHAR(20), @LicensingType)
+		
+		UPDATE
+			#tblTemp
+		SET
+			LicensingFilter = 0
+		WHERE
+			LicensingType &amp;lt;&amp;gt; @LicensingType
+		
+		IF LEN(ISNULL(@LicensingDetails, &amp;apos;&amp;apos;)) &amp;gt; 0 
+		BEGIN
+		
+			DECLARE Ptr CURSOR FOR
+			SELECT DNIS, Licensed, ClientId FROM #tblTemp WHERE LicensingFilter = 1
+
+			DECLARE @IdDnis VARCHAR(20), @XMLData XML, @IdCurClient INT
+
+			OPEN Ptr
+			 
+			FETCH NEXT FROM Ptr
+			INTO @IdDnis, @XMLData, @IdCurClient
+			
+			
+			WHILE @@FETCH_STATUS = 0
+			BEGIN
+
+				IF @LicensingType = 1 --Region
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.Region FROM Dnis.GetRegionFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetail
+s, &amp;apos;,&amp;apos;) AS YYY ON XXX.Region = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END		
+				END
+				ELSE IF @LicensingType = 2 --States
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.[State] FROM Dnis.GetStatesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.[State] = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END
+				END
+				ELSE IF @LicensingType = 3--AreaCode
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.AreaCode FROM Dnis.GetAreaCodesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.AreaCode = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END	
+				
+				END
+				
+				FETCH NEXT FROM Ptr
+				INTO @IdDnis, @XMLData, @IdCurClient
+			END   
+
+			CLOSE Ptr
+			DEALLOCATE Ptr
+		
+		END
+		
+		DELETE 
+			#tblTemp
+		WHERE
+			LicensingFilter = 0
+	END
+   
+
+ ------------------------------  
+ ---- Return final records  
+ ------------------------------  
+	SELECT
+		t.DNIS 
+		,t.Licensed
+		,ISNULL(t.Tag1,&amp;apos;&amp;apos;) Tag1
+		,ISNULL(t.Tag2,&amp;apos;&amp;apos;) Tag2
+		,ISNULL(t.Tag3,&amp;apos;&amp;apos;) Tag3
+		,ISNULL(t.Tag4,&amp;apos;&amp;apos;) Tag4
+		,ISNULL(t.Tag5,&amp;apos;&amp;apos;) Tag5
+		,ISNULL(t.Tag6,&amp;apos;&amp;apos;) Tag6
+		,ISNULL(t.Tag7,&amp;apos;&amp;apos;) Tag7
+		,ISNULL(t.Tag8,&amp;apos;&amp;apos;) Tag8
+		,ISNULL(t.Tag9,&amp;apos;&amp;apos;) Tag9
+		,ISNULL(t.Tag10,&amp;apos;&amp;apos;)	Tag10
+		,t.[Status]
+		,t.LastCDR
+		,t.Vendor  
+		,t.RespOrg
+		,t.ClientId
+		,t.ClientName   
+		,t.[Owner]
+		,t.LicensingType
+	FROM #tblTemp t
+	ORDER BY 
+		t. RowNumber  
+  
+ ------------------------------  
+ ---- Return Totals  
+ ------------------------------          
+	DECLARE @SqlTotals as Varchar(max)
+	SET @SqlTotals = &amp;apos;SELECT T.Total as TotalRows, 
+							CASE WHEN T.Total%&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos; = 0  
+								THEN  T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;
+								ELSE (T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;)+1 
+								END AS TotalPages  
+					From
+		(SELECT COUNT(1) AS Total FROM PaginatedQuery) T&amp;apos;
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlTotals)	
+
+	DROP TABLE #tblTemp  
+	
+END
+"</Code>
+		<Error Line="135" Message="Incorrect syntax near &amp;apos;9&amp;apos;."/>
+		<Error Line="247" Message="Must declare the scalar variable &amp;quot;@LicensingDetail&amp;quot;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 07:31:44.474" EndTime="20121101 07:31:44.552" Lapse="78" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"ALTER PROCEDURE [Searches].[GetRapidRecallList]
+(  
+--DECLARE
+  @ClientId    INT  
+ ,@DNIS     VARCHAR(1000)
+ ,@Tags     VARCHAR(1000)  
+ ,@Status    VARCHAR(50)
+ ,@LicensingType   INT = 0  
+ ,@LicensingDetails  VARCHAR(1000)  
+ ,@Vendor    VARCHAR(100)
+ ,@PageNumber  INT = 1
+ ,@RowsPerPage  INT = 10
+ ,@SortColumn  VARCHAR(30) = &amp;apos;DNIS&amp;apos;  
+ ,@IsAscendentSort BIT = 1   
+)
+ AS  
+BEGIN  
+
+ 
+  DECLARE  
+   @SqlCommand  VARCHAR(max)  
+  ,@SortColumnReal VARCHAR(30)  
+  ,@SortType   VARCHAR(4)  
+  
+  
+ CREATE TABLE #tblTemp(
+     DNIS  VARCHAR(50)
+    ,Tag1	VARCHAR	(300)
+    ,Tag2	VARCHAR	(300)
+    ,Tag3	VARCHAR	(300)
+    ,Tag4	VARCHAR	(300)
+    ,Tag5	VARCHAR	(300)
+    ,Tag6	VARCHAR	(300)
+    ,Tag7	VARCHAR	(300)
+    ,Tag8	VARCHAR	(300)
+    ,Tag9	VARCHAR	(300)
+    ,Tag10	VARCHAR	(300)
+    ,Licensed XML
+    ,[Status] INT
+    ,LastCDR DATETIME
+    ,Vendor  VARCHAR(100)
+    ,RespOrg VARCHAR(100)
+    ,ClientId INT
+    ,ClientName VARCHAR(100)
+    ,[Owner] VARCHAR(100)
+    ,LicensingType INT
+    ,LicensingFilter INT DEFAULT(1),
+    RowNumber int
+   )
+   
+ ----------------------------  
+ -- Define column to sort  
+ ---------------------------- 
+ IF (@SortColumn IS NOT NULL) 
+	 SET  @SortColumnReal = CASE @SortColumn   
+								 WHEN &amp;apos;DNIS&amp;apos; THEN &amp;apos;n.Number&amp;apos;  
+								 WHEN &amp;apos;Campaign&amp;apos; THEN &amp;apos;dtmf.CampaignIdentifier&amp;apos;     
+								 WHEN &amp;apos;LastCDR&amp;apos; THEN &amp;apos;LastCDR&amp;apos;--&amp;apos;c.[Start]&amp;apos;  
+								 WHEN &amp;apos;Vendor&amp;apos; THEN &amp;apos;v.Name&amp;apos;  
+								 WHEN &amp;apos;RespOrg&amp;apos; THEN &amp;apos;RespOrg&amp;apos;  
+								 WHEN &amp;apos;ClientId&amp;apos; THEN &amp;apos;cl.ID&amp;apos;  
+								 WHEN &amp;apos;ClientName&amp;apos; THEN &amp;apos;cl.Name&amp;apos;  
+								 WHEN &amp;apos;Owner&amp;apos; THEN &amp;apos;Owner&amp;apos;
+								 WHEN &amp;apos;&amp;apos; THEN &amp;apos;n.Number&amp;apos; 
+								 ELSE @SortColumn 
+
+							END  
+	ELSE
+	 SET  @SortColumnReal = &amp;apos;n.Number&amp;apos; 
+								
+
+ ----------------------------  
+ -- Define Type Sort  
+ ----------------------------  
+ SET @SortType = CASE WHEN @IsAscendentSort = 1 THEN &amp;apos;ASC&amp;apos; ELSE &amp;apos;DESC&amp;apos; END  
+   
+ ----------------------------  
+ -- Define Sql query  
+ ----------------------------   
+   
+	SELECT  @SqlCommand = &amp;apos;  
+	SELECT 
+					c1.ClientID, 
+					c1.DNIS, 
+					c1.[Start], 
+					c1.VendorID
+					INTO #calls
+				FROM 
+					Calls.Calls c1,
+					(
+						SELECT 
+							c2.ClientID, 
+							c2.DNIS, 
+							MAX(c2.[Start]) AS LastDate 
+						FROM  
+							Calls.Calls c2 
+						WHERE c2.ClientId = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;
+						GROUP BY 
+							c2.ClientID, 
+							c2.DNIS
+					) AS c3
+				WHERE 
+					c1.ClientID = c3.ClientID
+					AND c1.DNIS = c3.DNIS
+					AND c1.[Start] = c3.LastDate 
+					AND c1.ClientID = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;;
+	
+	
+	WITH PaginatedQuery AS
+	(
+	SELECT DISTINCT    
+		n.Number AS DNIS
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 1) as Tag1
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 2) as Tag2
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 3) as Tag3
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 4) as Tag4
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 5) as Tag5
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 6) as Tag6
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 7) as Tag7
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 8) as Tag8
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 9) as Tag9
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 10) as Tag10
+		
+		,CASE   
+		WHEN n.IsProvisioned = 1   
+		 THEN 1   
+		 ELSE 2  
+		END AS Status  
+		,c.[Start] as LastCDR  
+		,v.Name AS Vendor     
+		,&amp;apos; + CHAR(39) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS RespOrg  
+		,cl.ID AS ClientId   
+		,cl.Name AS ClientName  
+		,&amp;apos; + CHAR(3
+9) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS Owner  
+		,ROW_NUMBER() OVER (ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  + &amp;apos;) AS RowNumber
+	FROM   
+		Dnis.Numbers n  
+		JOIN Dnis.LicensedNumbers ln ON ln.Number = n.Number  
+		JOIN Dnis.LicensingDetails ld ON ld.ClientID = ln.ClientID AND ld.Number = ln.Number  
+		JOIN #calls AS c ON c.ClientID = ld.ClientID AND c.DNIS = ld.Number		
+		JOIN Vendors.Vendors v ON v.ID = c.VendorID  
+		JOIN Clients.Clients cl ON cl.ID = ln.ClientID  
+	WHERE 1=1 &amp;apos;  
+   
+	IF (@ClientId IS NOT NULL AND @ClientId &amp;lt;&amp;gt; -1) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND ln.ClientID = &amp;apos; + CONVERT (VARCHAR (15),@ClientId)  
+	END  
+  
+	IF (@DNIS IS NOT NULL)  
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND n.Number IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@DNIS + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END   
+    
+	IF (@Tags IS NOT NULL)  BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos;AND EXISTS (SELECT TOP 1 1 
+					FROM Clients.Tags T
+					INNER JOIN Clients.TagAssignments TA ON ta.TagID = t.ID AND ta.ClientID = ln.ClientID AND ta.SourceID = n.Number
+					WHERE t.ClientId = ln.ClientId
+					AND t.Id in (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@Tags + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))
+					AND ta.AppliesSince &amp;lt;= SYSUTCDATETIME() 
+					AND (ta.AppliesUntil IS NULL OR ta.AppliesUntil &amp;gt;=  SYSUTCDATETIME() ))&amp;apos;
+	END     
+   
+	IF (@Status IS NOT NULL) 
+	BEGIN  
+		SET @SqlCommand = @SqlCommand +   
+	&amp;apos; AND CASE   
+	WHEN n.IsProvisioned = 1  
+	THEN 1 --Ready  
+	ELSE 2 --Pending  
+	END IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Status + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) +  &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END     
+    
+	IF (@Vendor IS NOT NULL) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand + &amp;apos; AND v.ID IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Vendor + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END  
+
+	--SET  
+	--	@SqlCommand = @SqlCommand + &amp;apos; GROUP BY n.Number, dtmf.CampaignIdentifier, dtmf.MediaSource, dtmf.ProductCode, n.IsProvisioned, c.[Start], v.Name, cl.ID, cl.Name&amp;apos;  
+
+	--SET 
+	--	@SqlCommand = @SqlCommand + &amp;apos; ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  
+   
+
+	SET @SqlCommand = @SqlCommand + &amp;apos;) &amp;apos;
+
+	DECLARE @SqlPagination VARCHAR(MAX)
+	SET @SqlPagination = &amp;apos;SELECT *
+	FROM PaginatedQuery
+	WHERE RowNumber BETWEEN ((&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;) - (&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;-1)) 
+	AND (&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;); &amp;apos;
+
+	--INSERT INTO #tblTemp(DNIS, Campaign, Media, Product, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner])  
+	INSERT INTO #tblTemp(DNIS,Tag1, Tag2, Tag3, Tag4, Tag5, Tag6, Tag7, Tag8, Tag9,
+	            Tag10, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner], RowNumber)  
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlPagination)
+
+	UPDATE 
+		#tblTemp
+	SET 
+		#tblTemp.Licensed = Dnis.LicensingDetails.Details,
+		#tblTemp.LicensingType = Dnis.LicensingDetails.LicensingType
+	FROM 
+		#tblTemp INNER JOIN Dnis.LicensingDetails ON #tblTemp.ClientId = Dnis.LicensingDetails.ClientID AND
+		#tblTemp.DNIS = Dnis.LicensingDetails.Number
+
+	IF @LicensingType &amp;gt; 0
+	BEGIN
+		--PRINT &amp;apos;Licensing Type: &amp;apos; + CONVERT(VARCHAR(20), @LicensingType)
+		
+		UPDATE
+			#tblTemp
+		SET
+			LicensingFilter = 0
+		WHERE
+			LicensingType &amp;lt;&amp;gt; @LicensingType
+		
+		IF LEN(ISNULL(@LicensingDetails, &amp;apos;&amp;apos;)) &amp;gt; 0 
+		BEGIN
+		
+			DECLARE Ptr CURSOR FOR
+			SELECT DNIS, Licensed, ClientId FROM #tblTemp WHERE LicensingFilter = 1
+
+			DECLARE @IdDnis VARCHAR(20), @XMLData XML, @IdCurClient INT
+
+			OPEN Ptr
+			 
+			FETCH NEXT FROM Ptr
+			INTO @IdDnis, @XMLData, @IdCurClient
+			
+			
+			WHILE @@FETCH_STATUS = 0
+			BEGIN
+
+				IF @LicensingType = 1 --Region
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.Region FROM Dnis.GetRegionFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.Region = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END		
+				END
+				ELSE IF @LicensingType = 2 --States
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.[State] FROM Dnis.GetStatesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.[State] = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END
+				END
+				ELSE IF @LicensingType = 3--AreaCode
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.AreaCode FROM Dnis.GetAreaCodesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.AreaCode = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END	
+				
+				END
+				
+				FETCH NEXT FROM Ptr
+				INTO @IdDnis, @XMLData, @IdCurClient
+			END   
+
+			CLOSE Ptr
+			DEALLOCATE Ptr
+		
+		END
+		
+		DELETE 
+			#tblTemp
+		WHERE
+			LicensingFilter = 0
+	END
+   
+
+ ------------------------------  
+ ---- Return final records  
+ ------------------------------  
+	SELECT
+		t.DNIS 
+		,t.Licensed
+		,ISNULL(t.Tag1,&amp;apos;&amp;apos;) Tag1
+		,ISNULL(t.Tag2,&amp;apos;&amp;apos;) Tag2
+		,ISNULL(t.Tag3,&amp;apos;&amp;apos;) Tag3
+		,ISNULL(t.Tag4,&amp;apos;&amp;apos;) Tag4
+		,ISNULL(t.Tag5,&amp;apos;&amp;apos;) Tag5
+		,ISNULL(t.Tag6,&amp;apos;&amp;apos;) Tag6
+		,ISNULL(t.Tag7,&amp;apos;&amp;apos;) Tag7
+		,ISNULL(t.Tag8,&amp;apos;&amp;apos;) Tag8
+		,ISNULL(t.Tag9,&amp;apos;&amp;apos;) Tag9
+		,ISNULL(t.Tag10,&amp;apos;&amp;apos;)	Tag10
+		,t.[Status]
+		,t.LastCDR
+		,t.Vendor  
+		,t.RespOrg
+		,t.ClientId
+		,t.ClientName   
+		,t.[Owner]
+		,t.LicensingType
+	FROM #tblTemp t
+	ORDER BY 
+		t. RowNumber  
+  
+ ------------------------------  
+ ---- Return Totals  
+ ------------------------------          
+	DECLARE @SqlTotals as Varchar(max)
+	SET @SqlTotals = &amp;apos;SELECT T.Total as TotalRows, 
+							CASE WHEN T.Total%&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos; = 0  
+								THEN  T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;
+								ELSE (T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;)+1 
+								END AS TotalPages  
+					From
+		(SELECT COUNT(1) AS Total FROM PaginatedQuery) T&amp;apos;
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlTotals)	
+
+	DROP TABLE #tblTemp  
+	
+END
+"</Code>
+		<Error Line="135" Message="Incorrect syntax near &amp;apos;9&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 07:31:56.596" EndTime="20121101 07:31:56.756" Lapse="160" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"ALTER PROCEDURE [Searches].[GetRapidRecallList]
+(  
+--DECLARE
+  @ClientId    INT  
+ ,@DNIS     VARCHAR(1000)
+ ,@Tags     VARCHAR(1000)  
+ ,@Status    VARCHAR(50)
+ ,@LicensingType   INT = 0  
+ ,@LicensingDetails  VARCHAR(1000)  
+ ,@Vendor    VARCHAR(100)
+ ,@PageNumber  INT = 1
+ ,@RowsPerPage  INT = 10
+ ,@SortColumn  VARCHAR(30) = &amp;apos;DNIS&amp;apos;  
+ ,@IsAscendentSort BIT = 1   
+)
+ AS  
+BEGIN  
+
+ 
+  DECLARE  
+   @SqlCommand  VARCHAR(max)  
+  ,@SortColumnReal VARCHAR(30)  
+  ,@SortType   VARCHAR(4)  
+  
+  
+ CREATE TABLE #tblTemp(
+     DNIS  VARCHAR(50)
+    ,Tag1	VARCHAR	(300)
+    ,Tag2	VARCHAR	(300)
+    ,Tag3	VARCHAR	(300)
+    ,Tag4	VARCHAR	(300)
+    ,Tag5	VARCHAR	(300)
+    ,Tag6	VARCHAR	(300)
+    ,Tag7	VARCHAR	(300)
+    ,Tag8	VARCHAR	(300)
+    ,Tag9	VARCHAR	(300)
+    ,Tag10	VARCHAR	(300)
+    ,Licensed XML
+    ,[Status] INT
+    ,LastCDR DATETIME
+    ,Vendor  VARCHAR(100)
+    ,RespOrg VARCHAR(100)
+    ,ClientId INT
+    ,ClientName VARCHAR(100)
+    ,[Owner] VARCHAR(100)
+    ,LicensingType INT
+    ,LicensingFilter INT DEFAULT(1),
+    RowNumber int
+   )
+   
+ ----------------------------  
+ -- Define column to sort  
+ ---------------------------- 
+ IF (@SortColumn IS NOT NULL) 
+	 SET  @SortColumnReal = CASE @SortColumn   
+								 WHEN &amp;apos;DNIS&amp;apos; THEN &amp;apos;n.Number&amp;apos;  
+								 WHEN &amp;apos;Campaign&amp;apos; THEN &amp;apos;dtmf.CampaignIdentifier&amp;apos;     
+								 WHEN &amp;apos;LastCDR&amp;apos; THEN &amp;apos;LastCDR&amp;apos;--&amp;apos;c.[Start]&amp;apos;  
+								 WHEN &amp;apos;Vendor&amp;apos; THEN &amp;apos;v.Name&amp;apos;  
+								 WHEN &amp;apos;RespOrg&amp;apos; THEN &amp;apos;RespOrg&amp;apos;  
+								 WHEN &amp;apos;ClientId&amp;apos; THEN &amp;apos;cl.ID&amp;apos;  
+								 WHEN &amp;apos;ClientName&amp;apos; THEN &amp;apos;cl.Name&amp;apos;  
+								 WHEN &amp;apos;Owner&amp;apos; THEN &amp;apos;Owner&amp;apos;
+								 WHEN &amp;apos;&amp;apos; THEN &amp;apos;n.Number&amp;apos; 
+								 ELSE @SortColumn 
+
+							END  
+	ELSE
+	 SET  @SortColumnReal = &amp;apos;n.Number&amp;apos; 
+								
+
+ ----------------------------  
+ -- Define Type Sort  
+ ----------------------------  
+ SET @SortType = CASE WHEN @IsAscendentSort = 1 THEN &amp;apos;ASC&amp;apos; ELSE &amp;apos;DESC&amp;apos; END  
+   
+ ----------------------------  
+ -- Define Sql query  
+ ----------------------------   
+   
+	SELECT  @SqlCommand = &amp;apos;  
+	SELECT 
+					c1.ClientID, 
+					c1.DNIS, 
+					c1.[Start], 
+					c1.VendorID
+					INTO #calls
+				FROM 
+					Calls.Calls c1,
+					(
+						SELECT 
+							c2.ClientID, 
+							c2.DNIS, 
+							MAX(c2.[Start]) AS LastDate 
+						FROM  
+							Calls.Calls c2 
+						WHERE c2.ClientId = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;
+						GROUP BY 
+							c2.ClientID, 
+							c2.DNIS
+					) AS c3
+				WHERE 
+					c1.ClientID = c3.ClientID
+					AND c1.DNIS = c3.DNIS
+					AND c1.[Start] = c3.LastDate 
+					AND c1.ClientID = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;;
+	
+	
+	WITH PaginatedQuery AS
+	(
+	SELECT DISTINCT    
+		n.Number AS DNIS
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 1) as Tag1
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 2) as Tag2
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 3) as Tag3
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 4) as Tag4
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 5) as Tag5
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 6) as Tag6
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 7) as Tag7
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 8) as Tag8
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 9) as Tag9
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 10) as Tag10
+		
+		,CASE   
+		WHEN n.IsProvisioned = 1   
+		 THEN 1   
+		 ELSE 2  
+		END AS Status  
+		,c.[Start] as LastCDR  
+		,v.Name AS Vendor     
+		,&amp;apos; + CHAR(39) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS RespOrg  
+		,cl.ID AS ClientId   
+		,cl.Name AS ClientName  
+		,&amp;apos; + CHAR(39) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS Owner  
+		,ROW_NUMBER() OVER (ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  + &amp;apos;) AS RowNumber
+	FROM   
+		Dnis.Numbers n  
+		JOIN Dnis.LicensedNumbers ln ON ln.Number = n.Number  
+		JOIN Dnis.LicensingDetails ld ON ld.ClientID = ln.ClientID AND ld.Number = ln.Number  
+		JOIN #calls AS c ON c.ClientID = ld.ClientID AND c.DNIS = ld.Number		
+		JOIN Vendors.Vendors v ON v.ID = c.VendorID  
+		JOIN Clients.Clients cl ON cl.ID = ln.ClientID  
+	WHERE 1=1 &amp;apos;  
+   
+	IF (@ClientId IS NOT NULL AND @ClientId &amp;lt;&amp;gt; -1) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND ln.ClientID = &amp;apos; + CONVERT (VARCHAR (15),@ClientId)  
+	END  
+  
+	IF (@DNIS IS NOT NULL)  
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND n.Number IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@DNIS + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END   
+    
+	IF (@Tags IS NOT NULL)  BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos;AND EXISTS (SELECT TOP 1 1 
+					FROM Clients.Tags T
+					INNER JOIN Clients.TagAssignments TA ON ta.TagID = t.ID AND ta.ClientID = ln.ClientID AND ta.SourceID = n.Number
+					WHERE t.ClientId = ln.ClientId
+					AND t.Id in (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@Tags + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))
+					AND ta.AppliesSince &amp;lt;= SYSUTCDATETIME() 
+					AND (ta.AppliesUntil IS NULL OR ta.AppliesUntil &amp;gt;=  SYSUTCDATETIME() ))&amp;apos;
+	END     
+   
+	IF (@Status IS NOT NULL) 
+	BEGIN  
+		SET @SqlCommand = @SqlCommand +   
+	&amp;apos; AND CASE   
+	WHEN n.IsProvisioned = 1  
+	THEN 1 --Ready  
+	ELSE 2 --Pending  
+	END IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Status + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) +  &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END     
+    
+	IF (@Vendor IS NOT NULL) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand + &amp;apos; AND v.ID IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Vendor + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END  
+
+	--SET  
+	--	@SqlCommand = @SqlCommand + &amp;apos; GROUP BY n.Number, dtmf.CampaignIdentifier, dtmf.MediaSource, dtmf.ProductCode, n.IsProvisioned, c.[Start], v.Name, cl.ID, cl.Name&amp;apos;  
+
+	--SET 
+	--	@SqlCommand = @SqlCommand + &amp;apos; ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  
+   
+
+	SET @SqlCommand = @SqlCommand + &amp;apos;) &amp;apos;
+
+	DECLARE @SqlPagination VARCHAR(MAX)
+	SET @SqlPagination = &amp;apos;SELECT *
+	FROM PaginatedQuery
+	WHERE RowNumber BETWEEN ((&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;) - (&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;-1)) 
+	AND (&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;); &amp;apos;
+
+	--INSERT INTO #tblTemp(DNIS, Campaign, Media, Product, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner])  
+	INSERT INTO #tblTemp(DNIS,Tag1, Tag2, Tag3, Tag4, Tag5, Tag6, Tag7, Tag8, Tag9,
+	            Tag10, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner], RowNumber)  
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlPagination)
+
+	UPDATE 
+		#tblTemp
+	SET 
+		#tblTemp.Licensed = Dnis.LicensingDetails.Details,
+		#tblTemp.LicensingType = Dnis.LicensingDetails.LicensingType
+	FROM 
+		#tblTemp INNER JOIN Dnis.LicensingDetails ON #tblTemp.ClientId = Dnis.LicensingDetails.ClientID AND
+		#tblTemp.DNIS = Dnis.LicensingDetails.Number
+
+	IF @LicensingType &amp;gt; 0
+	BEGIN
+		--PRINT &amp;apos;Licensing Type: &amp;apos; + CONVERT(VARCHAR(20), @LicensingType)
+		
+		UPDATE
+			#tblTemp
+		SET
+			LicensingFilter = 0
+		WHERE
+			LicensingType &amp;lt;&amp;gt; @LicensingType
+		
+		IF LEN(ISNULL(@LicensingDetails, &amp;apos;&amp;apos;)) &amp;gt; 0 
+		BEGIN
+		
+			DECLARE Ptr CURSOR FOR
+			SELECT DNIS, Licensed, ClientId FROM #tblTemp WHERE LicensingFilter = 1
+
+			DECLARE @IdDnis VARCHAR(20), @XMLData XML, @IdCurClient INT
+
+			OPEN Ptr
+			 
+			FETCH NEXT FROM Ptr
+			INTO @IdDnis, @XMLData, @IdCurClient
+			
+			
+			WHILE @@FETCH_STATUS = 0
+			BEGIN
+
+				IF @LicensingType = 1 --Region
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.Region FROM Dnis.GetRegionFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.Region = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END		
+				END
+				ELSE IF @LicensingType = 2 --States
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.[State] FROM Dnis.GetStatesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.[State] = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END
+				END
+				ELSE IF @LicensingType = 3--AreaCode
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.AreaCode FROM Dnis.GetAreaCodesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.AreaCode = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END	
+				
+				END
+				
+				FETCH NEXT FROM Ptr
+				INTO @IdDnis, @XMLData, @IdCurClient
+			END   
+
+			CLOSE Ptr
+			DEALLOCATE Ptr
+		
+		END
+		
+		DELETE 
+			#tblTemp
+		WHERE
+			LicensingFilter = 0
+	END
+   
+
+ ------------------------------  
+ ---- Return final records  
+ ------------------------------  
+	SELECT
+		t.DNIS 
+		,t.Licensed
+		,ISNULL(t.Tag1,&amp;apos;&amp;apos;) Tag1
+		,ISNULL(t.Tag2,&amp;apos;&amp;apos;) Tag2
+		,ISNULL(t.Tag3,&amp;apos;&amp;apos;) Tag3
+		,ISNULL(t.Tag4,&amp;apos;&amp;apos;) Tag4
+		,ISNULL(t.Tag5,&amp;apos;&amp;apos;) Tag5
+		,ISNULL(t.Tag6,&amp;apos;&amp;apos;) Tag6
+		,ISNULL(t.Tag7,&amp;apos;&amp;apos;) Tag7
+		,ISNULL(t.Tag8,&amp;apos;&amp;apos;) Tag8
+		,ISNULL(t.Tag9,&amp;apos;&amp;apos;) Tag9
+		,ISNULL(t.Tag10,&amp;apos;&amp;apos;)	Tag10
+		,t.[Status]
+		,t.LastCDR
+		,t.Vendor  
+		,t.RespOrg
+		,t.ClientId
+		,t.ClientName   
+		,t.[Owner]
+		,t.LicensingType
+	FROM #tblTemp t
+	ORDER BY 
+		t. RowNumber  
+  
+ ------------------------------  
+ ---- Return Totals  
+ ------------------------------          
+	DECLARE @SqlTotals as Varchar(max)
+	SET @SqlTotals = &amp;apos;SELECT T.Total as TotalRows, 
+							CASE WHEN T.Total%&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos; = 0  
+								THEN  T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;
+								ELSE (T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;)+1 
+								END AS TotalPages  
+					From
+		(SELECT COUNT(1) AS Total FROM PaginatedQuery) T&amp;apos;
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlTotals)	
+
+	DROP TABLE #tblTemp  
+	
+END
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 07:32:10.200" EndTime="20121101 07:32:10.388" Lapse="187" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"CREATE PROCEDURE [Searches].[GetRapidRecallList]
+(  
+--DECLARE
+  @ClientId    INT  
+ ,@DNIS     VARCHAR(1000)
+ ,@Tags     VARCHAR(1000)  
+ ,@Status    VARCHAR(50)
+ ,@LicensingType   INT = 0  
+ ,@LicensingDetails  VARCHAR(1000)  
+ ,@Vendor    VARCHAR(100)
+ ,@PageNumber  INT = 1
+ ,@RowsPerPage  INT = 10
+ ,@SortColumn  VARCHAR(30) = &amp;apos;DNIS&amp;apos;  
+ ,@IsAscendentSort BIT = 1   
+)
+ AS  
+BEGIN  
+
+ 
+  DECLARE  
+   @SqlCommand  VARCHAR(max)  
+  ,@SortColumnReal VARCHAR(30)  
+  ,@SortType   VARCHAR(4)  
+  
+  
+ CREATE TABLE #tblTemp(
+     DNIS  VARCHAR(50)
+    ,Tag1	VARCHAR	(300)
+    ,Tag2	VARCHAR	(300)
+    ,Tag3	VARCHAR	(300)
+    ,Tag4	VARCHAR	(300)
+    ,Tag5	VARCHAR	(300)
+    ,Tag6	VARCHAR	(300)
+    ,Tag7	VARCHAR	(300)
+    ,Tag8	VARCHAR	(300)
+    ,Tag9	VARCHAR	(300)
+    ,Tag10	VARCHAR	(300)
+    ,Licensed XML
+    ,[Status] INT
+    ,LastCDR DATETIME
+    ,Vendor  VARCHAR(100)
+    ,RespOrg VARCHAR(100)
+    ,ClientId INT
+    ,ClientName VARCHAR(100)
+    ,[Owner] VARCHAR(100)
+    ,LicensingType INT
+    ,LicensingFilter INT DEFAULT(1),
+    RowNumber int
+   )
+   
+ ----------------------------  
+ -- Define column to sort  
+ ---------------------------- 
+ IF (@SortColumn IS NOT NULL) 
+	 SET  @SortColumnReal = CASE @SortColumn   
+								 WHEN &amp;apos;DNIS&amp;apos; THEN &amp;apos;n.Number&amp;apos;  
+								 WHEN &amp;apos;Campaign&amp;apos; THEN &amp;apos;dtmf.CampaignIdentifier&amp;apos;     
+								 WHEN &amp;apos;LastCDR&amp;apos; THEN &amp;apos;LastCDR&amp;apos;--&amp;apos;c.[Start]&amp;apos;  
+								 WHEN &amp;apos;Vendor&amp;apos; THEN &amp;apos;v.Name&amp;apos;  
+								 WHEN &amp;apos;RespOrg&amp;apos; THEN &amp;apos;RespOrg&amp;apos;  
+								 WHEN &amp;apos;ClientId&amp;apos; THEN &amp;apos;cl.ID&amp;apos;  
+								 WHEN &amp;apos;ClientName&amp;apos; THEN &amp;apos;cl.Name&amp;apos;  
+								 WHEN &amp;apos;Owner&amp;apos; THEN &amp;apos;Owner&amp;apos;
+								 WHEN &amp;apos;&amp;apos; THEN &amp;apos;n.Number&amp;apos; 
+								 ELSE @SortColumn 
+
+							END  
+	ELSE
+	 SET  @SortColumnReal = &amp;apos;n.Number&amp;apos; 
+								
+
+ ----------------------------  
+ -- Define Type Sort  
+ ----------------------------  
+ SET @SortType = CASE WHEN @IsAscendentSort = 1 THEN &amp;apos;ASC&amp;apos; ELSE &amp;apos;DESC&amp;apos; END  
+   
+ ----------------------------  
+ -- Define Sql query  
+ ----------------------------   
+   
+	SELECT  @SqlCommand = &amp;apos;  
+	SELECT 
+					c1.ClientID, 
+					c1.DNIS, 
+					c1.[Start], 
+					c1.VendorID
+					INTO #calls
+				FROM 
+					Calls.Calls c1,
+					(
+						SELECT 
+							c2.ClientID, 
+							c2.DNIS, 
+							MAX(c2.[Start]) AS LastDate 
+						FROM  
+							Calls.Calls c2 
+						WHERE c2.ClientId = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;
+						GROUP BY 
+							c2.ClientID, 
+							c2.DNIS
+					) AS c3
+				WHERE 
+					c1.ClientID = c3.ClientID
+					AND c1.DNIS = c3.DNIS
+					AND c1.[Start] = c3.LastDate 
+					AND c1.ClientID = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;;
+	
+	
+	WITH PaginatedQuery AS
+	(
+	SELECT DISTINCT    
+		n.Number AS DNIS
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 1) as Tag1
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 2) as Tag2
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 3) as Tag3
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 4) as Tag4
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 5) as Tag5
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 6) as Tag6
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 7) as Tag7
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 8) as Tag8
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 9) as Tag9
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 10) as Tag10
+		
+		,CASE   
+		WHEN n.IsProvisioned = 1   
+		 THEN 1   
+		 ELSE 2  
+		END AS Status  
+		,c.[Start] as LastCDR  
+		,v.Name AS Vendor     
+		,&amp;apos; + CHAR(39) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS RespOrg  
+		,cl.ID AS ClientId   
+		,cl.Name AS ClientName  
+		,&amp;apos; + CHAR(39) +
+ &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS Owner  
+		,ROW_NUMBER() OVER (ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  + &amp;apos;) AS RowNumber
+	FROM   
+		Dnis.Numbers n  
+		JOIN Dnis.LicensedNumbers ln ON ln.Number = n.Number  
+		JOIN Dnis.LicensingDetails ld ON ld.ClientID = ln.ClientID AND ld.Number = ln.Number  
+		JOIN #calls AS c ON c.ClientID = ld.ClientID AND c.DNIS = ld.Number		
+		JOIN Vendors.Vendors v ON v.ID = c.VendorID  
+		JOIN Clients.Clients cl ON cl.ID = ln.ClientID  
+	WHERE 1=1 &amp;apos;  
+   
+	IF (@ClientId IS NOT NULL AND @ClientId &amp;lt;&amp;gt; -1) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND ln.ClientID = &amp;apos; + CONVERT (VARCHAR (15),@ClientId)  
+	END  
+  
+	IF (@DNIS IS NOT NULL)  
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND n.Number IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@DNIS + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END   
+    
+	IF (@Tags IS NOT NULL)  BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos;AND EXISTS (SELECT TOP 1 1 
+					FROM Clients.Tags T
+					INNER JOIN Clients.TagAssignments TA ON ta.TagID = t.ID AND ta.ClientID = ln.ClientID AND ta.SourceID = n.Number
+					WHERE t.ClientId = ln.ClientId
+					AND t.Id in (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@Tags + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))
+					AND ta.AppliesSince &amp;lt;= SYSUTCDATETIME() 
+					AND (ta.AppliesUntil IS NULL OR ta.AppliesUntil &amp;gt;=  SYSUTCDATETIME() ))&amp;apos;
+	END     
+   
+	IF (@Status IS NOT NULL) 
+	BEGIN  
+		SET @SqlCommand = @SqlCommand +   
+	&amp;apos; AND CASE   
+	WHEN n.IsProvisioned = 1  
+	THEN 1 --Ready  
+	ELSE 2 --Pending  
+	END IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Status + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) +  &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END     
+    
+	IF (@Vendor IS NOT NULL) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand + &amp;apos; AND v.ID IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Vendor + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END  
+
+	--SET  
+	--	@SqlCommand = @SqlCommand + &amp;apos; GROUP BY n.Number, dtmf.CampaignIdentifier, dtmf.MediaSource, dtmf.ProductCode, n.IsProvisioned, c.[Start], v.Name, cl.ID, cl.Name&amp;apos;  
+
+	--SET 
+	--	@SqlCommand = @SqlCommand + &amp;apos; ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  
+   
+
+	SET @SqlCommand = @SqlCommand + &amp;apos;) &amp;apos;
+
+	DECLARE @SqlPagination VARCHAR(MAX)
+	SET @SqlPagination = &amp;apos;SELECT *
+	FROM PaginatedQuery
+	WHERE RowNumber BETWEEN ((&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;) - (&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;-1)) 
+	AND (&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;); &amp;apos;
+
+	--INSERT INTO #tblTemp(DNIS, Campaign, Media, Product, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner])  
+	INSERT INTO #tblTemp(DNIS,Tag1, Tag2, Tag3, Tag4, Tag5, Tag6, Tag7, Tag8, Tag9,
+	            Tag10, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner], RowNumber)  
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlPagination)
+
+	UPDATE 
+		#tblTemp
+	SET 
+		#tblTemp.Licensed = Dnis.LicensingDetails.Details,
+		#tblTemp.LicensingType = Dnis.LicensingDetails.LicensingType
+	FROM 
+		#tblTemp INNER JOIN Dnis.LicensingDetails ON #tblTemp.ClientId = Dnis.LicensingDetails.ClientID AND
+		#tblTemp.DNIS = Dnis.LicensingDetails.Number
+
+	IF @LicensingType &amp;gt; 0
+	BEGIN
+		--PRINT &amp;apos;Licensing Type: &amp;apos; + CONVERT(VARCHAR(20), @LicensingType)
+		
+		UPDATE
+			#tblTemp
+		SET
+			LicensingFilter = 0
+		WHERE
+			LicensingType &amp;lt;&amp;gt; @LicensingType
+		
+		IF LEN(ISNULL(@LicensingDetails, &amp;apos;&amp;apos;)) &amp;gt; 0 
+		BEGIN
+		
+			DECLARE Ptr CURSOR FOR
+			SELECT DNIS, Licensed, ClientId FROM #tblTemp WHERE LicensingFilter = 1
+
+			DECLARE @IdDnis VARCHAR(20), @XMLData XML, @IdCurClient INT
+
+			OPEN Ptr
+			 
+			FETCH NEXT FROM Ptr
+			INTO @IdDnis, @XMLData, @IdCurClient
+			
+			
+			WHILE @@FETCH_STATUS = 0
+			BEGIN
+
+				IF @LicensingType = 1 --Region
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.Region FROM Dnis.GetRegionFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;
+,&amp;apos;) AS YYY ON XXX.Region = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END		
+				END
+				ELSE IF @LicensingType = 2 --States
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.[State] FROM Dnis.GetStatesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.[State] = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END
+				END
+				ELSE IF @LicensingType = 3--AreaCode
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.AreaCode FROM Dnis.GetAreaCodesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.AreaCode = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END	
+				
+				END
+				
+				FETCH NEXT FROM Ptr
+				INTO @IdDnis, @XMLData, @IdCurClient
+			END   
+
+			CLOSE Ptr
+			DEALLOCATE Ptr
+		
+		END
+		
+		DELETE 
+			#tblTemp
+		WHERE
+			LicensingFilter = 0
+	END
+   
+
+ ------------------------------  
+ ---- Return final records  
+ ------------------------------  
+	SELECT
+		t.DNIS 
+		,t.Licensed
+		,ISNULL(t.Tag1,&amp;apos;&amp;apos;) Tag1
+		,ISNULL(t.Tag2,&amp;apos;&amp;apos;) Tag2
+		,ISNULL(t.Tag3,&amp;apos;&amp;apos;) Tag3
+		,ISNULL(t.Tag4,&amp;apos;&amp;apos;) Tag4
+		,ISNULL(t.Tag5,&amp;apos;&amp;apos;) Tag5
+		,ISNULL(t.Tag6,&amp;apos;&amp;apos;) Tag6
+		,ISNULL(t.Tag7,&amp;apos;&amp;apos;) Tag7
+		,ISNULL(t.Tag8,&amp;apos;&amp;apos;) Tag8
+		,ISNULL(t.Tag9,&amp;apos;&amp;apos;) Tag9
+		,ISNULL(t.Tag10,&amp;apos;&amp;apos;)	Tag10
+		,t.[Status]
+		,t.LastCDR
+		,t.Vendor  
+		,t.RespOrg
+		,t.ClientId
+		,t.ClientName   
+		,t.[Owner]
+		,t.LicensingType
+	FROM #tblTemp t
+	ORDER BY 
+		t. RowNumber  
+  
+ ------------------------------  
+ ---- Return Totals  
+ ------------------------------          
+	DECLARE @SqlTotals as Varchar(max)
+	SET @SqlTotals = &amp;apos;SELECT T.Total as TotalRows, 
+							CASE WHEN T.Total%&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos; = 0  
+								THEN  T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;
+								ELSE (T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;)+1 
+								END AS TotalPages  
+					From
+		(SELECT COUNT(1) AS Total FROM PaginatedQuery) T&amp;apos;
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlTotals)	
+
+	DROP TABLE #tblTemp  
+	
+END
+
+"</Code>
+		<Error Line="347" Message="There is already an object named &amp;apos;GetRapidRecallList&amp;apos; in the database."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 07:32:15.459" EndTime="20121101 07:32:15.509" Lapse="50" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"ALTER PROCEDURE [Searches].[GetRapidRecallList]
+(  
+--DECLARE
+  @ClientId    INT  
+ ,@DNIS     VARCHAR(1000)
+ ,@Tags     VARCHAR(1000)  
+ ,@Status    VARCHAR(50)
+ ,@LicensingType   INT = 0  
+ ,@LicensingDetails  VARCHAR(1000)  
+ ,@Vendor    VARCHAR(100)
+ ,@PageNumber  INT = 1
+ ,@RowsPerPage  INT = 10
+ ,@SortColumn  VARCHAR(30) = &amp;apos;DNIS&amp;apos;  
+ ,@IsAscendentSort BIT = 1   
+)
+ AS  
+BEGIN  
+
+ 
+  DECLARE  
+   @SqlCommand  VARCHAR(max)  
+  ,@SortColumnReal VARCHAR(30)  
+  ,@SortType   VARCHAR(4)  
+  
+  
+ CREATE TABLE #tblTemp(
+     DNIS  VARCHAR(50)
+    ,Tag1	VARCHAR	(300)
+    ,Tag2	VARCHAR	(300)
+    ,Tag3	VARCHAR	(300)
+    ,Tag4	VARCHAR	(300)
+    ,Tag5	VARCHAR	(300)
+    ,Tag6	VARCHAR	(300)
+    ,Tag7	VARCHAR	(300)
+    ,Tag8	VARCHAR	(300)
+    ,Tag9	VARCHAR	(300)
+    ,Tag10	VARCHAR	(300)
+    ,Licensed XML
+    ,[Status] INT
+    ,LastCDR DATETIME
+    ,Vendor  VARCHAR(100)
+    ,RespOrg VARCHAR(100)
+    ,ClientId INT
+    ,ClientName VARCHAR(100)
+    ,[Owner] VARCHAR(100)
+    ,LicensingType INT
+    ,LicensingFilter INT DEFAULT(1),
+    RowNumber int
+   )
+   
+ ----------------------------  
+ -- Define column to sort  
+ ---------------------------- 
+ IF (@SortColumn IS NOT NULL) 
+	 SET  @SortColumnReal = CASE @SortColumn   
+								 WHEN &amp;apos;DNIS&amp;apos; THEN &amp;apos;n.Number&amp;apos;  
+								 WHEN &amp;apos;Campaign&amp;apos; THEN &amp;apos;dtmf.CampaignIdentifier&amp;apos;     
+								 WHEN &amp;apos;LastCDR&amp;apos; THEN &amp;apos;LastCDR&amp;apos;--&amp;apos;c.[Start]&amp;apos;  
+								 WHEN &amp;apos;Vendor&amp;apos; THEN &amp;apos;v.Name&amp;apos;  
+								 WHEN &amp;apos;RespOrg&amp;apos; THEN &amp;apos;RespOrg&amp;apos;  
+								 WHEN &amp;apos;ClientId&amp;apos; THEN &amp;apos;cl.ID&amp;apos;  
+								 WHEN &amp;apos;ClientName&amp;apos; THEN &amp;apos;cl.Name&amp;apos;  
+								 WHEN &amp;apos;Owner&amp;apos; THEN &amp;apos;Owner&amp;apos;
+								 WHEN &amp;apos;&amp;apos; THEN &amp;apos;n.Number&amp;apos; 
+								 ELSE @SortColumn 
+
+							END  
+	ELSE
+	 SET  @SortColumnReal = &amp;apos;n.Number&amp;apos; 
+								
+
+ ----------------------------  
+ -- Define Type Sort  
+ ----------------------------  
+ SET @SortType = CASE WHEN @IsAscendentSort = 1 THEN &amp;apos;ASC&amp;apos; ELSE &amp;apos;DESC&amp;apos; END  
+   
+ ----------------------------  
+ -- Define Sql query  
+ ----------------------------   
+   
+	SELECT  @SqlCommand = &amp;apos;  
+	SELECT 
+					c1.ClientID, 
+					c1.DNIS, 
+					c1.[Start], 
+					c1.VendorID
+					INTO #calls
+				FROM 
+					Calls.Calls c1,
+					(
+						SELECT 
+							c2.ClientID, 
+							c2.DNIS, 
+							MAX(c2.[Start]) AS LastDate 
+						FROM  
+							Calls.Calls c2 
+						WHERE c2.ClientId = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;
+						GROUP BY 
+							c2.ClientID, 
+							c2.DNIS
+					) AS c3
+				WHERE 
+					c1.ClientID = c3.ClientID
+					AND c1.DNIS = c3.DNIS
+					AND c1.[Start] = c3.LastDate 
+					AND c1.ClientID = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;;
+	
+	
+	WITH PaginatedQuery AS
+	(
+	SELECT DISTINCT    
+		n.Number AS DNIS
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 1) as Tag1
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 2) as Tag2
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 3) as Tag3
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 4) as Tag4
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 5) as Tag5
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 6) as Tag6
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 7) as Tag7
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 8) as Tag8
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 9) as Tag9
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 10) as Tag10
+		
+		,CASE   
+		WHEN n.IsProvisioned = 1   
+		 THEN 1   
+		 ELSE 2  
+		END AS Status  
+		,c.[Start] as LastCDR  
+		,v.Name AS Vendor     
+		,&amp;apos; + CHAR(39) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS RespOrg  
+		,cl.ID AS ClientId   
+		,cl.Name AS ClientName  
+		,&amp;apos; + CHAR(39) +
+ &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS Owner  
+		,ROW_NUMBER() OVER (ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  + &amp;apos;) AS RowNumber
+	FROM   
+		Dnis.Numbers n  
+		JOIN Dnis.LicensedNumbers ln ON ln.Number = n.Number  
+		JOIN Dnis.LicensingDetails ld ON ld.ClientID = ln.ClientID AND ld.Number = ln.Number  
+		JOIN #calls AS c ON c.ClientID = ld.ClientID AND c.DNIS = ld.Number		
+		JOIN Vendors.Vendors v ON v.ID = c.VendorID  
+		JOIN Clients.Clients cl ON cl.ID = ln.ClientID  
+	WHERE 1=1 &amp;apos;  
+   
+	IF (@ClientId IS NOT NULL AND @ClientId &amp;lt;&amp;gt; -1) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND ln.ClientID = &amp;apos; + CONVERT (VARCHAR (15),@ClientId)  
+	END  
+  
+	IF (@DNIS IS NOT NULL)  
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND n.Number IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@DNIS + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END   
+    
+	IF (@Tags IS NOT NULL)  BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos;AND EXISTS (SELECT TOP 1 1 
+					FROM Clients.Tags T
+					INNER JOIN Clients.TagAssignments TA ON ta.TagID = t.ID AND ta.ClientID = ln.ClientID AND ta.SourceID = n.Number
+					WHERE t.ClientId = ln.ClientId
+					AND t.Id in (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@Tags + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))
+					AND ta.AppliesSince &amp;lt;= SYSUTCDATETIME() 
+					AND (ta.AppliesUntil IS NULL OR ta.AppliesUntil &amp;gt;=  SYSUTCDATETIME() ))&amp;apos;
+	END     
+   
+	IF (@Status IS NOT NULL) 
+	BEGIN  
+		SET @SqlCommand = @SqlCommand +   
+	&amp;apos; AND CASE   
+	WHEN n.IsProvisioned = 1  
+	THEN 1 --Ready  
+	ELSE 2 --Pending  
+	END IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Status + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) +  &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END     
+    
+	IF (@Vendor IS NOT NULL) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand + &amp;apos; AND v.ID IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Vendor + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END  
+
+	--SET  
+	--	@SqlCommand = @SqlCommand + &amp;apos; GROUP BY n.Number, dtmf.CampaignIdentifier, dtmf.MediaSource, dtmf.ProductCode, n.IsProvisioned, c.[Start], v.Name, cl.ID, cl.Name&amp;apos;  
+
+	--SET 
+	--	@SqlCommand = @SqlCommand + &amp;apos; ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  
+   
+
+	SET @SqlCommand = @SqlCommand + &amp;apos;) &amp;apos;
+
+	DECLARE @SqlPagination VARCHAR(MAX)
+	SET @SqlPagination = &amp;apos;SELECT *
+	FROM PaginatedQuery
+	WHERE RowNumber BETWEEN ((&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;) - (&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;-1)) 
+	AND (&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;); &amp;apos;
+
+	--INSERT INTO #tblTemp(DNIS, Campaign, Media, Product, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner])  
+	INSERT INTO #tblTemp(DNIS,Tag1, Tag2, Tag3, Tag4, Tag5, Tag6, Tag7, Tag8, Tag9,
+	            Tag10, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner], RowNumber)  
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlPagination)
+
+	UPDATE 
+		#tblTemp
+	SET 
+		#tblTemp.Licensed = Dnis.LicensingDetails.Details,
+		#tblTemp.LicensingType = Dnis.LicensingDetails.LicensingType
+	FROM 
+		#tblTemp INNER JOIN Dnis.LicensingDetails ON #tblTemp.ClientId = Dnis.LicensingDetails.ClientID AND
+		#tblTemp.DNIS = Dnis.LicensingDetails.Number
+
+	IF @LicensingType &amp;gt; 0
+	BEGIN
+		--PRINT &amp;apos;Licensing Type: &amp;apos; + CONVERT(VARCHAR(20), @LicensingType)
+		
+		UPDATE
+			#tblTemp
+		SET
+			LicensingFilter = 0
+		WHERE
+			LicensingType &amp;lt;&amp;gt; @LicensingType
+		
+		IF LEN(ISNULL(@LicensingDetails, &amp;apos;&amp;apos;)) &amp;gt; 0 
+		BEGIN
+		
+			DECLARE Ptr CURSOR FOR
+			SELECT DNIS, Licensed, ClientId FROM #tblTemp WHERE LicensingFilter = 1
+
+			DECLARE @IdDnis VARCHAR(20), @XMLData XML, @IdCurClient INT
+
+			OPEN Ptr
+			 
+			FETCH NEXT FROM Ptr
+			INTO @IdDnis, @XMLData, @IdCurClient
+			
+			
+			WHILE @@FETCH_STATUS = 0
+			BEGIN
+
+				IF @LicensingType = 1 --Region
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.Region FROM Dnis.GetRegionFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;
+,&amp;apos;) AS YYY ON XXX.Region = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END		
+				END
+				ELSE IF @LicensingType = 2 --States
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.[State] FROM Dnis.GetStatesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.[State] = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END
+				END
+				ELSE IF @LicensingType = 3--AreaCode
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.AreaCode FROM Dnis.GetAreaCodesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.AreaCode = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END	
+				
+				END
+				
+				FETCH NEXT FROM Ptr
+				INTO @IdDnis, @XMLData, @IdCurClient
+			END   
+
+			CLOSE Ptr
+			DEALLOCATE Ptr
+		
+		END
+		
+		DELETE 
+			#tblTemp
+		WHERE
+			LicensingFilter = 0
+	END
+   
+
+ ------------------------------  
+ ---- Return final records  
+ ------------------------------  
+	SELECT
+		t.DNIS 
+		,t.Licensed
+		,ISNULL(t.Tag1,&amp;apos;&amp;apos;) Tag1
+		,ISNULL(t.Tag2,&amp;apos;&amp;apos;) Tag2
+		,ISNULL(t.Tag3,&amp;apos;&amp;apos;) Tag3
+		,ISNULL(t.Tag4,&amp;apos;&amp;apos;) Tag4
+		,ISNULL(t.Tag5,&amp;apos;&amp;apos;) Tag5
+		,ISNULL(t.Tag6,&amp;apos;&amp;apos;) Tag6
+		,ISNULL(t.Tag7,&amp;apos;&amp;apos;) Tag7
+		,ISNULL(t.Tag8,&amp;apos;&amp;apos;) Tag8
+		,ISNULL(t.Tag9,&amp;apos;&amp;apos;) Tag9
+		,ISNULL(t.Tag10,&amp;apos;&amp;apos;)	Tag10
+		,t.[Status]
+		,t.LastCDR
+		,t.Vendor  
+		,t.RespOrg
+		,t.ClientId
+		,t.ClientName   
+		,t.[Owner]
+		,t.LicensingType
+	FROM #tblTemp t
+	ORDER BY 
+		t. RowNumber  
+  
+ ------------------------------  
+ ---- Return Totals  
+ ------------------------------          
+	DECLARE @SqlTotals as Varchar(max)
+	SET @SqlTotals = &amp;apos;SELECT T.Total as TotalRows, 
+							CASE WHEN T.Total%&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos; = 0  
+								THEN  T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;
+								ELSE (T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;)+1 
+								END AS TotalPages  
+					From
+		(SELECT COUNT(1) AS Total FROM PaginatedQuery) T&amp;apos;
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlTotals)	
+
+	DROP TABLE #tblTemp  
+	
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 07:32:50.856" EndTime="20121101 07:32:50.936" Lapse="80" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"ALTER PROCEDURE [Searches].[GetRapidRecallList]
+(  
+--DECLARE
+  @ClientId    INT  
+ ,@DNIS     VARCHAR(1000)
+ ,@Tags     VARCHAR(1000)  
+ ,@Status    VARCHAR(50)
+ ,@LicensingType   INT = 0  
+ ,@LicensingDetails  VARCHAR(1000)  
+ ,@Vendor    VARCHAR(100)
+ ,@PageNumber  INT = 1
+ ,@RowsPerPage  INT = 10
+ ,@SortColumn  VARCHAR(30) = &amp;apos;DNIS&amp;apos;  
+ ,@IsAscendentSort BIT = 1   
+)
+ AS  
+BEGIN  
+
+ 
+  DECLARE  
+   @SqlCommand  VARCHAR(max)  
+  ,@SortColumnReal VARCHAR(30)  
+  ,@SortType   VARCHAR(4)  
+  
+  
+ CREATE TABLE #tblTemp(
+     DNIS  VARCHAR(50)
+    ,Tag1	VARCHAR	(300)
+    ,Tag2	VARCHAR	(300)
+    ,Tag3	VARCHAR	(300)
+    ,Tag4	VARCHAR	(300)
+    ,Tag5	VARCHAR	(300)
+    ,Tag6	VARCHAR	(300)
+    ,Tag7	VARCHAR	(300)
+    ,Tag8	VARCHAR	(300)
+    ,Tag9	VARCHAR	(300)
+    ,Tag10	VARCHAR	(300)
+    ,Licensed XML
+    ,[Status] INT
+    ,LastCDR DATETIME
+    ,Vendor  VARCHAR(100)
+    ,RespOrg VARCHAR(100)
+    ,ClientId INT
+    ,ClientName VARCHAR(100)
+    ,[Owner] VARCHAR(100)
+    ,LicensingType INT
+    ,LicensingFilter INT DEFAULT(1),
+    RowNumber int
+   )
+   
+ ----------------------------  
+ -- Define column to sort  
+ ---------------------------- 
+ IF (@SortColumn IS NOT NULL) 
+	 SET  @SortColumnReal = CASE @SortColumn   
+								 WHEN &amp;apos;DNIS&amp;apos; THEN &amp;apos;n.Number&amp;apos;  
+								 WHEN &amp;apos;Campaign&amp;apos; THEN &amp;apos;dtmf.CampaignIdentifier&amp;apos;     
+								 WHEN &amp;apos;LastCDR&amp;apos; THEN &amp;apos;LastCDR&amp;apos;--&amp;apos;c.[Start]&amp;apos;  
+								 WHEN &amp;apos;Vendor&amp;apos; THEN &amp;apos;v.Name&amp;apos;  
+								 WHEN &amp;apos;RespOrg&amp;apos; THEN &amp;apos;RespOrg&amp;apos;  
+								 WHEN &amp;apos;ClientId&amp;apos; THEN &amp;apos;cl.ID&amp;apos;  
+								 WHEN &amp;apos;ClientName&amp;apos; THEN &amp;apos;cl.Name&amp;apos;  
+								 WHEN &amp;apos;Owner&amp;apos; THEN &amp;apos;Owner&amp;apos;
+								 WHEN &amp;apos;&amp;apos; THEN &amp;apos;n.Number&amp;apos; 
+								 ELSE @SortColumn 
+
+							END  
+	ELSE
+	 SET  @SortColumnReal = &amp;apos;n.Number&amp;apos; 
+								
+
+ ----------------------------  
+ -- Define Type Sort  
+ ----------------------------  
+ SET @SortType = CASE WHEN @IsAscendentSort = 1 THEN &amp;apos;ASC&amp;apos; ELSE &amp;apos;DESC&amp;apos; END  
+   
+ ----------------------------  
+ -- Define Sql query  
+ ----------------------------   
+   
+	SELECT  @SqlCommand = &amp;apos;  
+	SELECT 
+					c1.ClientID, 
+					c1.DNIS, 
+					c1.[Start], 
+					c1.VendorID
+					INTO #calls
+				FROM 
+					Calls.Calls c1,
+					(
+						SELECT 
+							c2.ClientID, 
+							c2.DNIS, 
+							MAX(c2.[Start]) AS LastDate 
+						FROM  
+							Calls.Calls c2 
+						WHERE c2.ClientId = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;
+						GROUP BY 
+							c2.ClientID, 
+							c2.DNIS
+					) AS c3
+				WHERE 
+					c1.ClientID = c3.ClientID
+					AND c1.DNIS = c3.DNIS
+					AND c1.[Start] = c3.LastDate 
+					AND c1.ClientID = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;;
+	
+	
+	WITH PaginatedQuery AS
+	(
+	SELECT DISTINCT    
+		n.Number AS DNIS
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 1) as Tag1
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 2) as Tag2
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 3) as Tag3
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 4) as Tag4
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 5) as Tag5
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 6) as Tag6
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 7) as Tag7
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 8) as Tag8
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 9) as Tag9
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 10) as Tag10
+		
+		,CASE   
+		WHEN n.IsProvisioned = 1   
+		 THEN 1   
+		 ELSE 2  
+		END AS Status  
+		,c.[Start] as LastCDR  
+		,v.Name AS Vendor     
+		,&amp;apos; + CHAR(39) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS RespOrg  
+		,cl.ID AS ClientId   
+		,cl.Name AS ClientName  
+		,&amp;apos; + CHAR(39) +
+
+ &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS Owner  
+		,ROW_NUMBER() OVER (ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  + &amp;apos;) AS RowNumber
+	FROM   
+		Dnis.Numbers n  
+		JOIN Dnis.LicensedNumbers ln ON ln.Number = n.Number  
+		JOIN Dnis.LicensingDetails ld ON ld.ClientID = ln.ClientID AND ld.Number = ln.Number  
+		JOIN #calls AS c ON c.ClientID = ld.ClientID AND c.DNIS = ld.Number		
+		JOIN Vendors.Vendors v ON v.ID = c.VendorID  
+		JOIN Clients.Clients cl ON cl.ID = ln.ClientID  
+	WHERE 1=1 &amp;apos;  
+   
+	IF (@ClientId IS NOT NULL AND @ClientId &amp;lt;&amp;gt; -1) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND ln.ClientID = &amp;apos; + CONVERT (VARCHAR (15),@ClientId)  
+	END  
+  
+	IF (@DNIS IS NOT NULL)  
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND n.Number IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@DNIS + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END   
+    
+	IF (@Tags IS NOT NULL)  BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos;AND EXISTS (SELECT TOP 1 1 
+					FROM Clients.Tags T
+					INNER JOIN Clients.TagAssignments TA ON ta.TagID = t.ID AND ta.ClientID = ln.ClientID AND ta.SourceID = n.Number
+					WHERE t.ClientId = ln.ClientId
+					AND t.Id in (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@Tags + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))
+					AND ta.AppliesSince &amp;lt;= SYSUTCDATETIME() 
+					AND (ta.AppliesUntil IS NULL OR ta.AppliesUntil &amp;gt;=  SYSUTCDATETIME() ))&amp;apos;
+	END     
+   
+	IF (@Status IS NOT NULL) 
+	BEGIN  
+		SET @SqlCommand = @SqlCommand +   
+	&amp;apos; AND CASE   
+	WHEN n.IsProvisioned = 1  
+	THEN 1 --Ready  
+	ELSE 2 --Pending  
+	END IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Status + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) +  &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END     
+    
+	IF (@Vendor IS NOT NULL) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand + &amp;apos; AND v.ID IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Vendor + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END  
+
+	--SET  
+	--	@SqlCommand = @SqlCommand + &amp;apos; GROUP BY n.Number, dtmf.CampaignIdentifier, dtmf.MediaSource, dtmf.ProductCode, n.IsProvisioned, c.[Start], v.Name, cl.ID, cl.Name&amp;apos;  
+
+	--SET 
+	--	@SqlCommand = @SqlCommand + &amp;apos; ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  
+   
+
+	SET @SqlCommand = @SqlCommand + &amp;apos;) &amp;apos;
+
+	DECLARE @SqlPagination VARCHAR(MAX)
+	SET @SqlPagination = &amp;apos;SELECT *
+	FROM PaginatedQuery
+	WHERE RowNumber BETWEEN ((&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;) - (&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;-1)) 
+	AND (&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;); &amp;apos;
+
+	--INSERT INTO #tblTemp(DNIS, Campaign, Media, Product, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner])  
+	INSERT INTO #tblTemp(DNIS,Tag1, Tag2, Tag3, Tag4, Tag5, Tag6, Tag7, Tag8, Tag9,
+	            Tag10, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner], RowNumber)  
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlPagination)
+
+	UPDATE 
+		#tblTemp
+	SET 
+		#tblTemp.Licensed = Dnis.LicensingDetails.Details,
+		#tblTemp.LicensingType = Dnis.LicensingDetails.LicensingType
+	FROM 
+		#tblTemp INNER JOIN Dnis.LicensingDetails ON #tblTemp.ClientId = Dnis.LicensingDetails.ClientID AND
+		#tblTemp.DNIS = Dnis.LicensingDetails.Number
+
+	IF @LicensingType &amp;gt; 0
+	BEGIN
+		--PRINT &amp;apos;Licensing Type: &amp;apos; + CONVERT(VARCHAR(20), @LicensingType)
+		
+		UPDATE
+			#tblTemp
+		SET
+			LicensingFilter = 0
+		WHERE
+			LicensingType &amp;lt;&amp;gt; @LicensingType
+		
+		IF LEN(ISNULL(@LicensingDetails, &amp;apos;&amp;apos;)) &amp;gt; 0 
+		BEGIN
+		
+			DECLARE Ptr CURSOR FOR
+			SELECT DNIS, Licensed, ClientId FROM #tblTemp WHERE LicensingFilter = 1
+
+			DECLARE @IdDnis VARCHAR(20), @XMLData XML, @IdCurClient INT
+
+			OPEN Ptr
+			 
+			FETCH NEXT FROM Ptr
+			INTO @IdDnis, @XMLData, @IdCurClient
+			
+			
+			WHILE @@FETCH_STATUS = 0
+			BEGIN
+
+				IF @LicensingType = 1 --Region
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.Region FROM Dnis.GetRegionFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails,
+ &amp;apos;
+,&amp;apos;) AS YYY ON XXX.Region = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END		
+				END
+				ELSE IF @LicensingType = 2 --States
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.[State] FROM Dnis.GetStatesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.[State] = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END
+				END
+				ELSE IF @LicensingType = 3--AreaCode
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.AreaCode FROM Dnis.GetAreaCodesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.AreaCode = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END	
+				
+				END
+				
+				FETCH NEXT FROM Ptr
+				INTO @IdDnis, @XMLData, @IdCurClient
+			END   
+
+			CLOSE Ptr
+			DEALLOCATE Ptr
+		
+		END
+		
+		DELETE 
+			#tblTemp
+		WHERE
+			LicensingFilter = 0
+	END
+   
+
+ ------------------------------  
+ ---- Return final records  
+ ------------------------------  
+	SELECT
+		t.DNIS 
+		,t.Licensed
+		,ISNULL(t.Tag1,&amp;apos;&amp;apos;) Tag1
+		,ISNULL(t.Tag2,&amp;apos;&amp;apos;) Tag2
+		,ISNULL(t.Tag3,&amp;apos;&amp;apos;) Tag3
+		,ISNULL(t.Tag4,&amp;apos;&amp;apos;) Tag4
+		,ISNULL(t.Tag5,&amp;apos;&amp;apos;) Tag5
+		,ISNULL(t.Tag6,&amp;apos;&amp;apos;) Tag6
+		,ISNULL(t.Tag7,&amp;apos;&amp;apos;) Tag7
+		,ISNULL(t.Tag8,&amp;apos;&amp;apos;) Tag8
+		,ISNULL(t.Tag9,&amp;apos;&amp;apos;) Tag9
+		,ISNULL(t.Tag10,&amp;apos;&amp;apos;)	Tag10
+		,t.[Status]
+		,t.LastCDR
+		,t.Vendor  
+		,t.RespOrg
+		,t.ClientId
+		,t.ClientName   
+		,t.[Owner]
+		,t.LicensingType
+	FROM #tblTemp t
+	ORDER BY 
+		t. RowNumber  
+  
+ ------------------------------  
+ ---- Return Totals  
+ ------------------------------          
+	DECLARE @SqlTotals as Varchar(max)
+	SET @SqlTotals = &amp;apos;SELECT T.Total as TotalRows, 
+							CASE WHEN T.Total%&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos; = 0  
+								THEN  T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;
+								ELSE (T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;)+1 
+								END AS TotalPages  
+					From
+		(SELECT COUNT(1) AS Total FROM PaginatedQuery) T&amp;apos;
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlTotals)	
+
+	DROP TABLE #tblTemp  
+	
+END
+
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 07:37:24.766" EndTime="20121101 07:37:24.891" Lapse="124" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"ALTER PROCEDURE [Searches].[GetRapidRecallList]
+(  
+--DECLARE
+  @ClientId    INT  
+ ,@DNIS     VARCHAR(1000)
+ ,@Tags     VARCHAR(1000)  
+ ,@Status    VARCHAR(50)
+ ,@LicensingType   INT = 0  
+ ,@LicensingDetails  VARCHAR(1000)  
+ ,@Vendor    VARCHAR(100)
+ ,@PageNumber  INT = 1
+ ,@RowsPerPage  INT = 10
+ ,@SortColumn  VARCHAR(30) = &amp;apos;DNIS&amp;apos;  
+ ,@IsAscendentSort BIT = 1   
+)
+ AS  
+BEGIN  
+
+ 
+  DECLARE  
+   @SqlCommand  VARCHAR(max)  
+  ,@SortColumnReal VARCHAR(30)  
+  ,@SortType   VARCHAR(4)  
+  
+  
+ CREATE TABLE #tblTemp(
+     DNIS  VARCHAR(50)
+    ,Tag1	VARCHAR	(300)
+    ,Tag2	VARCHAR	(300)
+    ,Tag3	VARCHAR	(300)
+    ,Tag4	VARCHAR	(300)
+    ,Tag5	VARCHAR	(300)
+    ,Tag6	VARCHAR	(300)
+    ,Tag7	VARCHAR	(300)
+    ,Tag8	VARCHAR	(300)
+    ,Tag9	VARCHAR	(300)
+    ,Tag10	VARCHAR	(300)
+    ,Licensed XML
+    ,[Status] INT
+    ,LastCDR DATETIME
+    ,Vendor  VARCHAR(100)
+    ,RespOrg VARCHAR(100)
+    ,ClientId INT
+    ,ClientName VARCHAR(100)
+    ,[Owner] VARCHAR(100)
+    ,LicensingType INT
+    ,LicensingFilter INT DEFAULT(1),
+    RowNumber int
+   )
+   
+ ----------------------------  
+ -- Define column to sort  
+ ---------------------------- 
+ IF (@SortColumn IS NOT NULL) 
+	 SET  @SortColumnReal = CASE @SortColumn   
+								 WHEN &amp;apos;DNIS&amp;apos; THEN &amp;apos;n.Number&amp;apos;  
+								 WHEN &amp;apos;Campaign&amp;apos; THEN &amp;apos;dtmf.CampaignIdentifier&amp;apos;     
+								 WHEN &amp;apos;LastCDR&amp;apos; THEN &amp;apos;LastCDR&amp;apos;--&amp;apos;c.[Start]&amp;apos;  
+								 WHEN &amp;apos;Vendor&amp;apos; THEN &amp;apos;v.Name&amp;apos;  
+								 WHEN &amp;apos;RespOrg&amp;apos; THEN &amp;apos;RespOrg&amp;apos;  
+								 WHEN &amp;apos;ClientId&amp;apos; THEN &amp;apos;cl.ID&amp;apos;  
+								 WHEN &amp;apos;ClientName&amp;apos; THEN &amp;apos;cl.Name&amp;apos;  
+								 WHEN &amp;apos;Owner&amp;apos; THEN &amp;apos;Owner&amp;apos;
+								 WHEN &amp;apos;&amp;apos; THEN &amp;apos;n.Number&amp;apos; 
+								 ELSE @SortColumn 
+
+							END  
+	ELSE
+	 SET  @SortColumnReal = &amp;apos;n.Number&amp;apos; 
+								
+
+ ----------------------------  
+ -- Define Type Sort  
+ ----------------------------  
+ SET @SortType = CASE WHEN @IsAscendentSort = 1 THEN &amp;apos;ASC&amp;apos; ELSE &amp;apos;DESC&amp;apos; END  
+   
+ ----------------------------  
+ -- Define Sql query  
+ ----------------------------   
+   
+	SELECT  @SqlCommand = &amp;apos;  
+	SELECT 
+					c1.ClientID, 
+					c1.DNIS, 
+					c1.[Start], 
+					c1.VendorID
+					INTO #calls
+				FROM 
+					Calls.Calls c1,
+					(
+						SELECT 
+							c2.ClientID, 
+							c2.DNIS, 
+							MAX(c2.[Start]) AS LastDate 
+						FROM  
+							Calls.Calls c2 
+						WHERE c2.ClientId = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;
+						GROUP BY 
+							c2.ClientID, 
+							c2.DNIS
+					) AS c3
+				WHERE 
+					c1.ClientID = c3.ClientID
+					AND c1.DNIS = c3.DNIS
+					AND c1.[Start] = c3.LastDate 
+					AND c1.ClientID = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;;
+	
+	
+	WITH PaginatedQuery AS
+	(
+	SELECT DISTINCT    
+		n.Number AS DNIS
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 1) as Tag1
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 2) as Tag2
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 3) as Tag3
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 4) as Tag4
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 5) as Tag5
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 6) as Tag6
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 7) as Tag7
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 8) as Tag8
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 9) as Tag9
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 10) as Tag10
+		
+		,CASE   
+		WHEN n.IsProvisioned = 1   
+		 THEN 1   
+		 ELSE 2  
+		END AS Status  
+		,c.[Start] as LastCDR  
+		,v.Name AS Vendor     
+		,&amp;apos; + CHAR(39) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS RespOrg  
+		,cl.ID AS ClientId   
+		,cl.Name AS ClientName  
+		,&amp;apos; + CHAR(39) +
+
+ &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS Owner  
+		,ROW_NUMBER() OVER (ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  + &amp;apos;) AS RowNumber
+	FROM   
+		Dnis.Numbers n  
+		JOIN Dnis.LicensedNumbers ln ON ln.Number = n.Number  
+		JOIN Dnis.LicensingDetails ld ON ld.ClientID = ln.ClientID AND ld.Number = ln.Number  
+		JOIN #calls AS c ON c.ClientID = ld.ClientID AND c.DNIS = ld.Number		
+		JOIN Vendors.Vendors v ON v.ID = c.VendorID  
+		JOIN Clients.Clients cl ON cl.ID = ln.ClientID  
+	WHERE 1=1 &amp;apos;  
+   
+	IF (@ClientId IS NOT NULL AND @ClientId &amp;lt;&amp;gt; -1) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND ln.ClientID = &amp;apos; + CONVERT (VARCHAR (15),@ClientId)  
+	END  
+  
+	IF (@DNIS IS NOT NULL)  
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND n.Number IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@DNIS + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END   
+    
+	IF (@Tags IS NOT NULL)  BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos;AND EXISTS (SELECT TOP 1 1 
+					FROM Clients.Tags T
+					INNER JOIN Clients.TagAssignments TA ON ta.TagID = t.ID AND ta.ClientID = ln.ClientID AND ta.SourceID = n.Number
+					WHERE t.ClientId = ln.ClientId
+					AND t.Id in (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@Tags + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))
+					AND ta.AppliesSince &amp;lt;= SYSUTCDATETIME() 
+					AND (ta.AppliesUntil IS NULL OR ta.AppliesUntil &amp;gt;=  SYSUTCDATETIME() ))&amp;apos;
+	END     
+   
+	IF (@Status IS NOT NULL) 
+	BEGIN  
+		SET @SqlCommand = @SqlCommand +   
+	&amp;apos; AND CASE   
+	WHEN n.IsProvisioned = 1  
+	THEN 1 --Ready  
+	ELSE 2 --Pending  
+	END IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Status + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) +  &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END     
+    
+	IF (@Vendor IS NOT NULL) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand + &amp;apos; AND v.ID IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Vendor + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END  
+
+	--SET  
+	--	@SqlCommand = @SqlCommand + &amp;apos; GROUP BY n.Number, dtmf.CampaignIdentifier, dtmf.MediaSource, dtmf.ProductCode, n.IsProvisioned, c.[Start], v.Name, cl.ID, cl.Name&amp;apos;  
+
+	--SET 
+	--	@SqlCommand = @SqlCommand + &amp;apos; ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  
+   
+
+	SET @SqlCommand = @SqlCommand + &amp;apos;) &amp;apos;
+
+	DECLARE @SqlPagination VARCHAR(MAX)
+	SET @SqlPagination = &amp;apos;SELECT *
+	FROM PaginatedQuery
+	WHERE RowNumber BETWEEN ((&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;) - (&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;-1)) 
+	AND (&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;); &amp;apos;
+
+	--INSERT INTO #tblTemp(DNIS, Campaign, Media, Product, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner])  
+	INSERT INTO #tblTemp(DNIS,Tag1, Tag2, Tag3, Tag4, Tag5, Tag6, Tag7, Tag8, Tag9,
+	            Tag10, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner], RowNumber)  
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlPagination)
+
+	UPDATE 
+		#tblTemp
+	SET 
+		#tblTemp.Licensed = Dnis.LicensingDetails.Details,
+		#tblTemp.LicensingType = Dnis.LicensingDetails.LicensingType
+	FROM 
+		#tblTemp INNER JOIN Dnis.LicensingDetails ON #tblTemp.ClientId = Dnis.LicensingDetails.ClientID AND
+		#tblTemp.DNIS = Dnis.LicensingDetails.Number
+
+	IF @LicensingType &amp;gt; 0
+	BEGIN
+		--PRINT &amp;apos;Licensing Type: &amp;apos; + CONVERT(VARCHAR(20), @LicensingType)
+		
+		UPDATE
+			#tblTemp
+		SET
+			LicensingFilter = 0
+		WHERE
+			LicensingType &amp;lt;&amp;gt; @LicensingType
+		
+		IF LEN(ISNULL(@LicensingDetails, &amp;apos;&amp;apos;)) &amp;gt; 0 
+		BEGIN
+		
+			DECLARE Ptr CURSOR FOR
+			SELECT DNIS, Licensed, ClientId FROM #tblTemp WHERE LicensingFilter = 1
+
+			DECLARE @IdDnis VARCHAR(20), @XMLData XML, @IdCurClient INT
+
+			OPEN Ptr
+			 
+			FETCH NEXT FROM Ptr
+			INTO @IdDnis, @XMLData, @IdCurClient
+			
+			
+			WHILE @@FETCH_STATUS = 0
+			BEGIN
+
+				IF @LicensingType = 1 --Region
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.Region FROM Dnis.GetRegionFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails,
+ &amp;apos;
+,&amp;apos;) AS YYY ON XXX.Region = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END		
+				END
+				ELSE IF @LicensingType = 2 --States
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.[State] FROM Dnis.GetStatesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.[State] = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END
+				END
+				ELSE IF @LicensingType = 3--AreaCode
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.AreaCode FROM Dnis.GetAreaCodesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.AreaCode = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END	
+				
+				END
+				
+				FETCH NEXT FROM Ptr
+				INTO @IdDnis, @XMLData, @IdCurClient
+			END   
+
+			CLOSE Ptr
+			DEALLOCATE Ptr
+		
+		END
+		
+		DELETE 
+			#tblTemp
+		WHERE
+			LicensingFilter = 0
+	END
+   
+
+ ------------------------------  
+ ---- Return final records  
+ ------------------------------  
+	SELECT
+		t.DNIS 
+		,t.Licensed
+		,ISNULL(t.Tag1,&amp;apos;&amp;apos;) Tag1
+		,ISNULL(t.Tag2,&amp;apos;&amp;apos;) Tag2
+		,ISNULL(t.Tag3,&amp;apos;&amp;apos;) Tag3
+		,ISNULL(t.Tag4,&amp;apos;&amp;apos;) Tag4
+		,ISNULL(t.Tag5,&amp;apos;&amp;apos;) Tag5
+		,ISNULL(t.Tag6,&amp;apos;&amp;apos;) Tag6
+		,ISNULL(t.Tag7,&amp;apos;&amp;apos;) Tag7
+		,ISNULL(t.Tag8,&amp;apos;&amp;apos;) Tag8
+		,ISNULL(t.Tag9,&amp;apos;&amp;apos;) Tag9
+		,ISNULL(t.Tag10,&amp;apos;&amp;apos;)	Tag10
+		,t.[Status]
+		,t.LastCDR
+		,t.Vendor  
+		,t.RespOrg
+		,t.ClientId
+		,t.ClientName   
+		,t.[Owner]
+		,t.LicensingType
+	FROM #tblTemp t
+	ORDER BY 
+		t. RowNumber  
+  
+ ------------------------------  
+ ---- Return Totals  
+ ------------------------------          
+	DECLARE @SqlTotals as Varchar(max)
+	SET @SqlTotals = &amp;apos;SELECT T.Total as TotalRows, 
+							CASE WHEN T.Total%&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos; = 0  
+								THEN  T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;
+								ELSE (T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;)+1 
+								END AS TotalPages  
+					From
+		(SELECT COUNT(1) AS Total FROM PaginatedQuery) T&amp;apos;
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlTotals)	
+
+	DROP TABLE #tblTemp  
+	
+END
+
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 07:39:36.754" EndTime="20121101 07:39:36.804" Lapse="50" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"ALTER PROCEDURE [Searches].[GetRapidRecallList]
+(  
+--DECLARE
+  @ClientId    INT  
+ ,@DNIS     VARCHAR(1000)
+ ,@Tags     VARCHAR(1000)  
+ ,@Status    VARCHAR(50)
+ ,@LicensingType   INT = 0  
+ ,@LicensingDetails  VARCHAR(1000)  
+ ,@Vendor    VARCHAR(100)
+ ,@PageNumber  INT = 1
+ ,@RowsPerPage  INT = 10
+ ,@SortColumn  VARCHAR(30) = &amp;apos;DNIS&amp;apos;  
+ ,@IsAscendentSort BIT = 1   
+)
+ AS  
+BEGIN  
+
+ 
+  DECLARE  
+   @SqlCommand  VARCHAR(max)  
+  ,@SortColumnReal VARCHAR(30)  
+  ,@SortType   VARCHAR(4)  
+  
+  
+ CREATE TABLE #tblTemp(
+     DNIS  VARCHAR(50)
+    ,Tag1	VARCHAR	(300)
+    ,Tag2	VARCHAR	(300)
+    ,Tag3	VARCHAR	(300)
+    ,Tag4	VARCHAR	(300)
+    ,Tag5	VARCHAR	(300)
+    ,Tag6	VARCHAR	(300)
+    ,Tag7	VARCHAR	(300)
+    ,Tag8	VARCHAR	(300)
+    ,Tag9	VARCHAR	(300)
+    ,Tag10	VARCHAR	(300)
+    ,Licensed XML
+    ,[Status] INT
+    ,LastCDR DATETIME
+    ,Vendor  VARCHAR(100)
+    ,RespOrg VARCHAR(100)
+    ,ClientId INT
+    ,ClientName VARCHAR(100)
+    ,[Owner] VARCHAR(100)
+    ,LicensingType INT
+    ,LicensingFilter INT DEFAULT(1),
+    RowNumber int
+   )
+   
+ ----------------------------  
+ -- Define column to sort  
+ ---------------------------- 
+ IF (@SortColumn IS NOT NULL) 
+	 SET  @SortColumnReal = CASE @SortColumn   
+								 WHEN &amp;apos;DNIS&amp;apos; THEN &amp;apos;n.Number&amp;apos;  
+								 WHEN &amp;apos;Campaign&amp;apos; THEN &amp;apos;dtmf.CampaignIdentifier&amp;apos;     
+								 WHEN &amp;apos;LastCDR&amp;apos; THEN &amp;apos;LastCDR&amp;apos;--&amp;apos;c.[Start]&amp;apos;  
+								 WHEN &amp;apos;Vendor&amp;apos; THEN &amp;apos;v.Name&amp;apos;  
+								 WHEN &amp;apos;RespOrg&amp;apos; THEN &amp;apos;RespOrg&amp;apos;  
+								 WHEN &amp;apos;ClientId&amp;apos; THEN &amp;apos;cl.ID&amp;apos;  
+								 WHEN &amp;apos;ClientName&amp;apos; THEN &amp;apos;cl.Name&amp;apos;  
+								 WHEN &amp;apos;Owner&amp;apos; THEN &amp;apos;Owner&amp;apos;
+								 WHEN &amp;apos;&amp;apos; THEN &amp;apos;n.Number&amp;apos; 
+								 ELSE @SortColumn 
+
+							END  
+	ELSE
+	 SET  @SortColumnReal = &amp;apos;n.Number&amp;apos; 
+								
+
+ ----------------------------  
+ -- Define Type Sort  
+ ----------------------------  
+ SET @SortType = CASE WHEN @IsAscendentSort = 1 THEN &amp;apos;ASC&amp;apos; ELSE &amp;apos;DESC&amp;apos; END  
+   
+ ----------------------------  
+ -- Define Sql query  
+ ----------------------------   
+   
+	SELECT  @SqlCommand = &amp;apos;  
+	SELECT 
+					c1.ClientID, 
+					c1.DNIS, 
+					c1.[Start], 
+					c1.VendorID
+					INTO #calls
+				FROM 
+					Calls.Calls c1,
+					(
+						SELECT 
+							c2.ClientID, 
+							c2.DNIS, 
+							MAX(c2.[Start]) AS LastDate 
+						FROM  
+							Calls.Calls c2 
+						WHERE c2.ClientId = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;
+						GROUP BY 
+							c2.ClientID, 
+							c2.DNIS
+					) AS c3
+				WHERE 
+					c1.ClientID = c3.ClientID
+					AND c1.DNIS = c3.DNIS
+					AND c1.[Start] = c3.LastDate 
+					AND c1.ClientID = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;;
+	
+	
+	WITH PaginatedQuery AS
+	(
+	SELECT DISTINCT    
+		n.Number AS DNIS
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 1) as Tag1
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 2) as Tag2
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 3) as Tag3
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 4) as Tag4
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 5) as Tag5
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 6) as Tag6
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 7) as Tag7
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 8) as Tag8
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 9) as Tag9
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 10) as Tag10
+		
+		,CASE   
+		WHEN n.IsProvisioned = 1   
+		 THEN 1   
+		 ELSE 2  
+		END AS Status  
+		,c.[Start] as LastCDR  
+		,v.Name AS Vendor     
+		,&amp;apos; + CHAR(39) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS RespOrg  
+		,cl.ID AS ClientId   
+		,cl.Name AS ClientName  
+		,&amp;apos; + CHAR(39) +
+
+ &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS Owner  
+		,ROW_NUMBER() OVER (ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  + &amp;apos;) AS RowNumber
+	FROM   
+		Dnis.Numbers n  
+		JOIN Dnis.LicensedNumbers ln ON ln.Number = n.Number  
+		JOIN Dnis.LicensingDetails ld ON ld.ClientID = ln.ClientID AND ld.Number = ln.Number  
+		JOIN #calls AS c ON c.ClientID = ld.ClientID AND c.DNIS = ld.Number		
+		JOIN Vendors.Vendors v ON v.ID = c.VendorID  
+		JOIN Clients.Clients cl ON cl.ID = ln.ClientID  
+	WHERE 1=1 &amp;apos;  
+   
+	IF (@ClientId IS NOT NULL AND @ClientId &amp;lt;&amp;gt; -1) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND ln.ClientID = &amp;apos; + CONVERT (VARCHAR (15),@ClientId)  
+	END  
+  
+	IF (@DNIS IS NOT NULL)  
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND n.Number IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@DNIS + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END   
+    
+	IF (@Tags IS NOT NULL)  BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos;AND EXISTS (SELECT TOP 1 1 
+					FROM Clients.Tags T
+					INNER JOIN Clients.TagAssignments TA ON ta.TagID = t.ID AND ta.ClientID = ln.ClientID AND ta.SourceID = n.Number
+					WHERE t.ClientId = ln.ClientId
+					AND t.Id in (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@Tags + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))
+					AND ta.AppliesSince &amp;lt;= SYSUTCDATETIME() 
+					AND (ta.AppliesUntil IS NULL OR ta.AppliesUntil &amp;gt;=  SYSUTCDATETIME() ))&amp;apos;
+	END     
+   
+	IF (@Status IS NOT NULL) 
+	BEGIN  
+		SET @SqlCommand = @SqlCommand +   
+	&amp;apos; AND CASE   
+	WHEN n.IsProvisioned = 1  
+	THEN 1 --Ready  
+	ELSE 2 --Pending  
+	END IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Status + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) +  &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END     
+    
+	IF (@Vendor IS NOT NULL) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand + &amp;apos; AND v.ID IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Vendor + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END  
+
+	--SET  
+	--	@SqlCommand = @SqlCommand + &amp;apos; GROUP BY n.Number, dtmf.CampaignIdentifier, dtmf.MediaSource, dtmf.ProductCode, n.IsProvisioned, c.[Start], v.Name, cl.ID, cl.Name&amp;apos;  
+
+	--SET 
+	--	@SqlCommand = @SqlCommand + &amp;apos; ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  
+   
+
+	SET @SqlCommand = @SqlCommand + &amp;apos;) &amp;apos;
+
+	DECLARE @SqlPagination VARCHAR(MAX)
+	SET @SqlPagination = &amp;apos;SELECT *
+	FROM PaginatedQuery
+	WHERE RowNumber BETWEEN ((&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;) - (&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;-1)) 
+	AND (&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;); &amp;apos;
+
+	--INSERT INTO #tblTemp(DNIS, Campaign, Media, Product, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner])  
+	INSERT INTO #tblTemp(DNIS,Tag1, Tag2, Tag3, Tag4, Tag5, Tag6, Tag7, Tag8, Tag9,
+	            Tag10, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner], RowNumber)  
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlPagination)
+
+	UPDATE 
+		#tblTemp
+	SET 
+		#tblTemp.Licensed = Dnis.LicensingDetails.Details,
+		#tblTemp.LicensingType = Dnis.LicensingDetails.LicensingType
+	FROM 
+		#tblTemp INNER JOIN Dnis.LicensingDetails ON #tblTemp.ClientId = Dnis.LicensingDetails.ClientID AND
+		#tblTemp.DNIS = Dnis.LicensingDetails.Number
+
+	IF @LicensingType &amp;gt; 0
+	BEGIN
+		--PRINT &amp;apos;Licensing Type: &amp;apos; + CONVERT(VARCHAR(20), @LicensingType)
+		
+		UPDATE
+			#tblTemp
+		SET
+			LicensingFilter = 0
+		WHERE
+			LicensingType &amp;lt;&amp;gt; @LicensingType
+		
+		IF LEN(ISNULL(@LicensingDetails, &amp;apos;&amp;apos;)) &amp;gt; 0 
+		BEGIN
+		
+			DECLARE Ptr CURSOR FOR
+			SELECT DNIS, Licensed, ClientId FROM #tblTemp WHERE LicensingFilter = 1
+
+			DECLARE @IdDnis VARCHAR(20), @XMLData XML, @IdCurClient INT
+
+			OPEN Ptr
+			 
+			FETCH NEXT FROM Ptr
+			INTO @IdDnis, @XMLData, @IdCurClient
+			
+			
+			WHILE @@FETCH_STATUS = 0
+			BEGIN
+
+				IF @LicensingType = 1 --Region
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.Region FROM Dnis.GetRegionFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails,
+ &amp;apos;
+,&amp;apos;) AS YYY ON XXX.Region = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END		
+				END
+				ELSE IF @LicensingType = 2 --States
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.[State] FROM Dnis.GetStatesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.[State] = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END
+				END
+				ELSE IF @LicensingType = 3--AreaCode
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.AreaCode FROM Dnis.GetAreaCodesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.AreaCode = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END	
+				
+				END
+				
+				FETCH NEXT FROM Ptr
+				INTO @IdDnis, @XMLData, @IdCurClient
+			END   
+
+			CLOSE Ptr
+			DEALLOCATE Ptr
+		
+		END
+		
+		DELETE 
+			#tblTemp
+		WHERE
+			LicensingFilter = 0
+	END
+   
+
+ ------------------------------  
+ ---- Return final records  
+ ------------------------------  
+	SELECT
+		t.DNIS 
+		,t.Licensed
+		,ISNULL(t.Tag1,&amp;apos;&amp;apos;) Tag1
+		,ISNULL(t.Tag2,&amp;apos;&amp;apos;) Tag2
+		,ISNULL(t.Tag3,&amp;apos;&amp;apos;) Tag3
+		,ISNULL(t.Tag4,&amp;apos;&amp;apos;) Tag4
+		,ISNULL(t.Tag5,&amp;apos;&amp;apos;) Tag5
+		,ISNULL(t.Tag6,&amp;apos;&amp;apos;) Tag6
+		,ISNULL(t.Tag7,&amp;apos;&amp;apos;) Tag7
+		,ISNULL(t.Tag8,&amp;apos;&amp;apos;) Tag8
+		,ISNULL(t.Tag9,&amp;apos;&amp;apos;) Tag9
+		,ISNULL(t.Tag10,&amp;apos;&amp;apos;)	Tag10
+		,t.[Status]
+		,t.LastCDR
+		,t.Vendor  
+		,t.RespOrg
+		,t.ClientId
+		,t.ClientName   
+		,t.[Owner]
+		,t.LicensingType
+	FROM #tblTemp t
+	ORDER BY 
+		t. RowNumber  
+  
+ ------------------------------  
+ ---- Return Totals  
+ ------------------------------          
+	DECLARE @SqlTotals as Varchar(max)
+	SET @SqlTotals = &amp;apos;SELECT T.Total as TotalRows, 
+							CASE WHEN T.Total%&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos; = 0  
+								THEN  T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;
+								ELSE (T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;)+1 
+								END AS TotalPages  
+					From
+		(SELECT COUNT(1) AS Total FROM PaginatedQuery) T&amp;apos;
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlTotals)	
+
+	DROP TABLE #tblTemp  
+	
+END
+
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 08:28:44.814" EndTime="20121101 08:28:45.469" Lapse="655" Correct="1" RecordsAffected="0" RecordsRead="3" GridCount="1" />
+		<Code>"select * from syscomments where id = &amp;apos;779149821&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 08:29:13.398" EndTime="20121101 08:29:13.648" Lapse="249" Correct="1" RecordsAffected="0" RecordsRead="3" GridCount="1" />
+		<Code>"select id, number, status, text from syscomments where id = &amp;apos;779149821&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 08:31:12.848" EndTime="20121101 08:31:16.031" Lapse="3182" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"sp_help &amp;apos;GetRapidRecallList&amp;apos;"</Code>
+		<Error Line="66" Message="The object &amp;apos;GetRapidRecallList&amp;apos; does not exist in database &amp;apos;Dial800_V2&amp;apos; or is invalid for this operation."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 08:31:27.834" EndTime="20121101 08:31:28.473" Lapse="639" Correct="1" RecordsAffected="0" RecordsRead="12" GridCount="2" />
+		<Code>"sp_help &amp;apos;Searches.GetRapidRecallList&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 08:33:26.414" EndTime="20121101 08:33:28.321" Lapse="1907" Correct="1" RecordsAffected="0" RecordsRead="353" GridCount="1" />
+		<Code>"sp_helptext @objname = &amp;apos;Searches.GetRapidRecallList&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 08:33:43.390" EndTime="20121101 08:33:43.573" Lapse="183" Correct="1" RecordsAffected="0" RecordsRead="353" GridCount="1" />
+		<Code>"sp_helptext @objname = &amp;apos;Searches.GetRapidRecallList&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 08:35:09.375" EndTime="20121101 08:35:09.615" Lapse="240" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from sys.sql_modules where id = 779149821"</Code>
+		<Error Line="1" Message="Invalid column name &amp;apos;id&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 08:35:18.267" EndTime="20121101 08:35:18.845" Lapse="577" Correct="1" RecordsAffected="0" RecordsRead="10" GridCount="1" />
+		<Code>"select top 10 * from sys.sql_modules "</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 08:35:30.560" EndTime="20121101 08:35:30.779" Lapse="218" Correct="1" RecordsAffected="0" RecordsRead="1" GridCount="1" />
+		<Code>"select top 10 * from sys.sql_modules where object_id = 779149821"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 08:37:18.697" EndTime="20121101 08:37:18.822" Lapse="124" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"ALTER PROCEDURE [Searches].[GetRapidRecallList]
+(  
+--DECLARE
+  @ClientId    INT  
+ ,@DNIS     VARCHAR(1000)
+ ,@Tags     VARCHAR(1000)  
+ ,@Status    VARCHAR(50)
+ ,@LicensingType   INT = 0  
+ ,@LicensingDetails  VARCHAR(1000)  
+ ,@Vendor    VARCHAR(100)
+ ,@PageNumber  INT = 1
+ ,@RowsPerPage  INT = 10
+ ,@SortColumn  VARCHAR(30) = &amp;apos;DNIS&amp;apos;  
+ ,@IsAscendentSort BIT = 1   
+)
+ AS  
+BEGIN  
+
+ 
+  DECLARE  
+   @SqlCommand  VARCHAR(max)  
+  ,@SortColumnReal VARCHAR(30)  
+  ,@SortType   VARCHAR(4)  
+  
+  
+ CREATE TABLE #tblTemp(
+     DNIS  VARCHAR(50)
+    ,Tag1	VARCHAR	(300)
+    ,Tag2	VARCHAR	(300)
+    ,Tag3	VARCHAR	(300)
+    ,Tag4	VARCHAR	(300)
+    ,Tag5	VARCHAR	(300)
+    ,Tag6	VARCHAR	(300)
+    ,Tag7	VARCHAR	(300)
+    ,Tag8	VARCHAR	(300)
+    ,Tag9	VARCHAR	(300)
+    ,Tag10	VARCHAR	(300)
+    ,Licensed XML
+    ,[Status] INT
+    ,LastCDR DATETIME
+    ,Vendor  VARCHAR(100)
+    ,RespOrg VARCHAR(100)
+    ,ClientId INT
+    ,ClientName VARCHAR(100)
+    ,[Owner] VARCHAR(100)
+    ,LicensingType INT
+    ,LicensingFilter INT DEFAULT(1),
+    RowNumber int
+   )
+   
+ ----------------------------  
+ -- Define column to sort  
+ ---------------------------- 
+ IF (@SortColumn IS NOT NULL) 
+	 SET  @SortColumnReal = CASE @SortColumn   
+								 WHEN &amp;apos;DNIS&amp;apos; THEN &amp;apos;n.Number&amp;apos;  
+								 WHEN &amp;apos;Campaign&amp;apos; THEN &amp;apos;dtmf.CampaignIdentifier&amp;apos;     
+								 WHEN &amp;apos;LastCDR&amp;apos; THEN &amp;apos;LastCDR&amp;apos;--&amp;apos;c.[Start]&amp;apos;  
+								 WHEN &amp;apos;Vendor&amp;apos; THEN &amp;apos;v.Name&amp;apos;  
+								 WHEN &amp;apos;RespOrg&amp;apos; THEN &amp;apos;RespOrg&amp;apos;  
+								 WHEN &amp;apos;ClientId&amp;apos; THEN &amp;apos;cl.ID&amp;apos;  
+								 WHEN &amp;apos;ClientName&amp;apos; THEN &amp;apos;cl.Name&amp;apos;  
+								 WHEN &amp;apos;Owner&amp;apos; THEN &amp;apos;Owner&amp;apos;
+								 WHEN &amp;apos;&amp;apos; THEN &amp;apos;n.Number&amp;apos; 
+								 ELSE @SortColumn 
+
+							END  
+	ELSE
+	 SET  @SortColumnReal = &amp;apos;n.Number&amp;apos; 
+								
+
+ ----------------------------  
+ -- Define Type Sort  
+ ----------------------------  
+ SET @SortType = CASE WHEN @IsAscendentSort = 1 THEN &amp;apos;ASC&amp;apos; ELSE &amp;apos;DESC&amp;apos; END  
+   
+ ----------------------------  
+ -- Define Sql query  
+ ----------------------------   
+   
+	SELECT  @SqlCommand = &amp;apos;  
+	SELECT 
+					c1.ClientID, 
+					c1.DNIS, 
+					c1.[Start], 
+					c1.VendorID
+					INTO #calls
+				FROM 
+					Calls.Calls c1,
+					(
+						SELECT 
+							c2.ClientID, 
+							c2.DNIS, 
+							MAX(c2.[Start]) AS LastDate 
+						FROM  
+							Calls.Calls c2 
+						WHERE c2.ClientId = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;
+						GROUP BY 
+							c2.ClientID, 
+							c2.DNIS
+					) AS c3
+				WHERE 
+					c1.ClientID = c3.ClientID
+					AND c1.DNIS = c3.DNIS
+					AND c1.[Start] = c3.LastDate 
+					AND c1.ClientID = &amp;apos; + cast(@ClientId as varchar) + &amp;apos;;
+	
+	
+	WITH PaginatedQuery AS
+	(
+	SELECT DISTINCT    
+		n.Number AS DNIS
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 1) as Tag1
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 2) as Tag2
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 3) as Tag3
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 4) as Tag4
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 5) as Tag5
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 6) as Tag6
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 7) as Tag7
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 8) as Tag8
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 9) as Tag9
+		,[Searches].[GetTagValueOfDnis] (cl.ID,&amp;apos; + CHAR(39) + &amp;apos;DNIS&amp;apos; + CHAR(39) + &amp;apos;, n.Number, 10) as Tag10
+		
+		,CASE   
+		WHEN n.IsProvisioned = 1   
+		 THEN 1   
+		 ELSE 2  
+		END AS Status  
+		,c.[Start] as LastCDR  
+		,v.Name AS Vendor     
+		,&amp;apos; + CHAR(39) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS RespOrg  
+		,cl.ID AS ClientId   
+		,cl.Name AS ClientName  
+		,&amp;apos; + CHAR(39) + &amp;apos;&amp;apos; + CHAR(39) + &amp;apos; AS Owner  
+		,ROW_NUMBER() OVER (ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  + &amp;apos;) AS RowNumber
+	FROM   
+		Dnis.Numbers n  
+		JOIN Dnis.LicensedNumbers ln ON ln.Number = n.Number  
+		JOIN Dnis.LicensingDetails ld ON ld.ClientID = ln.ClientID AND ld.Number = ln.Number  
+		JOIN #calls AS c ON c.ClientID = ld.ClientID AND c.DNIS = ld.Number		
+		JOIN Vendors.Vendors v ON v.ID = c.VendorID  
+		JOIN Clients.Clients cl ON cl.ID = ln.ClientID  
+	WHERE 1=1 &amp;apos;  
+   
+	IF (@ClientId IS NOT NULL AND @ClientId &amp;lt;&amp;gt; -1) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND ln.ClientID = &amp;apos; + CONVERT (VARCHAR (15),@ClientId)  
+	END  
+  
+	IF (@DNIS IS NOT NULL)  
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos; AND n.Number IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@DNIS + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END   
+    
+	IF (@Tags IS NOT NULL)  BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand +   
+			&amp;apos;AND EXISTS (SELECT TOP 1 1 
+					FROM Clients.Tags T
+					INNER JOIN Clients.TagAssignments TA ON ta.TagID = t.ID AND ta.ClientID = ln.ClientID AND ta.SourceID = n.Number
+					WHERE t.ClientId = ln.ClientId
+					AND t.Id in (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) +@Tags + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))
+					AND ta.AppliesSince &amp;lt;= SYSUTCDATETIME() 
+					AND (ta.AppliesUntil IS NULL OR ta.AppliesUntil &amp;gt;=  SYSUTCDATETIME() ))&amp;apos;
+	END     
+   
+	IF (@Status IS NOT NULL) 
+	BEGIN  
+		SET @SqlCommand = @SqlCommand +   
+	&amp;apos; AND CASE   
+	WHEN n.IsProvisioned = 1  
+	THEN 1 --Ready  
+	ELSE 2 --Pending  
+	END IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Status + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) +  &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END     
+    
+	IF (@Vendor IS NOT NULL) 
+	BEGIN  
+		SET 
+			@SqlCommand = @SqlCommand + &amp;apos; AND v.ID IN (SELECT * FROM dbo.fnSplit(&amp;apos;+ CHAR(39) + @Vendor + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;,&amp;apos; + CHAR(39) + &amp;apos;))&amp;apos;  
+	END  
+
+	--SET  
+	--	@SqlCommand = @SqlCommand + &amp;apos; GROUP BY n.Number, dtmf.CampaignIdentifier, dtmf.MediaSource, dtmf.ProductCode, n.IsProvisioned, c.[Start], v.Name, cl.ID, cl.Name&amp;apos;  
+
+	--SET 
+	--	@SqlCommand = @SqlCommand + &amp;apos; ORDER BY &amp;apos; + @SortColumnReal + &amp;apos; &amp;apos; + @SortType  
+   
+
+	SET @SqlCommand = @SqlCommand + &amp;apos;) &amp;apos;
+
+	DECLARE @SqlPagination VARCHAR(MAX)
+	SET @SqlPagination = &amp;apos;SELECT *
+	FROM PaginatedQuery
+	WHERE RowNumber BETWEEN ((&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;) - (&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;-1)) 
+	AND (&amp;apos; + cast(@PageNumber as varchar) + &amp;apos; * &amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;); &amp;apos;
+
+	--INSERT INTO #tblTemp(DNIS, Campaign, Media, Product, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner])  
+	INSERT INTO #tblTemp(DNIS,Tag1, Tag2, Tag3, Tag4, Tag5, Tag6, Tag7, Tag8, Tag9,
+	            Tag10, [Status],LastCDR, Vendor, RespOrg, ClientId, ClientName, [Owner], RowNumber)  
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlPagination)
+
+	UPDATE 
+		#tblTemp
+	SET 
+		#tblTemp.Licensed = Dnis.LicensingDetails.Details,
+		#tblTemp.LicensingType = Dnis.LicensingDetails.LicensingType
+	FROM 
+		#tblTemp INNER JOIN Dnis.LicensingDetails ON #tblTemp.ClientId = Dnis.LicensingDetails.ClientID AND
+		#tblTemp.DNIS = Dnis.LicensingDetails.Number
+
+	IF @LicensingType &amp;gt; 0
+	BEGIN
+		--PRINT &amp;apos;Licensing Type: &amp;apos; + CONVERT(VARCHAR(20), @LicensingType)
+		
+		UPDATE
+			#tblTemp
+		SET
+			LicensingFilter = 0
+		WHERE
+			LicensingType &amp;lt;&amp;gt; @LicensingType
+		
+		IF LEN(ISNULL(@LicensingDetails, &amp;apos;&amp;apos;)) &amp;gt; 0 
+		BEGIN
+		
+			DECLARE Ptr CURSOR FOR
+			SELECT DNIS, Licensed, ClientId FROM #tblTemp WHERE LicensingFilter = 1
+
+			DECLARE @IdDnis VARCHAR(20), @XMLData XML, @IdCurClient INT
+
+			OPEN Ptr
+			 
+			FETCH NEXT FROM Ptr
+			INTO @IdDnis, @XMLData, @IdCurClient
+			
+			
+			WHILE @@FETCH_STATUS = 0
+			BEGIN
+
+				IF @LicensingType = 1 --Region
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.Region FROM Dnis.GetRegionFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails,&amp;apos;,&amp;apos;) AS YYY ON XXX.Region = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END		
+				END
+				ELSE IF @LicensingType = 2 --States
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.[State] FROM Dnis.GetStatesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.[State] = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END
+				END
+				ELSE IF @LicensingType = 3--AreaCode
+				BEGIN
+					IF NOT EXISTS(SELECT XXX.AreaCode FROM Dnis.GetAreaCodesFromXml(@XMLData) AS XXX INNER JOIN Util.SplitString(@LicensingDetails, &amp;apos;,&amp;apos;) AS YYY ON XXX.AreaCode = YYY.Item)
+					BEGIN
+						--PRINT &amp;apos;Deleted!&amp;apos;					
+						UPDATE
+							#tblTemp
+						SET
+							LicensingFilter = 0
+						WHERE
+							DNIS = @IdDnis
+							AND ClientId = @IdCurClient
+					END	
+				
+				END
+				
+				FETCH NEXT FROM Ptr
+				INTO @IdDnis, @XMLData, @IdCurClient
+			END   
+
+			CLOSE Ptr
+			DEALLOCATE Ptr
+		
+		END
+		
+		DELETE 
+			#tblTemp
+		WHERE
+			LicensingFilter = 0
+	END
+   
+
+ ------------------------------  
+ ---- Return final records  
+ ------------------------------  
+	SELECT
+		t.DNIS 
+		,t.Licensed
+		,ISNULL(t.Tag1,&amp;apos;&amp;apos;) Tag1
+		,ISNULL(t.Tag2,&amp;apos;&amp;apos;) Tag2
+		,ISNULL(t.Tag3,&amp;apos;&amp;apos;) Tag3
+		,ISNULL(t.Tag4,&amp;apos;&amp;apos;) Tag4
+		,ISNULL(t.Tag5,&amp;apos;&amp;apos;) Tag5
+		,ISNULL(t.Tag6,&amp;apos;&amp;apos;) Tag6
+		,ISNULL(t.Tag7,&amp;apos;&amp;apos;) Tag7
+		,ISNULL(t.Tag8,&amp;apos;&amp;apos;) Tag8
+		,ISNULL(t.Tag9,&amp;apos;&amp;apos;) Tag9
+		,ISNULL(t.Tag10,&amp;apos;&amp;apos;)	Tag10
+		,t.[Status]
+		,t.LastCDR
+		,t.Vendor  
+		,t.RespOrg
+		,t.ClientId
+		,t.ClientName   
+		,t.[Owner]
+		,t.LicensingType
+	FROM #tblTemp t
+	ORDER BY 
+		t. RowNumber  
+  
+ ------------------------------  
+ ---- Return Totals  
+ ------------------------------          
+	DECLARE @SqlTotals as Varchar(max)
+	SET @SqlTotals = &amp;apos;SELECT T.Total as TotalRows, 
+							CASE WHEN T.Total%&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos; = 0  
+								THEN  T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;
+								ELSE (T.Total/&amp;apos; + cast(@RowsPerPage as varchar) + &amp;apos;)+1 
+								END AS TotalPages  
+					From
+		(SELECT COUNT(1) AS Total FROM PaginatedQuery) T&amp;apos;
+	EXEC (@SqlCommand + &amp;apos; &amp;apos; + @SqlTotals)	
+
+	DROP TABLE #tblTemp  
+	
+END"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 08:37:24.469" EndTime="20121101 08:37:24.703" Lapse="234" Correct="1" RecordsAffected="0" RecordsRead="1" GridCount="1" />
+		<Code>"select top 10 * from sys.sql_modules where object_id = 779149821"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121101 08:40:18.102" EndTime="20121101 08:40:18.477" Lapse="374" Correct="1" RecordsAffected="0" RecordsRead="486" GridCount="1" />
+		<Code>"select * from Dnis.LicensedNumbers"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121105 10:27:55.840" EndTime="20121105 10:27:56.495" Lapse="655" Correct="1" RecordsAffected="0" RecordsRead="86" GridCount="1" />
+		<Code>"select * from Users.AccessToClients"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121107 12:12:35.686" EndTime="20121107 12:12:36.122" Lapse="436" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select top 100 from Calls.AlertSent Als where Als.CallId &amp;gt; 1"</Code>
+		<Error Line="1" Message="Incorrect syntax near the keyword &amp;apos;from&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121107 12:17:27.645" EndTime="20121107 12:17:27.801" Lapse="156" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from"</Code>
+		<Error Line="1" Message="Incorrect syntax near &amp;apos;from&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121107 12:17:51.664" EndTime="20121107 12:17:52.069" Lapse="405" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="1" />
+		<Code>"select * from Calls.CallerNotes"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121107 12:18:00.602" EndTime="20121107 12:18:01.304" Lapse="702" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select * from Calls.Calls"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121107 12:18:32.091" EndTime="20121107 12:18:32.341" Lapse="249" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"select * from Util.CallHasTags (1/*int*/, &amp;apos;1,2,3&amp;apos;/*varchar*/)"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;Util.CallHasTags&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 09:07:04.966" EndTime="20121107 09:07:05.147" Lapse="181" Correct="1" RecordsAffected="0" RecordsRead="68" GridCount="1" />
+		<Code>"select 
+	* 
+from 
+	Dnis.Catalog_States"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 09:07:38.896" EndTime="20121107 09:07:38.981" Lapse="84" Correct="1" RecordsAffected="0" RecordsRead="68" GridCount="2" />
+		<Code>"select 
+	* 
+from 
+	Dnis.Catalog_States
+	
+	
+	select * from Dnis.Catalog_AreaCode as Ac WHERE Ac.State = 10"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 09:07:56.199" EndTime="20121107 09:07:56.256" Lapse="56" Correct="1" RecordsAffected="0" RecordsRead="67" GridCount="1" />
+		<Code>"select distinct Ac.State from Dnis.Catalog_AreaCode as Ac"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 09:16:41.328" EndTime="20121107 09:16:41.705" Lapse="376" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"BEGIN
+	SELECT * FROM Calls.Calls
+END"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 09:17:19.765" EndTime="20121107 09:17:19.853" Lapse="87" Correct="1" RecordsAffected="0" RecordsRead="100" GridCount="1" />
+		<Code>"SELECT TOP 100 * FROM dnis.Numbers"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 09:17:26.836" EndTime="20121107 09:17:27.143" Lapse="307" Correct="1" RecordsAffected="0" RecordsRead="1100" GridCount="2" />
+		<Code>"BEGIN
+	SELECT * FROM Calls.Calls
+	SELECT TOP 100 * FROM dnis.Numbers
+END"</Code>
+	</Query>
 </QueriesRoot>

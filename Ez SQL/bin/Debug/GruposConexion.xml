@@ -2,7 +2,12 @@
 <Groups>
   <Group Name="Locals">
     <Connections>
-      <Connection Name="Dial 800 V2" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=Dial800_V2;Integrated Security=True;Persist Security Info=True" />
+      <Connection Name="Dial 800 V2 Work" ConnectionString="Data Source=.\;Initial Catalog=Dial800_V2;Integrated Security=True;Persist Security Info=True" />
+    </Connections>
+  </Group>
+  <Group Name="Remote">
+    <Connections>
+      <Connection Name="Dial 800 V2 @ MtySql V02" ConnectionString="Data Source=MTYSQL-V02;Initial Catalog=Dial800_V2;Integrated Security=False;Persist Security Info=True;User ID=dial800_user;Password=d1@l800" />
     </Connections>
   </Group>
 </Groups>

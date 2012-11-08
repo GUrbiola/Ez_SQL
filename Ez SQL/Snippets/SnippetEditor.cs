@@ -58,6 +58,7 @@ namespace Ez_SQL.Snippets
             TxtDescription.Text = "";
             TxtShortcut.Text = "";
             ScriptText.Text = "";
+            ScriptText.Refresh();
 
             if(Directory.Exists(String.Format("{0}\\Snippets", MainForm.ExecDir)))
             {
@@ -96,6 +97,7 @@ namespace Ez_SQL.Snippets
                 TxtDescription.Text = SelectedSnippet.Description;
                 TxtShortcut.Text = SelectedSnippet.ShortCut;
                 ScriptText.Text = SelectedSnippet.Script;
+                ScriptText.Refresh();
             }
             else 
             {
@@ -103,6 +105,7 @@ namespace Ez_SQL.Snippets
                 TxtDescription.Text = "";
                 TxtShortcut.Text = "";
                 ScriptText.Text = "";
+                ScriptText.Refresh();
             }
         }
         private void BtnSave_Click(object sender, EventArgs e)
