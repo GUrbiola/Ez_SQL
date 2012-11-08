@@ -3,3 +3,10 @@ _ReSharper.Ez SQL
 
 # mstest test results
 TestResults
+Ez SQL.suo
+Ez SQL/bin/Debug/Ez SQL.exe
+Ez SQL/bin/Debug/Ez SQL.pdb
+Ez SQL/bin/Debug/QueriesLog/LogFile.xml
+Ez SQL/obj/x86/Debug/Ez SQL.exe
+Ez SQL/obj/x86/Debug/Ez SQL.pdb
+Ez SQL/obj/x86/Debug/ResolveAssemblyReference.cache
