@@ -12,7 +12,6 @@ namespace Ez_SQL.Custom_Controls
     public delegate void OnTextSecured(string Text);
     public partial class AnimatedWaitTextBox : UserControl
     {
-        private Image IImage;
         int CurPos, CurImage;
         private int _WaitInterval;
         public event OnTextWaitEnded TextWaitEnded;
@@ -34,15 +33,16 @@ namespace Ez_SQL.Custom_Controls
             get { return _WaitInterval; }
             set { _WaitInterval = value; }
         }
-        public Image ImagenInicial
+        private Image _defaultImage;
+        public Image DefaultImage
         {
            get
             {
-                return IImage;
+                return _defaultImage;
             }
            set
             {
-                IImage = value;
+                _defaultImage = value;
                 Img.Image = value;
             }
         }
@@ -62,7 +62,7 @@ namespace Ez_SQL.Custom_Controls
                 if (TextWaitEnded != null)
                     TextWaitEnded(Edit.Text, CurPos);
                 CurImage = 0;
-                Img.Image = IImage;
+                Img.Image = _defaultImage;
             }
             else
             {
@@ -81,7 +81,7 @@ namespace Ez_SQL.Custom_Controls
                 Step.Enabled = false;
                 if (TextWaitEnded != null)
                     TextWaitEnded(Edit.Text, CurPos);
-                Img.Image = IImage;
+                Img.Image = _defaultImage;
             }
         }
         public override string Text

@@ -80,7 +80,7 @@ namespace Ez_SQL.DataBaseObjects
                 ToWrite = String.Format("{0}.{1} (", Schema, Name);
 
             foreach (ISqlChild Ch in Childs)
-                ToWrite += String.Format("{0}/*{1}*/, ", Ch.Name, Ch.Type, Environment.NewLine);
+                ToWrite += String.Format("{0} /*{1}*/, ", Ch.Name, Ch.Type, Environment.NewLine);
             if (ToWrite.EndsWith(", "))
                 ToWrite = ToWrite.Substring(0, ToWrite.Length - 2);
 

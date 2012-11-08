@@ -12,6 +12,7 @@ using System.IO;
 using ICSharpCode.TextEditor;
 using Ez_SQL.QueryLog;
 using System.Collections;
+using Ez_SQL.Snippets;
 
 namespace Ez_SQL.MultiQueryForm
 {
@@ -55,7 +56,7 @@ namespace Ez_SQL.MultiQueryForm
                 Executor.Initialize(DataProvider.ConnectionString);
             Executor.FinishExec += new ProcessingQuery(Conx_FinishExec);
             Executor.StartExec += new ProcessingQuery(Conx_StartExec);
-            
+
             ServerTxt.Text = DataProvider.Server;
             BDTxt.Text = DataProvider.DataBase;
             ConnectionGroup = Parent.ConxGroup;
@@ -125,7 +126,7 @@ namespace Ez_SQL.MultiQueryForm
             //        Query.InsertString(X.SelectedObject);
             //        return true;
             //    }
-                
+
             //}
             return false;
         }
@@ -653,7 +654,7 @@ namespace Ez_SQL.MultiQueryForm
         }
         #endregion
         #region Code to refresh the folding, it will execute a second when the "last change" has been made a second ago
-        private int ToRefresh=5;
+        private int ToRefresh = 5;
         void Query_DocumentChanged(object sender, DocumentEventArgs e)
         {
             ToRefresh = 5;
@@ -769,7 +770,7 @@ namespace Ez_SQL.MultiQueryForm
             TxtAft = Query.Document.GetText(CurPos, Query.Text.Length - CurPos);
 
 
-           #region Codigo Anterior para Intellisense, codigo propio no de ICSharp.TextEditor
+            #region Codigo Anterior para Intellisense, codigo propio no de ICSharp.TextEditor
             if (IsIntellisenseOn)
             {
                 #region Codigo para el Manejo de Teclas si el "IntelliSense" esta Activado
@@ -880,13 +881,13 @@ namespace Ez_SQL.MultiQueryForm
                         else
                             return NoEcho;
                 }
-                
+
                 #endregion
             }
             else
             {
                 #region Switch para saber que se va a mostrar cuando se quiera hacer intellisense
-                
+
                 switch (keyData)
                 {
                     case Keys.Control | Keys.OemPeriod://ctrl + . , Show autocomplete
@@ -905,47 +906,58 @@ namespace Ez_SQL.MultiQueryForm
                         ShowIntellisense(CurrentWord, GetAliasesAndAuxiliarTables(Query.Text), FilteringType.Smart);
                         return NoEcho;
                     case Keys.Space:
-                        //string WordBehind = GetWordAtOffset();
-                        //int auxoffset2 = Query.Document.PositionToOffset(Query.ActiveTextAreaControl.Caret.Position);
-                        //if (WordBehind.Equals("FROM", StringComparison.CurrentCultureIgnoreCase) || WordBehind.Equals("JOIN", StringComparison.CurrentCultureIgnoreCase))
-                        //{//si es un FROM o un ON sacar la lista de tablas y vistas
-                        //    Query.Document.Insert(auxoffset2, " ");
-                        //    Query.ActiveTextAreaControl.Caret.Column += 1;
-                        //    auxoffset2++;
-                        //    CurOffset = auxoffset2;
-
-                        //    CurrentFilter = FilteringTypeValues.Fields;
-                        //    FilterString = "";
-                        //    FireAt = CurOffset;
-                        //    ShowIntellisense();
-                        //    return true;
-                        //}
-                        //else if (WordBehind.Equals("DELETE", StringComparison.CurrentCultureIgnoreCase) || WordBehind.Equals("UPDATE", StringComparison.CurrentCultureIgnoreCase) || WordBehind.Equals("INTO", StringComparison.CurrentCultureIgnoreCase))
-                        //{//si es un DELETE, un UPDATE o un INTO sacar la lista de tablas
-                        //    Query.Document.Insert(auxoffset2, " ");
-                        //    Query.ActiveTextAreaControl.Caret.Column += 1;
-                        //    auxoffset2++;
-                        //    CurOffset = auxoffset2;
-
-                        //    CurrentFilter = FilteringTypeValues.Tables;
-                        //    FilterString = "";
-                        //    FireAt = CurOffset;
-                        //    ShowIntellisense();
-                        //    return true;
-                        //}
-                        //else if (WordBehind.Equals("EXEC", StringComparison.CurrentCultureIgnoreCase) || WordBehind.Equals("EXECUTE", StringComparison.CurrentCultureIgnoreCase))
-                        //{//si es un EXEC o un EXECUTE la lista de sps
-                        //    Query.Document.Insert(auxoffset2, " ");
-                        //    Query.ActiveTextAreaControl.Caret.Column += 1;
-                        //    auxoffset2++;
-                        //    CurOffset = auxoffset2;
-
-                        //    CurrentFilter = FilteringTypeValues.Sps;
-                        //    FilterString = "";
-                        //    FireAt = CurOffset;
-                        //    ShowIntellisense();
-                        //    return true;
-                        //}
+                        LastToken = TxtBef.GetLastToken();
+                        if (LastToken.Text == "@")
+                        {
+                            List<Token> Tokens = Query.Text.GetTokens();
+                            List<string> Helper = new List<string>();
+                            foreach (Token t in Tokens.Where(X => X.Type == TokenType.VARIABLE))
+                            {
+                                string buff = t.Text.Contains(".") ? t.Text.Split('.')[0] : t.Text;
+                                if (!Helper.Contains(buff, StringComparer.CurrentCultureIgnoreCase))
+                                    Helper.Add(buff);
+                            }
+                            if (Helper.Count > 0)
+                            {
+                                ObjectSelector Os = new ObjectSelector("Variables detected on script", "Select variable", Helper);
+                                if (Os.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                                {
+                                    Query.InsertString(Os.SelectedObject.Length > 0 && Os.SelectedObject.StartsWith("@") ? Os.SelectedObject.Substring(1) : Os.SelectedObject);
+                                    return NoEcho;
+                                }
+                                else
+                                {
+                                    return Echo;
+                                }
+                            }
+                            return Echo;
+                        }
+                        else if (LastToken.Text == "#")
+                        {
+                            List<Token> Tokens = Query.Text.GetTokens();
+                            List<string> Helper = new List<string>();
+                            foreach (Token t in Tokens.Where(X => X.Type == TokenType.TEMPTABLE))
+                            {
+                                string buff = t.Text.Contains(".") ? t.Text.Split('.')[0] : t.Text;
+                                if (!Helper.Contains(buff, StringComparer.CurrentCultureIgnoreCase))
+                                    Helper.Add(buff);
+                            }
+                            if (Helper.Count > 0)
+                            {
+                                ObjectSelector Os = new ObjectSelector("Variables temp tables on script", "Select table", Helper);
+                                if (Os.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                                {
+                                    Query.InsertString(Os.SelectedObject.Length > 0 && Os.SelectedObject.StartsWith("#") ? Os.SelectedObject.Substring(1) : Os.SelectedObject);
+                                    return NoEcho;
+                                }
+                                else
+                                {
+                                    return Echo;
+                                }
+                            }
+                            return Echo;
+                        }
+                        break;
                         return Echo;
                     case Keys.OemPeriod:
                     case Keys.Decimal:
@@ -1071,8 +1083,8 @@ namespace Ez_SQL.MultiQueryForm
                         #endregion
                         return NoEcho;
                     case Keys.T | Keys.Control://ctrl + t , mostrar tablas + vistas
-                        
-                    
+
+
                         //CurrentFilter = FilteringTypeValues.Fields;
                         //CurWord = GetWordAtOffsetMinusOne();
                         //FilterString = CurWord;
@@ -1125,7 +1137,7 @@ namespace Ez_SQL.MultiQueryForm
                                 if (!Helper.Contains(buff, StringComparer.CurrentCultureIgnoreCase))
                                     Helper.Add(buff);
                             }
-                            if(Helper.Count > 0)
+                            if (Helper.Count > 0)
                             {
                                 ObjectSelector Os = new ObjectSelector("Variables detected on script", "Select variable", Helper);
                                 if (Os.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -1171,7 +1183,7 @@ namespace Ez_SQL.MultiQueryForm
                             if (!String.IsNullOrEmpty(SnippetScript))
                             {
                                 int Offset = Query.CurrentOffset();
-                                Query.SetSelectionByOffset(Offset - LastToken.Text.Length, Offset); 
+                                Query.SetSelectionByOffset(Offset - LastToken.Text.Length, Offset);
                                 InsertSnippet(SnippetScript);
                                 return NoEcho;
                             }
@@ -1183,17 +1195,217 @@ namespace Ez_SQL.MultiQueryForm
                         //this.Text = keyData.ToString();
                         return Echo;
                 }
-                
+
                 #endregion
             }
             #endregion
-            
+
             return Echo;
         }
 
         private void InsertSnippet(string SnippetScript)
         {
-            Query.InsertString(SnippetScript);
+            string ProcessedSnippet = SnippetScript;
+            List<string> Objs;
+            List<SnippetInnerObject> InnerObjects = new List<SnippetInnerObject>();
+            if (ProcessedSnippet.IndexOf("$OBJ:") > 0)
+            {
+                Objs = DataProvider.DbObjects.Where(X => X.Kind != ObjectType.Schema && X.Kind != ObjectType.Alias).Select(X => X.Schema + "." + X.Name).ToList();
+                while (ProcessedSnippet.IndexOf("$OBJ:") > 0)
+                {
+                    try
+                    {
+                        int start = ProcessedSnippet.IndexOf("$OBJ:");
+                        int length = (ProcessedSnippet.IndexOf('$', start + 1) - start) + 1;
+                        if (length <= 0 || ProcessedSnippet.IndexOf('$', start + 1) == -1)
+                        {
+                            MessageBox.Show("Error while processing the snippet, check sintax(not found ending $ for object)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                        string Id = ProcessedSnippet.Substring(start, length);
+                        Id = Id.Trim('$').Split(':')[1];
+                        if (String.IsNullOrEmpty(Id) || Id.Trim().Length == 0)
+                        {
+                            MessageBox.Show("Error while processing the snippet, check sintax(not found object id for object)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                        SnippetInnerObject Obj;
+                        ObjectSelector Os = new ObjectSelector("Objects on the current database connection", "Select a database object", Objs, false, 5);
+                        if (Os.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            Obj = new SnippetInnerObject()
+                            {
+                                Id = Id,
+                                Object = DataProvider.DbObjects.Find
+                                (X => String.Format("{0}.{1}", X.Schema, X.Name).Equals(Os.SelectedObject)
+                                    && X.Kind != ObjectType.Schema
+                                    && X.Kind != ObjectType.Alias
+                                )
+                            };
+                            switch (Obj.Object.Kind)
+                            {
+                                default:
+                                case ObjectType.Table:
+                                case ObjectType.View:
+                                case ObjectType.TableFunction:
+                                    if (Obj.Id.StartsWith("na", StringComparison.CurrentCultureIgnoreCase))
+                                    {//this object must be managed without an alias, so we use <schema>.<object name> as an alias
+                                        Obj.Alias = String.Format("{0}.{1}", Obj.Object.Schema, Obj.Object.Name);
+                                    }
+                                    else
+                                    {
+                                        Obj.Alias = Obj.Object.Name.GetUpperCasedLetters(2).GetAsSentence();//camel cased objects FTW!!!
+
+                                        if (String.IsNullOrEmpty(Obj.Alias))
+                                            Obj.Alias = Obj.Object.Name.Substring(0, 2);//if not camel cased object, get the first 2 letters in the name
+
+                                        if (InnerObjects.Any(X => X.Alias.Equals(Obj.Alias)))//making sure this alias is unique
+                                            Obj.Alias += InnerObjects.Count + 1;
+                                    }
+                                    break;
+                                case ObjectType.Procedure:
+                                case ObjectType.ScalarFunction:
+                                    Obj.Alias = "";
+                                    break;
+                            }
+
+                            if (String.IsNullOrEmpty(Obj.Alias) || Obj.Alias.Contains("."))
+                            {
+                                ProcessedSnippet = ProcessedSnippet.Replace(Obj.Name, String.Format("{0}.{1}", Obj.Object.Schema, Obj.Object.Name));
+                            }
+                            else
+                            {
+                                ProcessedSnippet = ProcessedSnippet.Replace(Obj.Name, String.Format("{0}.{1} AS {2}", Obj.Object.Schema, Obj.Object.Name, Obj.Alias));
+                            }
+                            InnerObjects.Add(Obj);
+                            //check for all fields
+                            ProcessedSnippet = ProcessSnippetChilds(Obj, ProcessedSnippet, "Fields", true);
+                            //check for field selector
+                            ProcessedSnippet = ProcessSnippetChilds(Obj, ProcessedSnippet, "Fields", false);
+                            //check for all Params
+                            ProcessedSnippet = ProcessSnippetChilds(Obj, ProcessedSnippet, "Parameters", true);
+                            //check for param selector
+                            ProcessedSnippet = ProcessSnippetChilds(Obj, ProcessedSnippet, "Parameters", false);
+                        }
+                        else
+                        {//cancelled the snippet processing
+                            return;
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Error while processing the snippet, check sintax", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+
+                }
+            }
+
+            Query.InsertString(ProcessedSnippet);
+        }
+
+        private string ProcessSnippetChilds(SnippetInnerObject Obj, string ProcessedSnippet, string Type, bool All)
+        {
+            string sep, buff = "", searchString, fname, bkup = ProcessedSnippet;
+            int ocstart, oclen;
+            ChildType CurType;
+
+            if (Type.Equals("Fields", StringComparison.CurrentCultureIgnoreCase))
+            {//fields
+                CurType = ChildType.Field;
+                if (All)
+                {
+                    searchString = Obj.AllFieldsText;
+                }
+                else
+                {
+                    searchString = Obj.FieldsText;
+                }
+            }
+            else
+            {//parameters
+                CurType = ChildType.Parameter;
+                if (All)
+                {
+                    searchString = Obj.AllParamsText;
+                }
+                else
+                {
+                    searchString = Obj.ParamsText;
+                }
+            }
+
+            while (ProcessedSnippet.IndexOf(searchString) > 0)
+            {
+                ocstart = ProcessedSnippet.IndexOf(searchString);
+                oclen = (ProcessedSnippet.IndexOf('$', ocstart + 1) - ocstart) + 1;
+                if (oclen <= 0 || ProcessedSnippet.IndexOf('$', ocstart + 1) == -1)
+                {
+                    MessageBox.Show("Error while processing the snippet, check sintax(not found ending $ for object " + Type + ")", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return "";
+                }
+                fname = ProcessedSnippet.Substring(ocstart, oclen).Trim('$');
+                sep = fname.Split(':')[2];
+                if (String.IsNullOrEmpty(sep) || sep.Trim().Length == 0)
+                {
+                    MessageBox.Show("Error while processing the snippet, check sintax(not found object separator for object " + Type + ")", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return "";
+                }
+                sep = sep.Replace("\\n", Environment.NewLine).Replace("\\t", "\t");
+                if (All)
+                {
+                    foreach (ISqlChild child in Obj.Object.Childs.Where(X => X.Kind == CurType))
+                    {
+                        if (String.IsNullOrEmpty(Obj.Alias))
+                        {//object without an alias, must be a procedure or a scalar function
+                            if (String.IsNullOrEmpty(buff))
+                                buff += String.Format("{0}", child.Name);
+                            else
+                                buff += String.Format("{0}{1}", sep, child.Name);
+                        }
+                        else
+                        {//object with an alias, must be a table, a view, or a table function
+                            if (String.IsNullOrEmpty(buff))
+                                buff += String.Format("{0}.{1}", Obj.Alias, child.Name);
+                            else
+                                buff += String.Format("{0}{1}.{2}", sep, Obj.Alias, child.Name);
+                        }
+                    }
+                }
+                else
+                {
+                    List<string> PosibleChilds = Obj.Object.Childs.Where(X => X.Kind == CurType).Select(X => X.Name).ToList();
+                    ChildSelector Cs = new ChildSelector("Select field to use in the snippet", String.Format("Select field of DB Object: {0}.{1}", Obj.Object.Schema, Obj.Object.Name), PosibleChilds, false, 1);
+                    if (Cs.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        foreach (string child in Cs.SelectedChilds)
+                        {
+                            if (String.IsNullOrEmpty(Obj.Alias))
+                            {//object without an alias, must be a procedure or a scalar function
+                                if (String.IsNullOrEmpty(buff))
+                                    buff += String.Format("{0}", child);
+                                else
+                                    buff += String.Format("{0}{1}", sep, child);
+                            }
+                            else
+                            {//object with an alias, must be a table, a view, or a table function
+                                if (String.IsNullOrEmpty(buff))
+                                    buff += String.Format("{0}.{1}", Obj.Alias, child);
+                                else
+                                    buff += String.Format("{0}{1}.{2}", sep, Obj.Alias, child);
+                            }
+                        }
+                    }
+                    else
+                    {//cancelled the snippet processing
+                        return bkup;
+                    }
+
+                }
+                ProcessedSnippet = ProcessedSnippet.Replace(String.Format("${0}$", fname), buff);
+            }
+            return ProcessedSnippet;
         }
 
         private List<ISqlObject> GetAliasesAndAuxiliarTables(string FullScript)
@@ -1205,39 +1417,39 @@ namespace Ez_SQL.MultiQueryForm
             #region First i have to process the full script, remove the "()" from the table valued functions
             for (int i = 0; i < Tokens.Count; i++)
             {
-                if(Tokens[i].Type == TokenType.WORD && DataProvider.IsTableValuedFunction(Tokens[i].Text) != null)
+                if (Tokens[i].Type == TokenType.WORD && DataProvider.IsTableValuedFunction(Tokens[i].Text) != null)
                 {
                     //find the first opening parenthesis
-                    while(i < Tokens.Count && !Tokens[i].Text.StartsWith("("))
+                    while (i < Tokens.Count && !Tokens[i].Text.StartsWith("("))
                         i++;
                     //then from there till the first closing parenthesis mark every token to be removed
                     for (int j = i; j < Tokens.Count; j++)
-			        {
+                    {
                         TokensToDelete.Add(j);
                         if (Tokens[j].Text.EndsWith(")"))
                         {
                             break;
                         }
 
-			        }
+                    }
                 }
             }
             //remove the tokens marked
-            for (int i = TokensToDelete.Count - 1; i >= 0 ; i--)
-			{
+            for (int i = TokensToDelete.Count - 1; i >= 0; i--)
+            {
                 Tokens.RemoveAt(TokensToDelete[i]);
-			}
+            }
             //if there was any token removed at all
-            if(TokensToDelete.Count > 0 && Tokens.Count > TokensToDelete[0])
+            if (TokensToDelete.Count > 0 && Tokens.Count > TokensToDelete[0])
             {//if the token right before the deletion and the next after the deletion are both empty spaces or from the same type
                 for (int i = Tokens.Count - 1; i >= 1; i--)
                 {
-                    if(Tokens[i].Type == Tokens[i-1].Type)
+                    if (Tokens[i].Type == Tokens[i - 1].Type)
                         Tokens.RemoveAt(i);
                 }
             }
             #endregion
-            
+
             for (int i = 0; i < Tokens.Count; i++)
             {
                 Token CurToken = Tokens[i];
@@ -1250,6 +1462,11 @@ namespace Ez_SQL.MultiQueryForm
                         ISqlObject Aliased = DataProvider.IsTableTypeObject(CurToken.Text);
                         if (Aliased != null)//if it is a table, view or a table value function
                         {
+                            if (Back.Any(X => X.Name.Equals(ProposedAlias.Text)))
+                            {
+                                Back.Remove(Back.First(X => X.Name.Equals(ProposedAlias.Text)));
+                            }
+
                             Back.Add
                             (
                                 new Alias()
@@ -1276,6 +1493,11 @@ namespace Ez_SQL.MultiQueryForm
                         ISqlObject Aliased = DataProvider.IsTableTypeObject(CurToken.Text);
                         if (Aliased != null)
                         {
+                            if (Back.Any(X => X.Name.Equals(ProposedAlias.Text)))
+                            {
+                                Back.Remove(Back.First(X => X.Name.Equals(ProposedAlias.Text)));
+                            }
+
                             Back.Add
                             (
                                 new Alias()
@@ -1317,7 +1539,7 @@ namespace Ez_SQL.MultiQueryForm
                     AutoCompleteLength = Data[0].Length;
                     break;
                 case 2://filter string 2 word, must be an schema, object or an object, child
-                    if(DataProvider.DbObjects.Any(X => X.Schema.Equals(Data[0], StringComparison.CurrentCultureIgnoreCase)))
+                    if (DataProvider.DbObjects.Any(X => X.Schema.Equals(Data[0], StringComparison.CurrentCultureIgnoreCase)))
                         completionDataProvider = new CompletionDataProvider(DataProvider, PopIList, Data[0], Data[1], null);
                     else
                         completionDataProvider = new CompletionDataProvider(DataProvider, PopIList, null, Data[0], Data[1]);
@@ -1337,7 +1559,7 @@ namespace Ez_SQL.MultiQueryForm
             completionDataProvider.FilteringOption = Filter;
             completionDataProvider.ComplementaryObjects = ComplementaryObjects;
             //CompletionDataProvider completionDataProvider = new CompletionDataProvider(DataProvider, PopIList, FilterString);
-                //SQLSCCProvider(CurChilds, Vars, DataProvider, PopIList, FilterString, CurrentFilter, FireAt);
+            //SQLSCCProvider(CurChilds, Vars, DataProvider, PopIList, FilterString, CurrentFilter, FireAt);
             AutocompleteDialog = AutoCompleteWindow.ShowCompletionWindow(
                          this,
                          Query,
@@ -1411,5 +1633,5 @@ namespace Ez_SQL.MultiQueryForm
             }
         }
 
-     }
+    }
 }

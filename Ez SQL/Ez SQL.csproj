@@ -120,6 +120,12 @@
     <Compile Include="MultiQueryForm\AutocompleteWindow.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MultiQueryForm\ChildSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MultiQueryForm\ChildSelector.Designer.cs">
+      <DependentUpon>ChildSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="MultiQueryForm\CompletionDataProvider.cs" />
     <Compile Include="MultiQueryForm\ObjectSelector.cs">
       <SubType>Form</SubType>
@@ -158,6 +164,7 @@
     <Compile Include="Snippets\SnippetEditor.Designer.cs">
       <DependentUpon>SnippetEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Snippets\SnippetInnerObject.cs" />
     <Compile Include="SqlTokenizer.cs" />
     <Compile Include="TextEditorClasses\FoldingStrategy.cs" />
     <Compile Include="Token.cs" />
@@ -175,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoadControl\LoadingInfo.resx">
       <DependentUpon>LoadingInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultiQueryForm\ChildSelector.resx">
+      <DependentUpon>ChildSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MultiQueryForm\ObjectSelector.resx">
       <DependentUpon>ObjectSelector.cs</DependentUpon>
@@ -322,6 +332,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppIcon.ico" />
+    <None Include="Resources\Filter1.png" />
+    <None Include="Resources\Filter.png" />
     <None Include="Resources\SnippetEditor.png" />
     <None Include="Resources\Book_32.png" />
     <None Include="Resources\ResizeIcon.png" />

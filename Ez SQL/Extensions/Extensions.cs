@@ -369,6 +369,28 @@ namespace Ez_SQL
         {
             return ReservedWords.Contains(Word);
         }
+        public static string GetUpperCasedLetters(this string Word, int MaxLength = -1)
+        {
+            string back;
+            back = String.Concat(Word.Select(X => char.IsUpper(X) ? X.ToString() : ""));
+            if(MaxLength == -1)
+                return back;
+            return back.Substring(0, Math.Min(MaxLength, back.Length));
+        }
+        public static string GetLowerCasedLetters(this string Word, int MaxLength = -1)
+        {
+            string back;
+            back = String.Concat(Word.Select(X => char.IsLower(X) ? X.ToString() : ""));
+            if(MaxLength == -1)
+                return back;
+            return back.Substring(0, Math.Min(MaxLength, back.Length));
+        }
+        public static string GetAsSentence(this string Word)
+        {
+            if(String.IsNullOrEmpty(Word))
+                return Word;
+            return Word.Substring(0,1).ToUpper() + (Word.Length > 1 ? Word.Substring(1).ToLower() : "");
+        }
         #endregion
 
         #region Extensions for IEnumerable

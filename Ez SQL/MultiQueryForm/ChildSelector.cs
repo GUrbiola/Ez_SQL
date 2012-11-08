@@ -6,33 +6,30 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Ez_SQL.DataBaseObjects;
 
 namespace Ez_SQL.MultiQueryForm
 {
-    public partial class ObjectSelector : Form
+    public partial class ChildSelector : Form
     {
         private List<string> Objects;
-        private string _SelectedObject;
-        public string SelectedObject { get { return _SelectedObject; } }
+        private List<string> _SelectedChilds;
+        public List<string> SelectedChilds { get { return _SelectedChilds; } }
         private bool StartsWith;
-        public ObjectSelector(string Title, string ObjectDescription, List<string> Objects, bool StartsWith = false, int Decimals = 1)
+        public ChildSelector(string Title, string ObjectDescription, List<string> Objects, bool StartsWith = false, int Decimals = 1)
         {
             InitializeComponent();
             Text = Title;
             LabDescription.Text = ObjectDescription;
-            _SelectedObject = "";
+            _SelectedChilds = new List<string>();
             this.Objects = Objects;
             this.StartsWith = StartsWith;
-            ItemList.Items.Clear();
             this.Objects.Sort();
+            ChkList.Items.Clear();
             foreach (string obj in Objects)
             {
-                ItemList.Items.Add(obj);
+                ChkList.Items.Add(obj, true);
             }
-            if (ItemList.Items.Count > 0)
-                ItemList.SelectedIndex = 0;
-            TxtFilter.WaitInterval = Decimals;
+            ChkAll.Checked = true;
         }
         private void TxtFilter_TextWaitEnded(string Text, int Decimals)
         {
@@ -40,21 +37,22 @@ namespace Ez_SQL.MultiQueryForm
         }
         private void FilterListBy(string Text)
         {
-            ItemList.Items.Clear();
+            ChkList.Items.Clear();
             foreach (string obj in Objects.Where(X => StartsWith ? X.StartsWith(Text, StringComparison.CurrentCultureIgnoreCase) : X.ToUpper().Contains(Text.ToUpper())))
             {
-                ItemList.Items.Add(obj);
+                ChkList.Items.Add(obj, true);
             }
-            if (ItemList.Items.Count > 0)
-            {
-                ItemList.SelectedIndex = 0;
-            }
+            ChkAll.Checked = true;
         }
         private void TxtFilter_TextSecured(string Text)
         {
-            if (ItemList.SelectedIndex >= 0)
+            if (ChkList.CheckedIndices.Count > 0)
             {
-                _SelectedObject = ItemList.SelectedItem.ToString();
+                _SelectedChilds.Clear();
+                foreach (int childIndex in ChkList.CheckedIndices)
+                {
+                    _SelectedChilds.Add(ChkList.GetItemText(ChkList.Items[childIndex]));
+                }
                 DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }
@@ -68,26 +66,36 @@ namespace Ez_SQL.MultiQueryForm
             {
                 MoveSelection(-1);
             }
+            else if(e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+            {
+                ToggleCheck();
+            }
             else if (e.KeyCode == Keys.Escape)
             {
                 DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                _SelectedObject = "";
+                _SelectedChilds = new List<string>();
+            }
+        }
+        private void ToggleCheck()
+        {
+            foreach (int itemIndex in ChkList.SelectedIndices)
+            {
+                ChkList.SetItemChecked(itemIndex, ChkList.GetItemCheckState(itemIndex) != CheckState.Checked);
             }
         }
         private void MoveSelection(int Movement)
         {
-            int current = ItemList.SelectedIndex;
-            if (ItemList.Items.Count > (current + Movement) && (current + Movement) >= 0)
+            int current = ChkList.SelectedIndex;
+            if (ChkList.Items.Count > (current + Movement) && (current + Movement) >= 0)
             {
-                ItemList.SelectedIndex = (current + Movement);
+                ChkList.SelectedIndex = (current + Movement);
             }
         }
-        private void ItemList_DoubleClick(object sender, EventArgs e)
+        private void ChkAll_CheckedChanged(object sender, EventArgs e)
         {
-            if (ItemList.SelectedIndex >= 0)
+            for (int i = 0; i < ChkList.Items.Count; i++)
             {
-                _SelectedObject = ItemList.SelectedItem.ToString();
-                DialogResult = System.Windows.Forms.DialogResult.OK;
+                ChkList.SetItemChecked(i, ChkAll.Checked);
             }
         }
     }

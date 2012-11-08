@@ -1,6 +1,6 @@
 ﻿namespace Ez_SQL.MultiQueryForm
 {
-    partial class ObjectSelector
+    partial class ChildSelector
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.LabDescription = new System.Windows.Forms.Label();
-            this.ItemList = new System.Windows.Forms.ListBox();
+            this.ChkList = new System.Windows.Forms.CheckedListBox();
+            this.ChkAll = new System.Windows.Forms.CheckBox();
             this.TxtFilter = new Ez_SQL.Custom_Controls.AnimatedWaitTextBox();
             this.SuspendLayout();
             // 
@@ -38,20 +39,31 @@
             this.LabDescription.Dock = System.Windows.Forms.DockStyle.Top;
             this.LabDescription.Location = new System.Drawing.Point(0, 0);
             this.LabDescription.Name = "LabDescription";
-            this.LabDescription.Size = new System.Drawing.Size(363, 23);
-            this.LabDescription.TabIndex = 0;
+            this.LabDescription.Size = new System.Drawing.Size(353, 23);
+            this.LabDescription.TabIndex = 3;
             this.LabDescription.Text = "label1";
             this.LabDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ItemList
+            // ChkList
             // 
-            this.ItemList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ItemList.FormattingEnabled = true;
-            this.ItemList.Location = new System.Drawing.Point(0, 49);
-            this.ItemList.Name = "ItemList";
-            this.ItemList.Size = new System.Drawing.Size(363, 299);
-            this.ItemList.TabIndex = 2;
-            this.ItemList.DoubleClick += new System.EventHandler(this.ItemList_DoubleClick);
+            this.ChkList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChkList.FormattingEnabled = true;
+            this.ChkList.Location = new System.Drawing.Point(0, 66);
+            this.ChkList.Name = "ChkList";
+            this.ChkList.Size = new System.Drawing.Size(353, 268);
+            this.ChkList.TabIndex = 5;
+            // 
+            // ChkAll
+            // 
+            this.ChkAll.AutoSize = true;
+            this.ChkAll.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ChkAll.Location = new System.Drawing.Point(0, 49);
+            this.ChkAll.Name = "ChkAll";
+            this.ChkAll.Size = new System.Drawing.Size(353, 17);
+            this.ChkAll.TabIndex = 6;
+            this.ChkAll.Text = "Check all current items";
+            this.ChkAll.UseVisualStyleBackColor = true;
+            this.ChkAll.CheckedChanged += new System.EventHandler(this.ChkAll_CheckedChanged);
             // 
             // TxtFilter
             // 
@@ -61,33 +73,36 @@
             this.TxtFilter.Location = new System.Drawing.Point(0, 23);
             this.TxtFilter.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TxtFilter.Name = "TxtFilter";
-            this.TxtFilter.Size = new System.Drawing.Size(363, 26);
-            this.TxtFilter.TabIndex = 1;
+            this.TxtFilter.Size = new System.Drawing.Size(353, 26);
+            this.TxtFilter.TabIndex = 4;
             this.TxtFilter.WaitInterval = 1;
             this.TxtFilter.TextWaitEnded += new Ez_SQL.Custom_Controls.OnTextWaitEnded(this.TxtFilter_TextWaitEnded);
             this.TxtFilter.TextSecured += new Ez_SQL.Custom_Controls.OnTextSecured(this.TxtFilter_TextSecured);
             this.TxtFilter.KeyDowned += new System.Windows.Forms.KeyEventHandler(this.TxtFilter_KeyDowned);
             // 
-            // ObjectSelector
+            // ChildSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(363, 348);
-            this.Controls.Add(this.ItemList);
+            this.ClientSize = new System.Drawing.Size(353, 334);
+            this.Controls.Add(this.ChkList);
+            this.Controls.Add(this.ChkAll);
             this.Controls.Add(this.TxtFilter);
             this.Controls.Add(this.LabDescription);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "ObjectSelector";
+            this.Name = "ChildSelector";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ObjectSelector";
+            this.Text = "ChildSelector";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label LabDescription;
         private Custom_Controls.AnimatedWaitTextBox TxtFilter;
-        private System.Windows.Forms.ListBox ItemList;
+        private System.Windows.Forms.Label LabDescription;
+        private System.Windows.Forms.CheckedListBox ChkList;
+        private System.Windows.Forms.CheckBox ChkAll;
     }
 }

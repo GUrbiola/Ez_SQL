@@ -1,0 +1,9 @@
+<Data type="Ez_SQL.Snippets.Snippet" assembly="Ez SQL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" version="1" culture="es-MX" hasTypeCache="true">
+  <TypeCache>
+    <TypeInfo typeid="1" type="System.String" assembly="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  </TypeCache>
+  <Name value="Complex Snippet" typeid="1" />
+  <ShortCut typeid="1" value="cxs" />
+  <Description typeid="1" value="Snippet for testing more advanced functionality of the snippets" />
+  <Script typeid="1" value="SELECT&#xD;&#xA;	$OBJF*:1:,\n\t$&#xD;&#xA;FROM&#xD;&#xA;	$OBJ:1$&#xD;&#xA;&#xD;&#xA;UPDATE&#xD;&#xA;	$OBJ:na2$&#xD;&#xA;SET&#xD;&#xA;	$OBJF:na2:=,\n\t$&#xD;&#xA;&#xD;&#xA;SELECT * FROM $OBJ:3$&#xD;&#xA;&#xD;&#xA;EXEC $OBJ:4$ ($OBJP:4:, $)&#xD;&#xA;&#xD;&#xA;" />
+</Data>
