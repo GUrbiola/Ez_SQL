@@ -5,5 +5,5 @@
   <Name value="Select All" typeid="1" />
   <ShortCut typeid="1" value="sal" />
   <Description typeid="1" value="Simple clause &quot;select * from&quot;" />
-  <Script typeid="1" value="select * from " />
+  <Script typeid="1" value="SELECT * FROM " />
 </Data>

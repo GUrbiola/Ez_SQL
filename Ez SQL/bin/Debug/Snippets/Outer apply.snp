@@ -4,6 +4,6 @@
   </TypeCache>
   <Name value="Outer apply" typeid="1" />
   <ShortCut typeid="1" value="oa" />
-  <Description typeid="1" value="Snippet for an outer apply" />
+  <Description typeid="1" value="Snippet for an &quot;outer apply&quot;" />
   <Script typeid="1" value="OUTER APPLY " />
 </Data>

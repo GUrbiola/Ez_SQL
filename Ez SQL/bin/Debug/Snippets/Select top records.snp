@@ -5,5 +5,5 @@
   <Name value="Select top records" typeid="1" />
   <ShortCut typeid="1" value="st" />
   <Description typeid="1" value="select the top 100 records clause (selec top 100 from)" />
-  <Script typeid="1" value="select top 100 * from" />
+  <Script typeid="1" value="SELECT TOP 100 * FROM " />
 </Data>
