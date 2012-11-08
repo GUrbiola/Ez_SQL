@@ -5,5 +5,5 @@
   <Name value="xxx" typeid="1" />
   <ShortCut typeid="1" value="xxx" />
   <Description typeid="1" value="xxx" />
-  <Script typeid="1" value="SELECT&#xD;&#xA;	$OBJF:1:,\n\t$&#xD;&#xA;FROM&#xD;&#xA;	$OBJ:1$&#xD;&#xA;&#xD;&#xA;UPDATE&#xD;&#xA;	$OBJ:na2$&#xD;&#xA;SET&#xD;&#xA;	$OBJF:na2:=,\n$" />
+  <Script typeid="1" value="SELECT&#xD;&#xA;	$OBJF:1:,\n\t$&#xD;&#xA;FROM&#xD;&#xA;	$OBJ:1$&#xD;&#xA;&#xD;&#xA;UPDATE&#xD;&#xA;	$OBJ:na2$&#xD;&#xA;SET&#xD;&#xA;	$OBJF:na2:=,\n\t$" />
 </Data>

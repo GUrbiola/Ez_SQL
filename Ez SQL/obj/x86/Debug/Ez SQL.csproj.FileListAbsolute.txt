@@ -36,8 +36,6 @@ C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.exe.config
-C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
-C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.exe
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.pdb
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\AddressBarExt.dll
@@ -64,6 +62,7 @@ C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.InputBox.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.SQLConnectForm.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.AnimatedWaitTextBox.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.LoadControl.LoadingInfo.resources
+C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ChildSelector.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ObjectSelector.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.QueryLog.HistoricForm.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MainForm.resources
@@ -71,3 +70,5 @@ C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.QueryForm.reso
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Properties.Resources.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Snippets.SnippetEditor.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.GenerateResource.Cache
+C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
+C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb

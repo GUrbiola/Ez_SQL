@@ -19,7 +19,6 @@ namespace Ez_SQL.MultiQueryForm
     public delegate void ExecutionEvent();
     public partial class QueryForm : WeifenLuo.WinFormsUI.Docking.DockContent
     {
-        Keys KeyBefore;
         AutoCompleteWindow AutocompleteDialog;
         public bool IsIntellisenseOn
         {
@@ -1191,7 +1190,6 @@ namespace Ez_SQL.MultiQueryForm
                         }
                         break;
                     default:
-                        KeyBefore = keyData;
                         //this.Text = keyData.ToString();
                         return Echo;
                 }
@@ -1203,6 +1201,7 @@ namespace Ez_SQL.MultiQueryForm
             return Echo;
         }
 
+        #region Snippet inserting and processing methods
         private void InsertSnippet(string SnippetScript)
         {
             string ProcessedSnippet = SnippetScript;
@@ -1304,12 +1303,13 @@ namespace Ez_SQL.MultiQueryForm
 
             Query.InsertString(ProcessedSnippet);
         }
-
         private string ProcessSnippetChilds(SnippetInnerObject Obj, string ProcessedSnippet, string Type, bool All)
         {
             string sep, buff = "", searchString, fname, bkup = ProcessedSnippet;
             int ocstart, oclen;
             ChildType CurType;
+            List<string> PosibleChilds = null;
+            ChildSelector Cs = null;
 
             if (Type.Equals("Fields", StringComparison.CurrentCultureIgnoreCase))
             {//fields
@@ -1372,12 +1372,41 @@ namespace Ez_SQL.MultiQueryForm
                                 buff += String.Format("{0}{1}.{2}", sep, Obj.Alias, child.Name);
                         }
                     }
+                    ProcessedSnippet = ProcessedSnippet.Replace(String.Format("${0}$", fname), buff);
+                    buff = "";
                 }
                 else
                 {
-                    List<string> PosibleChilds = Obj.Object.Childs.Where(X => X.Kind == CurType).Select(X => X.Name).ToList();
-                    ChildSelector Cs = new ChildSelector("Select field to use in the snippet", String.Format("Select field of DB Object: {0}.{1}", Obj.Object.Schema, Obj.Object.Name), PosibleChilds, false, 1);
-                    if (Cs.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    if (PosibleChilds == null || PosibleChilds.Count == 0)
+                    {
+                        PosibleChilds = Obj.Object.Childs.Where(X => X.Kind == CurType).Select(X => X.Name).ToList();
+                        Cs = new ChildSelector("Select field to use in the snippet", String.Format("Select field of DB Object: {0}.{1}", Obj.Object.Schema, Obj.Object.Name), PosibleChilds, false, 1);
+                        if (Cs.ShowDialog() == DialogResult.OK)
+                        {
+                            foreach (string child in Cs.SelectedChilds)
+                            {
+                                if (String.IsNullOrEmpty(Obj.Alias))
+                                {//object without an alias, must be a procedure or a scalar function
+                                    if (String.IsNullOrEmpty(buff))
+                                        buff += String.Format("{0}", child);
+                                    else
+                                        buff += String.Format("{0}{1}", sep, child);
+                                }
+                                else
+                                {//object with an alias, must be a table, a view, or a table function
+                                    if (String.IsNullOrEmpty(buff))
+                                        buff += String.Format("{0}.{1}", Obj.Alias, child);
+                                    else
+                                        buff += String.Format("{0}{1}.{2}", sep, Obj.Alias, child);
+                                }
+                            }
+                        }
+                        else
+                        {//cancelled the snippet processing
+                            return bkup;
+                        }
+                    }
+                    else
                     {
                         foreach (string child in Cs.SelectedChilds)
                         {
@@ -1397,16 +1426,13 @@ namespace Ez_SQL.MultiQueryForm
                             }
                         }
                     }
-                    else
-                    {//cancelled the snippet processing
-                        return bkup;
-                    }
-
+                    ProcessedSnippet = ProcessedSnippet.Replace(String.Format("${0}$", fname), buff);
+                    buff = "";
                 }
-                ProcessedSnippet = ProcessedSnippet.Replace(String.Format("${0}$", fname), buff);
             }
             return ProcessedSnippet;
         }
+        #endregion
 
         private List<ISqlObject> GetAliasesAndAuxiliarTables(string FullScript)
         {
@@ -1604,7 +1630,7 @@ namespace Ez_SQL.MultiQueryForm
         }
         void MouseClicked(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 if ((ModifierKeys & Keys.Control) == Keys.Control)
                 {

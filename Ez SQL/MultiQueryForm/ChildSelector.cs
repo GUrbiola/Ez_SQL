@@ -53,7 +53,7 @@ namespace Ez_SQL.MultiQueryForm
                 {
                     _SelectedChilds.Add(ChkList.GetItemText(ChkList.Items[childIndex]));
                 }
-                DialogResult = System.Windows.Forms.DialogResult.OK;
+                DialogResult = DialogResult.OK;
             }
         }
         private void TxtFilter_KeyDowned(object sender, KeyEventArgs e)
@@ -72,7 +72,7 @@ namespace Ez_SQL.MultiQueryForm
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                DialogResult = DialogResult.Cancel;
                 _SelectedChilds = new List<string>();
             }
         }
@@ -96,6 +96,18 @@ namespace Ez_SQL.MultiQueryForm
             for (int i = 0; i < ChkList.Items.Count; i++)
             {
                 ChkList.SetItemChecked(i, ChkAll.Checked);
+            }
+        }
+        private void ChkList_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TxtFilter_TextSecured("");
+        }
+        private void ChkList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                DialogResult = DialogResult.Cancel;
+                _SelectedChilds = new List<string>();
             }
         }
     }

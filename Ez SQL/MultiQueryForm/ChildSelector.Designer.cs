@@ -46,12 +46,15 @@
             // 
             // ChkList
             // 
+            this.ChkList.CheckOnClick = true;
             this.ChkList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChkList.FormattingEnabled = true;
             this.ChkList.Location = new System.Drawing.Point(0, 66);
             this.ChkList.Name = "ChkList";
             this.ChkList.Size = new System.Drawing.Size(353, 268);
             this.ChkList.TabIndex = 5;
+            this.ChkList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChkList_KeyDown);
+            this.ChkList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ChkList_KeyPress);
             // 
             // ChkAll
             // 

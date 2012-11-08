@@ -6281,4 +6281,1986 @@ END"</Code>
 	SELECT TOP 100 * FROM dnis.Numbers
 END"</Code>
 	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 09:23:18.448" EndTime="20121107 09:23:18.531" Lapse="82" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="1" />
+		<Code>"SELECT * FROM Dnis.DnisHistory"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 09:50:37.633" EndTime="20121107 09:50:37.700" Lapse="66" Correct="1" RecordsAffected="0" RecordsRead="100" GridCount="1" />
+		<Code>"SELECT TOP 100 * FROM Dnis.Catalog_States Cs LEFT OUTER JOIN Dnis.Catalog_AreaCode Ac ON Cs.Id = Ac.State"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 09:51:31.798" EndTime="20121107 09:51:31.853" Lapse="54" Correct="1" RecordsAffected="0" RecordsRead="100" GridCount="1" />
+		<Code>"SELECT TOP 100 * FROM Dnis.Catalog_States Cs LEFT OUTER JOIN Dnis.Catalog_AreaCode Ac ON Cs.Id = Ac.State ORDER BY Ac.Code"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 09:54:59.205" EndTime="20121107 09:54:59.237" Lapse="31" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT * FROM EXEC TFN.GetAvailabilityDetails 
+@ClientId = null, --int
+@Number = &amp;apos;8008624102&amp;apos; --varchar
+"</Code>
+		<Error Line="1" Message="Incorrect syntax near the keyword &amp;apos;EXEC&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 09:55:06.148" EndTime="20121107 09:55:06.220" Lapse="72" Correct="1" RecordsAffected="0" RecordsRead="395" GridCount="1" />
+		<Code>"EXEC TFN.GetAvailabilityDetails 
+@ClientId = null, --int
+@Number = &amp;apos;8008624102&amp;apos; --varchar
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Remote" Name="Dial 800 V2 @ MtySql V02" Server="MTYSQL-V02" Db="Dial800_V2" />
+		<Execution StartTime="20121107 09:57:42.422" EndTime="20121107 09:57:42.534" Lapse="111" Correct="1" RecordsAffected="0" RecordsRead="412" GridCount="1" />
+		<Code>"EXEC TFN.GetAvailabilityDetails 
+@ClientId = null, --int
+@Number = &amp;apos;8008624102&amp;apos; --varchar
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Remote" Name="Dial 800 V2 @ MtySql V02" Server="MTYSQL-V02" Db="Dial800_V2" />
+		<Execution StartTime="20121107 10:42:48.904" EndTime="20121107 10:42:49.036" Lapse="132" Correct="1" RecordsAffected="0" RecordsRead="412" GridCount="1" />
+		<Code>"EXEC TFN.GetAvailabilityDetails 
+@ClientId = null, --int
+@Number = &amp;apos;8008624102&amp;apos; --varchar
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:20:45.979" EndTime="20121107 11:20:46.110" Lapse="130" Correct="1" RecordsAffected="0" RecordsRead="326" GridCount="1" />
+		<Code>"SELECT * FROM Dnis.Catalog_AreaCode"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:27:40.716" EndTime="20121107 11:27:40.796" Lapse="79" Correct="1" RecordsAffected="0" RecordsRead="326" GridCount="1" />
+		<Code>"	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State "</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:31:19.270" EndTime="20121107 11:31:19.340" Lapse="69" Correct="1" RecordsAffected="326" RecordsRead="20" GridCount="1" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	
+	
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:35:24.106" EndTime="20121107 11:35:24.147" Lapse="40" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"--	INTO
+--		#MaxExpand
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:35:24.657" EndTime="20121107 11:35:24.729" Lapse="71" Correct="1" RecordsAffected="346" RecordsRead="144" GridCount="1" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+--	INTO
+--		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+	
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:46:10.851" EndTime="20121107 11:46:11.106" Lapse="254" Correct="1" RecordsAffected="490" RecordsRead="416" GridCount="1" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+--	INTO
+--		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	--join the tables 
+	
+	
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:49:02.796" EndTime="20121107 11:49:02.887" Lapse="90" Correct="1" RecordsAffected="906" RecordsRead="55" GridCount="1" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	--join the tables into a new temp table, it will have all records with crashes
+	SELECT 
+		Me.Number,
+		Me.Code,
+		Me.AreaCode,
+		Na.IsLicensed,
+		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:49:18.105" EndTime="20121107 11:49:18.232" Lapse="127" Correct="1" RecordsAffected="1812" RecordsRead="199" GridCount="2" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	SELECT * FROM #MaxExpand
+	--join the tables into a new temp table, it will have all records with crashes
+	SELECT 
+		Me.Number,
+		Me.Code,
+		Me.AreaCode,
+		Na.IsLicensed,
+		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:49:55.190" EndTime="20121107 11:49:55.317" Lapse="126" Correct="1" RecordsAffected="1812" RecordsRead="191" GridCount="2" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	SELECT * FROM #MaxExpand
+	--join the tables into a new temp table, it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Me.AreaCode,
+		Na.IsLicensed,
+		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:50:59.507" EndTime="20121107 11:50:59.649" Lapse="141" Correct="1" RecordsAffected="1812" RecordsRead="191" GridCount="2" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	SELECT * FROM #MaxExpand
+	
+	--join the tables into a new temp table, it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Me.AreaCode,
+		Na.IsLicensed,
+		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+	
+	
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:51:29.497" EndTime="20121107 11:51:29.635" Lapse="137" Correct="1" RecordsAffected="1812" RecordsRead="61" GridCount="2" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	SELECT * FROM #NotAvailableAreaCodes WHERE Number = &amp;apos;8000000000&amp;apos;
+	
+	--join the tables into a new temp table, it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Me.AreaCode,
+		Na.IsLicensed,
+		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+	
+	
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:52:13.623" EndTime="20121107 11:52:13.756" Lapse="132" Correct="1" RecordsAffected="1764" RecordsRead="51" GridCount="2" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR&amp;apos;--@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	SELECT * FROM #NotAvailableAreaCodes WHERE Number = &amp;apos;8000000000&amp;apos;
+	
+	--join the tables into a new temp table, it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Me.AreaCode,
+		Na.IsLicensed,
+		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+	
+	
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:52:21.083" EndTime="20121107 11:52:21.224" Lapse="140" Correct="1" RecordsAffected="1780" RecordsRead="53" GridCount="2" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240&amp;apos;--@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	SELECT * FROM #NotAvailableAreaCodes WHERE Number = &amp;apos;8000000000&amp;apos;
+	
+	--join the tables into a new temp table, it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Me.AreaCode,
+		Na.IsLicensed,
+		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+	
+	
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:52:26.561" EndTime="20121107 11:52:26.705" Lapse="143" Correct="1" RecordsAffected="1764" RecordsRead="51" GridCount="2" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR&amp;apos;--@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	SELECT * FROM #NotAvailableAreaCodes WHERE Number = &amp;apos;8000000000&amp;apos;
+	
+	--join the tables into a new temp table, it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Me.AreaCode,
+		Na.IsLicensed,
+		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+	
+	
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:52:57.391" EndTime="20121107 11:52:57.523" Lapse="131" Correct="1" RecordsAffected="1516" RecordsRead="20" GridCount="2" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;AR&amp;apos;--@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	SELECT * FROM #NotAvailableAreaCodes WHERE Number = &amp;apos;8000000000&amp;apos;
+	
+	--join the tables into a new temp table, it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Me.AreaCode,
+		Na.IsLicensed,
+		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+	
+	
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:53:13.228" EndTime="20121107 11:53:13.370" Lapse="142" Correct="1" RecordsAffected="1812" RecordsRead="61" GridCount="2" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	SELECT * FROM #NotAvailableAreaCodes WHERE Number = &amp;apos;8000000000&amp;apos;
+	
+	--join the tables into a new temp table, it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Me.AreaCode,
+		Na.IsLicensed,
+		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+	
+	
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:54:14.805" EndTime="20121107 11:54:14.882" Lapse="76" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	
+	--join the tables, this join it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+--		Me.AreaCode,
+--		Na.IsLicensed,
+--		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+END
+
+"</Code>
+		<Error Line="61" Message="Incorrect syntax near the keyword &amp;apos;FROM&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:54:17.497" EndTime="20121107 11:54:17.611" Lapse="113" Correct="1" RecordsAffected="906" RecordsRead="14" GridCount="1" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	
+	--join the tables, this join it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code
+--		Me.AreaCode,
+--		Na.IsLicensed,
+--		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:54:33.614" EndTime="20121107 11:54:33.714" Lapse="99" Correct="1" RecordsAffected="782" RecordsRead="12" GridCount="1" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	
+	--join the tables, this join it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code
+--		Me.AreaCode,
+--		Na.IsLicensed,
+--		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:54:45.874" EndTime="20121107 11:54:45.960" Lapse="85" Correct="1" RecordsAffected="766" RecordsRead="4" GridCount="1" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;AR,240&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	
+	--join the tables, this join it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code
+--		Me.AreaCode,
+--		Na.IsLicensed,
+--		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:55:04.906" EndTime="20121107 11:55:05.022" Lapse="115" Correct="1" RecordsAffected="906" RecordsRead="47" GridCount="1" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	
+	--join the tables, this join it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Me.AreaCode,
+		Na.IsLicensed,
+		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:55:10.057" EndTime="20121107 11:55:10.160" Lapse="102" Correct="1" RecordsAffected="906" RecordsRead="14" GridCount="1" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	
+	--join the tables, this join it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		--Me.AreaCode,
+		Na.IsLicensed,
+		Na.IsReserved
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:55:59.679" EndTime="20121107 11:55:59.824" Lapse="144" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	
+	--join the tables, this join it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		ISNULL(Na.IsLicensed, 2) * ISNULL(Na.IsReserved, 3) as Issue
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+END
+
+"</Code>
+		<Error Line="55" Message="Operand data type bit is invalid for multiply operator."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:56:49.700" EndTime="20121107 11:56:49.809" Lapse="109" Correct="1" RecordsAffected="906" RecordsRead="14" GridCount="1" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		Ac.IsLicensed,
+		Ac.IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	
+	--join the tables, this join it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		CONVERT(INT, ISNULL(Na.IsLicensed, 2)) * CONVERT(INT, ISNULL(Na.IsReserved,3)) as Issue
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:59:47.279" EndTime="20121107 11:59:47.354" Lapse="74" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		CASE WHEN ISNULL(Ac.IsLicensed, 0) = 0 THEN 1 ELSE 2 END as IsLicensed
+		CASE WHEN ISNULL(Ac.IsReserved, 0) = 0 THEN 1 ELSE 3 END as IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	
+	--join the tables, this join it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Na.IsLicensed * Na.IsReserved as Issue
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+END
+
+"</Code>
+		<Error Line="47" Message="Incorrect syntax near the keyword &amp;apos;CASE&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 11:59:51.216" EndTime="20121107 11:59:51.314" Lapse="97" Correct="1" RecordsAffected="906" RecordsRead="14" GridCount="1" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		CASE WHEN ISNULL(Ac.IsLicensed, 0) = 0 THEN 1 ELSE 2 END as IsLicensed,
+		CASE WHEN ISNULL(Ac.IsReserved, 0) = 0 THEN 1 ELSE 3 END as IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	
+	--join the tables, this join it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Na.IsLicensed * Na.IsReserved as Issue
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 12:00:41.962" EndTime="20121107 12:00:42.078" Lapse="115" Correct="1" RecordsAffected="1029" RecordsRead="16" GridCount="1" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003,8000000500,8000000503&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		CASE WHEN ISNULL(Ac.IsLicensed, 0) = 0 THEN 1 ELSE 2 END as IsLicensed,
+		CASE WHEN ISNULL(Ac.IsReserved, 0) = 0 THEN 1 ELSE 3 END as IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	
+	--join the tables, this join it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Na.IsLicensed * Na.IsReserved as Issue
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 12:02:13.633" EndTime="20121107 12:02:13.738" Lapse="104" Correct="1" RecordsAffected="1029" RecordsRead="16" GridCount="1" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003,8000000500,8000000503&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		CASE WHEN ISNULL(Ac.IsLicensed, 0) = 0 THEN 1 ELSE 2 END as IsLicensed,
+		CASE WHEN ISNULL(Ac.IsReserved, 0) = 0 THEN 1 ELSE 3 END as IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	
+	--join the tables, this join it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Na.IsLicensed * Na.IsReserved as Issue
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 12:02:21.898" EndTime="20121107 12:02:21.940" Lapse="41" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+--	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+--	SELECT 
+--		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003,8000000500,8000000503&amp;apos;, 
+--		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		CASE WHEN ISNULL(Ac.IsLicensed, 0) = 0 THEN 1 ELSE 2 END as IsLicensed,
+		CASE WHEN ISNULL(Ac.IsReserved, 0) = 0 THEN 1 ELSE 3 END as IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	
+	--join the tables, this join it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Na.IsLicensed * Na.IsReserved as Issue
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 12:23:53.261" EndTime="20121107 12:23:53.359" Lapse="97" Correct="1" RecordsAffected="1029" RecordsRead="16" GridCount="1" />
+		<Code>"--CREATE PROCEDURE [Dnis].[GetAvailabilityCrashes](@Numbers varchar(MAX), @Codes varchar(MAX)) as
+BEGIN
+	DECLARE @Numbers varchar(MAX), @Codes varchar(MAX)
+	SELECT 
+		@Numbers = &amp;apos;8000000000,8000000001,8000000002,8000000003,8000000500,8000000503&amp;apos;, 
+		@Codes = &amp;apos;CAN,AR,240,ID,DC&amp;apos;
+	
+	--Create a temp table to store the country, state, areacode expanded data
+	SELECT
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS ContryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	INTO
+		#RegionDefinition
+	FROM
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State 
+	
+	--Expand the numbers/code
+	SELECT
+		Num.Item as Number,
+		Codes.Item as Code
+	INTO
+		#FirstExpand
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Util.SplitString (@Codes, &amp;apos;,&amp;apos;) as Codes
+		
+	--The temp table created before must be expanded now to Areacode
+	SELECT
+		Fe.Number,
+		Fe.Code,
+		Ac.AreaCode
+	INTO
+		#MaxExpand
+	FROM
+		#FirstExpand as Fe OUTER APPLY Licensing.ConvertLicensingCodeToAreaCode (-1, Fe.Code) as Ac
+		
+	--create a temp table to get the availabitily details
+	SELECT
+		Num.Item as Number,
+		Ac.AreaCode,
+		CASE WHEN ISNULL(Ac.IsLicensed, 0) = 0 THEN 1 ELSE 2 END as IsLicensed,
+		CASE WHEN ISNULL(Ac.IsReserved, 0) = 0 THEN 1 ELSE 3 END as IsReserved
+	INTO
+		#NotAvailableAreaCodes
+	FROM
+		Util.SplitString (@Numbers, &amp;apos;,&amp;apos;) as Num OUTER APPLY Licensing.GetNoAvailableAreaCodesForDnis ( Num.Item ) as Ac
+	
+	
+	--join the tables, this join it will have all records with crashes
+	SELECT DISTINCT
+		Me.Number,
+		Me.Code,
+		Na.IsLicensed * Na.IsReserved as Issue
+	FROM
+		#MaxExpand Me INNER JOIN #NotAvailableAreaCodes Na ON Me.Number = Na.Number AND Me.AreaCode = Na.AreaCode
+	ORDER BY
+		Me.Number, Me.Code
+END
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 06:43:58.424" EndTime="20121107 06:43:58.516" Lapse="91" Correct="1" RecordsAffected="652" RecordsRead="0" GridCount="1" />
+		<Code>"EXEC Dnis.GetAvailabilityCrashes 
+@Codes = &amp;apos;*&amp;apos;, --varchar
+@Numbers = &amp;apos;80000000540&amp;apos; --varchar
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 08:13:08.899" EndTime="20121107 08:13:08.942" Lapse="42" Correct="1" RecordsAffected="717" RecordsRead="1" GridCount="1" />
+		<Code>"EXEC Dnis.GetAvailabilityCrashes 
+@Codes = &amp;apos;*&amp;apos;, --varchar
+@Numbers = &amp;apos;8000000003&amp;apos; --varchar
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 08:13:15.000" EndTime="20121107 08:13:15.036" Lapse="35" Correct="1" RecordsAffected="394" RecordsRead="0" GridCount="1" />
+		<Code>"EXEC Dnis.GetAvailabilityCrashes 
+@Codes = &amp;apos;&amp;apos;, --varchar
+@Numbers = &amp;apos;8000000003&amp;apos; --varchar
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 08:13:23.065" EndTime="20121107 08:13:23.105" Lapse="39" Correct="1" RecordsAffected="719" RecordsRead="3" GridCount="1" />
+		<Code>"EXEC Dnis.GetAvailabilityCrashes 
+@Codes = &amp;apos;USA,UST,CAN&amp;apos;, --varchar
+@Numbers = &amp;apos;8000000003&amp;apos; --varchar
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121107 08:13:38.636" EndTime="20121107 08:13:38.701" Lapse="64" Correct="1" RecordsAffected="0" RecordsRead="316" GridCount="1" />
+		<Code>"EXEC TFN.GetAvailabilityDetails 
+@ClientId = NULL, --int
+@Number = &amp;apos;8000000003&amp;apos; --varchar
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 08:21:24.676" EndTime="20121108 08:21:24.835" Lapse="158" Correct="1" RecordsAffected="0" RecordsRead="972" GridCount="1" />
+		<Code>"SELECT Ld.ClientID, Ld.Details, Ld.LicensingType, Ld.Number FROM Dnis.LicensingDetails AS Ld"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 10:47:14.110" EndTime="20121108 10:47:14.367" Lapse="256" Correct="1" RecordsAffected="0" RecordsRead="972" GridCount="1" />
+		<Code>"SELECT * FROM Dnis.LicensingDetails AS Ld"</Code>
+	</Query>
 </QueriesRoot>
