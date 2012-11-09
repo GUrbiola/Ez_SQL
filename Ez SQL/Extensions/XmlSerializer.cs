@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Threading;
@@ -10,7 +9,7 @@ using System.Xml.Serialization;
 using System.Collections;
 using System.Reflection;
 
-namespace XmlSerializationExtensions
+namespace Ez_SQL.Extensions
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
     public class XmlIgnoreBaseTypeAttribute : Attribute
@@ -689,13 +688,13 @@ namespace XmlSerializationExtensions
             xDoc.Save(tw);
             return tw.ToString();
         }
-        public static object DeserializeFromXmlFile(this string fileName, int ver = 1, XmlSerializationExtensions.XmlObjectDeserializer.ITypeConverter typeConverter = null)
+        public static object DeserializeFromXmlFile(this string fileName, int ver = 1, XmlObjectDeserializer.ITypeConverter typeConverter = null)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(fileName);
             return XmlObjectDeserializer.Deserialize(doc.OuterXml, ver, typeConverter);
         }
-        public static object DeserializeFromXmlString(this string xmlString, int ver = 1, XmlSerializationExtensions.XmlObjectDeserializer.ITypeConverter typeConverter = null)
+        public static object DeserializeFromXmlString(this string xmlString, int ver = 1, XmlObjectDeserializer.ITypeConverter typeConverter = null)
         {
             return XmlObjectDeserializer.Deserialize(xmlString, ver, typeConverter);
         }

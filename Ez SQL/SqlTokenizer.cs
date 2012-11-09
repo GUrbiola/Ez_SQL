@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Ez_SQL.Extensions;
 
 namespace Ez_SQL
 {
@@ -144,7 +145,7 @@ namespace Ez_SQL
         {
             if (TokenList == null)
                 TokenList = new List<Token>();
-            if (Current == null || Current.IsEmpty)
+            if (Current == null || Current.IsTextEmpty)
                 return;
 
             switch (Current.Type)

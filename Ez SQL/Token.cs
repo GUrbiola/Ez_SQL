@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ez_SQL
 {
-    public enum TokenType { EMPTYSPACE, RESERVED, COMMA, WORD, VARIABLE, TEMPTABLE, OPENBRACKET, CLOSEBRACKET };
+    public enum TokenType { EMPTYSPACE, RESERVED, COMMA, WORD, VARIABLE, TEMPTABLE, OPENBRACKET, CLOSEBRACKET, LINECOMMENT, BLOCKCOMMENT, STRING };
     public class Token
     {
         public TokenType Type { get; set; }
@@ -16,7 +16,6 @@ namespace Ez_SQL
             this.Type = Type;
             this.Text = Text;
         }
-        public bool IsEmpty { get { return String.IsNullOrEmpty(Text); } }
-        
+        public bool IsTextEmpty { get { return String.IsNullOrEmpty(Text); } }
     }
 }

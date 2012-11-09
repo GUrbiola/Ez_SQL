@@ -15,7 +15,7 @@ namespace Ez_SQL.TextEditorClasses
     /// <summary>
     /// The class to generate the foldings, it implements ICSharpCode.TextEditor.Document.IFoldingStrategy
     /// </summary>
-    public class SQLFoldingStrategy : IFoldingStrategy
+    public class SqlFoldingStrategy : IFoldingStrategy
     {
         /// <summary>
         /// Generates the foldings for our document.
@@ -42,7 +42,7 @@ namespace Ez_SQL.TextEditorClasses
 
             for (int i = 0; i < StartFoldTokens.Count; i++)
             {
-                //primero buscar el folding de begin
+                //search for the start token
                 for (linea = 0; linea < document.TotalNumberOfLines; linea++)
                 {
                     buffer = document.GetText(document.GetLineSegment(linea)).ToLower();
@@ -316,5 +316,8 @@ namespace Ez_SQL.TextEditorClasses
             return list;
         }
     }
+
+
+
 }
 

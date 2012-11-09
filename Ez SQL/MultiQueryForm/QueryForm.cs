@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Ez_SQL.DataBaseObjects;
+using Ez_SQL.Extensions;
 using ICSharpCode.TextEditor.Document;
 using System.IO;
 using ICSharpCode.TextEditor;
@@ -86,7 +87,7 @@ namespace Ez_SQL.MultiQueryForm
                 }
                 HighlightingManager.Manager.AddSyntaxModeFileProvider(new FileSyntaxModeProvider(MainForm.ExecDir + "\\SintaxHighLight\\"));
                 Query.Document.HighlightingStrategy = HighlightingManager.Manager.FindHighlighter("SQL");
-                Query.Document.FoldingManager.FoldingStrategy = new Ez_SQL.TextEditorClasses.SQLFoldingStrategy();
+                Query.Document.FoldingManager.FoldingStrategy = new Ez_SQL.TextEditorClasses.SqlFoldingStrategy();
                 Query.Document.FoldingManager.UpdateFoldings(null, null);
             }
             catch (Exception ex)
@@ -908,9 +909,9 @@ namespace Ez_SQL.MultiQueryForm
                         LastToken = TxtBef.GetLastToken();
                         if (LastToken.Text == "@")
                         {
-                            List<Token> Tokens = Query.Text.GetTokens();
+                            TokenList Tokens = Query.Text.GetTokens();
                             List<string> Helper = new List<string>();
-                            foreach (Token t in Tokens.Where(X => X.Type == TokenType.VARIABLE))
+                            foreach (Token t in Tokens.List.Where(X => X.Type == TokenType.VARIABLE))
                             {
                                 string buff = t.Text.Contains(".") ? t.Text.Split('.')[0] : t.Text;
                                 if (!Helper.Contains(buff, StringComparer.CurrentCultureIgnoreCase))
@@ -933,9 +934,9 @@ namespace Ez_SQL.MultiQueryForm
                         }
                         else if (LastToken.Text == "#")
                         {
-                            List<Token> Tokens = Query.Text.GetTokens();
+                            TokenList Tokens = Query.Text.GetTokens();
                             List<string> Helper = new List<string>();
-                            foreach (Token t in Tokens.Where(X => X.Type == TokenType.TEMPTABLE))
+                            foreach (Token t in Tokens.List.Where(X => X.Type == TokenType.TEMPTABLE))
                             {
                                 string buff = t.Text.Contains(".") ? t.Text.Split('.')[0] : t.Text;
                                 if (!Helper.Contains(buff, StringComparer.CurrentCultureIgnoreCase))
@@ -1128,9 +1129,9 @@ namespace Ez_SQL.MultiQueryForm
                         LastToken = TxtBef.GetLastToken();
                         if (LastToken.Text == "@")
                         {
-                            List<Token> Tokens = Query.Text.GetTokens();
+                            TokenList Tokens = Query.Text.GetTokens();
                             List<string> Helper = new List<string>();
-                            foreach (Token t in Tokens.Where(X => X.Type == TokenType.VARIABLE))
+                            foreach (Token t in Tokens.List.Where(X => X.Type == TokenType.VARIABLE))
                             {
                                 string buff = t.Text.Contains(".") ? t.Text.Split('.')[0] : t.Text;
                                 if (!Helper.Contains(buff, StringComparer.CurrentCultureIgnoreCase))
@@ -1153,9 +1154,9 @@ namespace Ez_SQL.MultiQueryForm
                         }
                         else if (LastToken.Text == "#")
                         {
-                            List<Token> Tokens = Query.Text.GetTokens();
+                            TokenList Tokens = Query.Text.GetTokens();
                             List<string> Helper = new List<string>();
-                            foreach (Token t in Tokens.Where(X => X.Type == TokenType.TEMPTABLE))
+                            foreach (Token t in Tokens.List.Where(X => X.Type == TokenType.TEMPTABLE))
                             {
                                 string buff = t.Text.Contains(".") ? t.Text.Split('.')[0] : t.Text;
                                 if (!Helper.Contains(buff, StringComparer.CurrentCultureIgnoreCase))
@@ -1437,19 +1438,19 @@ namespace Ez_SQL.MultiQueryForm
         private List<ISqlObject> GetAliasesAndAuxiliarTables(string FullScript)
         {
             List<ISqlObject> Back = new List<ISqlObject>();
-            List<Token> Tokens = FullScript.GetTokens();
+            TokenList Tokens = FullScript.GetTokens();
             List<int> TokensToDelete = new List<int>();
 
             #region First i have to process the full script, remove the "()" from the table valued functions
-            for (int i = 0; i < Tokens.Count; i++)
+            for (int i = 0; i < Tokens.TokenCount; i++)
             {
                 if (Tokens[i].Type == TokenType.WORD && DataProvider.IsTableValuedFunction(Tokens[i].Text) != null)
                 {
                     //find the first opening parenthesis
-                    while (i < Tokens.Count && !Tokens[i].Text.StartsWith("("))
+                    while (i < Tokens.TokenCount && !Tokens[i].Text.StartsWith("("))
                         i++;
                     //then from there till the first closing parenthesis mark every token to be removed
-                    for (int j = i; j < Tokens.Count; j++)
+                    for (int j = i; j < Tokens.TokenCount; j++)
                     {
                         TokensToDelete.Add(j);
                         if (Tokens[j].Text.EndsWith(")"))
@@ -1463,24 +1464,24 @@ namespace Ez_SQL.MultiQueryForm
             //remove the tokens marked
             for (int i = TokensToDelete.Count - 1; i >= 0; i--)
             {
-                Tokens.RemoveAt(TokensToDelete[i]);
+                Tokens.RemoveTokenAt(TokensToDelete[i]);
             }
             //if there was any token removed at all
-            if (TokensToDelete.Count > 0 && Tokens.Count > TokensToDelete[0])
+            if (TokensToDelete.Count > 0 && Tokens.TokenCount > TokensToDelete[0])
             {//if the token right before the deletion and the next after the deletion are both empty spaces or from the same type
-                for (int i = Tokens.Count - 1; i >= 1; i--)
+                for (int i = Tokens.TokenCount - 1; i >= 1; i--)
                 {
                     if (Tokens[i].Type == Tokens[i - 1].Type)
-                        Tokens.RemoveAt(i);
+                        Tokens.RemoveTokenAt(i);
                 }
             }
             #endregion
 
-            for (int i = 0; i < Tokens.Count; i++)
+            for (int i = 0; i < Tokens.TokenCount; i++)
             {
-                Token CurToken = Tokens[i];
+                Token CurToken = Tokens.GetToken(i);
                 #region check for aliases, type: TableTypeObject Alias
-                if ((i + 2) < Tokens.Count)
+                if ((i + 2) < Tokens.TokenCount)
                 {
                     Token ProposedAlias = Tokens[i + 2];
                     if (Tokens[i + 1].Type == TokenType.EMPTYSPACE && ProposedAlias.Type == TokenType.WORD)
@@ -1511,7 +1512,7 @@ namespace Ez_SQL.MultiQueryForm
                 }
                 #endregion
                 #region check for aliases, type: TableTypeObject AS Alias
-                if ((i + 4) < Tokens.Count)
+                if ((i + 4) < Tokens.TokenCount)
                 {
                     Token ProposedAlias = Tokens[i + 4];
                     if (Tokens[i + 1].Type == TokenType.EMPTYSPACE && Tokens[i + 2].Text.Equals("AS", StringComparison.CurrentCultureIgnoreCase) && Tokens[i + 3].Type == TokenType.EMPTYSPACE && ProposedAlias.Type == TokenType.WORD)

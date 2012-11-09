@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Threading;
 using System.IO;
+using Ez_SQL.Extensions;
 using ICSharpCode.TextEditor.Document;
 
 namespace Ez_SQL.QueryLog

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Ez_SQL.DataBaseObjects;
+using Ez_SQL.Extensions;
 
 namespace Ez_SQL.AdditionalForms
 {

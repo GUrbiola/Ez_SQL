@@ -7,19 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
-using XmlSerializationExtensions;
 using System.Runtime.InteropServices;
 using Ez_SQL.ConnectionBarNodes;
 using Ez_SQL.DataBaseObjects;
 using System.IO;
+using Ez_SQL.Extensions;
 using Ez_SQL.Snippets;
 
 namespace Ez_SQL
 {
     public partial class MainForm : Form
     {
-        BackgroundWorker Loader;
-        
         private AddressBarExt.Controls.AddressBarExt AdBar = null; 
         private string _ConxGroup;
         public string ConxGroup
@@ -113,8 +111,6 @@ namespace Ez_SQL
                 Directory.CreateDirectory(String.Format("{0}\\QueriesLog", ExecDir));
             LoadSnippets();
         }
-
-
 
         #region Basic Functionality, minimize, maximize, restore, move dialog and resizing
         private bool _IsMinimized = false;
@@ -248,6 +244,8 @@ namespace Ez_SQL
         {
             LoadConnectionsInfo();
         }
+
+        #region Top tool bar methods
         private void BtnRefreshConnection_Click(object sender, EventArgs e)
         {
             if (CurrentConnection != null && !CurrentConnection.Busy)
@@ -269,6 +267,8 @@ namespace Ez_SQL
                 MessageBox.Show("COnnection string copied to clipboard:" + Environment.NewLine + CurrentConnection.ConnectionString, "Connection string copied", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        #endregion
+        #region Side tool bar methods
         private void BtnNewQuery_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(CurConStr))
@@ -336,8 +336,8 @@ namespace Ez_SQL
                 Sform.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft);
             }
         }
-
-        #region Method to add a new tab query from an already opened query form
+        #endregion
+        #region Method to add a new tab query from an already opened form(can be a query form(F12 or ctrl + click) or can be from a search dialog)
         public void AddQueryForm(string title, string text, SqlConnector DataProvider)
         {
             MultiQueryForm.QueryForm dlg = new MultiQueryForm.QueryForm(this, DataProvider, text);
@@ -348,8 +348,7 @@ namespace Ez_SQL
         }
         #endregion
 
-
-
+        #region Methods to determine if shortcut is a snippet and to load them from file
         internal string IsInsertSnippet(string Shortcut)
         {
             Snippet Got = Snippets.FindAll(X => X.ShortCut.Equals(Shortcut, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
@@ -387,7 +386,7 @@ namespace Ez_SQL
                 Snippets.Sort((X, Y) => String.Compare(X.Name, Y.Name));
             }
         }
-
+        #endregion
     }
 
 

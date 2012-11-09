@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectSearcher));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectSearcher));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.CmbSearchType = new System.Windows.Forms.ComboBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ResultsList = new System.Windows.Forms.ListView();
             this.LonelyHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PopIList = new System.Windows.Forms.ImageList(this.components);
             this.label3 = new System.Windows.Forms.Label();
-            this.Contains = new System.Windows.Forms.RadioButton();
-            this.StartsWith = new System.Windows.Forms.RadioButton();
             this.GridFields = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
-            this.PopIList = new System.Windows.Forms.ImageList(this.components);
+            this.Contains = new System.Windows.Forms.RadioButton();
+            this.StartsWith = new System.Windows.Forms.RadioButton();
             this.TxtFilter = new Ez_SQL.Custom_Controls.AnimatedWaitTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -125,6 +125,7 @@
             this.ResultsList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ResultsList.MultiSelect = false;
             this.ResultsList.Name = "ResultsList";
+            this.ResultsList.ShowItemToolTips = true;
             this.ResultsList.Size = new System.Drawing.Size(484, 169);
             this.ResultsList.SmallImageList = this.PopIList;
             this.ResultsList.TabIndex = 9;
@@ -139,6 +140,21 @@
             this.LonelyHeader.Text = "No se debe de ver";
             this.LonelyHeader.Width = 700;
             // 
+            // PopIList
+            // 
+            this.PopIList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("PopIList.ImageStream")));
+            this.PopIList.TransparentColor = System.Drawing.Color.Transparent;
+            this.PopIList.Images.SetKeyName(0, "Schema.png");
+            this.PopIList.Images.SetKeyName(1, "Table.png");
+            this.PopIList.Images.SetKeyName(2, "View.png");
+            this.PopIList.Images.SetKeyName(3, "Procedure.png");
+            this.PopIList.Images.SetKeyName(4, "Function.png");
+            this.PopIList.Images.SetKeyName(5, "Field.png");
+            this.PopIList.Images.SetKeyName(6, "Variable.png");
+            this.PopIList.Images.SetKeyName(7, "Snippet.png");
+            this.PopIList.Images.SetKeyName(8, "Alias.png");
+            this.PopIList.Images.SetKeyName(9, "TableFunction.png");
+            // 
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -148,32 +164,6 @@
             this.label3.Size = new System.Drawing.Size(484, 18);
             this.label3.TabIndex = 8;
             this.label3.Text = "Search results";
-            // 
-            // Contains
-            // 
-            this.Contains.AutoSize = true;
-            this.Contains.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Contains.Location = new System.Drawing.Point(2, 102);
-            this.Contains.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Contains.Name = "Contains";
-            this.Contains.Size = new System.Drawing.Size(484, 17);
-            this.Contains.TabIndex = 9;
-            this.Contains.Text = "Contains filter";
-            this.Contains.UseVisualStyleBackColor = true;
-            // 
-            // StartsWith
-            // 
-            this.StartsWith.AutoSize = true;
-            this.StartsWith.Checked = true;
-            this.StartsWith.Dock = System.Windows.Forms.DockStyle.Top;
-            this.StartsWith.Location = new System.Drawing.Point(2, 85);
-            this.StartsWith.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.StartsWith.Name = "StartsWith";
-            this.StartsWith.Size = new System.Drawing.Size(484, 17);
-            this.StartsWith.TabIndex = 8;
-            this.StartsWith.TabStop = true;
-            this.StartsWith.Text = "Starts by filter";
-            this.StartsWith.UseVisualStyleBackColor = true;
             // 
             // GridFields
             // 
@@ -214,20 +204,31 @@
             this.label4.Text = "Selected object fields and/or parameters";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // PopIList
+            // Contains
             // 
-            this.PopIList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("PopIList.ImageStream")));
-            this.PopIList.TransparentColor = System.Drawing.Color.Transparent;
-            this.PopIList.Images.SetKeyName(0, "Schema.png");
-            this.PopIList.Images.SetKeyName(1, "Table.png");
-            this.PopIList.Images.SetKeyName(2, "View.png");
-            this.PopIList.Images.SetKeyName(3, "Procedure.png");
-            this.PopIList.Images.SetKeyName(4, "Function.png");
-            this.PopIList.Images.SetKeyName(5, "Field.png");
-            this.PopIList.Images.SetKeyName(6, "Variable.png");
-            this.PopIList.Images.SetKeyName(7, "Snippet.png");
-            this.PopIList.Images.SetKeyName(8, "Alias.png");
-            this.PopIList.Images.SetKeyName(9, "TableFunction.png");
+            this.Contains.AutoSize = true;
+            this.Contains.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Contains.Location = new System.Drawing.Point(2, 102);
+            this.Contains.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Contains.Name = "Contains";
+            this.Contains.Size = new System.Drawing.Size(484, 17);
+            this.Contains.TabIndex = 9;
+            this.Contains.Text = "Contains filter";
+            this.Contains.UseVisualStyleBackColor = true;
+            // 
+            // StartsWith
+            // 
+            this.StartsWith.AutoSize = true;
+            this.StartsWith.Checked = true;
+            this.StartsWith.Dock = System.Windows.Forms.DockStyle.Top;
+            this.StartsWith.Location = new System.Drawing.Point(2, 85);
+            this.StartsWith.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.StartsWith.Name = "StartsWith";
+            this.StartsWith.Size = new System.Drawing.Size(484, 17);
+            this.StartsWith.TabIndex = 8;
+            this.StartsWith.TabStop = true;
+            this.StartsWith.Text = "Starts by filter";
+            this.StartsWith.UseVisualStyleBackColor = true;
             // 
             // TxtFilter
             // 

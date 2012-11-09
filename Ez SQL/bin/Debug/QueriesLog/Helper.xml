@@ -8263,4 +8263,324 @@ END
 		<Execution StartTime="20121108 10:47:14.110" EndTime="20121108 10:47:14.367" Lapse="256" Correct="1" RecordsAffected="0" RecordsRead="972" GridCount="1" />
 		<Code>"SELECT * FROM Dnis.LicensingDetails AS Ld"</Code>
 	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 11:40:20.953" EndTime="20121108 11:40:21.076" Lapse="122" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT N.CreatedOn, N.IsDeleted, N.IsSmsActive, N.LastCallReceivedOn, N.LastModified, N.Misdials, N.Number, N.Owner, N.Price, N.RespOrg FROM Dnis.Numbers AS N"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 11:43:05.954" EndTime="20121108 11:43:06.041" Lapse="86" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT C.ANI, C.City, C.ClientID, C.CustomData, C.Direction, C.DNIS, C.Duration, C.End, C.ID, C.ImportDate, C.IsSale, C.LastModifiedBy, C.LastModifiedOn, C.PhoneTypeID, C.Start, C.State, C.Status, C.Target, C.TerminatingPartyID, C.UnassignedReason, C.VendorCallID, C.VendorID, C.ZipCode FROM Calls.Calls AS C"</Code>
+		<Error Line="1" Message="Incorrect syntax near the keyword &amp;apos;End&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 11:43:50.452" EndTime="20121108 11:43:50.506" Lapse="53" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT 
+	C.ANI, 
+	C.City, 
+	C.ClientID, 
+	C.CustomData, 
+	C.Direction, 
+	C.DNIS, 
+	C.Duration, 
+	C.End, 
+	C.ID, 
+	C.ImportDate, 
+	C.IsSale, 
+	C.LastModifiedBy, 
+	C.LastModifiedOn, 
+	C.PhoneTypeID, 
+	C.Start, 
+	C.State, 
+	C.Status, 
+	C.Target, 
+	C.TerminatingPartyID, 
+	C.UnassignedReason, 
+	C.VendorCallID, 
+	C.VendorID, 
+	C.ZipCode 
+FROM 
+	Calls.Calls AS C"</Code>
+		<Error Line="9" Message="Incorrect syntax near the keyword &amp;apos;End&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 11:43:56.010" EndTime="20121108 11:43:56.341" Lapse="331" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT 
+	C.ANI, 
+	C.City, 
+	C.ClientID, 
+	C.CustomData, 
+	C.Direction, 
+	C.DNIS, 
+	C.Duration, 
+	--C.End,
+	C.ID, 
+	C.ImportDate, 
+	C.IsSale, 
+	C.LastModifiedBy, 
+	C.LastModifiedOn, 
+	C.PhoneTypeID, 
+	C.Start, 
+	C.State, 
+	C.Status, 
+	C.Target, 
+	C.TerminatingPartyID, 
+	C.UnassignedReason, 
+	C.VendorCallID, 
+	C.VendorID, 
+	C.ZipCode 
+FROM 
+	Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 11:44:03.771" EndTime="20121108 11:44:04.064" Lapse="293" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT 
+	C.ANI, 
+	C.City, 
+	C.ClientID, 
+	C.CustomData, 
+	C.Direction, 
+	C.DNIS, 
+	C.Duration, 
+	C.[End],
+	C.ID, 
+	C.ImportDate, 
+	C.IsSale, 
+	C.LastModifiedBy, 
+	C.LastModifiedOn, 
+	C.PhoneTypeID, 
+	C.Start, 
+	C.State, 
+	C.Status, 
+	C.Target, 
+	C.TerminatingPartyID, 
+	C.UnassignedReason, 
+	C.VendorCallID, 
+	C.VendorID, 
+	C.ZipCode 
+FROM 
+	Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 11:48:27.923" EndTime="20121108 11:48:28.261" Lapse="338" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT Cc.* FROM Calls.Calls as /**/ Cc"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 01:39:36.840" EndTime="20121108 01:39:36.980" Lapse="139" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT * FROM Clients.SetUnlicenseDNIS"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;Clients.SetUnlicenseDNIS&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 01:39:55.417" EndTime="20121108 01:39:55.457" Lapse="39" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT * FROM Clients.SetUnlicenseDNIS"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;Clients.SetUnlicenseDNIS&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 01:40:44.631" EndTime="20121108 01:40:44.720" Lapse="88" Correct="1" RecordsAffected="0" RecordsRead="326" GridCount="1" />
+		<Code>"SELECT Ca.Type FROM Dnis.Catalog_AreaCode AS Ca"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 02:36:43.300" EndTime="20121108 02:36:43.502" Lapse="202" Correct="1" RecordsAffected="0" RecordsRead="794" GridCount="1" />
+		<Code>"SELECT * FROM Searches.Searches ORDER BY Id desc"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 02:40:24.141" EndTime="20121108 02:40:24.272" Lapse="131" Correct="1" RecordsAffected="0" RecordsRead="5" GridCount="1" />
+		<Code>"SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 02:41:23.276" EndTime="20121108 02:41:23.448" Lapse="171" Correct="1" RecordsAffected="10" RecordsRead="10" GridCount="2" />
+		<Code>"SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC
+
+EXEC Searches.SetDefault 
+@clientID = null, --int
+@IsTFNSearch = 1, --bit
+@searchID = 792, --int
+@userID = 7 --int
+
+
+SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 02:41:24.633" EndTime="20121108 02:41:24.813" Lapse="179" Correct="1" RecordsAffected="10" RecordsRead="10" GridCount="2" />
+		<Code>"SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC
+
+EXEC Searches.SetDefault 
+@clientID = null, --int
+@IsTFNSearch = 1, --bit
+@searchID = 792, --int
+@userID = 7 --int
+
+
+SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 02:42:26.212" EndTime="20121108 02:42:26.355" Lapse="143" Correct="1" RecordsAffected="0" RecordsRead="5" GridCount="1" />
+		<Code>"SELECT * FROM Searches.Searches AS S where S.IsTFNSearch = 1 and S.UserID = 7"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 02:42:36.333" EndTime="20121108 02:42:36.509" Lapse="175" Correct="1" RecordsAffected="0" RecordsRead="10" GridCount="2" />
+		<Code>"SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC
+
+
+SELECT * FROM Searches.Searches AS S where S.IsTFNSearch = 1 and S.UserID = 7
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 02:42:49.489" EndTime="20121108 02:42:49.672" Lapse="183" Correct="1" RecordsAffected="0" RecordsRead="10" GridCount="2" />
+		<Code>"SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC
+
+
+SELECT * FROM Searches.Searches AS S where S.IsTFNSearch = 1 and S.UserID = 7 ORDER BY S.ID DESC
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 02:43:36.275" EndTime="20121108 02:43:36.393" Lapse="117" Correct="1" RecordsAffected="0" RecordsRead="5" GridCount="1" />
+		<Code>"
+SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 02:43:45.783" EndTime="20121108 02:43:45.826" Lapse="42" Correct="1" RecordsAffected="5" RecordsRead="0" GridCount="0" />
+		<Code>"EXEC Searches.SetDefault 
+@clientID = null, --int
+@IsTFNSearch = 1, --bit
+@searchID = 794, --int
+@userID = 7 --int
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 02:43:49.303" EndTime="20121108 02:43:49.390" Lapse="86" Correct="1" RecordsAffected="0" RecordsRead="5" GridCount="1" />
+		<Code>"SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 02:47:46.168" EndTime="20121108 02:47:46.275" Lapse="107" Correct="1" RecordsAffected="0" RecordsRead="5" GridCount="1" />
+		<Code>"SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC
+--
+--EXEC Searches.SetDefault 
+--@clientID = null, --int
+--@IsTFNSearch = 1, --bit
+--@searchID = 794, --int
+--@userID = 7 --int
+--
+--
+--SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC
+--
+--
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 02:47:46.774" EndTime="20121108 02:47:46.882" Lapse="107" Correct="1" RecordsAffected="0" RecordsRead="5" GridCount="1" />
+		<Code>"SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC
+--
+--EXEC Searches.SetDefault 
+--@clientID = null, --int
+--@IsTFNSearch = 1, --bit
+--@searchID = 794, --int
+--@userID = 7 --int
+--
+--
+--SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC
+--
+--
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 02:47:47.446" EndTime="20121108 02:47:47.560" Lapse="113" Correct="1" RecordsAffected="0" RecordsRead="5" GridCount="1" />
+		<Code>"SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC
+--
+--EXEC Searches.SetDefault 
+--@clientID = null, --int
+--@IsTFNSearch = 1, --bit
+--@searchID = 794, --int
+--@userID = 7 --int
+--
+--
+--SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC
+--
+--
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 02:47:47.701" EndTime="20121108 02:47:47.805" Lapse="104" Correct="1" RecordsAffected="0" RecordsRead="5" GridCount="1" />
+		<Code>"SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC
+--
+--EXEC Searches.SetDefault 
+--@clientID = null, --int
+--@IsTFNSearch = 1, --bit
+--@searchID = 794, --int
+--@userID = 7 --int
+--
+--
+--SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC
+--
+--
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121108 04:23:22.961" EndTime="20121108 04:23:23.080" Lapse="118" Correct="1" RecordsAffected="0" RecordsRead="4" GridCount="1" />
+		<Code>"SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121108 09:53:27.291" EndTime="20121108 09:53:27.801" Lapse="510" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT * FROM dbo.Alerts_AmIMaxPriority"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;dbo.Alerts_AmIMaxPriority&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121108 09:56:06.491" EndTime="20121108 09:56:07.371" Lapse="880" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT * FROM Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121108 11:41:01.973" EndTime="20121108 11:41:02.343" Lapse="370" Correct="1" RecordsAffected="0" RecordsRead="346" GridCount="1" />
+		<Code>"	SELECT 
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS CountryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	FROM 
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121108 11:41:02.993" EndTime="20121108 11:41:03.193" Lapse="200" Correct="1" RecordsAffected="0" RecordsRead="346" GridCount="1" />
+		<Code>"	SELECT 
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS CountryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	FROM 
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State"</Code>
+	</Query>
 </QueriesRoot>
