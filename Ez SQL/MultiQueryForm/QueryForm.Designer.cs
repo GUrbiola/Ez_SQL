@@ -68,13 +68,14 @@
             this.PopIList.TransparentColor = System.Drawing.Color.Transparent;
             this.PopIList.Images.SetKeyName(0, "Schema.png");
             this.PopIList.Images.SetKeyName(1, "Table.png");
-            this.PopIList.Images.SetKeyName(2, "View.gif");
+            this.PopIList.Images.SetKeyName(2, "View.png");
             this.PopIList.Images.SetKeyName(3, "Procedure.png");
             this.PopIList.Images.SetKeyName(4, "Function.png");
             this.PopIList.Images.SetKeyName(5, "Field.png");
             this.PopIList.Images.SetKeyName(6, "Variable.png");
             this.PopIList.Images.SetKeyName(7, "Snippet.png");
             this.PopIList.Images.SetKeyName(8, "Alias.png");
+            this.PopIList.Images.SetKeyName(9, "TableFunction.png");
             // 
             // TabIcons
             // 

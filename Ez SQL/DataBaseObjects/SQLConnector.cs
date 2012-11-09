@@ -13,7 +13,7 @@ using System.Drawing;
 namespace Ez_SQL.DataBaseObjects
 {
     public delegate void EndingLoad();
-    public class SQLConnector
+    public class SqlConnector
     {
         private bool _Loaded;
         public bool Loaded { get { return _Loaded; } }
@@ -70,7 +70,7 @@ namespace Ez_SQL.DataBaseObjects
         BackgroundWorker Loader;
         PopupControl.Popup ISenseRect;
         #endregion
-        public SQLConnector(string ConnectionString)
+        public SqlConnector(string ConnectionString)
         {
             Connection = new SqlConnection(ConnectionString);
             this.ConnectionString = ConnectionString;

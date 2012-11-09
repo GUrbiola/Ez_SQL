@@ -13,7 +13,7 @@ namespace Ez_SQL.MultiQueryForm
     public class CompletionDataProvider: ICompletionDataProvider
     {
         private ImageList imageList;
-        SQLConnector SqlServerData;
+        SqlConnector SqlServerData;
         public FilteringType FilteringOption { get; set; }
         private string FSchema, FObject, FChild;
         public string FilterString 
@@ -59,14 +59,14 @@ namespace Ez_SQL.MultiQueryForm
         public List<ISqlObject> ComplementaryObjects{ get; set; }
 
         
-        public CompletionDataProvider(SQLConnector SqlServerData, ImageList imageList)
+        public CompletionDataProvider(SqlConnector SqlServerData, ImageList imageList)
         {
             this.SqlServerData = SqlServerData;
             this.imageList = imageList;
             ComplementaryObjects = new List<ISqlObject>();
             FilteringOption = FilteringType.Any;
         }
-        public CompletionDataProvider(SQLConnector SqlServerData, ImageList imageList, string FSchema, string FObject, string FChild)
+        public CompletionDataProvider(SqlConnector SqlServerData, ImageList imageList, string FSchema, string FObject, string FChild)
         {
             this.SqlServerData = SqlServerData;
             this.imageList = imageList;

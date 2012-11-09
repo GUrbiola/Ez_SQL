@@ -28,7 +28,7 @@ namespace Ez_SQL.MultiQueryForm
             }
         }
 
-        private SQLConnector DataProvider;
+        private SqlConnector DataProvider;
         private QueryExecutor Executor;
         private MainForm Parent;
 
@@ -42,7 +42,7 @@ namespace Ez_SQL.MultiQueryForm
         private string CurrentFilterString;
         private int AutoCompleteStartOffset;
 
-        public QueryForm(MainForm Parent, SQLConnector DataProvider, string Script = "")
+        public QueryForm(MainForm Parent, SqlConnector DataProvider, string Script = "")
         {
             InitializeComponent();
             this.Parent = Parent;

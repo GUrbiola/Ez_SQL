@@ -49,8 +49,8 @@ namespace Ez_SQL
             get { return _CurConStr; }
             set { _CurConStr = value; }
         }
-        private SQLConnector _CurrentConnection;
-        public SQLConnector CurrentConnection
+        private SqlConnector _CurrentConnection;
+        public SqlConnector CurrentConnection
         {
             get { return _CurrentConnection; }
             set { _CurrentConnection = value; }
@@ -65,8 +65,8 @@ namespace Ez_SQL
                 return new Point(this.Location.X + X, this.Location.Y + Y);
             }
         }
-        private List<SQLConnector> _Connectors;
-        public List<SQLConnector> Connectors 
+        private List<SqlConnector> _Connectors;
+        public List<SqlConnector> Connectors 
         { 
             get { return _Connectors; } 
             set { _Connectors = value; } 
@@ -226,8 +226,8 @@ namespace Ez_SQL
                 CurConStr = Data[3].Split(':')[1];
                 //ConStrCad.Text = CurConStr;
                 if (Connectors == null)
-                    Connectors = new List<SQLConnector>();
-                foreach (SQLConnector _DbConx in Connectors)
+                    Connectors = new List<SqlConnector>();
+                foreach (SqlConnector _DbConx in Connectors)
                 {
                     if (_DbConx.ConnectionString.Equals(CurConStr, StringComparison.CurrentCultureIgnoreCase))
                     {
@@ -235,7 +235,7 @@ namespace Ez_SQL
                         return;
                     }
                 }
-                Connectors.Add(new SQLConnector(CurConStr));
+                Connectors.Add(new SqlConnector(CurConStr));
                 _CurrentConnection = Connectors[Connectors.Count - 1];
             }
             else
@@ -248,11 +248,26 @@ namespace Ez_SQL
         {
             LoadConnectionsInfo();
         }
+        private void BtnRefreshConnection_Click(object sender, EventArgs e)
+        {
+            if (CurrentConnection != null && !CurrentConnection.Busy)
+                CurrentConnection.Initialize(LoadingDialogPosition, CurrentConnection.FullLoaded);
+            LoadSnippets();
+        }
         private void BtnAddConnection_Click(object sender, EventArgs e)
         {
             ConxAdmin Ac = new ConxAdmin();
             if (Ac.ShowDialog() == DialogResult.OK)
                 AdBar.InitializeRoot(new RootConxNode("Start"));
+        }
+        private void BtnCopyConnectionString_Click(object sender, EventArgs e)
+        {
+            if (CurrentConnection != null && CurrentConnection.ConnectionString.Length > 0)
+            {
+                Clipboard.Clear();
+                Clipboard.SetText(CurrentConnection.ConnectionString);
+                MessageBox.Show("COnnection string copied to clipboard:" + Environment.NewLine + CurrentConnection.ConnectionString, "Connection string copied", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         private void BtnNewQuery_Click(object sender, EventArgs e)
         {
@@ -278,15 +293,29 @@ namespace Ez_SQL
             dlg.ShowIcon = true;
             dlg.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
         }
-        private void BtnRefreshConnection_Click(object sender, EventArgs e)
+        private void BtnSearch_Click(object sender, EventArgs e)
         {
-            if (CurrentConnection != null && !CurrentConnection.Busy)
-                CurrentConnection.Initialize(LoadingDialogPosition, CurrentConnection.FullLoaded);
-            LoadSnippets();
-        }
-        private void BtnCopyConnectionString_Click(object sender, EventArgs e)
-        {
+            if (String.IsNullOrEmpty(CurConStr))
+            {
+                MessageBox.Show("Select a database connection");
+                return;
+            }
 
+            if (CurrentConnection.IsBusy)
+            {
+                return;
+            }
+
+            if (!CurrentConnection.Loaded)
+            {
+                CurrentConnection.Initialize(LoadingDialogPosition, false);
+            }
+
+            AdditionalForms.ObjectSearcher dlg = new AdditionalForms.ObjectSearcher(this, CurrentConnection);
+            dlg.ToolTipText = String.Format("{0} - {1}", CurrentConnection.Server, CurrentConnection.DataBase);
+            dlg.Text = String.Format("{0} - {1}", ConxGroup, ConxName);
+            dlg.ShowIcon = true;
+            dlg.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft);
         }
         private void BtnHistoric_Click(object sender, EventArgs e)
         {
@@ -309,7 +338,7 @@ namespace Ez_SQL
         }
 
         #region Method to add a new tab query from an already opened query form
-        public void AddQueryForm(string title, string text, SQLConnector DataProvider)
+        public void AddQueryForm(string title, string text, SqlConnector DataProvider)
         {
             MultiQueryForm.QueryForm dlg = new MultiQueryForm.QueryForm(this, DataProvider, text);
             dlg.ToolTipText = String.Format("{0} - {1} / {2} - {3}", DataProvider.Server, DataProvider.DataBase, ConxGroup, ConxName);
@@ -358,6 +387,7 @@ namespace Ez_SQL
                 Snippets.Sort((X, Y) => String.Compare(X.Name, Y.Name));
             }
         }
+
     }
 
 

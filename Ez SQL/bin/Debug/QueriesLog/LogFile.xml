@@ -8542,3 +8542,44 @@ SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC"</
 		<Execution StartTime="20121108 04:23:22.961" EndTime="20121108 04:23:23.080" Lapse="118" Correct="1" RecordsAffected="0" RecordsRead="4" GridCount="1" />
 		<Code>"SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC"</Code>
 	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121108 09:53:27.291" EndTime="20121108 09:53:27.801" Lapse="510" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT * FROM dbo.Alerts_AmIMaxPriority"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;dbo.Alerts_AmIMaxPriority&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121108 09:56:06.491" EndTime="20121108 09:56:07.371" Lapse="880" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT * FROM Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121108 11:41:01.973" EndTime="20121108 11:41:02.343" Lapse="370" Correct="1" RecordsAffected="0" RecordsRead="346" GridCount="1" />
+		<Code>"	SELECT 
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS CountryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	FROM 
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121108 11:41:02.993" EndTime="20121108 11:41:03.193" Lapse="200" Correct="1" RecordsAffected="0" RecordsRead="346" GridCount="1" />
+		<Code>"	SELECT 
+		CC.Id AS CountryId,
+		CC.Name AS Country,
+		CC.Abbreviation AS CountryAbbr,
+		CS.Id AS StateId,
+		CS.Name AS State,
+		CS.Abbreviation AS StateAbbr,
+		CA.Code AS AreaCode
+	FROM 
+		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
+		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State"</Code>
+	</Query>

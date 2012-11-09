@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace Ez_SQL
 {
+    public enum SortDirection { Ascending, Decending };
     public static class Extensions
     {
         #region Extensions for TextEditor
@@ -391,6 +392,10 @@ namespace Ez_SQL
                 return Word;
             return Word.Substring(0,1).ToUpper() + (Word.Length > 1 ? Word.Substring(1).ToLower() : "");
         }
+        public static bool Contains(this string source, string toCheck, StringComparison comp)
+        {
+            return source.IndexOf(toCheck, comp) >= 0;
+        }
         #endregion
 
         #region Extensions for IEnumerable
@@ -404,6 +409,12 @@ namespace Ez_SQL
                     yield return element;
                 }
             }
+        }
+        public static IEnumerable<TSource> Sort<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> sorter, SortDirection direction = SortDirection.Ascending)
+        {
+            if(direction == SortDirection.Decending)
+                source.OrderByDescending(sorter);
+            return source.OrderBy(sorter);
         }
         #endregion
 

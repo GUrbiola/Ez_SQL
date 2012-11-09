@@ -68,7 +68,7 @@ namespace Ez_SQL.DataBaseObjects
         }
         public int ImageIndex
         {
-            get { return 4; }
+            get { return 9; }
         }
         public bool InsertAction(ICSharpCode.TextEditor.TextArea textArea, char ch)
         {
