@@ -21,10 +21,8 @@ namespace Ez_SQL
             EndOffsets = new List<int>();
             TokenLengths = new List<int>();
         }
-        public void AddToken(List<Token> TokenList, Token Current)
+        public void AddToken(Token Current)
         {
-            if (TokenList == null)
-                TokenList = new List<Token>();
             if (Current == null || Current.IsTextEmpty)
                 return;
 
@@ -54,22 +52,35 @@ namespace Ez_SQL
                         StartOffsets.Add(StartOffsets.Last() + TokenLengths.Last());
                     }
                     EndOffsets.Add(StartOffsets.Last() + Current.Text.Length - 1);
-                    TokenLengths.Add(StartOffsets.Last() + Current.Text.Length);
-                    TokenList.Add(Current);
+                    TokenLengths.Add(Current.Text.Length);
+                    List.Add(Current);
                     break;
                 case TokenType.WORD:
-                    if (Current.Text.StartsWith("@") && Current.Text.Length > 1)
+                    if (Current.Text.IsReserved())
                     {
-                        Current.Type = TokenType.VARIABLE;
+                        Current.Type = TokenType.RESERVED;
+                    }
+                    else if (Current.Text.IsDataType())
+                    {
+                        Current.Type = TokenType.DATATYPE;
                     }
                     else if (Current.Text.StartsWith("#") && Current.Text.Length > 1)
                     {
                         Current.Type = TokenType.TEMPTABLE;
                     }
-                    else if (Current.Text.IsReserved())
+                    else if (Current.Text.StartsWith("@") && Current.Text.Length > 1)
                     {
-                        Current.Type = TokenType.RESERVED;
+                        Current.Type = TokenType.VARIABLE;
                     }
+                    else if (Current.Text.Equals("begin", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        Current.Type = TokenType.BLOCKSTART;
+                    }
+                    else if (Current.Text.Equals("end", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        Current.Type = TokenType.BLOCKEND;
+                    }
+
 
                     if(List.Count == 0)
                     {
@@ -80,8 +91,8 @@ namespace Ez_SQL
                         StartOffsets.Add(StartOffsets.Last() + TokenLengths.Last());
                     }
                     EndOffsets.Add(StartOffsets.Last() + Current.Text.Length - 1);
-                    TokenLengths.Add(StartOffsets.Last() + Current.Text.Length);
-                    TokenList.Add(Current);
+                    TokenLengths.Add(Current.Text.Length);
+                    List.Add(Current);
                     break;
             }
         }
@@ -169,6 +180,29 @@ namespace Ez_SQL
                 sb.Append(t.Text);
             }
             return sb.ToString();
+        }
+        public Token GetTokenAtOffset(int offset, out int index)
+        {
+            for (int i = 0; i < List.Count; i++)
+            {
+                if (StartOffsets[i] <= offset && offset <= EndOffsets[i])
+                {
+                    index = i;
+                    return GetToken(i);
+                }
+            }
+            index = -1;
+            return null;
+        }
+        internal List<Token> GetByType(TokenType tokenType)
+        {
+            return List.Where(X => X.Type == tokenType).ToList();
+        }
+        internal List<Token> GetCustomFolders(bool beginFold)
+        {
+            if (beginFold)
+                return List.Where(X => X.Type == TokenType.LINECOMMENT && X.Text.StartsWith("--fold", StringComparison.CurrentCultureIgnoreCase)).ToList();
+            return List.Where(X => X.Type == TokenType.LINECOMMENT && X.Text.StartsWith("--/fold", StringComparison.CurrentCultureIgnoreCase)).ToList();
         }
     }
 }

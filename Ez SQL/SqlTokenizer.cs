@@ -141,6 +141,23 @@ namespace Ez_SQL
             }
             return false;
         }
+        private static bool IsOperator(char c)
+        {
+            if (c == '+' || c == '/' || c == '-' || c == '*')
+            {
+                return true;
+            }
+            return false;
+        }
+        private static bool IsComparator(char c)
+        {
+            if (c == '>' || c == '<' || c == '=')
+            {
+                return true;
+            }
+            return false;
+        }
+
         private static void AddToken(List<Token> TokenList, Token Current)
         {
             if (TokenList == null)

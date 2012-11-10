@@ -87,7 +87,8 @@ namespace Ez_SQL.MultiQueryForm
                 }
                 HighlightingManager.Manager.AddSyntaxModeFileProvider(new FileSyntaxModeProvider(MainForm.ExecDir + "\\SintaxHighLight\\"));
                 Query.Document.HighlightingStrategy = HighlightingManager.Manager.FindHighlighter("SQL");
-                Query.Document.FoldingManager.FoldingStrategy = new Ez_SQL.TextEditorClasses.SqlFoldingStrategy();
+                Query.Document.FormattingStrategy = new Ez_SQL.TextEditorClasses.SqlBracketMatcher();
+                Query.Document.FoldingManager.FoldingStrategy = new Ez_SQL.TextEditorClasses.SqlFolder();
                 Query.Document.FoldingManager.UpdateFoldings(null, null);
             }
             catch (Exception ex)
@@ -668,7 +669,7 @@ namespace Ez_SQL.MultiQueryForm
             {
                 Query.Document.FoldingManager.UpdateFoldings(null, null);
                 FoldingRefresher.Enabled = false;
-                ToRefresh = 5;
+                ToRefresh = 15;
             }
         }
         #endregion
@@ -1658,6 +1659,16 @@ namespace Ez_SQL.MultiQueryForm
                     }
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach (var fm in Query.Document.FoldingManager.FoldMarker)
+	        {
+                fm.IsFolded = !fm.IsFolded;
+	        }
+            Query.Document.FoldingManager.UpdateFoldings(null, null);
+            Query.Refresh();
         }
 
     }

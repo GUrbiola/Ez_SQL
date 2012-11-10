@@ -99,188 +99,9 @@ namespace Ez_SQL.Extensions
         }
         public static Token GetLastToken(this string Text)
         {
-            return new Token();
-            //List<Token> Back = new List<Token>();
-            //int StringLength = String.IsNullOrEmpty(Text) ? 0 : Text.Length;
-            //Token Current = null;
-
-            //for (int index = StringLength - 1; index >= 0; index--)
-            //{
-            //    if (Back.Count > 0)
-            //        break;
-            //    char CurChar = Text[index];
-
-            //    if (IsWhiteSpace(CurChar))
-            //    {
-            //        if (Current == null)
-            //        {//no previous token, so create a new token
-            //            Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
-            //        }
-            //        else if (Current.Type == TokenType.EMPTYSPACE)
-            //        {//previous token is the same, an empty space, so append to text
-            //            Current.Text = CurChar.ToString() + Current.Text;
-            //        }
-            //        else
-            //        {//previous token is different, add the last token and create a new emptyspace token
-            //            AddToken(Back, Current);
-            //            Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
-            //        }
-            //    }
-            //    else if (IsComma(CurChar))
-            //    {
-            //        if (Current == null)
-            //        {//no previous token, in this just add the new token and continue
-            //            AddToken(Back, new Token(TokenType.COMMA, ","));
-            //        }
-            //        else
-            //        {//if last token not empty, add now, because this char means its end, also add the new token found
-            //            AddToken(Back, Current);
-            //            AddToken(Back, new Token(TokenType.COMMA, ","));
-            //            Current = null;
-            //        }
-            //    }
-            //    else if (IsOpenBracket(CurChar))
-            //    {
-            //        if (Current == null)
-            //        {//no previous token, in this just add the new token and continue
-            //            AddToken(Back, new Token(TokenType.OPENBRACKET, CurChar.ToString()));
-            //        }
-            //        else
-            //        {//if last token not empty, add now, because this char means its end, also add the new token found
-            //            AddToken(Back, Current);
-            //            AddToken(Back, new Token(TokenType.OPENBRACKET, CurChar.ToString()));
-            //            Current = null;
-            //        }
-            //    }
-            //    else if (IsCloseBracket(CurChar))
-            //    {
-            //        if (Current == null)
-            //        {//no previous token, in this just add the new token and continue
-            //            AddToken(Back, new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
-            //        }
-            //        else
-            //        {//if last token not empty, add now, because this char means its end, also add the new token found
-            //            AddToken(Back, Current);
-            //            AddToken(Back, new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
-            //            Current = null;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        if (Current == null)
-            //        {//no previous token, in this just add the new token and continue
-            //            Current = new Token(TokenType.WORD, CurChar.ToString());
-            //        }
-            //        else if (Current.Type == TokenType.WORD)
-            //        {//last token is a word, so append the text
-            //            Current.Text = CurChar.ToString() + Current.Text;
-            //        }
-            //        else
-            //        {//last token is different, add the last token and create a new word token
-            //            AddToken(Back, Current);
-            //            Current = new Token(TokenType.WORD, CurChar.ToString());
-            //        }
-            //    }
-            //}
-
-            //if (Current != null)
-            //    AddToken(Back, Current);
-
-            //return Back.Count > 0 ? Back[0] : new Token(TokenType.EMPTYSPACE, "");
+            return Text.GetTokens().List.LastOrDefault();
         }
         public static Token GetFirstToken(this string Text)
-        {
-            return new Token();
-            //List<Token> Back = new List<Token>();
-            //int StringLength = String.IsNullOrEmpty(Text) ? 0 : Text.Length;
-            //Token Current = null;
-
-            //for (int index = 0; index < StringLength; index++)
-            //{
-            //    if (Back.Count > 0)
-            //        break;
-            //    char CurChar = Text[index];
-
-            //    if (IsWhiteSpace(CurChar))
-            //    {
-            //        if (Current == null)
-            //        {//no previous token, so create a new token
-            //            Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
-            //        }
-            //        else if (Current.Type == TokenType.EMPTYSPACE)
-            //        {//previous token is the same, an empty space, so append to text
-            //            Current.Text = Current.Text.AppendChar(CurChar);
-            //        }
-            //        else
-            //        {//previous token is different, add the last token and create a new emptyspace token
-            //            AddToken(Back, Current);
-            //            Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
-            //        }
-            //    }
-            //    else if (IsComma(CurChar))
-            //    {
-            //        if (Current == null)
-            //        {//no previous token, in this just add the new token and continue
-            //            AddToken(Back, new Token(TokenType.COMMA, ","));
-            //        }
-            //        else
-            //        {//if last token not empty, add now, because this char means its end, also add the new token found
-            //            AddToken(Back, Current);
-            //            AddToken(Back, new Token(TokenType.COMMA, ","));
-            //            Current = null;
-            //        }
-            //    }
-            //    else if (IsOpenBracket(CurChar))
-            //    {
-            //        if (Current == null)
-            //        {//no previous token, in this just add the new token and continue
-            //            AddToken(Back, new Token(TokenType.OPENBRACKET, CurChar.ToString()));
-            //        }
-            //        else
-            //        {//if last token not empty, add now, because this char means its end, also add the new token found
-            //            AddToken(Back, Current);
-            //            AddToken(Back, new Token(TokenType.OPENBRACKET, CurChar.ToString()));
-            //            Current = null;
-            //        }
-            //    }
-            //    else if (IsCloseBracket(CurChar))
-            //    {
-            //        if (Current == null)
-            //        {//no previous token, in this just add the new token and continue
-            //            AddToken(Back, new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
-            //        }
-            //        else
-            //        {//if last token not empty, add now, because this char means its end, also add the new token found
-            //            AddToken(Back, Current);
-            //            AddToken(Back, new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
-            //            Current = null;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        if (Current == null)
-            //        {//no previous token, in this just add the new token and continue
-            //            Current = new Token(TokenType.WORD, CurChar.ToString());
-            //        }
-            //        else if (Current.Type == TokenType.WORD)
-            //        {//last token is a word, so append the text
-            //            Current.Text = Current.Text.AppendChar(CurChar);
-            //        }
-            //        else
-            //        {//last token is different, add the last token and create a new word token
-            //            AddToken(Back, Current);
-            //            Current = new Token(TokenType.WORD, CurChar.ToString());
-            //        }
-            //    }
-            //}
-
-            //if (Current != null)
-            //    AddToken(Back, Current);
-
-            //return Back.Count > 0 ? Back[0] : new Token(TokenType.EMPTYSPACE, "");
-
-        }
-        public static TokenList GetTokens(this string Text)
         {
             TokenList Back = new TokenList();
             int StringLength = String.IsNullOrEmpty(Text) ? 0 : Text.Length;
@@ -288,9 +109,11 @@ namespace Ez_SQL.Extensions
 
             for (int index = 0; index < StringLength; index++)
             {
+                if (Back.TokenCount > 1)
+                    break;
+
                 char CurChar = Text[index];
-                string[] tokenbreaker;
-                string[] nottokenbreaker;
+                char[] wordTokenBreaker;
                 if (Current != null)
                 {
                     switch (Current.Type)
@@ -310,119 +133,588 @@ namespace Ez_SQL.Extensions
                         //case TokenType.TEMPTABLE:
                         //    break;
                         case TokenType.EMPTYSPACE:
-                            nottokenbreaker = new string[] { " ", "\t", "\r", "\n" };
+                            #region Code to process an empty space token + something
+                            if (CurChar.IsWhiteSpace())
+                            {
+                                Current.Text = Current.Text.AppendChar(CurChar);
+                            }
+                            else
+                            {
+                                Back.AddToken(Current);
+                                Current = null;
+                                if (CurChar.IsComma())
+                                {
+                                    Back.AddToken(new Token(TokenType.COMMA, ","));
+                                }
+                                else if (CurChar.IsStringOperator())
+                                {
+                                    Current = new Token(TokenType.STRING, "'");
+                                }
+                                else if (CurChar.IsOpenBracket())
+                                {
+                                    Back.AddToken(new Token(TokenType.OPENBRACKET, CurChar.ToString()));
+                                }
+                                else if (CurChar.IsCloseBracket())
+                                {
+                                    Back.AddToken(new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
+                                }
+                                else if (CurChar.IsOperator())
+                                {
+                                    char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                                    //must check if this chars means the start of comment
+                                    if (CurChar == '-' && nextc == '-')
+                                    {
+                                        Current = new Token(TokenType.LINECOMMENT, "--");
+                                        index++;
+                                    }
+                                    else if (CurChar == '/' && nextc == '*')
+                                    {
+                                        Current = new Token(TokenType.BLOCKCOMMENT, "/*");
+                                        index++;
+                                    }
+                                    else
+                                    {
+                                        Back.AddToken(new Token(TokenType.OPERATOR, CurChar.ToString()));
+                                    }
+                                }
+                                else if (CurChar.IsComparator())
+                                {
+                                    char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                                    if (nextc.IsComparator())
+                                    {
+                                        Back.AddToken(new Token(TokenType.COMPARATOR, CurChar.ToString() + nextc.ToString()));
+                                    }
+                                    else
+                                    {
+                                        Back.AddToken(new Token(TokenType.COMPARATOR, CurChar.ToString()));
+                                    }
+                                }
+                                else
+                                {
+                                    Current = new Token(TokenType.WORD, CurChar.ToString());
+                                }
+                            }
+                            #endregion
                             break;
                         case TokenType.WORD:
+                            wordTokenBreaker = new char[] { ' ', '\t', '\r', '\n', '\'', ',', '(', '[', '{', '}', ']', ')', '-', '*', '+', '/', '>', '<', '=' };
+                            #region Code to process a word token + something
+                            if (wordTokenBreaker.Contains(CurChar))
+                            {
+                                Back.AddToken(Current);
+                                Current = null;
+                                if (CurChar.IsWhiteSpace())
+                                {
+                                    Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
+                                }
+                                else if (CurChar.IsStringOperator())
+                                {
+                                    Current = new Token(TokenType.STRING, "'");
+                                }
+                                else if (CurChar.IsComma())
+                                {
+                                    Current = new Token(TokenType.STRING, ",");
+                                }
+                                else if (CurChar.IsOpenBracket())
+                                {
+                                    Back.AddToken(new Token(TokenType.OPENBRACKET, CurChar.ToString()));
+                                }
+                                else if (CurChar.IsCloseBracket())
+                                {
+                                    Back.AddToken(new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
+                                }
+                                else if (CurChar.IsOperator())
+                                {
+                                    char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                                    //must check if this chars means the start of comment
+                                    if (CurChar == '-' && nextc == '-')
+                                    {
+                                        Current = new Token(TokenType.LINECOMMENT, "--");
+                                        index++;
+                                    }
+                                    else if (CurChar == '/' && nextc == '*')
+                                    {
+                                        Current = new Token(TokenType.BLOCKCOMMENT, "/*");
+                                        index++;
+                                    }
+                                    else
+                                    {
+                                        Back.AddToken(new Token(TokenType.OPERATOR, CurChar.ToString()));
+                                    }
+                                }
+                                else if (CurChar.IsComparator())
+                                {
+                                    char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                                    if (nextc.IsComparator())
+                                    {
+                                        Back.AddToken(new Token(TokenType.COMPARATOR, CurChar.ToString() + nextc.ToString()));
+                                        index++;
+                                    }
+                                    else
+                                    {
+                                        Back.AddToken(new Token(TokenType.COMPARATOR, CurChar.ToString()));
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                Current.Text = Current.Text.AppendChar(CurChar);
+                            }
+                            #endregion
                             break;
-
                         case TokenType.LINECOMMENT:
+                            #region Code to process a char inside a linecomment, a token breaker are "\n" and "\r\n"
+                            if (CurChar == '\r')
+                            {
+                                char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                                if (nextc == '\n')
+                                {
+                                    Current.Text += "\r\n";
+                                    Back.AddToken(Current);
+                                    Current = null;
+                                }
+                                else
+                                {
+                                    Current.Text += "\r";
+                                }
+                            }
+                            else if (CurChar == '\n')
+                            {
+                                Current.Text += "\n";
+                                Back.AddToken(Current);
+                                Current = null;
+                            }
+                            else
+                            {
+                                Current.Text.AppendChar(CurChar);
+                            }
+                            #endregion
                             break;
                         case TokenType.BLOCKCOMMENT:
+                            #region Code to process a char inside a block comment, the only token breaker is "*/"
+                            if (CurChar == '*')
+                            {
+                                char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                                if (nextc == '/')
+                                {
+                                    Current.Text += "*/";
+                                    Back.AddToken(Current);
+                                    Current = null;
+                                    index++;
+                                }
+                                else
+                                {
+                                    Current.Text = Current.Text.AppendChar(CurChar);
+                                }
+                            }
+                            else
+                            {
+                                Current.Text = Current.Text.AppendChar(CurChar);
+                            }
+                            #endregion
                             break;
                         case TokenType.STRING:
+                            #region Code to process a char inside a string, only token breaker is "'", but not "''"
+                            if (CurChar == '\'')
+                            {
+                                char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                                if (nextc == '\'')
+                                {//double '', so is an escaped ', it is a string still then
+                                    Current.Text += "''";
+                                    index++;
+                                }
+                                else
+                                {
+                                    Current.Text += "'";
+                                    Back.AddToken(Current);
+                                    Current = null;
+                                }
+                            }
+                            else
+                            {
+                                Current.Text = Current.Text.AppendChar(CurChar);
+                            }
+                            #endregion
                             break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
+
                     }
                 }
-                //else if (Current != null && Current.Type == TokenType.BLOCKCOMMENT)
-                //{
-                //}
-                //else if (Current != null && Current.Type == TokenType.STRING)
-                //{
-                //}
-                //else
-                //{
-                //}
-
-
-                if (IsWhiteSpace(CurChar))
+                else if (Current == null)
                 {
-                    if (Current == null)
-                    {//no previous token, so create a new token
+                    #region no previous token, must check if create a new one, or let the current stay null and add a new instance of token
+                    if (IsWhiteSpace(CurChar))
+                    {
                         Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
                     }
-                    else if (Current.Type == TokenType.EMPTYSPACE)
-                    {//previous token is the same, an empty space, so append to text
-                        Current.Text = Current.Text.AppendChar(CurChar);
+                    else if (CurChar.IsComma())
+                    {//1 char token, so Current stays null
+                        Back.AddToken(new Token(TokenType.COMMA, CurChar.ToString()));
+                    }
+                    else if (CurChar.IsStringOperator())
+                    {//1 char token, so Current stays null
+                        Back.AddToken(new Token(TokenType.STRING, CurChar.ToString()));
+                    }
+                    else if (CurChar.IsOpenBracket())
+                    {//1 char token, so Current stays null
+                        Back.AddToken(new Token(TokenType.OPENBRACKET, CurChar.ToString()));
+                    }
+                    else if (CurChar.IsCloseBracket())
+                    {//1 char token, so Current stays null
+                        Back.AddToken(new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
+                    }
+                    else if (CurChar.IsOperator())
+                    {
+                        char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                        //must check if this chars means the start of comment
+                        if (CurChar == '-' && nextc == '-')
+                        {
+                            Current = new Token(TokenType.LINECOMMENT, "--");
+                            index++;
+                        }
+                        else if (CurChar == '/' && nextc == '*')
+                        {
+                            Current = new Token(TokenType.BLOCKCOMMENT, "/*");
+                            index++;
+                        }
+                        else
+                        {
+                            Back.AddToken(new Token(TokenType.OPERATOR, CurChar.ToString()));
+                        }
+                    }
+                    else if (CurChar.IsComparator())
+                    {
+                        char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                        if (nextc.IsComparator())
+                        {
+                            Back.AddToken(new Token(TokenType.COMPARATOR, CurChar.ToString() + nextc.ToString()));
+                            index++;
+                        }
+                        else
+                        {
+                            Back.AddToken(new Token(TokenType.COMPARATOR, CurChar.ToString()));
+                        }
                     }
                     else
-                    {//previous token is different, add the last token and create a new emptyspace token
-                        AddToken(Back, Current);
-                        Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
-                    }
-                }
-                else if (IsComma(CurChar))
-                {
-                    if (Current == null)
-                    {//no previous token, in this just add the new token and continue
-                        AddToken(Back, new Token(TokenType.COMMA, ","));
-                    }
-                    else
-                    {//if last token not empty, add now, because this char means its end, also add the new token found
-                        AddToken(Back, Current);
-                        AddToken(Back, new Token(TokenType.COMMA, ","));
-                        Current = null;
-                    }
-                }
-                else if (IsOpenBracket(CurChar))
-                {
-                    if (Current == null)
-                    {//no previous token, in this just add the new token and continue
-                        AddToken(Back, new Token(TokenType.OPENBRACKET, CurChar.ToString()));
-                    }
-                    else
-                    {//if last token not empty, add now, because this char means its end, also add the new token found
-                        AddToken(Back, Current);
-                        AddToken(Back, new Token(TokenType.OPENBRACKET, CurChar.ToString()));
-                        Current = null;
-                    }
-                }
-                else if (IsCloseBracket(CurChar))
-                {
-                    if (Current == null)
-                    {//no previous token, in this just add the new token and continue
-                        AddToken(Back, new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
-                    }
-                    else
-                    {//if last token not empty, add now, because this char means its end, also add the new token found
-                        AddToken(Back, Current);
-                        AddToken(Back, new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
-                        Current = null;
-                    }
-                }
-                else
-                {
-                    if (Current == null)
-                    {//no previous token, in this just add the new token and continue
+                    {
                         Current = new Token(TokenType.WORD, CurChar.ToString());
                     }
-                    else if (Current.Type == TokenType.WORD)
-                    {//last token is a word, so append the text
-                        Current.Text = Current.Text.AppendChar(CurChar);
-                    }
-                    else
-                    {//last token is different, add the last token and create a new word token
-                        AddToken(Back, Current);
-                        Current = new Token(TokenType.WORD, CurChar.ToString());
-                    }
+                    #endregion
                 }
             }
-
             if (Current != null)
-                AddToken(Back, Current);
+                Back.AddToken(Current);
 
-            return Back.Count == 0 ? new List<Token>() { new Token(TokenType.EMPTYSPACE, "") } : Back;
+            return Back[0];
         }
-        public static bool IsReserved(this string Word)
+        public static TokenList GetTokens(this string Text)
         {
-            return ReservedWords.Contains(Word);
+            TokenList Back = new TokenList();
+            int StringLength = String.IsNullOrEmpty(Text) ? 0 : Text.Length;
+            Token Current = null;
+
+            for (int index = 0; index < StringLength; index++)
+            {
+                char CurChar = Text[index];
+                char[] wordTokenBreaker;
+                if (Current != null)
+                {
+                    switch (Current.Type)
+                    {
+                        ////can not be a comma, because a comma is a 1 char token
+                        //case TokenType.COMMA:
+                        //    break;
+                        ////can not be aa oppenbracket, because a oppenbracket is a 1 char token
+                        //case TokenType.OPENBRACKET:
+                        //    break;
+                        ////can not be a closebracket, because a closebracket is a 1 char token
+                        //case TokenType.CLOSEBRACKET:
+                        //    break;
+                        //can not be any of the next either, because this is decided when the token is added to the list
+                        //case TokenType.RESERVED:
+                        //case TokenType.VARIABLE:
+                        //case TokenType.TEMPTABLE:
+                        //    break;
+                        case TokenType.EMPTYSPACE:
+                            #region Code to process an empty space token + something
+                            if (CurChar.IsWhiteSpace())
+                            {
+                                Current.Text = Current.Text.AppendChar(CurChar);
+                            }
+                            else
+                            {
+                                Back.AddToken(Current);
+                                Current = null;
+                                if (CurChar.IsComma())
+                                {
+                                    Back.AddToken(new Token(TokenType.COMMA, ","));
+                                }
+                                else if (CurChar.IsStringOperator())
+                                {
+                                    Current = new Token(TokenType.STRING, "'");
+                                }
+                                else if (CurChar.IsOpenBracket())
+                                {
+                                    Back.AddToken(new Token(TokenType.OPENBRACKET, CurChar.ToString()));
+                                }
+                                else if (CurChar.IsCloseBracket())
+                                {
+                                    Back.AddToken(new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
+                                }
+                                else if (CurChar.IsOperator())
+                                {
+                                    char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                                    //must check if this chars means the start of comment
+                                    if (CurChar == '-' && nextc == '-')
+                                    {
+                                        Current = new Token(TokenType.LINECOMMENT, "--");
+                                        index++;
+                                    }
+                                    else if (CurChar == '/' && nextc == '*')
+                                    {
+                                        Current = new Token(TokenType.BLOCKCOMMENT, "/*");
+                                        index++;
+                                    }
+                                    else
+                                    {
+                                        Back.AddToken(new Token(TokenType.OPERATOR, CurChar.ToString()));
+                                    }
+                                }
+                                else if (CurChar.IsComparator())
+                                {
+                                    char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                                    if (nextc.IsComparator())
+                                    {
+                                        Back.AddToken(new Token(TokenType.COMPARATOR, CurChar.ToString() + nextc.ToString()));
+                                    }
+                                    else
+                                    {
+                                        Back.AddToken(new Token(TokenType.COMPARATOR, CurChar.ToString()));
+                                    }
+                                }
+                                else
+                                {
+                                    Current = new Token(TokenType.WORD, CurChar.ToString());
+                                }
+                            }
+                            #endregion
+                            break;
+                        case TokenType.WORD:
+                            wordTokenBreaker = new char[] { ' ', '\t', '\r', '\n', '\'', ',', '(', '[', '{', '}', ']', ')', '-', '*', '+', '/', '>', '<', '=' };
+                            #region Code to process a word token + something
+                            if (wordTokenBreaker.Contains(CurChar))
+                            {
+                                Back.AddToken(Current);
+                                Current = null;
+                                if (CurChar.IsWhiteSpace())
+                                {
+                                    Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
+                                }
+                                else if (CurChar.IsStringOperator())
+                                {
+                                    Current = new Token(TokenType.STRING, "'");
+                                }
+                                else if (CurChar.IsComma())
+                                {
+                                    Back.AddToken(new Token(TokenType.COMMA, ","));
+                                }
+                                else if (CurChar.IsOpenBracket())
+                                {
+                                    Back.AddToken(new Token(TokenType.OPENBRACKET, CurChar.ToString()));
+                                }
+                                else if (CurChar.IsCloseBracket())
+                                {
+                                    Back.AddToken(new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
+                                }
+                                else if (CurChar.IsOperator())
+                                {
+                                    char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                                    //must check if this chars means the start of comment
+                                    if (CurChar == '-' && nextc == '-')
+                                    {
+                                        Current = new Token(TokenType.LINECOMMENT, "--");
+                                        index++;
+                                    }
+                                    else if (CurChar == '/' && nextc == '*')
+                                    {
+                                        Current = new Token(TokenType.BLOCKCOMMENT, "/*");
+                                        index++;
+                                    }
+                                    else
+                                    {
+                                        Back.AddToken(new Token(TokenType.OPERATOR, CurChar.ToString()));
+                                    }
+                                }
+                                else if (CurChar.IsComparator())
+                                {
+                                    char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                                    if (nextc.IsComparator())
+                                    {
+                                        Back.AddToken(new Token(TokenType.COMPARATOR, CurChar.ToString() + nextc.ToString()));
+                                        index++;
+                                    }
+                                    else
+                                    {
+                                        Back.AddToken(new Token(TokenType.COMPARATOR, CurChar.ToString()));
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                Current.Text = Current.Text.AppendChar(CurChar);
+                            }
+                            #endregion
+                            break;
+                        case TokenType.LINECOMMENT:
+                            #region Code to process a char inside a linecomment, a token breaker are "\n" and "\r\n"
+                            if (CurChar == '\r')
+                            {
+                                char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                                if (nextc == '\n')
+                                {
+                                    Current.Text += "\r\n";
+                                    Back.AddToken(Current);
+                                    index++;
+                                    Current = null;
+                                }
+                                else
+                                {
+                                    Current.Text += "\r";
+                                }
+                            }
+                            else if (CurChar == '\n')
+                            {
+                                Current.Text += "\n";
+                                Back.AddToken(Current);
+                                Current = null;
+                            }
+                            else
+                            {
+                                Current.Text = Current.Text.AppendChar(CurChar);
+                            }
+                            #endregion
+                            break;
+                        case TokenType.BLOCKCOMMENT:
+                            #region Code to process a char inside a block comment, the only token breaker is "*/"
+                            if (CurChar == '*')
+                            {
+                                char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                                if (nextc == '/')
+                                {
+                                    Current.Text += "*/";
+                                    Back.AddToken(Current);
+                                    Current = null;
+                                    index++;
+                                }
+                                else
+                                {
+                                    Current.Text = Current.Text.AppendChar(CurChar);
+                                }
+                            }
+                            else
+                            {
+                                Current.Text = Current.Text.AppendChar(CurChar);
+                            }
+                            #endregion
+                            break;
+                        case TokenType.STRING:
+                            #region Code to process a char inside a string, only token breaker is "'", but not "''"
+                            if (CurChar == '\'')
+                            {
+                                char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                                if (nextc == '\'')
+                                {//double '', so is an escaped ', it is a string still then
+                                    Current.Text += "''";
+                                    index++;
+                                }
+                                else
+                                {
+                                    Current.Text += "'";
+                                    Back.AddToken(Current);
+                                    Current = null;
+                                }
+                            }
+                            else
+                            {
+                                Current.Text = Current.Text.AppendChar(CurChar);
+                            }
+                            #endregion
+                            break;
+
+                    }
+                }
+                else if (Current == null)
+                {
+                    #region no previous token, must check if create a new one, or let the current stay null and add a new instance of token
+                    if (IsWhiteSpace(CurChar))
+                    {
+                        Current = new Token(TokenType.EMPTYSPACE, CurChar.ToString());
+                    }
+                    else if (CurChar.IsComma())
+                    {//1 char token, so Current stays null
+                        Back.AddToken(new Token(TokenType.COMMA, CurChar.ToString()));
+                    }
+                    else if (CurChar.IsStringOperator())
+                    {
+                        Current = new Token(TokenType.STRING, CurChar.ToString());
+                    }
+                    else if (CurChar.IsOpenBracket())
+                    {//1 char token, so Current stays null
+                        Back.AddToken(new Token(TokenType.OPENBRACKET, CurChar.ToString()));
+                    }
+                    else if (CurChar.IsCloseBracket())
+                    {//1 char token, so Current stays null
+                        Back.AddToken(new Token(TokenType.CLOSEBRACKET, CurChar.ToString()));
+                    }
+                    else if (CurChar.IsOperator())
+                    {
+                        char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                        //must check if this chars means the start of comment
+                        if (CurChar == '-' && nextc == '-')
+                        {
+                            Current = new Token(TokenType.LINECOMMENT, "--");
+                            index++;
+                        }
+                        else if (CurChar == '/' && nextc == '*')
+                        {
+                            Current = new Token(TokenType.BLOCKCOMMENT, "/*");
+                            index++;
+                        }
+                        else
+                        {
+                            Back.AddToken(new Token(TokenType.OPERATOR, CurChar.ToString()));
+                        }
+                    }
+                    else if (CurChar.IsComparator())
+                    {
+                        char nextc = Text.Length > index + 1 ? Text[index + 1] : ' ';
+                        if (nextc.IsComparator())
+                        {
+                            Back.AddToken(new Token(TokenType.COMPARATOR, CurChar.ToString() + nextc.ToString()));
+                            index++;
+                        }
+                        else
+                        {
+                            Back.AddToken(new Token(TokenType.COMPARATOR, CurChar.ToString()));
+                        }
+                    }
+                    else
+                    {
+                        Current = new Token(TokenType.WORD, CurChar.ToString());
+                    }
+                    #endregion
+                }
+            }
+            if (Current != null)
+                Back.AddToken(Current);
+
+            return Back;
+
         }
         public static string GetUpperCasedLetters(this string Word, int MaxLength = -1)
         {
             string back;
             back = String.Concat(Word.Select(X => char.IsUpper(X) ? X.ToString() : ""));
-            if(MaxLength == -1)
+            if (MaxLength == -1)
                 return back;
             return back.Substring(0, Math.Min(MaxLength, back.Length));
         }
@@ -430,15 +722,15 @@ namespace Ez_SQL.Extensions
         {
             string back;
             back = String.Concat(Word.Select(X => char.IsLower(X) ? X.ToString() : ""));
-            if(MaxLength == -1)
+            if (MaxLength == -1)
                 return back;
             return back.Substring(0, Math.Min(MaxLength, back.Length));
         }
         public static string GetAsSentence(this string Word)
         {
-            if(String.IsNullOrEmpty(Word))
+            if (String.IsNullOrEmpty(Word))
                 return Word;
-            return Word.Substring(0,1).ToUpper() + (Word.Length > 1 ? Word.Substring(1).ToLower() : "");
+            return Word.Substring(0, 1).ToUpper() + (Word.Length > 1 ? Word.Substring(1).ToLower() : "");
         }
         public static bool Contains(this string source, string toCheck, StringComparison comp)
         {
@@ -460,21 +752,21 @@ namespace Ez_SQL.Extensions
         }
         public static IEnumerable<TSource> Sort<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> sorter, SortDirection direction = SortDirection.Ascending)
         {
-            if(direction == SortDirection.Decending)
+            if (direction == SortDirection.Decending)
                 source.OrderByDescending(sorter);
             return source.OrderBy(sorter);
         }
         #endregion
 
         #region Auxiliar functions/items
-        #region Uppercased reserved words, to tokenize strings
-        public static HashSet<string> ReservedWords = new HashSet<string>{"@@IDENTITY","ADD","ALL","ALTER","AND","ANY ","AS","ASC","AUTHORIZATION","AVG ","BACKUP",
-                                                      "BEGIN","BETWEEN","BREAK","BROWSE","BULK","BY","CASCADE","CASE","CHECK","CHECKPOINT","CLOSE",
+        #region Uppercased reserved words and Sql DataTypes, for tokenization of strings
+        public static HashSet<string> ReservedWords = new HashSet<string>{"@@FETCH_STATUS", "@@IDENTITY","ADD","ALL","ALTER","AND","ANY ","AS","ASC","AUTHORIZATION","AVG","BACKUP",
+                                                      "BETWEEN","BREAK","BROWSE","BULK","BY","CASCADE","CASE","CHECK","CHECKPOINT","CLOSE",
                                                       "CLUSTERED","COALESCE","COLLATE","COLUMN","COMMIT","COMPUTE","CONSTRAINT","CONTAINS","CONTAINSTABLE",
                                                       "CONTINUE","CONVERT","COUNT","CREATE","CROSS","CURRENT","CURRENT_DATE","CURRENT_TIME","CURRENT_TIMESTAMP",
                                                       "CURRENT_USER","CURSOR","DATABASE","DATABASEPASSWORD","DATEADD","DATEDIFF","DATENAME","DATEPART",
                                                       "DBCC","DEALLOCATE","DECLARE","DEFAULT","DELAY","DELETE","DENY","DESC","DISK","DISTINCT","DISTRIBUTED",
-                                                      "DOUBLE","DROP","DUMP","ELSE","ENCRYPTION","END","ERRLVL","ESCAPE","EXCEPT","EXEC","EXECUTE",
+                                                      "DOUBLE","DROP","DUMP","ELSE","ENCRYPTION","ERRLVL","ESCAPE","EXCEPT","EXEC","EXECUTE",
                                                       "EXISTS","EXIT","EXPRESSION","FETCH","FILE","FILLFACTOR","FOR","FOREIGN","FREETEXT","FREETEXTTABLE",
                                                       "FROM","FULL","FUNCTION","GOTO","GRANT","GROUP","HAVING","HOLDLOCK","IDENTITY","IDENTITY_INSERT",
                                                       "IDENTITYCOL","IF","IN","INDEX","INNER","INSERT","INTERSECT","INTO","IS","JOIN","KEY",
@@ -487,36 +779,51 @@ namespace Ez_SQL.Extensions
                                                       "SUM","SYSTEM_USER","TABLE","TEXTSIZE","THEN","TO","TOP","TRAN","TRANSACTION","TRIGGER","TRUNCATE",
                                                       "TSEQUAL","UNION","UNIQUE","UPDATE","UPDATETEXT","USE","USER","VALUES","VARYING","VIEW","WAITFOR",
                                                       "WHEN","WHERE","WHILE","WITH","WRITETEXT"};
+        public static HashSet<string> DataTypes = new HashSet<string>{
+                                                      "BIGINT", "NUMERIC","BIT","INT","SMALLINT","TINYINT","SMALLMONEY","MONEY","DECIMAL", //exact numeric type
+                                                      "FLOAT","REAL",//aproximate numeric type
+                                                      "DATE","DATETIME","DTETIME2","DATETIMEOFFSET","TIME","SMALLDATETIME",//date type
+                                                      "CHAR","VARCHAR","TEXT",//char type
+                                                      "NCHAR","NVARCHAR","NTEXT",//unicode char types
+                                                      "BINARY","VARBINARY","IMAGE",//binary types
+                                                      "XML","CURSOR","TIMESTAMP","UNIQUEIDENTIFIER","HIERARCHYID","SQL_VARIANT","TABLE"//other data types
+                                                      };
         #endregion
-        private static bool IsComma(char c)
+        private static bool IsWhiteSpace(this char c)
+        {
+            return (c == ' ' || c == '\t' || c == '\r' || c == '\n');
+        }
+        private static bool IsComma(this char c)
         {
             return c == ',';
         }
-        private static bool IsOpenBracket(char c)
+        private static bool IsOpenBracket(this char c)
         {
-            if (c == '(' || c == '[' || c == '{')
-            {
-                return true;
-            }
-            return false;
+            return (c == '(' || c == '[' || c == '{');
         }
-        private static bool IsCloseBracket(char c)
+        private static bool IsCloseBracket(this char c)
         {
-            if (c == ')' || c == ']' || c == '}')
-            {
-                return true;
-            }
-            return false;
+            return (c == ')' || c == ']' || c == '}');
         }
-        private static bool IsWhiteSpace(char c)
+        private static bool IsOperator(this char c)
         {
-            char[] EMPTYTOKENS = { ' ', '\t', '\r', '\n' };
-            for (int i = 0; i < EMPTYTOKENS.Length; i++)
-            {
-                if (c == EMPTYTOKENS[i])
-                    return true;
-            }
-            return false;
+            return (c == '+' || c == '/' || c == '-' || c == '*');
+        }
+        private static bool IsComparator(this char c)
+        {
+            return (c == '>' || c == '<' || c == '=');
+        }
+        private static bool IsStringOperator(this char c)
+        {
+            return c == '\'';
+        }
+        public static bool IsReserved(this string Word)
+        {
+            return ReservedWords.Contains(Word.ToUpper());
+        }
+        public static bool IsDataType(this string Word)
+        {
+            return DataTypes.Contains(Word.ToUpper());
         }
         #endregion
     }

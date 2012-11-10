@@ -140,7 +140,6 @@
       <DependentUpon>ObjectSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="MultiQueryForm\TextRange.cs" />
-    <Compile Include="ProgressObject.cs" />
     <Compile Include="QueryLog\HistoricForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,8 +170,8 @@
       <DependentUpon>SnippetEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Snippets\SnippetInnerObject.cs" />
-    <Compile Include="SqlTokenizer.cs" />
     <Compile Include="TextEditorClasses\FoldingStrategy.cs" />
+    <Compile Include="TextEditorClasses\FormatStrategy.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="TokenList.cs" />
     <EmbeddedResource Include="AdditionalForms\ObjectSearcher.resx">

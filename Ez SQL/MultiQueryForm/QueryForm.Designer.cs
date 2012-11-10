@@ -55,6 +55,7 @@
             this.BtnXportAll = new System.Windows.Forms.ToolStripButton();
             this.BtnXportCSharp = new System.Windows.Forms.ToolStripButton();
             this.TabHolder = new System.Windows.Forms.TabControl();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MainContainer)).BeginInit();
             this.MainContainer.Panel1.SuspendLayout();
             this.MainContainer.Panel2.SuspendLayout();
@@ -100,6 +101,7 @@
             // 
             // MainContainer.Panel1
             // 
+            this.MainContainer.Panel1.Controls.Add(this.button1);
             this.MainContainer.Panel1.Controls.Add(this.Query);
             this.MainContainer.Panel1.Controls.Add(this.ActionsToolStrip);
             // 
@@ -355,6 +357,16 @@
             this.TabHolder.Size = new System.Drawing.Size(954, 168);
             this.TabHolder.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(831, 67);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // QueryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -402,5 +414,6 @@
         private System.Windows.Forms.ToolStripButton BtnXportAll;
         private System.Windows.Forms.ToolStripButton BtnXportCSharp;
         private System.Windows.Forms.TabControl TabHolder;
+        private System.Windows.Forms.Button button1;
     }
 }
