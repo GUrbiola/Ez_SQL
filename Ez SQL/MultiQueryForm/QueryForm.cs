@@ -28,6 +28,7 @@ namespace Ez_SQL.MultiQueryForm
                 return ((AutocompleteDialog != null) && (!AutocompleteDialog.IsDisposed));
             }
         }
+        Keys LastKeyPressed;
 
         private SqlConnector DataProvider;
         private QueryExecutor Executor;
@@ -102,34 +103,14 @@ namespace Ez_SQL.MultiQueryForm
             Query.ActiveTextAreaControl.TextArea.DoProcessDialogKey += Query_DoProcessDialogKey;
             //Methos that refresh the folding
             Query.Document.DocumentChanged += Query_DocumentChanged;
-            //just to catch @ input and # input
-            Query.ActiveTextAreaControl.TextArea.KeyEventHandler += new ICSharpCode.TextEditor.KeyEventHandler(TextArea_KeyEventHandler);
+            ////just to catch @ input and # input
+            //Query.ActiveTextAreaControl.TextArea.KeyEventHandler += new ICSharpCode.TextEditor.KeyEventHandler(TextArea_KeyEventHandler);
             #endregion
 
             //capture mouse click, to manage ctr + click
             Query.ActiveTextAreaControl.TextArea.MouseClick += MouseClicked;
 
             this.AutoScroll = false;
-        }
-
-        bool TextArea_KeyEventHandler(char ch)
-        {
-            //if (ch == '@')
-            //{
-            //    var helper = DataProvider.DbObjects.Where(XX => XX.Kind == ObjectType.Procedure && XX.Childs.Count > 0).FirstOrDefault();
-            //    ObjectSelector X = new ObjectSelector(
-            //        "Object selector test",
-            //        "This emulates a selection of tables or something",
-            //        helper.Childs.Select(x => x.Name).ToList()
-            //        );
-            //    if (X.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //    {
-            //        Query.InsertString(X.SelectedObject);
-            //        return true;
-            //    }
-
-            //}
-            return false;
         }
 
 
@@ -368,73 +349,6 @@ namespace Ez_SQL.MultiQueryForm
         //    Query.ActiveTextAreaControl.ScrollTo(p1.Line, p1.Column);
         //    Query.ActiveTextAreaControl.Caret.Position = Query.Document.OffsetToPosition(range.Offset + range.Length);
         //}
-        private void BtnXportAll_Click(object sender, EventArgs e)
-        {
-            //if (TabHolder != null && TabHolder.TabPages != null && TabHolder.TabPages.Count > 0)
-            //{
-            //    List<TabPage> XportPages = new List<TabPage>();
-            //    List<DataGridView> Grids = new List<DataGridView>();
-            //    foreach (TabPage tab in TabHolder.TabPages)
-            //    {
-            //        if (tab.Text.StartsWith("Resultado", StringComparison.CurrentCultureIgnoreCase))
-            //            XportPages.Add(tab);
-            //    }
-
-            //    if (XportPages.Count == 0)
-            //    {
-            //        MessageBox.Show("No hay resultados para exportar");
-            //        return;
-            //    }
-
-            //    SaveFileDialog xport = new SaveFileDialog();
-            //    xport.AddExtension = true;
-            //    xport.FileName = "";
-            //    xport.Filter = "Archivo de Excel|*.xls";
-            //    xport.FilterIndex = 0;
-            //    xport.OverwritePrompt = true;
-            //    xport.Title = "Ruta y Nombre de Archivo a Exportar Informacion";
-            //    xport.SupportMultiDottedExtensions = true;
-            //    if (xport.ShowDialog() == DialogResult.OK)
-            //    {
-            //        foreach (TabPage DataTab in XportPages)
-            //        {
-            //            HDesarrollo.Controles.Grid.SmartGrid Aux;
-            //            if (DataTab.Controls[0] is HDesarrollo.Controles.Grid.SmartGrid)
-            //                Aux = DataTab.Controls[0] as HDesarrollo.Controles.Grid.SmartGrid;
-            //            else
-            //                continue;
-            //            Grids.Add(Aux.Grid);
-            //        }
-            //        Exporter xp = new Exporter(Grids, xport.FileName);
-            //        xp.ShowDialog();
-            //    }
-            //}
-        }
-        private void BtnXportCSharp_Click(object sender, EventArgs e)
-        {
-            //int name = 1;
-            //if (TabHolder != null && TabHolder.TabPages != null && TabHolder.TabPages.Count > 0)
-            //{
-            //    if (Conx.Results == null || Conx.Results.Tables.Count == 0)
-            //    {
-            //        MessageBox.Show("No hay resultados para exportar");
-            //        return;
-            //    }
-            //    FormCName cn = new FormCName();
-            //    foreach (DataTable tab in Conx.Results.Tables)
-            //    {
-            //        if (tab.Columns.Count == 0 || (tab.Columns.Count == 1 && tab.Columns[0].ColumnName.Equals("rowsaffected", StringComparison.CurrentCultureIgnoreCase)))
-            //            continue;
-            //        cn.SetName(name);
-            //        name++;
-            //        if (cn.ShowDialog() == DialogResult.OK)
-            //        {
-            //            StringBuilder X = GenerateTable(cn.ClassName, tab);
-            //            Dad.AgregaCSharpCodeForm(X.ToString());
-            //        }
-            //    }
-            //}
-        }
         #endregion
         #region Functions triggered at the start/ending of a query execution
         private void DoubleClickedResultItem(object sender, MouseEventArgs e)
@@ -654,11 +568,11 @@ namespace Ez_SQL.MultiQueryForm
             Query.Focus();
         }
         #endregion
-        #region Code to refresh the folding, it will execute a second when the "last change" has been made a second ago
-        private int ToRefresh = 5;
+        #region Code to refresh the folding, it will execute a second when the "last change" has been made 2 seconds ago
+        private int ToRefresh = 10;
         void Query_DocumentChanged(object sender, DocumentEventArgs e)
         {
-            ToRefresh = 5;
+            ToRefresh = 10;
             if (!FoldingRefresher.Enabled)
                 FoldingRefresher.Enabled = true;
         }
@@ -669,7 +583,7 @@ namespace Ez_SQL.MultiQueryForm
             {
                 Query.Document.FoldingManager.UpdateFoldings(null, null);
                 FoldingRefresher.Enabled = false;
-                ToRefresh = 15;
+                ToRefresh = 10;
             }
         }
         #endregion
@@ -696,14 +610,38 @@ namespace Ez_SQL.MultiQueryForm
                     if (BtnExtremeStop.Enabled)
                         BtnExtremeStop_Click(null, null);
                     return NoEcho;
-                case Keys.Control | Keys.K://Comment selection
-                    if (Query.Enabled)
-                        BtnComment_Click(null, null);
+                case Keys.Control | Keys.C://Comment selection / Collapse outlining
+                    if (LastKeyPressed == (Keys.Control | Keys.K))
+                    {//comment selection, or current line
+                        LastKeyPressed = Keys.Space;//clean the last key pressed aux var, to avoid wrong behavior
+                        if (Query.Enabled)
+                            BtnComment_Click(null, null);
+                        return NoEcho;
+                    }
+                    else if (LastKeyPressed == (Keys.Control | Keys.O))
+                    {//collapse outlining
+                        LastKeyPressed = Keys.Space;//clean the last key pressed aux var, to avoid wrong behavior
+                        if (Query.Enabled)
+                            collapseToolStripMenuItem_Click(null, null);
+                        return NoEcho;
+                    }
+                    return Echo;
+                case Keys.Control | Keys.U://Uncomment selection / to lower case the selection
+                    if (LastKeyPressed == (Keys.Control | Keys.K))
+                    {
+                        LastKeyPressed = Keys.Space;//clean the last key pressed aux var, to avoid wrong behavior
+                        if (Query.Enabled)
+                            BtnUncomment_Click(null, null);
+                        return NoEcho;
+                    }
+                    else
+                    {//to lower case the selection
+                        toUpperCseToolStripMenuItem_Click(null, null);
+                    }
                     return NoEcho;
-                case Keys.Control | Keys.U://Uncomment selection
-                    if (Query.Enabled)
-                        BtnUncomment_Click(null, null);
-                    return NoEcho;
+                case Keys.Control | Keys.Shift | Keys.U://to upper case selection
+                    toLowerCaseToolStripMenuItem1_Click(null, null);
+                    break;
                 case Keys.Control | Keys.F://Open search dialog
                     BtnSearch_Click(null, null);
                     return NoEcho;
@@ -725,7 +663,7 @@ namespace Ez_SQL.MultiQueryForm
                 case Keys.Control | Keys.Shift | Keys.F2://Clear bookmarks
                     BtnClearBookmarks_Click(null, null);
                     return NoEcho;
-                case Keys.Control | Keys.S://Save to file
+                case Keys.Control | Keys.G://Save to file
                     BtnSave_Click(null, null);
                     return NoEcho;
                 case Keys.Control | Keys.L://Load file
@@ -734,33 +672,36 @@ namespace Ez_SQL.MultiQueryForm
                 case Keys.Control | Keys.W://Hide/show results tab
                     BtnShowHideResults_Click(null, null);
                     return NoEcho;
-                case Keys.Control | Keys.E://Export results tab to excel
-                    BtnXportAll_Click(null, null);
-                    return NoEcho;
-                case Keys.Control | Keys.Shift | Keys.C://Create C# class from results tab(1 class for each grid)
-                    BtnXportCSharp_Click(null, null);
-                    return NoEcho;
-                case Keys.F12:
-                    Token Last, Next, SelToken;
-                    CurPos = Query.CurrentOffset();
-                    TxtBef = Query.Document.GetText(0, CurPos);
-                    TxtAft = Query.Document.GetText(CurPos, Query.Text.Length - CurPos);
-                    Last = TxtBef.GetLastToken();
-                    Next = TxtAft.GetFirstToken();
+                case Keys.F12://go to definition
+                    Token selToken;
+                    TokenList tokens = Query.Text.GetTokens();
+                    selToken = tokens.GetTokenAtOffset(Query.CurrentOffset());
 
-                    if (Next.Type == TokenType.EMPTYSPACE || Next.Type == TokenType.COMMA || Next.Text.StartsWith("("))
+                    if (selToken.Type == TokenType.WORD)
                     {
-                        SelToken = Last;
+                        ISqlObject Obj = DataProvider.IsSqlObject(selToken.Text);
+                        if (Obj != null)
+                        {
+                            Parent.AddQueryForm(Obj.Name, Obj.Script, DataProvider);
+                        }
                     }
-                    else
+                    return NoEcho;
+                case Keys.Control | Keys.E://Expand outlining
+                    if (LastKeyPressed == (Keys.Control | Keys.O))
                     {
-                        SelToken = new Token(TokenType.WORD, Last.Text + Next.Text);
+                        LastKeyPressed = Keys.Space;//clean the last key pressed aux var, to avoid wrong behavior
+                        if (Query.Enabled)
+                            expandToolStripMenuItem_Click(null, null);
+                        return NoEcho;                        
                     }
-
-                    ISqlObject Obj = DataProvider.IsSqlObject(SelToken.Text);
-                    if (Obj != null)
+                    return NoEcho;
+                case Keys.Control | Keys.T://Toggle outlining
+                    if (LastKeyPressed == (Keys.Control | Keys.O))
                     {
-                        Parent.AddQueryForm(Obj.Name, Obj.Script, DataProvider);
+                        LastKeyPressed = Keys.Space;//clean the last key pressed aux var, to avoid wrong behavior
+                        if (Query.Enabled)
+                            toggleToolStripMenuItem_Click(null, null);
+                        return NoEcho;
                     }
                     return NoEcho;
             }
@@ -771,10 +712,10 @@ namespace Ez_SQL.MultiQueryForm
             TxtAft = Query.Document.GetText(CurPos, Query.Text.Length - CurPos);
 
 
-            #region Codigo Anterior para Intellisense, codigo propio no de ICSharp.TextEditor
+            #region Autocomplete/intellisense code
             if (IsIntellisenseOn)
             {
-                #region Codigo para el Manejo de Teclas si el "IntelliSense" esta Activado
+                #region Code to handle the keypressed if the "intellisense" is active
                 switch (keyData)
                 {
                     case Keys.Back:
@@ -887,8 +828,8 @@ namespace Ez_SQL.MultiQueryForm
             }
             else
             {
-                #region Switch para saber que se va a mostrar cuando se quiera hacer intellisense
-
+                LastKeyPressed = keyData;
+                #region Code to handle the key pressed if the intellisense is inactive
                 switch (keyData)
                 {
                     case Keys.Control | Keys.OemPeriod://ctrl + . , Show autocomplete
@@ -959,7 +900,6 @@ namespace Ez_SQL.MultiQueryForm
                             return Echo;
                         }
                         break;
-                        return Echo;
                     case Keys.OemPeriod:
                     case Keys.Decimal:
                         Query.InsertString(".");
@@ -978,153 +918,28 @@ namespace Ez_SQL.MultiQueryForm
                         CurrentFilterString = CurrentWord;
                         AutoCompleteStartOffset = CurPos - CurrentWord.Length;
                         ShowIntellisense(CurrentWord, GetAliasesAndAuxiliarTables(Query.Text), FilteringType.Smart);
-
-
-                        #region Validar que la posicion del punto amerite un autocompletado de campos
-                        ////primero averiguar si hay tengo frente al cursor
-                        //int auxoffset = Query.Document.PositionToOffset(Query.ActiveTextAreaControl.Caret.Position);
-                        //Query.Document.Insert(auxoffset, ".");
-                        //Query.ActiveTextAreaControl.Caret.Column += 1;
-                        //auxoffset++;
-                        //bool pass = false;
-                        //int pos = Query.ActiveTextAreaControl.Caret.Column;
-                        //string line = Query.Document.GetText(Query.Document.GetLineSegment(Query.ActiveTextAreaControl.Caret.Line));
-
-                        //if (line.Length > pos)
-                        //{//hay texto enfrente
-                        //    //averiguar si el inmediato es un espacio en blanco
-                        //    if (line.Substring(pos, 1).Trim() == "")
-                        //    {//no hay texto enfrente ahora si llamar el autocompletado
-                        //        pass = true;
-                        //    }
-                        //}
-                        //else if (line.Length == pos)
-                        //{//no hay texto enfrente, esta en la ultima posicion
-                        //    pass = true;
-                        //}
-                        #endregion
-                        #region Si la posicion del punto es valida ahora revisar que la palabra antes de este sea una tabla, vista o un alias
-                        //if (pass)
-                        //{
-                        //    //ahora obtener la palabra detras del punto
-                        //    CurWord = GetWordAtOffsetMinus(2);
-                        //    CurOffset = auxoffset;
-                        //    CurChilds = null;
-                        //    if (!String.IsNullOrEmpty(CurWord))
-                        //    {
-                        //        SQLServer_Object Obj = DataProvider.GetByName(CurWord);
-                        //        if (Obj != null)//es el nombre de una tabla
-                        //        {
-                        //            CurChilds = Obj.Childs;
-                        //            CurrentFilter = FilteringTypeValues.Childs;
-                        //            FilterString = "";
-                        //            FireAt = CurOffset;
-                        //            ShowIntellisense();
-                        //        }
-                        //        else
-                        //        {//revisar si es un alias
-                        //            #region Obtener la Lista de alias declarados en el script
-                        //            if (Aliases == null)
-                        //                Aliases = new Hashtable();
-                        //            else
-                        //                Aliases.Clear();
-
-                        //            string CleanText = Query.Text.Remove(auxoffset - 1, 1);
-                        //            int index, total;
-                        //            CleanText = CleanText.Replace("\r\n", " ");
-                        //            CleanText = CleanText.Replace("\t", " ");
-                        //            while (CleanText.Contains("  "))
-                        //                CleanText = CleanText.Replace("  ", " ");
-                        //            string[] Words = CleanText.Split(new char[] { ' ' });
-                        //            total = Words.Length;
-                        //            for (index = 0; index < total; index++)
-                        //            {
-                        //                if (Words[index].Equals("Join", StringComparison.CurrentCultureIgnoreCase) || Words[index].Equals("From", StringComparison.CurrentCultureIgnoreCase) || Words[index].Equals(",", StringComparison.CurrentCultureIgnoreCase))
-                        //                {
-                        //                    if (index + 2 < total)
-                        //                    {
-                        //                        if (!ReservedWords.Contains(Words[index + 2].ToUpper()))
-                        //                        {
-                        //                            if (!Aliases.ContainsKey(Words[index + 2].ToUpper()))
-                        //                                Aliases.Add(Words[index + 2].ToUpper(), Words[index + 1].ToUpper());
-                        //                            index += 2;
-                        //                            continue;
-                        //                        }
-                        //                        else if (Words[index + 2].Equals("AS", StringComparison.CurrentCultureIgnoreCase) && index + 3 < total)
-                        //                        {
-                        //                            string auxalias, auxtable;
-                        //                            auxtable = Words[index + 1];
-                        //                            auxalias = Words[index + 3];
-
-                        //                            if (!Aliases.ContainsKey(auxalias.ToUpper()))
-                        //                                Aliases.Add(auxalias.ToUpper(), auxtable.ToUpper());
-                        //                            index += 3;
-                        //                            continue;
-                        //                        }
-                        //                    }
-                        //                }
-                        //            }
-                        //            #endregion
-
-                        //            if (Aliases.ContainsKey(CurWord.ToUpper()))
-                        //            {
-                        //                SQLServer_Object AliasObj = DataProvider.GetByName(Aliases[CurWord.ToUpper()].ToString());
-                        //                if (AliasObj != null)
-                        //                {
-                        //                    CurChilds = AliasObj.Childs;
-                        //                    CurrentFilter = FilteringTypeValues.Childs;
-                        //                    FilterString = "";
-                        //                    FireAt = CurOffset;
-                        //                    ShowIntellisense();
-                        //                }
-                        //            }
-                        //        }
-                        //    }
-                        //}
-                        #endregion
                         return NoEcho;
-                    case Keys.T | Keys.Control://ctrl + t , mostrar tablas + vistas
+                    case Keys.S | Keys.Control://ctrl + s , show list of snippets
+                        List<string> SnippetsNames = new List<string>();
+                        List<string> SnippetsValues = new List<string>();
 
+                        foreach (Snippet sn in Parent.GetSnippetList())
+                        {
+                            SnippetsNames.Add(sn.Name);
+                            SnippetsValues.Add(sn.ShortCut);
+                        }
 
-                        //CurrentFilter = FilteringTypeValues.Fields;
-                        //CurWord = GetWordAtOffsetMinusOne();
-                        //FilterString = CurWord;
-                        //FireAt = CurOffset;
-                        //ShowIntellisense();
-                        break;
-                    case Keys.P | Keys.Control://ctrl + p , mostrar procedimientos almacenados
-                        //CurrentFilter = FilteringTypeValues.Sps;
-                        //CurWord = GetWordAtOffsetMinusOne();
-                        //FilterString = CurWord;
-                        //FireAt = CurOffset;
-                        //ShowIntellisense();
-                        break;
-                    case Keys.D | Keys.Control://ctrl + d , mostrar variables 
-                        //CurrentFilter = FilteringTypeValues.Variables;
-                        //CurWord = GetWordAtOffsetMinusOne();
-                        //FilterString = CurWord;
-                        //FireAt = CurOffset;
-                        //AddVariables();
-                        //ShowIntellisense();
-                        return true;
-                    //case Keys.Alt | Keys.NumPad4://aroba, @
-                    //    if (KeyBefore == (Keys.Alt | Keys.NumPad6))
-                    //    {
-                    //        Text = "@ FTW!!!!!!";
-                    //        return false;
-                    //    }
-                    //    break;
-                    ////case Keys.RButton | Keys.ShiftKey | Keys.Space | Keys.Control | Keys.Alt:
-                    //    Query.Document.Insert(CurOffset, "@");
-                    //    CurrentFilter = FilteringTypeValues.Variables;
-                    //    CurWord = GetWordAtOffsetMinusOne();
-                    //    FilterString = CurWord;
-                    //    FireAt = CurOffset;
-                    //    AddVariables();
-                    //    ShowIntellisense();
-                    //    return true;
-                    case Keys.S | Keys.Control://ctrl + s , mostrar snippets
-                        MessageBox.Show("Ctr + S");
+                        ObjectSelector SnSelector = new ObjectSelector("Snippets detected", "Select the snippet, to insert his shortcut", SnippetsValues, SnippetsNames, false, 1);
+                        if (SnSelector.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            Query.InsertString(SnSelector.SelectedObject);
+                            return NoEcho;
+                        }
+                        else
+                        {
+                            return Echo;
+                        }
+                        
                         break;
                     case Keys.Tab:
                         LastToken = TxtBef.GetLastToken();
@@ -1636,40 +1451,130 @@ namespace Ez_SQL.MultiQueryForm
             {
                 if ((ModifierKeys & Keys.Control) == Keys.Control)
                 {
-                    Token Last, Next, SelToken;
-                    int CurPos = Query.CurrentOffset();
-                    string TxtBef = Query.Document.GetText(0, CurPos);
-                    string TxtAft = Query.Document.GetText(CurPos, Query.Text.Length - CurPos);
-                    Last = TxtBef.GetLastToken();
-                    Next = TxtAft.GetFirstToken();
+                    Token selToken;
+                    TokenList tokens = Query.Text.GetTokens();
+                    selToken = tokens.GetTokenAtOffset(Query.CurrentOffset());
 
-                    if (Next.Type == TokenType.EMPTYSPACE || Next.Type == TokenType.COMMA || Next.Text.StartsWith("("))
+                    if (selToken.Type == TokenType.WORD)
                     {
-                        SelToken = Last;
-                    }
-                    else
-                    {
-                        SelToken = new Token(TokenType.WORD, Last.Text + Next.Text);
-                    }
-
-                    ISqlObject Obj = DataProvider.IsSqlObject(SelToken.Text);
-                    if (Obj != null)
-                    {
-                        Parent.AddQueryForm(Obj.Name, Obj.Script, DataProvider);
+                        ISqlObject Obj = DataProvider.IsSqlObject(selToken.Text);
+                        if (Obj != null)
+                        {
+                            Parent.AddQueryForm(Obj.Name, Obj.Script, DataProvider);
+                        }
                     }
                 }
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void goToDefinitionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string script = Query.Text;
+            int tokenIndex;
+            TokenList tokens = script.GetTokens();
+            Token t = tokens.GetTokenAtOffset(Query.CurrentOffset(), out tokenIndex);
+
+            ISqlObject Obj = DataProvider.IsSqlObject(t.Text);
+            if (Obj != null)
+            {
+                Parent.AddQueryForm(Obj.Name, Obj.Script, DataProvider);
+            }
+        }
+
+        private void collapseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (var fm in Query.Document.FoldingManager.FoldMarker)
-	        {
-                fm.IsFolded = !fm.IsFolded;
-	        }
+            {
+                fm.IsFolded = true;
+            }
             Query.Document.FoldingManager.UpdateFoldings(null, null);
             Query.Refresh();
         }
 
+        private void expandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var fm in Query.Document.FoldingManager.FoldMarker)
+            {
+                fm.IsFolded = false;
+            }
+            Query.Document.FoldingManager.UpdateFoldings(null, null);
+            Query.Refresh();
+        }
+
+        private void toggleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var fm in Query.Document.FoldingManager.FoldMarker)
+            {
+                fm.IsFolded = !fm.IsFolded;
+            }
+            Query.Document.FoldingManager.UpdateFoldings(null, null);
+            Query.Refresh();
+        }
+        //all the reserved words to upper case
+        private void toUpperCaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string script = Query.Text;
+            TokenList tokens = script.GetTokens();
+            foreach (Token t in tokens.List)
+            {
+                if (t.Type == TokenType.RESERVED || t.Type == TokenType.DATATYPE || t.Type == TokenType.BLOCKSTART || t.Type == TokenType.BLOCKEND)
+                {
+                    t.Text = t.Text.ToUpper();
+                }
+            }
+            Query.Text = tokens.ToString();
+            Query.Refresh();
+        }
+        //all the reserved words to lower case
+        private void toLowerCaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string script = Query.Text;
+            TokenList tokens = script.GetTokens();
+            foreach (Token t in tokens.List)
+            {
+                if (t.Type == TokenType.RESERVED || t.Type == TokenType.DATATYPE || t.Type == TokenType.BLOCKSTART || t.Type == TokenType.BLOCKEND)
+                {
+                    t.Text = t.Text.ToLower();
+                }
+            }
+            Query.Text = tokens.ToString();
+            Query.Refresh();
+        }
+        //upper case selection
+        private void toUpperCseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Query.ActiveTextAreaControl.SelectionManager.HasSomethingSelected)
+            {
+                ISelection s = Query.ActiveTextAreaControl.SelectionManager.SelectionCollection[0];
+                Query.Document.Replace(s.Offset, s.Length, s.SelectedText.ToUpper());
+                Query.Refresh();
+            }
+            else
+            {
+                TokenList tokens = Query.Text.GetTokens();
+                Token t = tokens.GetTokenAtOffset(Query.CurrentOffset());
+                if(t != null && t.Text.Length > 0)
+                    Query.Document.Replace(tokens.GetStartOf(t), tokens.GetLengthOf(t), t.Text.ToUpper());
+            }
+        }
+        //lower case selection
+        private void toLowerCaseToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (Query.ActiveTextAreaControl.SelectionManager.HasSomethingSelected)
+            {
+                ISelection s = Query.ActiveTextAreaControl.SelectionManager.SelectionCollection[0];
+                Query.Document.Replace(s.Offset, s.Length, s.SelectedText.ToLower());
+                Query.Refresh();
+            }
+            else
+            {
+                TokenList tokens = Query.Text.GetTokens();
+                Token t = tokens.GetTokenAtOffset(Query.CurrentOffset());
+                if (t != null && t.Text.Length > 0)
+                    Query.Document.Replace(tokens.GetStartOf(t), tokens.GetLengthOf(t), t.Text.ToLower());
+
+            }
+        }
+        
     }
 }

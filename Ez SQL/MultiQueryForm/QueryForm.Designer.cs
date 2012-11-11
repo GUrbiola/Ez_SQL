@@ -36,6 +36,18 @@
             this.FoldingRefresher = new System.Windows.Forms.Timer(this.components);
             this.MainContainer = new System.Windows.Forms.SplitContainer();
             this.Query = new ICSharpCode.TextEditor.TextEditorControl();
+            this.popupMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.goToDefinitionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reservedWordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toUpperCaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toLowerCaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toUpperCseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toLowerCaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.outlinningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.collapseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toggleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ActionsToolStrip = new System.Windows.Forms.ToolStrip();
             this.BtnExecute = new System.Windows.Forms.ToolStripButton();
             this.BtnStop = new System.Windows.Forms.ToolStripButton();
@@ -52,14 +64,12 @@
             this.BtnShowHideResults = new System.Windows.Forms.ToolStripButton();
             this.BDTxt = new System.Windows.Forms.ToolStripTextBox();
             this.ServerTxt = new System.Windows.Forms.ToolStripTextBox();
-            this.BtnXportAll = new System.Windows.Forms.ToolStripButton();
-            this.BtnXportCSharp = new System.Windows.Forms.ToolStripButton();
             this.TabHolder = new System.Windows.Forms.TabControl();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MainContainer)).BeginInit();
             this.MainContainer.Panel1.SuspendLayout();
             this.MainContainer.Panel2.SuspendLayout();
             this.MainContainer.SuspendLayout();
+            this.popupMenu.SuspendLayout();
             this.ActionsToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,7 +111,6 @@
             // 
             // MainContainer.Panel1
             // 
-            this.MainContainer.Panel1.Controls.Add(this.button1);
             this.MainContainer.Panel1.Controls.Add(this.Query);
             this.MainContainer.Panel1.Controls.Add(this.ActionsToolStrip);
             // 
@@ -114,6 +123,7 @@
             // 
             // Query
             // 
+            this.Query.ContextMenuStrip = this.popupMenu;
             this.Query.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Query.IsIconBarVisible = true;
             this.Query.IsReadOnly = false;
@@ -122,6 +132,100 @@
             this.Query.ShowVRuler = false;
             this.Query.Size = new System.Drawing.Size(954, 182);
             this.Query.TabIndex = 0;
+            // 
+            // popupMenu
+            // 
+            this.popupMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.goToDefinitionToolStripMenuItem,
+            this.reservedWordsToolStripMenuItem,
+            this.selectionToolStripMenuItem,
+            this.outlinningToolStripMenuItem});
+            this.popupMenu.Name = "popupMenu";
+            this.popupMenu.Size = new System.Drawing.Size(187, 92);
+            // 
+            // goToDefinitionToolStripMenuItem
+            // 
+            this.goToDefinitionToolStripMenuItem.Name = "goToDefinitionToolStripMenuItem";
+            this.goToDefinitionToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.goToDefinitionToolStripMenuItem.Text = "Go to definition (F12)";
+            this.goToDefinitionToolStripMenuItem.Click += new System.EventHandler(this.goToDefinitionToolStripMenuItem_Click);
+            // 
+            // reservedWordsToolStripMenuItem
+            // 
+            this.reservedWordsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toUpperCaseToolStripMenuItem,
+            this.toLowerCaseToolStripMenuItem});
+            this.reservedWordsToolStripMenuItem.Name = "reservedWordsToolStripMenuItem";
+            this.reservedWordsToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.reservedWordsToolStripMenuItem.Text = "Reserved words";
+            // 
+            // toUpperCaseToolStripMenuItem
+            // 
+            this.toUpperCaseToolStripMenuItem.Name = "toUpperCaseToolStripMenuItem";
+            this.toUpperCaseToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.toUpperCaseToolStripMenuItem.Text = "To upper case";
+            this.toUpperCaseToolStripMenuItem.Click += new System.EventHandler(this.toUpperCaseToolStripMenuItem_Click);
+            // 
+            // toLowerCaseToolStripMenuItem
+            // 
+            this.toLowerCaseToolStripMenuItem.Name = "toLowerCaseToolStripMenuItem";
+            this.toLowerCaseToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.toLowerCaseToolStripMenuItem.Text = "To lower case";
+            this.toLowerCaseToolStripMenuItem.Click += new System.EventHandler(this.toLowerCaseToolStripMenuItem_Click);
+            // 
+            // selectionToolStripMenuItem
+            // 
+            this.selectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toUpperCseToolStripMenuItem,
+            this.toLowerCaseToolStripMenuItem1});
+            this.selectionToolStripMenuItem.Name = "selectionToolStripMenuItem";
+            this.selectionToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.selectionToolStripMenuItem.Text = "Selection";
+            // 
+            // toUpperCseToolStripMenuItem
+            // 
+            this.toUpperCseToolStripMenuItem.Name = "toUpperCseToolStripMenuItem";
+            this.toUpperCseToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.toUpperCseToolStripMenuItem.Text = "To upper case  (Ctrl + Shift + U)";
+            this.toUpperCseToolStripMenuItem.Click += new System.EventHandler(this.toUpperCseToolStripMenuItem_Click);
+            // 
+            // toLowerCaseToolStripMenuItem1
+            // 
+            this.toLowerCaseToolStripMenuItem1.Name = "toLowerCaseToolStripMenuItem1";
+            this.toLowerCaseToolStripMenuItem1.Size = new System.Drawing.Size(241, 22);
+            this.toLowerCaseToolStripMenuItem1.Text = "To lower case (Ctrl + U)";
+            this.toLowerCaseToolStripMenuItem1.Click += new System.EventHandler(this.toLowerCaseToolStripMenuItem1_Click);
+            // 
+            // outlinningToolStripMenuItem
+            // 
+            this.outlinningToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.collapseToolStripMenuItem,
+            this.expandToolStripMenuItem,
+            this.toggleToolStripMenuItem});
+            this.outlinningToolStripMenuItem.Name = "outlinningToolStripMenuItem";
+            this.outlinningToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.outlinningToolStripMenuItem.Text = "Outlining/Folding";
+            // 
+            // collapseToolStripMenuItem
+            // 
+            this.collapseToolStripMenuItem.Name = "collapseToolStripMenuItem";
+            this.collapseToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.collapseToolStripMenuItem.Text = "Collapse (Ctrl + O, C)";
+            this.collapseToolStripMenuItem.Click += new System.EventHandler(this.collapseToolStripMenuItem_Click);
+            // 
+            // expandToolStripMenuItem
+            // 
+            this.expandToolStripMenuItem.Name = "expandToolStripMenuItem";
+            this.expandToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.expandToolStripMenuItem.Text = "Expand (Ctrl + O, E)";
+            this.expandToolStripMenuItem.Click += new System.EventHandler(this.expandToolStripMenuItem_Click);
+            // 
+            // toggleToolStripMenuItem
+            // 
+            this.toggleToolStripMenuItem.Name = "toggleToolStripMenuItem";
+            this.toggleToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.toggleToolStripMenuItem.Text = "Toggle (Ctrl + O, T)";
+            this.toggleToolStripMenuItem.Click += new System.EventHandler(this.toggleToolStripMenuItem_Click);
             // 
             // ActionsToolStrip
             // 
@@ -142,9 +246,7 @@
             this.BtnLoad,
             this.BtnShowHideResults,
             this.BDTxt,
-            this.ServerTxt,
-            this.BtnXportAll,
-            this.BtnXportCSharp});
+            this.ServerTxt});
             this.ActionsToolStrip.Location = new System.Drawing.Point(0, 0);
             this.ActionsToolStrip.Name = "ActionsToolStrip";
             this.ActionsToolStrip.Size = new System.Drawing.Size(954, 30);
@@ -197,7 +299,7 @@
             this.BtnComment.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnComment.Name = "BtnComment";
             this.BtnComment.Size = new System.Drawing.Size(28, 28);
-            this.BtnComment.ToolTipText = "Comment lines (Ctr + K)";
+            this.BtnComment.ToolTipText = "Comment lines (Ctr + K, C)";
             this.BtnComment.Click += new System.EventHandler(this.BtnComment_Click);
             // 
             // BtnUncomment
@@ -209,7 +311,7 @@
             this.BtnUncomment.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnUncomment.Name = "BtnUncomment";
             this.BtnUncomment.Size = new System.Drawing.Size(28, 28);
-            this.BtnUncomment.ToolTipText = "Uncomment lines(Ctr + U)";
+            this.BtnUncomment.ToolTipText = "Uncomment lines(Ctr + K, U)";
             this.BtnUncomment.Click += new System.EventHandler(this.BtnUncomment_Click);
             // 
             // BtnSearch
@@ -281,7 +383,7 @@
             this.BtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(28, 28);
-            this.BtnSave.ToolTipText = "Save script to file (Ctr + S)";
+            this.BtnSave.ToolTipText = "Save script to file (Ctr + G)";
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // BtnLoad
@@ -322,30 +424,6 @@
             this.ServerTxt.ReadOnly = true;
             this.ServerTxt.Size = new System.Drawing.Size(180, 30);
             // 
-            // BtnXportAll
-            // 
-            this.BtnXportAll.AutoSize = false;
-            this.BtnXportAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnXportAll.Image = global::Ez_SQL.Properties.Resources.ExcelDoc_22;
-            this.BtnXportAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.BtnXportAll.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnXportAll.Name = "BtnXportAll";
-            this.BtnXportAll.Size = new System.Drawing.Size(28, 28);
-            this.BtnXportAll.ToolTipText = "Export results tab to excel file(Ctr + E)";
-            this.BtnXportAll.Click += new System.EventHandler(this.BtnXportAll_Click);
-            // 
-            // BtnXportCSharp
-            // 
-            this.BtnXportCSharp.AutoSize = false;
-            this.BtnXportCSharp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnXportCSharp.Image = global::Ez_SQL.Properties.Resources.CSharp_22;
-            this.BtnXportCSharp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.BtnXportCSharp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnXportCSharp.Name = "BtnXportCSharp";
-            this.BtnXportCSharp.Size = new System.Drawing.Size(28, 28);
-            this.BtnXportCSharp.ToolTipText = "Create C# class from results tab(1 class for each grid) (Ctr + Shift + C)";
-            this.BtnXportCSharp.Click += new System.EventHandler(this.BtnXportCSharp_Click);
-            // 
             // TabHolder
             // 
             this.TabHolder.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -356,16 +434,6 @@
             this.TabHolder.SelectedIndex = 0;
             this.TabHolder.Size = new System.Drawing.Size(954, 168);
             this.TabHolder.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(831, 67);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // QueryForm
             // 
@@ -381,6 +449,7 @@
             this.MainContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MainContainer)).EndInit();
             this.MainContainer.ResumeLayout(false);
+            this.popupMenu.ResumeLayout(false);
             this.ActionsToolStrip.ResumeLayout(false);
             this.ActionsToolStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -411,9 +480,18 @@
         private System.Windows.Forms.ToolStripButton BtnShowHideResults;
         private System.Windows.Forms.ToolStripTextBox BDTxt;
         private System.Windows.Forms.ToolStripTextBox ServerTxt;
-        private System.Windows.Forms.ToolStripButton BtnXportAll;
-        private System.Windows.Forms.ToolStripButton BtnXportCSharp;
         private System.Windows.Forms.TabControl TabHolder;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ContextMenuStrip popupMenu;
+        private System.Windows.Forms.ToolStripMenuItem goToDefinitionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reservedWordsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toUpperCaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toLowerCaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toUpperCseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toLowerCaseToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem outlinningToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem collapseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem expandToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toggleToolStripMenuItem;
     }
 }

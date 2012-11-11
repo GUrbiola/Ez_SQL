@@ -1,5 +1,4 @@
 <?xml version = "1.0"?>
-<!-- Thanks to Troy@ebswift.com -->
 <SyntaxDefinition name = "SQL" extensions = ".sql">
 	<Environment> 
 		<Default      color="#00003E" bgcolor="SystemColors.Window"/>
@@ -17,7 +16,7 @@
 	<Properties>
 		<Property name="LineComment" value="--"/>
 	</Properties>
-	<Digits name = "Digits" bold = "true" italic = "false" color="#544040"/>
+	<Digits name = "Digits" bold = "true" italic = "false" color="#ff8000"/>
 	<RuleSets>
 		<RuleSet ignorecase = "true">
 			<Delimiters>=!&gt;&lt;+-/*%&amp;|^~.}{,;][?:()</Delimiters>
@@ -28,11 +27,7 @@
 				<Begin>/*</Begin>
 				<End>*/</End>
 			</Span>
-			<Span name ="String" bold ="true" italic ="false" color="#544040" stopateol ="false">
-				<Begin>&quot;</Begin>
-				<End>&quot;</End>
-			</Span>
-			<Span name = "Character" bold = "true" italic = "false" color="#544040" stopateol = "true">
+			<Span name ="String" bold ="true" italic ="false" color="#808080" stopateol ="false">
 				<Begin>&apos;</Begin>
 				<End>&apos;</End>
 			</Span>
@@ -121,20 +116,38 @@
 				<Key word = "VALUES" />
 			</KeyWords>
 			<KeyWords name ="SqlTypes" bold="true" italic = "false" color="DeepSkyBlue">
-				<Key word = "VARCHAR" />
-				<Key word = "NVARCHAR" />
-				<Key word = "CHAR" />
-				<Key word = "NCHAR" />
-				<Key word = "INT" />
-				<Key word = "TEXT" />
-				<Key word = "NTEXT" />
-				<Key word = "DOUBLE" />
-				<Key word = "MONEY" />
+				<Key word = "BIGINT" />
+				<Key word = "NUMERIC" />
 				<Key word = "BIT" />
-				<Key word = "DATETIME" />
-				<Key word = "DATETIME2" />
+				<Key word = "INT" />
+				<Key word = "SMALLINT" />
+				<Key word = "TINYINT" />
+				<Key word = "SMALLMONEY" />
 				<Key word = "DECIMAL" />
 				<Key word = "FLOAT" />
+				<Key word = "REAL" />
+				<Key word = "DATE" />
+				<Key word = "DATETIME" />
+				<Key word = "DATETIME2" />
+				<Key word = "DATETIMEOFFSET" />
+				<Key word = "TIME" />
+				<Key word = "SMALLDATETIME" />
+				<Key word = "CHAR" />
+				<Key word = "VARCHAR" />
+				<Key word = "TEXT" />
+				<Key word = "NCHAR" />
+				<Key word = "NVARCHAR" />
+				<Key word = "NTEXT" />
+				<Key word = "BINARY" />
+				<Key word = "VARBINARY" />
+				<Key word = "IMAGE" />
+				<Key word = "XML" />
+				<Key word = "CURSOR" />
+				<Key word = "TIMESTAMP" />
+				<Key word = "UNIQUEIDENTIFIER" />
+				<Key word = "HIERARCHYID" />
+				<Key word = "SQL_VARIANT" />
+				<Key word = "TABLE" />				
 			</KeyWords>
 			<KeyWords name ="SqlObjects" bold="true" italic = "true" color="DarkRed">
 				<Key word = "TABLE" />
@@ -163,10 +176,13 @@
 				<Key word = "DECLARE" />
 				<Key word = "BEGIN" />
 				<Key word = "END" />
+				<Key word = "GO" />
 			</KeyWords>
 			<KeyWords name ="Punctuation" bold="false" italic = "false" color = "DarkSlateGray">
 				<Key word = "(" />
 				<Key word = ")" />				
+				<Key word = "[" />
+				<Key word = "]" />				
 			</KeyWords>
 			<KeyWords name ="Operators" bold="false" italic = "false" color="DarkSlateGray">
 				<Key word = "&lt;" />
@@ -189,13 +205,23 @@
 				<Key word = "DATEADD" />
 				<Key word = "GETDATE" />
 				<Key word = "GETUTCDATE" />
+				<Key word = "ROW_NUMBER" />
+				<Key word = "OVER" />
 			</KeyWords>
 			<KeyWords name ="GroupByFunctions" bold="true" italic = "false" color="#AE1737">
+				<Key word = "AVG" />
+				<Key word = "MIN" />
+				<Key word = "CHECKSUM_AGG" />
 				<Key word = "SUM" />
 				<Key word = "COUNT" />
+				<Key word = "STDEV" />
+				<Key word = "COUNT_BIG" />
+				<Key word = "STDEVP" />
+				<Key word = "GROUPING" />
+				<Key word = "VAR" />
+				<Key word = "GROUPING_ID" />
+				<Key word = "VARP" />
 				<Key word = "MAX" />
-				<Key word = "MIN" />
-				<Key word = "AVG" />
 			</KeyWords>
 			<KeyWords name = "SystemTables" bold="false" italic="false" color="Teal">
 				<Key word = "SYSALTFILES" />

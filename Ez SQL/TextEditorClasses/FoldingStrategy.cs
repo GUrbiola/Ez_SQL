@@ -342,14 +342,17 @@ namespace Ez_SQL.TextEditorClasses
                         Token Starter, Ender;
                         Ender = FoldEnder[i];
                         Starter = FoldStarter[j];
-                        TextLocation Start, End;
+                        TextLocation Start, End, afterFoldHelper;
 
-                        Start = document.OffsetToPosition(Tokens.GetEndOf(Starter) + 1);
+                        Start = document.OffsetToPosition(Tokens.GetStartOf(Starter) + "begin".Length);
+                        afterFoldHelper = document.OffsetToPosition(Tokens.GetStartOf(Starter));
                         End = document.OffsetToPosition(Tokens.GetStartOf(Ender));
 
-                        string afterStarter = document.GetText(document.GetLineSegment(Start.Line)).Substring(Start.Column).Trim(' ', '\t', '\n', '\r');
-                        if (String.IsNullOrEmpty(afterStarter))
+                        string afterStarter = document.GetText(document.GetLineSegment(afterFoldHelper.Line)).Substring(afterFoldHelper.Column).Trim(' ', '\t', '\n', '\r');
+                        afterStarter = afterStarter.Length > 5 ? afterStarter.Substring(5) : "";
+                        if (String.IsNullOrEmpty(afterStarter) || afterStarter.Trim().Length == 0)
                             afterStarter = "...";
+
 
                         Back.Add(new FoldMarker(document, Start.Line, Start.Column, End.Line, End.Column, FoldType.Region, afterStarter, false));
 

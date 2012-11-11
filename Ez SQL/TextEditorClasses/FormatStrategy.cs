@@ -28,10 +28,10 @@ namespace Ez_SQL.TextEditorClasses
                 if (XXX.Type == TokenType.LINECOMMENT || XXX.Type == TokenType.BLOCKCOMMENT || XXX.Type == TokenType.STRING)
                     return -1;
             }
-            Tokens.GetTokenAtOffset(offset, out tokenIndex);
+            Token ttt = Tokens.GetTokenAtOffset(offset, out tokenIndex);
             if (tokenIndex >= 0)
             {//token found at offset
-                for (int i = tokenIndex + 1; i < Tokens.TokenCount; i++)
+                for (int i = tokenIndex; i < Tokens.TokenCount; i++)
                 {
                     CurrentToken = Tokens.GetToken(i);
                     if (CurrentToken.Type == TokenType.CLOSEBRACKET && CurrentToken.Text == closingBracket.ToString())

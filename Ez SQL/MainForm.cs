@@ -386,6 +386,10 @@ namespace Ez_SQL
                 Snippets.Sort((X, Y) => String.Compare(X.Name, Y.Name));
             }
         }
+        public List<Snippet> GetSnippetList()
+        {
+            return Snippets;
+        }
         #endregion
     }
 

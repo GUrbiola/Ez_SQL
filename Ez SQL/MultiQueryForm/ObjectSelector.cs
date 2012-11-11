@@ -12,21 +12,40 @@ namespace Ez_SQL.MultiQueryForm
 {
     public partial class ObjectSelector : Form
     {
-        private List<string> Objects;
+        private List<string> Values;
+        private List<string> Displays;
         private string _SelectedObject;
         public string SelectedObject { get { return _SelectedObject; } }
         private bool StartsWith;
-        public ObjectSelector(string Title, string ObjectDescription, List<string> Objects, bool StartsWith = false, int Decimals = 1)
+        public ObjectSelector(string Title, string ObjectDescription, List<string> Values, bool StartsWith = false, int Decimals = 1)
         {
             InitializeComponent();
             Text = Title;
             LabDescription.Text = ObjectDescription;
             _SelectedObject = "";
-            this.Objects = Objects;
+            this.Values = Values;
             this.StartsWith = StartsWith;
             ItemList.Items.Clear();
-            this.Objects.Sort();
-            foreach (string obj in Objects)
+            this.Values.Sort();
+            foreach (string obj in Values)
+            {
+                ItemList.Items.Add(obj);
+            }
+            if (ItemList.Items.Count > 0)
+                ItemList.SelectedIndex = 0;
+            TxtFilter.WaitInterval = Decimals;
+        }
+        public ObjectSelector(string Title, string ObjectDescription, List<string> Values, List<string> Displays, bool StartsWith = false, int Decimals = 1)
+        {
+            InitializeComponent();
+            Text = Title;
+            LabDescription.Text = ObjectDescription;
+            _SelectedObject = "";
+            this.Values = Values;
+            this.Displays = Displays;
+            this.StartsWith = StartsWith;
+            ItemList.Items.Clear();
+            foreach (string obj in Displays)
             {
                 ItemList.Items.Add(obj);
             }
@@ -41,21 +60,44 @@ namespace Ez_SQL.MultiQueryForm
         private void FilterListBy(string Text)
         {
             ItemList.Items.Clear();
-            foreach (string obj in Objects.Where(X => StartsWith ? X.StartsWith(Text, StringComparison.CurrentCultureIgnoreCase) : X.ToUpper().Contains(Text.ToUpper())))
+            if (Displays != null && Displays.Count > 0)
             {
-                ItemList.Items.Add(obj);
+                foreach (string obj in Displays.Where(X => StartsWith ? X.StartsWith(Text, StringComparison.CurrentCultureIgnoreCase) : X.ToUpper().Contains(Text.ToUpper())))
+                {
+                    ItemList.Items.Add(obj);
+                }
+                if (ItemList.Items.Count > 0)
+                {
+                    ItemList.SelectedIndex = 0;
+                }
             }
-            if (ItemList.Items.Count > 0)
+            else
             {
-                ItemList.SelectedIndex = 0;
+                foreach (string obj in Values.Where(X => StartsWith ? X.StartsWith(Text, StringComparison.CurrentCultureIgnoreCase) : X.ToUpper().Contains(Text.ToUpper())))
+                {
+                    ItemList.Items.Add(obj);
+                }
+                if (ItemList.Items.Count > 0)
+                {
+                    ItemList.SelectedIndex = 0;
+                }
             }
         }
         private void TxtFilter_TextSecured(string Text)
         {
             if (ItemList.SelectedIndex >= 0)
             {
-                _SelectedObject = ItemList.SelectedItem.ToString();
-                DialogResult = System.Windows.Forms.DialogResult.OK;
+                if (Displays != null && Displays.Count > 0)
+                {
+                    string selected = ItemList.SelectedItem.ToString();
+                    _SelectedObject = Values[Displays.IndexOf(selected)];
+                    DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+                else
+                {
+                    _SelectedObject = ItemList.SelectedItem.ToString();
+                    DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
             }
         }
         private void TxtFilter_KeyDowned(object sender, KeyEventArgs e)
@@ -86,8 +128,17 @@ namespace Ez_SQL.MultiQueryForm
         {
             if (ItemList.SelectedIndex >= 0)
             {
-                _SelectedObject = ItemList.SelectedItem.ToString();
-                DialogResult = System.Windows.Forms.DialogResult.OK;
+                if (Displays != null && Displays.Count > 0)
+                {
+                    string selected = ItemList.SelectedItem.ToString();
+                    _SelectedObject = Values[Displays.IndexOf(selected)];
+                    DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+                else
+                {
+                    _SelectedObject = ItemList.SelectedItem.ToString();
+                    DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
             }
         }
     }

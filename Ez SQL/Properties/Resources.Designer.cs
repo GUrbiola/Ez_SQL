@@ -123,13 +123,6 @@ namespace Ez_SQL.Properties {
             }
         }
         
-        internal static byte[] CSharp {
-            get {
-                object obj = ResourceManager.GetObject("CSharp", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap CSharp_22 {
             get {
                 object obj = ResourceManager.GetObject("CSharp_22", resourceCulture);

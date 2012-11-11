@@ -196,9 +196,6 @@
   <data name="CSharp_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CSharp_22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SQL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\SintaxHighLight\SQL.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Bookmark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bookmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -210,9 +207,6 @@
   </data>
   <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CSharp.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Search" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -243,5 +237,8 @@
   </data>
   <data name="MoveWindow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MoveWindow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SQL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\SintaxHighLight\SQL.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

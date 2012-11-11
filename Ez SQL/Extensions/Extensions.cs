@@ -41,7 +41,7 @@ namespace Ez_SQL.Extensions
         {
             return TxtEditor.Document.PositionToOffset(TxtEditor.ActiveTextAreaControl.Caret.Position);
         }
-        public static void InsertString(this TextEditorControl TxtEditor, string InsStr, int Position = -1)
+        public static void InsertString(this TextEditorControl TxtEditor, string InsStr, int Position = -1, bool DoRefreshAfter = true)
         {
             int SelectionLength = 0;
             if (String.IsNullOrEmpty(InsStr))
@@ -56,9 +56,13 @@ namespace Ez_SQL.Extensions
                     TxtEditor.ActiveTextAreaControl.TextArea.SelectionManager.RemoveSelectedText();
                 }
             }
-
-            TxtEditor.Document.Insert(Position - SelectionLength, InsStr);
+            if (Position - SelectionLength >= 0)
+                TxtEditor.Document.Insert(Position - SelectionLength, InsStr);
+            else
+                TxtEditor.Document.Insert(Position, InsStr);
             TxtEditor.ActiveTextAreaControl.Caret.Column += InsStr.Length;
+            if (DoRefreshAfter)
+                TxtEditor.Refresh();
         }
         public static void SetSelectionByOffset(this TextEditorControl TxtEditor, int StartOffset, int EndOffset)
         {
@@ -99,7 +103,7 @@ namespace Ez_SQL.Extensions
         }
         public static Token GetLastToken(this string Text)
         {
-            return Text.GetTokens().List.LastOrDefault();
+            return Text.GetTokens().List.LastOrDefault() ?? new Token(TokenType.EMPTYSPACE, "");
         }
         public static Token GetFirstToken(this string Text)
         {
@@ -183,6 +187,7 @@ namespace Ez_SQL.Extensions
                                     if (nextc.IsComparator())
                                     {
                                         Back.AddToken(new Token(TokenType.COMPARATOR, CurChar.ToString() + nextc.ToString()));
+                                        index++;
                                     }
                                     else
                                     {
@@ -404,7 +409,7 @@ namespace Ez_SQL.Extensions
             if (Current != null)
                 Back.AddToken(Current);
 
-            return Back[0];
+            return Back.TokenCount > 0 ? Back[0]:new Token(TokenType.EMPTYSPACE, "");
         }
         public static TokenList GetTokens(this string Text)
         {
@@ -485,6 +490,7 @@ namespace Ez_SQL.Extensions
                                     if (nextc.IsComparator())
                                     {
                                         Back.AddToken(new Token(TokenType.COMPARATOR, CurChar.ToString() + nextc.ToString()));
+                                        index++;
                                     }
                                     else
                                     {
@@ -782,7 +788,7 @@ namespace Ez_SQL.Extensions
         public static HashSet<string> DataTypes = new HashSet<string>{
                                                       "BIGINT", "NUMERIC","BIT","INT","SMALLINT","TINYINT","SMALLMONEY","MONEY","DECIMAL", //exact numeric type
                                                       "FLOAT","REAL",//aproximate numeric type
-                                                      "DATE","DATETIME","DTETIME2","DATETIMEOFFSET","TIME","SMALLDATETIME",//date type
+                                                      "DATE","DATETIME","DATETIME2","DATETIMEOFFSET","TIME","SMALLDATETIME",//date type
                                                       "CHAR","VARCHAR","TEXT",//char type
                                                       "NCHAR","NVARCHAR","NTEXT",//unicode char types
                                                       "BINARY","VARBINARY","IMAGE",//binary types

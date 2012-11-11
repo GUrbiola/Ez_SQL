@@ -194,8 +194,42 @@ namespace Ez_SQL
             index = -1;
             return null;
         }
+        public Token GetTokenAtOffset(int offset)
+        {
+            for (int i = 0; i < List.Count; i++)
+            {
+                if (StartOffsets[i] <= offset && offset <= EndOffsets[i])
+                {
+                    return GetToken(i);
+                }
+            }
+            return null;
+        }
         internal List<Token> GetByType(TokenType tokenType)
         {
+            List<Token> Back = new List<Token>();
+            if (tokenType == TokenType.BLOCKEND)
+            {
+                int Case = 0;
+                foreach (Token t in List)
+                {
+                    if(t.Text.Equals("case", StringComparison.CurrentCultureIgnoreCase))
+                        Case++;
+                    if (t.Type == TokenType.BLOCKEND)
+                    {
+                        if (Case > 0)
+                        {
+                            Case--;
+                        }
+                        else
+                        {
+                            Back.Add(t);
+                        }
+                    }
+                }
+                return Back;
+            }
+
             return List.Where(X => X.Type == tokenType).ToList();
         }
         internal List<Token> GetCustomFolders(bool beginFold)
