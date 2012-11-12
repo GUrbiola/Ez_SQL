@@ -43,6 +43,9 @@ namespace Ez_SQL.MultiQueryForm
         private bool CancelAutoCompleteClosure;
         private string CurrentFilterString;
         private int AutoCompleteStartOffset;
+        
+        SearchAndReplace _findForm;
+        private bool _lastSearchLoopedAround = false, _lastSearchWasBackward = false;
 
         public QueryForm(MainForm Parent, SqlConnector DataProvider, string Script = "")
         {
@@ -309,46 +312,52 @@ namespace Ez_SQL.MultiQueryForm
         }
         private void BtnSearch_Click(object sender, EventArgs e)
         {
-            //_findForm = new SearchAndReplace();
-            //_findForm.ShowFor(this, Query, false);
+            if (_findForm == null)
+                _findForm = new SearchAndReplace();
+            _findForm.ShowFor(this, Query, false);
         }
-        //public TextRange FindNext(bool viaF3, bool searchBackward, string messageIfNotFound)
-        //{
-        //    if (string.IsNullOrEmpty(CurWord))
-        //    {
-        //        MessageBox.Show("Seleccione la palabra a buscar...");
-        //        return null;
-        //    }
-        //    TextEditorSearcher _search = new TextEditorSearcher();
-        //    _lastSearchWasBackward = searchBackward;
-        //    _search.Document = Query.Document;
-        //    _search.LookFor = CurWord;
-        //    _search.MatchCase = false;
-        //    _search.MatchWholeWordOnly = false;
+        public TextRange FindNext(bool viaF3, bool searchBackward, string messageIfNotFound)
+        {
+            if (_findForm == null)
+                _findForm = new SearchAndReplace();
 
-        //    var caret = Query.ActiveTextAreaControl.Caret;
-        //    if (viaF3 && _search.HasScanRegion && !caret.Offset.IsInRange(_search.BeginOffset, _search.EndOffset))
-        //    {
-        //        // user moved outside of the originally selected region
-        //        _search.ClearScanRegion();
-        //    }
 
-        //    int startFrom = caret.Offset - (searchBackward ? 1 : 0);
-        //    TextRange range = _search.FindNext(startFrom, searchBackward, out _lastSearchLoopedAround);
-        //    if (range != null)
-        //        SelectResult(range);
-        //    else if (messageIfNotFound != null)
-        //        MessageBox.Show(messageIfNotFound);
-        //    return range;
-        //}
-        //private void SelectResult(TextRange range)
-        //{
-        //    TextLocation p1 = Query.Document.OffsetToPosition(range.Offset);
-        //    TextLocation p2 = Query.Document.OffsetToPosition(range.Offset + range.Length);
-        //    Query.ActiveTextAreaControl.SelectionManager.SetSelection(p1, p2);
-        //    Query.ActiveTextAreaControl.ScrollTo(p1.Line, p1.Column);
-        //    Query.ActiveTextAreaControl.Caret.Position = Query.Document.OffsetToPosition(range.Offset + range.Length);
-        //}
+            //if (String.IsNullOrEmpty(TxtSearch.Text) == null || selToken.IsTextEmpty)
+            //{
+            //    MessageBox.Show("Word to find not defined.");
+            //    return null;
+            //}
+
+            TextEditorSearcher _search = new TextEditorSearcher();
+            _lastSearchWasBackward = searchBackward;
+            _search.Document = Query.Document;
+            _search.LookFor = _findForm.LookFor;
+            _search.MatchCase = _findForm.MatchCase;
+            _search.MatchWholeWordOnly = _findForm.MatchWholeWordOnly;
+
+            var caret = Query.ActiveTextAreaControl.Caret;
+            if (viaF3 && _search.HasScanRegion && !caret.Offset.IsInRange(_search.BeginOffset, _search.EndOffset))
+            {
+                // user moved outside of the originally selected region
+                _search.ClearScanRegion();
+            }
+
+            int startFrom = caret.Offset - (searchBackward ? 1 : 0);
+            TextRange range = _search.FindNext(startFrom, searchBackward, out _lastSearchLoopedAround);
+            if (range != null)
+                SelectResult(range);
+            else if (messageIfNotFound != null)
+                MessageBox.Show(messageIfNotFound);
+            return range;
+        }
+        private void SelectResult(TextRange range)
+        {
+            TextLocation p1 = Query.Document.OffsetToPosition(range.Offset);
+            TextLocation p2 = Query.Document.OffsetToPosition(range.Offset + range.Length);
+            Query.ActiveTextAreaControl.SelectionManager.SetSelection(p1, p2);
+            Query.ActiveTextAreaControl.ScrollTo(p1.Line, p1.Column);
+            Query.ActiveTextAreaControl.Caret.Position = Query.Document.OffsetToPosition(range.Offset + range.Length);
+        }
         #endregion
         #region Functions triggered at the start/ending of a query execution
         private void DoubleClickedResultItem(object sender, MouseEventArgs e)
@@ -494,7 +503,7 @@ namespace Ez_SQL.MultiQueryForm
                     CurrentExecutionInfo.AddError(-1, Executor.NrEx.Message);
                 }
                 else
-                {//Exception from de executor??
+                {//Exception from the executor??
                     ListViewItem Error = new ListViewItem(Executor.LastMessage, 2);
                     Error.Name = "Error";
                     MessageList.Items.Add(Error);
@@ -636,20 +645,49 @@ namespace Ez_SQL.MultiQueryForm
                     }
                     else
                     {//to lower case the selection
-                        toUpperCseToolStripMenuItem_Click(null, null);
+                        toLowerCaseToolStripMenuItem1_Click(null, null);
                     }
                     return NoEcho;
                 case Keys.Control | Keys.Shift | Keys.U://to upper case selection
-                    toLowerCaseToolStripMenuItem1_Click(null, null);
+                    toUpperCseToolStripMenuItem_Click(null, null);
                     break;
                 case Keys.Control | Keys.F://Open search dialog
                     BtnSearch_Click(null, null);
                     return NoEcho;
+                case Keys.Control | Keys.F3:
+                    string lookFor;
+                    if (Query.ActiveTextAreaControl.TextArea.SelectionManager.HasSomethingSelected)
+                    {
+                        lookFor = Query.ActiveTextAreaControl.TextArea.SelectionManager.SelectedText;
+                    }
+                    else
+                    {
+                        Token selToken;
+                        TokenList tokens = Query.Text.GetTokens();
+                        selToken = tokens.GetTokenAtOffset(Query.CurrentOffset());
+                        lookFor = selToken.Text;
+                    }
+
+                    if (_findForm == null)
+                        _findForm = new SearchAndReplace();
+                    if (!String.IsNullOrEmpty(lookFor) && lookFor.Trim(' ', '\t', '\r', '\n').Length > 0)
+                    {
+                        _findForm.SetSearchString(lookFor);
+                        FindNext(true, false, String.Format("Specified text: {0}, was not found.", _findForm.LookFor));
+                        return NoEcho;
+                    }
+                    break;
                 case Keys.F3://Search next (forward)
-                    //FindNext(true, false, String.Format("Cadena de Texto: {0}, no encontrada.", _findForm.LookFor));
+                    if (_findForm != null && !String.IsNullOrEmpty(_findForm.LookFor) && _findForm.LookFor.Trim(' ', '\t', '\r', '\n').Length > 0)
+                    {
+                        FindNext(true, false, String.Format("Specified text: {0}, was not found.", _findForm.LookFor));
+                    }
                     return NoEcho;
                 case Keys.Shift | Keys.F3://Search next (Backward)
-                    //FindNext(true, true, String.Format("Cadena de Texto: {0}, no encontrada.", _findForm.LookFor));
+                    if (_findForm != null && !String.IsNullOrEmpty(_findForm.LookFor) && _findForm.LookFor.Trim(' ', '\t', '\r', '\n').Length > 0)
+                    {
+                        FindNext(true, true, String.Format("Specified text: {0}, was not found.", _findForm.LookFor));
+                    }
                     return NoEcho;
                 case Keys.F2://Toggle bookmark
                     BtnBookmark_Click(null, null);
@@ -673,13 +711,13 @@ namespace Ez_SQL.MultiQueryForm
                     BtnShowHideResults_Click(null, null);
                     return NoEcho;
                 case Keys.F12://go to definition
-                    Token selToken;
-                    TokenList tokens = Query.Text.GetTokens();
-                    selToken = tokens.GetTokenAtOffset(Query.CurrentOffset());
+                    Token selToken2;
+                    TokenList tokens2 = Query.Text.GetTokens();
+                    selToken2 = tokens2.GetTokenAtOffset(Query.CurrentOffset());
 
-                    if (selToken.Type == TokenType.WORD)
+                    if (selToken2.Type == TokenType.WORD)
                     {
-                        ISqlObject Obj = DataProvider.IsSqlObject(selToken.Text);
+                        ISqlObject Obj = DataProvider.IsSqlObject(selToken2.Text);
                         if (Obj != null)
                         {
                             Parent.AddQueryForm(Obj.Name, Obj.Script, DataProvider);
@@ -715,7 +753,7 @@ namespace Ez_SQL.MultiQueryForm
             #region Autocomplete/intellisense code
             if (IsIntellisenseOn)
             {
-                #region Code to handle the keypressed if the "intellisense" is active
+                #region Code to handle the key pressed if the "intellisense" is active
                 switch (keyData)
                 {
                     case Keys.Back:
@@ -847,7 +885,7 @@ namespace Ez_SQL.MultiQueryForm
                         AutoCompleteStartOffset = CurPos - CurrentWord.Length;
                         ShowIntellisense(CurrentWord, GetAliasesAndAuxiliarTables(Query.Text), FilteringType.Smart);
                         return NoEcho;
-                    case Keys.Space:
+                    case Keys.Space://if the text before is an @ or an #, show posible vars or temp tables
                         LastToken = TxtBef.GetLastToken();
                         if (LastToken.Text == "@")
                         {
@@ -901,7 +939,7 @@ namespace Ez_SQL.MultiQueryForm
                         }
                         break;
                     case Keys.OemPeriod:
-                    case Keys.Decimal:
+                    case Keys.Decimal://show Sql Object childs... if any
                         Query.InsertString(".");
                         CurPos = Query.CurrentOffset();
                         TxtBef = Query.Document.GetText(0, CurPos);
@@ -941,7 +979,7 @@ namespace Ez_SQL.MultiQueryForm
                         }
                         
                         break;
-                    case Keys.Tab:
+                    case Keys.Tab://check if it is a request for a snippet, a variable or a temp table
                         LastToken = TxtBef.GetLastToken();
                         if (LastToken.Text == "@")
                         {
@@ -1363,7 +1401,6 @@ namespace Ez_SQL.MultiQueryForm
         }
         void ShowIntellisense(string FilterString, List<ISqlObject> ComplementaryObjects, FilteringType Filter = FilteringType.Any)
         {
-            string Sc, Ta, Fi;
             bool QualifierBehind = false;
             int AutoCompleteLength = 0;
             List<string> Data;
@@ -1467,6 +1504,7 @@ namespace Ez_SQL.MultiQueryForm
             }
         }
 
+        #region Options of the contextual of the query editor
         private void goToDefinitionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string script = Query.Text;
@@ -1480,7 +1518,6 @@ namespace Ez_SQL.MultiQueryForm
                 Parent.AddQueryForm(Obj.Name, Obj.Script, DataProvider);
             }
         }
-
         private void collapseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (var fm in Query.Document.FoldingManager.FoldMarker)
@@ -1490,7 +1527,6 @@ namespace Ez_SQL.MultiQueryForm
             Query.Document.FoldingManager.UpdateFoldings(null, null);
             Query.Refresh();
         }
-
         private void expandToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (var fm in Query.Document.FoldingManager.FoldMarker)
@@ -1500,7 +1536,6 @@ namespace Ez_SQL.MultiQueryForm
             Query.Document.FoldingManager.UpdateFoldings(null, null);
             Query.Refresh();
         }
-
         private void toggleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (var fm in Query.Document.FoldingManager.FoldMarker)
@@ -1575,6 +1610,6 @@ namespace Ez_SQL.MultiQueryForm
 
             }
         }
-        
+        #endregion
     }
 }

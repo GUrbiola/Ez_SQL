@@ -6,6 +6,8 @@ using ICSharpCode.TextEditor;
 using ICSharpCode.TextEditor.Document;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Drawing;
+using System.Diagnostics;
 
 namespace Ez_SQL.Extensions
 {
@@ -68,6 +70,17 @@ namespace Ez_SQL.Extensions
         {
             TxtEditor.ActiveTextAreaControl.SelectionManager.ClearSelection();
             TxtEditor.ActiveTextAreaControl.SelectionManager.SetSelection(TxtEditor.Document.OffsetToPosition(StartOffset), TxtEditor.Document.OffsetToPosition(EndOffset));
+        }
+        public static void SelectText(this TextEditorControl TxtEditor, int offset, int length)
+        {
+            TextLocation p1 = TxtEditor.Document.OffsetToPosition(offset);
+            TextLocation p2 = TxtEditor.Document.OffsetToPosition(offset + length);
+            TxtEditor.ActiveTextAreaControl.SelectionManager.SetSelection(p1, p2);
+            TxtEditor.ActiveTextAreaControl.ScrollTo(p1.Line, p1.Column);
+            // Also move the caret to the end of the selection, because when the user 
+            // presses F3, the caret is where we start searching next time.
+            TxtEditor.ActiveTextAreaControl.Caret.Position =
+                TxtEditor.Document.OffsetToPosition(offset + length);
         }
         #endregion
 
@@ -761,6 +774,27 @@ namespace Ez_SQL.Extensions
             if (direction == SortDirection.Decending)
                 source.OrderByDescending(sorter);
             return source.OrderBy(sorter);
+        }
+        #endregion
+
+
+        #region Miscellaneous extensions
+        public static int InRange(this int x, int lo, int hi)
+        {
+            Debug.Assert(lo <= hi);
+            return x < lo ? lo : (x > hi ? hi : x);
+        }
+        public static bool IsInRange(this int x, int lo, int hi)
+        {
+            return x >= lo && x <= hi;
+        }
+        public static Color HalfMix(this Color one, Color two)
+        {
+            return Color.FromArgb(
+                (one.A + two.A) >> 1,
+                (one.R + two.R) >> 1,
+                (one.G + two.G) >> 1,
+                (one.B + two.B) >> 1);
         }
         #endregion
 

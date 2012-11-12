@@ -148,8 +148,14 @@
   <data name="Restore" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Restore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DelBookmark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DelBookmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="GoToDefinition" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GoToDefinition.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Words" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Words.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Remove_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Remove_22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Background.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,6 +172,9 @@
   <data name="ResizeIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ResizeIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Selection" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Selection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Previous" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Previous.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -174,6 +183,9 @@
   </data>
   <data name="UnComment" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UnComment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Expand" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Expand.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Link" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Link.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,8 +199,8 @@
   <data name="Add_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Add_22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Remove_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Remove_22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DelBookmark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DelBookmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AddConnection" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddConnection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,8 +208,17 @@
   <data name="CSharp_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CSharp_22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SQL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\SintaxHighLight\SQL.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Outlining" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Outlining.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Bookmark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bookmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ToUpperCase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ToUpperCase.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Filter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Filter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -207,6 +228,9 @@
   </data>
   <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Collapse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Collapse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Search" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,6 +250,9 @@
   <data name="Historic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Historic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ToLowerCase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ToLowerCase.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -238,7 +265,7 @@
   <data name="MoveWindow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MoveWindow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SQL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\SintaxHighLight\SQL.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Toggle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Toggle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

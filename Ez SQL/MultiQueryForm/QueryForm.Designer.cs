@@ -141,10 +141,11 @@
             this.selectionToolStripMenuItem,
             this.outlinningToolStripMenuItem});
             this.popupMenu.Name = "popupMenu";
-            this.popupMenu.Size = new System.Drawing.Size(187, 92);
+            this.popupMenu.Size = new System.Drawing.Size(187, 114);
             // 
             // goToDefinitionToolStripMenuItem
             // 
+            this.goToDefinitionToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.GoToDefinition;
             this.goToDefinitionToolStripMenuItem.Name = "goToDefinitionToolStripMenuItem";
             this.goToDefinitionToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.goToDefinitionToolStripMenuItem.Text = "Go to definition (F12)";
@@ -155,12 +156,14 @@
             this.reservedWordsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toUpperCaseToolStripMenuItem,
             this.toLowerCaseToolStripMenuItem});
+            this.reservedWordsToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Words;
             this.reservedWordsToolStripMenuItem.Name = "reservedWordsToolStripMenuItem";
             this.reservedWordsToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.reservedWordsToolStripMenuItem.Text = "Reserved words";
             // 
             // toUpperCaseToolStripMenuItem
             // 
+            this.toUpperCaseToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.ToUpperCase;
             this.toUpperCaseToolStripMenuItem.Name = "toUpperCaseToolStripMenuItem";
             this.toUpperCaseToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.toUpperCaseToolStripMenuItem.Text = "To upper case";
@@ -168,6 +171,7 @@
             // 
             // toLowerCaseToolStripMenuItem
             // 
+            this.toLowerCaseToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.ToLowerCase;
             this.toLowerCaseToolStripMenuItem.Name = "toLowerCaseToolStripMenuItem";
             this.toLowerCaseToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.toLowerCaseToolStripMenuItem.Text = "To lower case";
@@ -178,12 +182,14 @@
             this.selectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toUpperCseToolStripMenuItem,
             this.toLowerCaseToolStripMenuItem1});
+            this.selectionToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Selection;
             this.selectionToolStripMenuItem.Name = "selectionToolStripMenuItem";
             this.selectionToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.selectionToolStripMenuItem.Text = "Selection";
             // 
             // toUpperCseToolStripMenuItem
             // 
+            this.toUpperCseToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.ToUpperCase;
             this.toUpperCseToolStripMenuItem.Name = "toUpperCseToolStripMenuItem";
             this.toUpperCseToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.toUpperCseToolStripMenuItem.Text = "To upper case  (Ctrl + Shift + U)";
@@ -191,6 +197,7 @@
             // 
             // toLowerCaseToolStripMenuItem1
             // 
+            this.toLowerCaseToolStripMenuItem1.Image = global::Ez_SQL.Properties.Resources.ToLowerCase;
             this.toLowerCaseToolStripMenuItem1.Name = "toLowerCaseToolStripMenuItem1";
             this.toLowerCaseToolStripMenuItem1.Size = new System.Drawing.Size(241, 22);
             this.toLowerCaseToolStripMenuItem1.Text = "To lower case (Ctrl + U)";
@@ -202,12 +209,14 @@
             this.collapseToolStripMenuItem,
             this.expandToolStripMenuItem,
             this.toggleToolStripMenuItem});
+            this.outlinningToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Outlining;
             this.outlinningToolStripMenuItem.Name = "outlinningToolStripMenuItem";
             this.outlinningToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.outlinningToolStripMenuItem.Text = "Outlining/Folding";
             // 
             // collapseToolStripMenuItem
             // 
+            this.collapseToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Collapse;
             this.collapseToolStripMenuItem.Name = "collapseToolStripMenuItem";
             this.collapseToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.collapseToolStripMenuItem.Text = "Collapse (Ctrl + O, C)";
@@ -215,6 +224,7 @@
             // 
             // expandToolStripMenuItem
             // 
+            this.expandToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Expand;
             this.expandToolStripMenuItem.Name = "expandToolStripMenuItem";
             this.expandToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.expandToolStripMenuItem.Text = "Expand (Ctrl + O, E)";
@@ -222,6 +232,7 @@
             // 
             // toggleToolStripMenuItem
             // 
+            this.toggleToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Toggle;
             this.toggleToolStripMenuItem.Name = "toggleToolStripMenuItem";
             this.toggleToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.toggleToolStripMenuItem.Text = "Toggle (Ctrl + O, T)";

@@ -75,3 +75,4 @@ C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.AdditionalForms.ObjectSearcher.resources
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ChildSelector.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.AdditionalForms.ObjectSearcher.resources
+C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.SearchAndReplace.resources

@@ -8607,3 +8607,27 @@ from
 
 "</Code>
 	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121111 04:46:52.831" EndTime="20121111 04:46:53.143" Lapse="312" Correct="1" RecordsAffected="0" RecordsRead="486" GridCount="1" />
+		<Code>"SELECT * FROM Dnis.LicensedNumbers AS Ln"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121111 04:47:45.668" EndTime="20121111 04:47:46.043" Lapse="374" Correct="1" RecordsAffected="0" RecordsRead="832" GridCount="2" />
+		<Code>"SELECT * FROM Dnis.LicensedNumbers AS Ln
+
+SELECT Vl.AreaCode, Vl.Country, Vl.CountryAbbr, Vl.CountryId, Vl.State, Vl.StateAbbr, Vl.StateId FROM dbo.V_LicensingData AS Vl"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121111 04:48:11.861" EndTime="20121111 04:48:12.188" Lapse="327" Correct="1" RecordsAffected="0" RecordsRead="832" GridCount="2" />
+		<Code>"SELECT * FROM Dnis.LicensedNumbers AS Ln
+
+SELECT Vl.AreaCode, Vl.Country, Vl.CountryAbbr, Vl.CountryId, Vl.State, Vl.StateAbbr, Vl.StateId FROM dbo.V_LicensingData AS Vl ORDER BY Vl.Country, Vl.State, Vl.AreaCode"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121111 04:56:22.291" EndTime="20121111 04:56:22.977" Lapse="686" Correct="1" RecordsAffected="0" RecordsRead="6" GridCount="1" />
+		<Code>"select XXX.Item from Util.SplitString (&amp;apos;Item 1,Item 2,Item 3,Other value,Unknown,NULL&amp;apos;, &amp;apos;,&amp;apos;) as XXX"</Code>
+	</Query>

@@ -139,6 +139,12 @@
     <Compile Include="MultiQueryForm\ObjectSelector.Designer.cs">
       <DependentUpon>ObjectSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="MultiQueryForm\SearchAndReplace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MultiQueryForm\SearchAndReplace.designer.cs">
+      <DependentUpon>SearchAndReplace.cs</DependentUpon>
+    </Compile>
     <Compile Include="MultiQueryForm\TextRange.cs" />
     <Compile Include="QueryLog\HistoricForm.cs">
       <SubType>Form</SubType>
@@ -197,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MultiQueryForm\ObjectSelector.resx">
       <DependentUpon>ObjectSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultiQueryForm\SearchAndReplace.resx">
+      <DependentUpon>SearchAndReplace.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QueryLog\HistoricForm.resx">
       <DependentUpon>HistoricForm.cs</DependentUpon>
@@ -342,7 +351,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppIcon.ico" />
-    <None Include="Resources\Filter1.png" />
+    <None Include="Resources\Toggle.png" />
+    <None Include="Resources\Collapse.png" />
+    <None Include="Resources\Expand.png" />
+    <None Include="Resources\ToLowerCase.png" />
+    <None Include="Resources\ToUpperCase.png" />
+    <None Include="Resources\Outlining.png" />
+    <None Include="Resources\Selection.png" />
+    <None Include="Resources\Words.png" />
+    <None Include="Resources\GoToDefinition.png" />
     <None Include="Resources\Filter.png" />
     <None Include="Resources\SnippetEditor.png" />
     <None Include="Resources\Book_32.png" />

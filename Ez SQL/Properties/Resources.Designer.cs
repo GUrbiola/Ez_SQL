@@ -102,6 +102,13 @@ namespace Ez_SQL.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Collapse {
+            get {
+                object obj = ResourceManager.GetObject("Collapse", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Comment {
             get {
                 object obj = ResourceManager.GetObject("Comment", resourceCulture);
@@ -172,6 +179,13 @@ namespace Ez_SQL.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Expand {
+            get {
+                object obj = ResourceManager.GetObject("Expand", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Filter {
             get {
                 object obj = ResourceManager.GetObject("Filter", resourceCulture);
@@ -182,6 +196,13 @@ namespace Ez_SQL.Properties {
         internal static System.Drawing.Bitmap Function {
             get {
                 object obj = ResourceManager.GetObject("Function", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap GoToDefinition {
+            get {
+                object obj = ResourceManager.GetObject("GoToDefinition", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -245,6 +266,13 @@ namespace Ez_SQL.Properties {
         internal static System.Drawing.Bitmap Open {
             get {
                 object obj = ResourceManager.GetObject("Open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Outlining {
+            get {
+                object obj = ResourceManager.GetObject("Outlining", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -319,6 +347,13 @@ namespace Ez_SQL.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Selection {
+            get {
+                object obj = ResourceManager.GetObject("Selection", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap SnippetEditor {
             get {
                 object obj = ResourceManager.GetObject("SnippetEditor", resourceCulture);
@@ -340,9 +375,37 @@ namespace Ez_SQL.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Toggle {
+            get {
+                object obj = ResourceManager.GetObject("Toggle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ToLowerCase {
+            get {
+                object obj = ResourceManager.GetObject("ToLowerCase", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ToUpperCase {
+            get {
+                object obj = ResourceManager.GetObject("ToUpperCase", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap UnComment {
             get {
                 object obj = ResourceManager.GetObject("UnComment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Words {
+            get {
+                object obj = ResourceManager.GetObject("Words", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
