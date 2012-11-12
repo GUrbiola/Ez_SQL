@@ -8583,4 +8583,57 @@ SELECT * FROM Searches.Searches S WHERE S.ClientID IS NULL ORDER BY S.ID DESC"</
 		Dnis.Catalog_Countries CC INNER JOIN Dnis.Catalog_States CS ON CC.Id = CS.Country
 		INNER JOIN Dnis.Catalog_AreaCode CA ON CS.Id = CA.State"</Code>
 	</Query>
+	<Query>
+		<Connection Group="Remote" Name="Dial 800 V2 @ MtySql V02" Server="MTYSQL-V02" Db="Dial800_V2" />
+		<Execution StartTime="20121109 08:37:49.476" EndTime="20121109 08:37:50.439" Lapse="963" Correct="1" RecordsAffected="0" RecordsRead="270" GridCount="1" />
+		<Code>"SELECT *
+FROM INFORMATION_SCHEMA.ROUTINES"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121110 01:14:15.743" EndTime="20121110 01:14:16.407" Lapse="664" Correct="1" RecordsAffected="0" RecordsRead="180" GridCount="1" />
+		<Code>"select
+	*
+from
+	Clients.Tags"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121111 03:06:44.960" EndTime="20121111 03:06:45.974" Lapse="1014" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"select
+	*
+from
+	Calls.Calls
+
+"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121111 04:46:52.831" EndTime="20121111 04:46:53.143" Lapse="312" Correct="1" RecordsAffected="0" RecordsRead="486" GridCount="1" />
+		<Code>"SELECT * FROM Dnis.LicensedNumbers AS Ln"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121111 04:47:45.668" EndTime="20121111 04:47:46.043" Lapse="374" Correct="1" RecordsAffected="0" RecordsRead="832" GridCount="2" />
+		<Code>"SELECT * FROM Dnis.LicensedNumbers AS Ln
+
+SELECT Vl.AreaCode, Vl.Country, Vl.CountryAbbr, Vl.CountryId, Vl.State, Vl.StateAbbr, Vl.StateId FROM dbo.V_LicensingData AS Vl"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121111 04:48:11.861" EndTime="20121111 04:48:12.188" Lapse="327" Correct="1" RecordsAffected="0" RecordsRead="832" GridCount="2" />
+		<Code>"SELECT * FROM Dnis.LicensedNumbers AS Ln
+
+SELECT Vl.AreaCode, Vl.Country, Vl.CountryAbbr, Vl.CountryId, Vl.State, Vl.StateAbbr, Vl.StateId FROM dbo.V_LicensingData AS Vl ORDER BY Vl.Country, Vl.State, Vl.AreaCode"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121111 04:56:22.291" EndTime="20121111 04:56:22.977" Lapse="686" Correct="1" RecordsAffected="0" RecordsRead="6" GridCount="1" />
+		<Code>"select XXX.Item from Util.SplitString (&amp;apos;Item 1,Item 2,Item 3,Other value,Unknown,NULL&amp;apos;, &amp;apos;,&amp;apos;) as XXX"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121111 11:34:31.385" EndTime="20121111 11:34:32.475" Lapse="1090" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT * FROM Calls.Calls AS C"</Code>
+	</Query>
 </QueriesRoot>

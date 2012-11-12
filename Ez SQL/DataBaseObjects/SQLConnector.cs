@@ -5,7 +5,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data;
 using Ez_SQL.Extensions;
-using Ez_SQL.LoadControl;
+using Ez_SQL.Custom_Controls;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Threading;

@@ -117,10 +117,10 @@
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Extensions\XmlSerializer.cs" />
     <Compile Include="Globals.cs" />
-    <Compile Include="LoadControl\LoadingInfo.cs">
+    <Compile Include="Custom Controls\LoadingInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="LoadControl\LoadingInfo.designer.cs">
+    <Compile Include="Custom Controls\LoadingInfo.designer.cs">
       <DependentUpon>LoadingInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="MultiQueryForm\AutocompleteWindow.cs">
@@ -195,7 +195,7 @@
     <EmbeddedResource Include="Custom Controls\AnimatedWaitTextBox.resx">
       <DependentUpon>AnimatedWaitTextBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoadControl\LoadingInfo.resx">
+    <EmbeddedResource Include="Custom Controls\LoadingInfo.resx">
       <DependentUpon>LoadingInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MultiQueryForm\ChildSelector.resx">
@@ -368,7 +368,9 @@
     <None Include="Resources\CSharp_22.png" />
     <None Include="Resources\CSharp321.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="LoadControl\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

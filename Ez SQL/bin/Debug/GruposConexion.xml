@@ -4,6 +4,7 @@
     <Connections>
       <Connection Name="Dial 800 V2 Work" ConnectionString="Data Source=.\;Initial Catalog=Dial800_V2;Integrated Security=True;Persist Security Info=True" />
       <Connection Name="Dial 800 V2 Home" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=Dial800_V2;Integrated Security=True;Persist Security Info=True" />
+      <Connection Name="Some Database" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=Dial800_V2;Integrated Security=True;Persist Security Info=True" />
     </Connections>
   </Group>
   <Group Name="Remote">

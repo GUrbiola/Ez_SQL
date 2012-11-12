@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 
-namespace Ez_SQL.LoadControl
+namespace Ez_SQL.Custom_Controls
 {
     public partial class LoadingInfo : UserControl
     {

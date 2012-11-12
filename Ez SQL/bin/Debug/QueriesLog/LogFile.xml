@@ -8631,3 +8631,14 @@ SELECT Vl.AreaCode, Vl.Country, Vl.CountryAbbr, Vl.CountryId, Vl.State, Vl.State
 		<Execution StartTime="20121111 04:56:22.291" EndTime="20121111 04:56:22.977" Lapse="686" Correct="1" RecordsAffected="0" RecordsRead="6" GridCount="1" />
 		<Code>"select XXX.Item from Util.SplitString (&amp;apos;Item 1,Item 2,Item 3,Other value,Unknown,NULL&amp;apos;, &amp;apos;,&amp;apos;) as XXX"</Code>
 	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Home" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121111 11:34:31.385" EndTime="20121111 11:34:32.475" Lapse="1090" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT * FROM Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Some Database" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121112 12:13:15.592" EndTime="20121112 12:13:16.102" Lapse="510" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT * FROM Calls.AddMessageLog"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;Calls.AddMessageLog&amp;apos;."/>
+	</Query>

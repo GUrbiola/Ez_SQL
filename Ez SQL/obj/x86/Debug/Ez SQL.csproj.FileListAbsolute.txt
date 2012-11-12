@@ -24,7 +24,6 @@ C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.ConxAdmin.resources
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.InputBox.resources
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.SQLConnectForm.resources
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.AnimatedWaitTextBox.resources
-C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.LoadControl.LoadingInfo.resources
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ObjectSelector.resources
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.QueryLog.HistoricForm.resources
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MainForm.resources
@@ -76,3 +75,4 @@ C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.AdditionalForms.ObjectSearcher.
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ChildSelector.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.AdditionalForms.ObjectSearcher.resources
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.SearchAndReplace.resources
+C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.LoadingInfo.resources

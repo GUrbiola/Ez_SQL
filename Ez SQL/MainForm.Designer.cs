@@ -57,7 +57,6 @@
             this.BtnNewQuery = new System.Windows.Forms.ToolStripButton();
             this.BtnSearch = new System.Windows.Forms.ToolStripButton();
             this.BtnHistoric = new System.Windows.Forms.ToolStripButton();
-            this.BtnImport = new System.Windows.Forms.ToolStripButton();
             this.BtnSnippetEditor = new System.Windows.Forms.ToolStripButton();
             this.WorkPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -187,7 +186,6 @@
             this.BtnNewQuery,
             this.BtnSearch,
             this.BtnHistoric,
-            this.BtnImport,
             this.BtnSnippetEditor});
             this.SideMenu.Location = new System.Drawing.Point(0, 0);
             this.SideMenu.Name = "SideMenu";
@@ -231,17 +229,6 @@
             this.BtnHistoric.Size = new System.Drawing.Size(43, 36);
             this.BtnHistoric.Text = "Query execution historic";
             this.BtnHistoric.Click += new System.EventHandler(this.BtnHistoric_Click);
-            // 
-            // BtnImport
-            // 
-            this.BtnImport.AutoSize = false;
-            this.BtnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnImport.Image = global::Ez_SQL.Properties.Resources.ImportToDB;
-            this.BtnImport.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.BtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnImport.Name = "BtnImport";
-            this.BtnImport.Size = new System.Drawing.Size(43, 36);
-            this.BtnImport.Text = "Import to database";
             // 
             // BtnSnippetEditor
             // 
@@ -388,7 +375,6 @@
         private System.Windows.Forms.ToolStripButton BtnNewQuery;
         private System.Windows.Forms.ToolStripButton BtnSearch;
         private System.Windows.Forms.ToolStripButton BtnHistoric;
-        private System.Windows.Forms.ToolStripButton BtnImport;
         private System.Windows.Forms.Timer timer1;
         private System.ComponentModel.BackgroundWorker BgWorker;
         private Custom_Controls.StatusStripIcon ResizeIcon;

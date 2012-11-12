@@ -119,7 +119,7 @@ namespace Ez_SQL.AdditionalForms
             {
                 ResultsList.Items.Add(new ListViewItem(dbobj.Name, dbobj.ImageIndex) { ToolTipText = String.Format("{0}.{1}", dbobj.Schema, dbobj.Name) });
             }
-            label3.Text = String.Format("Resultados de Busqueda ({0})", ResultsList.Items.Count.ToString());
+            label3.Text = String.Format("Objects found: {0}", ResultsList.Items.Count.ToString());
         }
         private void CleanSearchResults()
         {

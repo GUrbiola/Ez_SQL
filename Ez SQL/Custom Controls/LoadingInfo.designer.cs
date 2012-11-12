@@ -1,4 +1,4 @@
-﻿namespace Ez_SQL.LoadControl
+﻿namespace Ez_SQL.Custom_Controls
 {
     partial class LoadingInfo
     {
@@ -47,9 +47,9 @@
             this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.Location = new System.Drawing.Point(110, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 14);
+            this.label1.Size = new System.Drawing.Size(139, 14);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Extrayendo Informacion";
+            this.label1.Text = "Reading info from DB";
             // 
             // LDB
             // 
@@ -58,7 +58,7 @@
             this.LDB.Name = "LDB";
             this.LDB.Size = new System.Drawing.Size(321, 15);
             this.LDB.TabIndex = 1;
-            this.LDB.Text = "Base de Datos";
+            this.LDB.Text = "Database";
             // 
             // ReadingIcon
             // 
@@ -86,7 +86,7 @@
             this.LAction.Name = "LAction";
             this.LAction.Size = new System.Drawing.Size(321, 21);
             this.LAction.TabIndex = 4;
-            this.LAction.Text = "Accion Realizandose";
+            this.LAction.Text = "Current action description";
             // 
             // LoadingInfo
             // 
