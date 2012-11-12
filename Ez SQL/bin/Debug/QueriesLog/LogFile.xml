@@ -8642,3 +8642,22 @@ SELECT Vl.AreaCode, Vl.Country, Vl.CountryAbbr, Vl.CountryId, Vl.State, Vl.State
 		<Code>"SELECT * FROM Calls.AddMessageLog"</Code>
 		<Error Line="1" Message="Invalid object name &amp;apos;Calls.AddMessageLog&amp;apos;."/>
 	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121112 08:11:01.771" EndTime="20121112 08:11:02.658" Lapse="886" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT * FROM Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121112 08:14:43.161" EndTime="20121112 08:14:43.592" Lapse="430" Correct="1" RecordsAffected="0" RecordsRead="1486" GridCount="2" />
+		<Code>"SELECT * FROM Calls.Calls AS C
+
+SELECT
+	Calls.GetAdultsAsXml (40) as FieldRandom,
+	Ln.ClientID,
+	Ln.Number
+FROM
+	Dnis.LicensedNumbers AS Ln
+ORDER BY
+	Ln.ClientID, Ln.Number"</Code>
+	</Query>

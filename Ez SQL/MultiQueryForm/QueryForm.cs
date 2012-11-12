@@ -69,26 +69,6 @@ namespace Ez_SQL.MultiQueryForm
             #region Code to load the Highlight rules(files in resources) and the folding strategy class
             try
             {
-                if (!Directory.Exists(MainForm.ExecDir + "\\SintaxHighLight"))
-                {
-                    Directory.CreateDirectory(MainForm.ExecDir + "\\SintaxHighLight\\");
-                }
-                if (!File.Exists(String.Format("{0}\\SintaxHighLight\\SQL.xshd", MainForm.ExecDir)))
-                {
-                    using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\SQL.xshd", MainForm.ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
-                    {
-                        Writer.Write(Properties.Resources.SQL, 0, Properties.Resources.SQL.Length);
-                        Writer.Close();
-                    }
-                }
-                if (!File.Exists(String.Format("{0}\\SintaxHighLight\\CSharp.xshd", MainForm.ExecDir)))
-                {
-                    using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\CSharp.xshd", MainForm.ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
-                    {
-                        Writer.Write(Properties.Resources.SQL, 0, Properties.Resources.SQL.Length);
-                        Writer.Close();
-                    }
-                }
                 HighlightingManager.Manager.AddSyntaxModeFileProvider(new FileSyntaxModeProvider(MainForm.ExecDir + "\\SintaxHighLight\\"));
                 Query.Document.HighlightingStrategy = HighlightingManager.Manager.FindHighlighter("SQL");
                 Query.Document.FormattingStrategy = new Ez_SQL.TextEditorClasses.SqlBracketMatcher();

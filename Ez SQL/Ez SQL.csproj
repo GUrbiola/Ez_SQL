@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AddressBarExt">
       <HintPath>..\References\AddressBarExt\AddressBarEx_2.0\bin\Release\AddressBarExt.dll</HintPath>
@@ -231,7 +234,27 @@
       <DependentUpon>SnippetEditor.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="app.manifest" />
     <None Include="bin\Debug\SintaxHighLight\SQL.xshd" />
+    <None Include="bin\Debug\Snippets\Begin - end.snp" />
+    <None Include="bin\Debug\Snippets\Complex Snippet.snp" />
+    <None Include="bin\Debug\Snippets\Create procedure.snp" />
+    <None Include="bin\Debug\Snippets\Cross join.snp" />
+    <None Include="bin\Debug\Snippets\Cross join.snp.orig" />
+    <None Include="bin\Debug\Snippets\Cursor.snp" />
+    <None Include="bin\Debug\Snippets\declare.snp" />
+    <None Include="bin\Debug\Snippets\Inner join.snp" />
+    <None Include="bin\Debug\Snippets\Insert into all.snp" />
+    <None Include="bin\Debug\Snippets\Insert into.snp" />
+    <None Include="bin\Debug\Snippets\Left outer join.snp" />
+    <None Include="bin\Debug\Snippets\order by.snp" />
+    <None Include="bin\Debug\Snippets\Outer apply.snp" />
+    <None Include="bin\Debug\Snippets\Right outer join.snp" />
+    <None Include="bin\Debug\Snippets\Select All.snp" />
+    <None Include="bin\Debug\Snippets\Select some from.snp" />
+    <None Include="bin\Debug\Snippets\Select top records.snp" />
+    <None Include="bin\Debug\Snippets\select.snp" />
+    <None Include="bin\Debug\Snippets\Some snippet with unaliased object.snp" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -34,6 +34,10 @@ C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
 C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
+C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.AdditionalForms.ObjectSearcher.resources
+C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ChildSelector.resources
+C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.SearchAndReplace.resources
+C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.LoadingInfo.resources
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.exe.config
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.exe
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.pdb
@@ -55,14 +59,15 @@ C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\AddressBarExt.pdb
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\PopupControl.xml
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.ExcelXml.xml
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.Extensions.xml
-C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csprojResolveAssemblyReference.cache
+C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.AdditionalForms.ObjectSearcher.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.ConxAdmin.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.InputBox.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.SQLConnectForm.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.AnimatedWaitTextBox.resources
-C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.LoadControl.LoadingInfo.resources
+C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.LoadingInfo.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ChildSelector.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ObjectSelector.resources
+C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.SearchAndReplace.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.QueryLog.HistoricForm.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MainForm.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.QueryForm.resources
@@ -71,8 +76,3 @@ C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Snippets.SnippetEditor.resour
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.GenerateResource.Cache
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
-C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.AdditionalForms.ObjectSearcher.resources
-C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ChildSelector.resources
-C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.AdditionalForms.ObjectSearcher.resources
-C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.SearchAndReplace.resources
-C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.LoadingInfo.resources
