@@ -34,9 +34,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="AddressBarExt">
       <HintPath>..\References\AddressBarExt\AddressBarEx_2.0\bin\Release\AddressBarExt.dll</HintPath>

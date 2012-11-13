@@ -8661,3 +8661,33 @@ FROM
 ORDER BY
 	Ln.ClientID, Ln.Number"</Code>
 	</Query>
+	<Query>
+		<Connection Group="LocalHost" Name="Dial 800 V2" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121112 10:28:36.198" EndTime="20121112 10:28:36.419" Lapse="221" Correct="1" RecordsAffected="0" RecordsRead="486" GridCount="1" />
+		<Code>"SELECT * FROM Dnis.LicensedNumbers AS Ln"</Code>
+	</Query>
+	<Query>
+		<Connection Group="LocalHost" Name="Dial 800 V2" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121112 10:34:45.125" EndTime="20121112 10:34:45.319" Lapse="193" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="1" />
+		<Code>"SELECT * FROM Clients.WhiteLabelDomains AS Wl"</Code>
+	</Query>
+	<Query>
+		<Connection Group="LocalHost" Name="Dial 800 V2" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121112 10:37:11.230" EndTime="20121112 10:37:11.387" Lapse="156" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT C.City FROM Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="LocalHost" Name="Dial 800 V2" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121112 10:37:20.458" EndTime="20121112 10:37:20.591" Lapse="132" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT distinct C.City FROM Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="LocalHost" Name="Dial 800 V2" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121112 10:48:36.836" EndTime="20121112 10:48:37.021" Lapse="184" Correct="1" RecordsAffected="0" RecordsRead="68" GridCount="1" />
+		<Code>"select * from Dnis.Catalog_States"</Code>
+	</Query>
+	<Query>
+		<Connection Group="LocalHost" Name="Dial 800 V2" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121112 10:49:07.540" EndTime="20121112 10:49:07.594" Lapse="54" Correct="1" RecordsAffected="0" RecordsRead="43" GridCount="1" />
+		<Code>"select * from Dnis.Catalog_States AS Ca where Ca.Id &amp;gt; 25 ORDER BY Ca.Abbreviation"</Code>
+	</Query>
