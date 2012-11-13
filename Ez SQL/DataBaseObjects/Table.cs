@@ -28,13 +28,12 @@ namespace Ez_SQL.DataBaseObjects
         {
             //Generate script for the creation of table
             StringBuilder sc = new StringBuilder();
-            sc.AppendLine(String.Format("CREATE TABLE {0}", Name));
+            sc.AppendLine(String.Format("CREATE TABLE {0}.{1}", Schema, Name));
             sc.AppendLine("(");
 
             foreach (ISqlChild child in Childs)
             {
                 
-                //le asigno el nombre del campo
                 if (Childs.IndexOf(child) > 0)
                     sc.Append(String.Format("\t{0}{1}", ",", child.Name));
                 else

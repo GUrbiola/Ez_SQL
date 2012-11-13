@@ -8636,4 +8636,106 @@ SELECT Vl.AreaCode, Vl.Country, Vl.CountryAbbr, Vl.CountryId, Vl.State, Vl.State
 		<Execution StartTime="20121111 11:34:31.385" EndTime="20121111 11:34:32.475" Lapse="1090" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
 		<Code>"SELECT * FROM Calls.Calls AS C"</Code>
 	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Some Database" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121112 12:13:15.592" EndTime="20121112 12:13:16.102" Lapse="510" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT * FROM Calls.AddMessageLog"</Code>
+		<Error Line="1" Message="Invalid object name &amp;apos;Calls.AddMessageLog&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121112 08:11:01.771" EndTime="20121112 08:11:02.658" Lapse="886" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT * FROM Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Locals" Name="Dial 800 V2 Work" Server=".\" Db="Dial800_V2" />
+		<Execution StartTime="20121112 08:14:43.161" EndTime="20121112 08:14:43.592" Lapse="430" Correct="1" RecordsAffected="0" RecordsRead="1486" GridCount="2" />
+		<Code>"SELECT * FROM Calls.Calls AS C
+
+SELECT
+	Calls.GetAdultsAsXml (40) as FieldRandom,
+	Ln.ClientID,
+	Ln.Number
+FROM
+	Dnis.LicensedNumbers AS Ln
+ORDER BY
+	Ln.ClientID, Ln.Number"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Dial800_V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121112 07:56:12.652" EndTime="20121112 07:56:13.062" Lapse="410" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT * FROM Calls.AlertSent AS As"</Code>
+		<Error Line="1" Message="Incorrect syntax near the keyword &amp;apos;As&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Dial800_V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121112 07:56:17.068" EndTime="20121112 07:56:17.418" Lapse="350" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="1" />
+		<Code>"SELECT * FROM Calls.AlertSent AS Ase"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Dial800_V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121112 08:18:18.808" EndTime="20121112 08:18:19.168" Lapse="360" Correct="1" RecordsAffected="0" RecordsRead="486" GridCount="1" />
+		<Code>"SELECT * FROM Dnis.LicensedNumbers AS Ln"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Dial800_V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121112 10:08:44.503" EndTime="20121112 10:08:45.698" Lapse="1195" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT * FROM Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Dial800_V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121112 10:24:30.913" EndTime="20121112 10:24:31.593" Lapse="680" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT * FROM Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Dial800_V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121112 10:25:23.042" EndTime="20121112 10:25:23.565" Lapse="522" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT * FROM Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Northwind" Server=".\SQLEXPRESS" Db="Northwind" />
+		<Execution StartTime="20121112 10:47:18.406" EndTime="20121112 10:47:18.936" Lapse="530" Correct="1" RecordsAffected="0" RecordsRead="8" GridCount="1" />
+		<Code>"select
+	*
+from
+	dbo.Categories C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Northwind" Server=".\SQLEXPRESS" Db="Northwind" />
+		<Execution StartTime="20121112 10:47:26.889" EndTime="20121112 10:47:27.175" Lapse="286" Correct="1" RecordsAffected="0" RecordsRead="91" GridCount="1" />
+		<Code>"select
+	*
+from
+	dbo.Customers"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Northwind" Server=".\SQLEXPRESS" Db="Northwind" />
+		<Execution StartTime="20121112 10:47:45.642" EndTime="20121112 10:47:45.975" Lapse="333" Correct="1" RecordsAffected="0" RecordsRead="4" GridCount="1" />
+		<Code>"select
+	*
+from
+	dbo.Customers Cu
+where
+	Cu.CustomerID like &amp;apos;A%&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Northwind" Server=".\SQLEXPRESS" Db="Northwind" />
+		<Execution StartTime="20121112 10:48:27.899" EndTime="20121112 10:48:28.310" Lapse="411" Correct="0" RecordsAffected="0" RecordsRead="4" GridCount="1" />
+		<Code>"BEGIN
+	SELECT
+		*
+	FROM
+		dbo.Customers Cu
+	WHERE
+		Cu.CustomerID LIKE &amp;apos;A%&amp;apos;	
+		
+END
+
+--fold
+
+SELECT * FROM dbo.CustOrderHist
+
+--/fold"</Code>
+		<Error Line="13" Message="Invalid object name &amp;apos;dbo.CustOrderHist&amp;apos;."/>
+	</Query>
 </QueriesRoot>

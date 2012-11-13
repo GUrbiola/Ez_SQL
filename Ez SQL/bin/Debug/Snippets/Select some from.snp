@@ -5,5 +5,5 @@
   <Name value="Select some from" typeid="1" />
   <ShortCut typeid="1" value="ssf" />
   <Description typeid="1" value="Select snippet where you can choose table and fields." />
-  <Script typeid="1" value="SELECT $OBJF:1:, $ FROM $OBJ:1$" />
+  <Script typeid="1" value="SELECT $OBJF:1:\n\t$ FROM $OBJ:1$" />
 </Data>

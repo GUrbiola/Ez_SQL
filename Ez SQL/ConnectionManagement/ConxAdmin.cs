@@ -12,14 +12,8 @@ namespace Ez_SQL
 		int SelG, SelC;
 		public ConxAdmin()
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
 			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
+
 			CGs = Globals.GetConnections(MainForm.ConDataFileName);
 			SelG = SelC = -1;
 		}
@@ -57,6 +51,7 @@ namespace Ez_SQL
                 if(ConnectUI.ShowDialog() == DialogResult.OK)
                 {
                     dlg = new InputBox(true, "New connection", "Name for the new connection");
+                    dlg.SetInput(ConnectUI.SelectedDB);
                     if (dlg.ShowDialog() != DialogResult.OK)
                         return;
                     else
@@ -134,29 +129,18 @@ namespace Ez_SQL
 		{
             int indexc;
             indexc = LConx.SelectedIndices.Count > 0 ? LConx.SelectedIndices[0] : -1;
-            BtnConStr.Tag = "";
             if (SelG >= 0)
             {
                 if (indexc >= 0)
                 {
                 	SelC = indexc;
                 	label2.Text = "Connections: " + CGs[SelG].Connections[SelC].Name;
-                    BtnConStr.Tag = CGs[SelG].Connections[SelC].ConnectionString;
                 }
                 else
                 {
                 	SelC = -1;
                     label2.Text = "Connections";
                }
-            }			
-		}
-		void BtnConStrClick(object sender, EventArgs e)
-		{
-            if (BtnConStr.Tag != null && BtnConStr.Tag.ToString().Trim().Length > 0)
-            {
-                Clipboard.Clear();
-                Clipboard.SetText(BtnConStr.Tag.ToString());
-                MessageBox.Show(BtnConStr.Tag.ToString(), "Connection string copied to the clipboard", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }			
 		}
 		void ConxAdminLoad(object sender, EventArgs e)

@@ -8661,3 +8661,98 @@ FROM
 ORDER BY
 	Ln.ClientID, Ln.Number"</Code>
 	</Query>
+	<Query>
+		<Connection Group="Local" Name="Dial800_V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121112 07:56:12.652" EndTime="20121112 07:56:13.062" Lapse="410" Correct="0" RecordsAffected="0" RecordsRead="0" GridCount="0" />
+		<Code>"SELECT * FROM Calls.AlertSent AS As"</Code>
+		<Error Line="1" Message="Incorrect syntax near the keyword &amp;apos;As&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Dial800_V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121112 07:56:17.068" EndTime="20121112 07:56:17.418" Lapse="350" Correct="1" RecordsAffected="0" RecordsRead="0" GridCount="1" />
+		<Code>"SELECT * FROM Calls.AlertSent AS Ase"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Dial800_V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121112 08:18:18.808" EndTime="20121112 08:18:19.168" Lapse="360" Correct="1" RecordsAffected="0" RecordsRead="486" GridCount="1" />
+		<Code>"SELECT * FROM Dnis.LicensedNumbers AS Ln"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Dial800_V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121112 10:08:44.503" EndTime="20121112 10:08:45.698" Lapse="1195" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT * FROM Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Dial800_V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121112 10:24:30.913" EndTime="20121112 10:24:31.593" Lapse="680" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT * FROM Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Dial800_V2" Server=".\SQLEXPRESS" Db="Dial800_V2" />
+		<Execution StartTime="20121112 10:25:23.042" EndTime="20121112 10:25:23.565" Lapse="522" Correct="1" RecordsAffected="0" RecordsRead="1000" GridCount="1" />
+		<Code>"SELECT * FROM Calls.Calls AS C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Northwind" Server=".\SQLEXPRESS" Db="Northwind" />
+		<Execution StartTime="20121112 10:47:18.406" EndTime="20121112 10:47:18.936" Lapse="530" Correct="1" RecordsAffected="0" RecordsRead="8" GridCount="1" />
+		<Code>"select
+	*
+from
+	dbo.Categories C"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Northwind" Server=".\SQLEXPRESS" Db="Northwind" />
+		<Execution StartTime="20121112 10:47:26.889" EndTime="20121112 10:47:27.175" Lapse="286" Correct="1" RecordsAffected="0" RecordsRead="91" GridCount="1" />
+		<Code>"select
+	*
+from
+	dbo.Customers"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Northwind" Server=".\SQLEXPRESS" Db="Northwind" />
+		<Execution StartTime="20121112 10:47:45.642" EndTime="20121112 10:47:45.975" Lapse="333" Correct="1" RecordsAffected="0" RecordsRead="4" GridCount="1" />
+		<Code>"select
+	*
+from
+	dbo.Customers Cu
+where
+	Cu.CustomerID like &amp;apos;A%&amp;apos;"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Northwind" Server=".\SQLEXPRESS" Db="Northwind" />
+		<Execution StartTime="20121112 10:48:27.899" EndTime="20121112 10:48:28.310" Lapse="411" Correct="0" RecordsAffected="0" RecordsRead="4" GridCount="1" />
+		<Code>"BEGIN
+	SELECT
+		*
+	FROM
+		dbo.Customers Cu
+	WHERE
+		Cu.CustomerID LIKE &amp;apos;A%&amp;apos;	
+		
+END
+
+--fold
+
+SELECT * FROM dbo.CustOrderHist
+
+--/fold"</Code>
+		<Error Line="13" Message="Invalid object name &amp;apos;dbo.CustOrderHist&amp;apos;."/>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Northwind" Server=".\SQLEXPRESS" Db="Northwind" />
+		<Execution StartTime="20121112 10:58:18.892" EndTime="20121112 10:58:19.271" Lapse="379" Correct="1" RecordsAffected="0" RecordsRead="9" GridCount="1" />
+		<Code>"BEGIN
+	
+	SELECT * FROM dbo.Employees AS E
+	
+END"</Code>
+	</Query>
+	<Query>
+		<Connection Group="Local" Name="Northwind" Server=".\SQLEXPRESS" Db="Northwind" />
+		<Execution StartTime="20121112 10:59:21.438" EndTime="20121112 10:59:21.705" Lapse="267" Correct="1" RecordsAffected="0" RecordsRead="9" GridCount="1" />
+		<Code>"BEGIN
+	
+	SELECT TOP 100 E.Address, E.BirthDate, E.EmployeeID, E.Extension, E.FirstName, E.HireDate, E.HomePhone, E.LastName, E.Notes, E.PostalCode, E.Title, E.TitleOfCourtesy FROM dbo.Employees AS E
+	
+END"</Code>
+	</Query>

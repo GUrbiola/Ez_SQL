@@ -33,16 +33,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.LGroup = new System.Windows.Forms.ListView();
             this.GroupMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.AddGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.IList = new System.Windows.Forms.ImageList(this.components);
             this.LConx = new System.Windows.Forms.ListView();
             this.ConxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.AddConnection = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveConnection = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
-            this.BtnConStr = new System.Windows.Forms.Button();
             this.BtnEnd = new System.Windows.Forms.Button();
-            this.AddGroup = new System.Windows.Forms.ToolStripMenuItem();
-            this.RemoveGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.GroupMenu.SuspendLayout();
             this.ConxMenu.SuspendLayout();
             this.SuspendLayout();
@@ -80,6 +83,22 @@
             this.GroupMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.GroupMenu.Size = new System.Drawing.Size(206, 48);
             // 
+            // AddGroup
+            // 
+            this.AddGroup.Image = global::Ez_SQL.Properties.Resources.Add_22;
+            this.AddGroup.Name = "AddGroup";
+            this.AddGroup.Size = new System.Drawing.Size(205, 22);
+            this.AddGroup.Text = "Add connection group";
+            this.AddGroup.Click += new System.EventHandler(this.AddGroupClick);
+            // 
+            // RemoveGroup
+            // 
+            this.RemoveGroup.Image = global::Ez_SQL.Properties.Resources.Remove_22;
+            this.RemoveGroup.Name = "RemoveGroup";
+            this.RemoveGroup.Size = new System.Drawing.Size(205, 22);
+            this.RemoveGroup.Text = "Delete connection group";
+            this.RemoveGroup.Click += new System.EventHandler(this.RemoveGroupClick);
+            // 
             // IList
             // 
             this.IList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("IList.ImageStream")));
@@ -92,7 +111,7 @@
             this.LConx.ContextMenuStrip = this.ConxMenu;
             this.LConx.Dock = System.Windows.Forms.DockStyle.Top;
             this.LConx.LargeImageList = this.IList;
-            this.LConx.Location = new System.Drawing.Point(0, 207);
+            this.LConx.Location = new System.Drawing.Point(0, 263);
             this.LConx.Name = "LConx";
             this.LConx.Size = new System.Drawing.Size(364, 167);
             this.LConx.SmallImageList = this.IList;
@@ -130,27 +149,16 @@
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.Location = new System.Drawing.Point(0, 187);
+            this.label2.Location = new System.Drawing.Point(0, 243);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(364, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Connections";
             // 
-            // BtnConStr
-            // 
-            this.BtnConStr.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnConStr.Location = new System.Drawing.Point(0, 374);
-            this.BtnConStr.Name = "BtnConStr";
-            this.BtnConStr.Size = new System.Drawing.Size(364, 36);
-            this.BtnConStr.TabIndex = 4;
-            this.BtnConStr.Text = "Get connection string";
-            this.BtnConStr.UseVisualStyleBackColor = true;
-            this.BtnConStr.Click += new System.EventHandler(this.BtnConStrClick);
-            // 
             // BtnEnd
             // 
             this.BtnEnd.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnEnd.Location = new System.Drawing.Point(0, 410);
+            this.BtnEnd.Location = new System.Drawing.Point(0, 486);
             this.BtnEnd.Name = "BtnEnd";
             this.BtnEnd.Size = new System.Drawing.Size(364, 36);
             this.BtnEnd.TabIndex = 5;
@@ -158,31 +166,70 @@
             this.BtnEnd.UseVisualStyleBackColor = true;
             this.BtnEnd.Click += new System.EventHandler(this.BtnEndClick);
             // 
-            // AddGroup
+            // button1
             // 
-            this.AddGroup.Image = global::Ez_SQL.Properties.Resources.Add_22;
-            this.AddGroup.Name = "AddGroup";
-            this.AddGroup.Size = new System.Drawing.Size(205, 22);
-            this.AddGroup.Text = "Add connection group";
-            this.AddGroup.Click += new System.EventHandler(this.AddGroupClick);
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(0, 430);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(364, 28);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Add database connection";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.AddConnectionClick);
             // 
-            // RemoveGroup
+            // button2
             // 
-            this.RemoveGroup.Image = global::Ez_SQL.Properties.Resources.Remove_22;
-            this.RemoveGroup.Name = "RemoveGroup";
-            this.RemoveGroup.Size = new System.Drawing.Size(205, 22);
-            this.RemoveGroup.Text = "Delete connection group";
-            this.RemoveGroup.Click += new System.EventHandler(this.RemoveGroupClick);
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(0, 458);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(364, 28);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Delete database connection";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.RemoveConnectionClick);
+            // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(0, 215);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(364, 28);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Delete selected connection group";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.RemoveGroupClick);
+            // 
+            // button4
+            // 
+            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(0, 187);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(364, 28);
+            this.button4.TabIndex = 8;
+            this.button4.Text = "Add connection group";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.AddGroupClick);
             // 
             // ConxAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 446);
+            this.ClientSize = new System.Drawing.Size(364, 521);
             this.Controls.Add(this.BtnEnd);
-            this.Controls.Add(this.BtnConStr);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.LConx);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.LGroup);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -207,9 +254,12 @@
 		private System.Windows.Forms.ToolStripMenuItem RemoveGroup;
 		private System.Windows.Forms.ToolStripMenuItem AddGroup;
 		private System.Windows.Forms.ContextMenuStrip GroupMenu;
-		private System.Windows.Forms.Button BtnEnd;
-		private System.Windows.Forms.Button BtnConStr;
+        private System.Windows.Forms.Button BtnEnd;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
 	}
 }

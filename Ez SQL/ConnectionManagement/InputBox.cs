@@ -89,6 +89,10 @@ namespace Ez_SQL
 				return textBox1.Text;
 			}
 		}
+        public void SetInput(string Txt)
+        {
+            textBox1.Text = Txt;
+        }
 		void BtnOKClick(object sender, EventArgs e)
 		{
 			if(ForceEntry)

@@ -216,12 +216,12 @@ namespace Ez_SQL
                     writer.Flush();
                     writer.Close();
                 } 
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Some snippet with unaliased object.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
-                {
-                    writer.Write(Properties.Resources.Some_snippet_with_unaliased_object, 0, Properties.Resources.Some_snippet_with_unaliased_object.Length);
-                    writer.Flush();
-                    writer.Close();
-                }
+                //using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Some snippet with unaliased object.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                //{
+                //    writer.Write(Properties.Resources.Some_snippet_with_unaliased_object, 0, Properties.Resources.Some_snippet_with_unaliased_object.Length);
+                //    writer.Flush();
+                //    writer.Close();
+                //}
                 #endregion
             }
             if (!Directory.Exists(String.Format("{0}\\QueriesLog", ExecDir)))

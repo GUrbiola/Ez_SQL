@@ -14,6 +14,7 @@ namespace Ez_SQL
     public partial class SQLConnectForm : Form
     {
         SqlConnectionStringBuilder StrBuilder;
+        public string SelectedDB { get { return StrBuilder.InitialCatalog; } }
         public SQLConnectForm()
         {
             InitializeComponent();
