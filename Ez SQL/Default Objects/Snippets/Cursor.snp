@@ -1,0 +1,9 @@
+<Data type="Ez_SQL.Snippets.Snippet" assembly="Ez SQL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" version="1" culture="es-MX" hasTypeCache="true">
+  <TypeCache>
+    <TypeInfo typeid="1" type="System.String" assembly="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  </TypeCache>
+  <Name value="Cursor" typeid="1" />
+  <ShortCut typeid="1" value="Curs" />
+  <Description typeid="1" value="Snippet for creating a cursor" />
+  <Script typeid="1" value="DECLARE PTR CURSOR FOR&#xD;&#xA;--INSERT SELECT QUERY&#xD;&#xA;&#xD;&#xA;OPEN PTR&#xD;&#xA;&#xD;&#xA;FETCH NEXT FROM PTR&#xD;&#xA;INTO --INSERT VARIABLES&#xD;&#xA;&#xD;&#xA;WHILE @@FETCH_STATUS = 0&#xD;&#xA;BEGIN&#xD;&#xA;	--CODE TO PROCESS THE ROW SELECTED BY THE CURSOR&#xD;&#xA;	&#xD;&#xA;	FETCH NEXT FROM PTR&#xD;&#xA;	INTO --INSERT VARIABLES&#xD;&#xA;END&#xD;&#xA;&#xD;&#xA;CLOSE PTR&#xD;&#xA;DEALLOCATE PTR" />
+</Data>

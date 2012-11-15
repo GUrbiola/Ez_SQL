@@ -1,0 +1,280 @@
+<?xml version = "1.0"?>
+<SyntaxDefinition name = "SQL" extensions = ".sql">
+	<Environment> 
+		<Default      color="#00003E" bgcolor="SystemColors.Window"/>
+		<VRuler       color = "Blue"/>
+		<Selection    bgcolor = "LightBlue"/>
+		<LineNumbers  color = "Teal" bgcolor = "SystemColors.Window"/>
+		<InvalidLines color = "Red"/>
+		<EOLMarkers   color = "White"/>
+		<SpaceMarkers color = "#E0E0E5"/>
+		<TabMarkers   color = "#E0E0E5"/>
+		<CaretMarker  color = "Yellow"/>
+		<FoldLine     color = "#808080" bgcolor="Black"/>
+		<FoldMarker   color = "#808080" bgcolor="White"/>
+	</Environment>
+	<Properties>
+		<Property name="LineComment" value="--"/>
+	</Properties>
+	<Digits name = "Digits" bold = "true" italic = "false" color="#ff8000"/>
+	<RuleSets>
+		<RuleSet ignorecase = "true">
+			<Delimiters>=!&gt;&lt;+-/*%&amp;|^~.}{,;][?:()</Delimiters>
+			<Span name ="LineComment" bold ="false" italic ="true" color ="DarkGreen" stopateol ="true">
+				<Begin>--</Begin>
+			</Span>
+			<Span name ="BlockComment" bold ="false" italic ="true" color ="DarkGreen" stopateol ="false">
+				<Begin>/*</Begin>
+				<End>*/</End>
+			</Span>
+			<Span name ="String" bold ="true" italic ="false" color="#808080" stopateol ="false">
+				<Begin>&apos;</Begin>
+				<End>&apos;</End>
+			</Span>
+			<KeyWords name="JoinKeywords" bold="true" italic="false" color="#020262">
+				<Key word="INNER" />
+				<Key word="JOIN" />
+				<Key word="LEFT" />
+				<Key word="RIGHT" />
+				<Key word="OUTER" />
+				<Key word="APPLY" />
+				<Key word="CROSS" />
+				<Key word="UNION" />
+				<Key word="ON" />
+				<Key word="NOCOUNT" />
+				<Key word="OFF" />
+				<Key word="FULL" />
+				<Key word="EXCEPT" />
+			</KeyWords>
+			<KeyWords name="AliasKeywords" bold="true" italic="false" color="#BA8C1A">
+				<Key word="AS" />
+			</KeyWords>
+			<KeyWords name="ComparisonKeywords" bold="true" italic="false" color="Teal">
+				<Key word="AND" />
+				<Key word="OR" />
+				<Key word="LIKE" />
+				<Key word="IN" />
+				<Key word="EXISTS" />
+			</KeyWords>
+			<KeyWords name="DestructiveKeywords" bold="true" italic="false" color="Red">
+				<Key word = "DROP" />
+				<Key word = "DELETE" />
+				<Key word = "TRUNCATE" />
+			</KeyWords>      
+			<KeyWords name="SpecializedKeywords" bold="true" italic="false" color="#08D625">
+				<Key word = "TOP" />
+				<Key word = "DISTINCT" />
+				<Key word = "LIMIT" />
+				<Key word = "OPENDATASOURCE" />
+				<Key word = "GO" />
+				<Key word = "USE" />
+			</KeyWords>
+			<KeyWords name="TransactionKeyWords" bold="true" italic="false" color="#DA800A">
+				<Key word = "COMMIMT" />
+				<Key word = "ROLLBACK" />
+				<Key word = "TRANSACTION" />
+			</KeyWords>
+			<KeyWords name="DebugKeyWords" bold="true" italic="false" color="#FF9900">
+				<Key word = "TRY" />
+				<Key word = "CATCH" />
+				<Key word = "RAISERROR" />
+			</KeyWords>
+			<KeyWords name ="CursorKeywords" bold="true" italic = "false" color="#00869E">
+				<Key word = "CURSOR" />
+				<Key word = "FOR" />
+				<Key word = "OPEN" />
+				<Key word = "FETCH" />
+				<Key word = "NEXT" />
+				<Key word = "CLOSE" />
+				<Key word = "DEALLOCATE" />
+			</KeyWords>
+			<KeyWords name ="SqlKeywords" bold="true" italic = "false" color="#000099">
+				<Key word = "NOT" />
+				<Key word = "SET" />
+				<Key word = "DESC" />
+				<Key word = "ASC" />
+				<Key word = "EXEC" />
+				<Key word = "WITH" />
+				<Key word = "EXECUTE" />
+			</KeyWords>
+			<KeyWords name ="SqlActionWords" bold="true" italic = "false" color="#2E13CF">
+				<Key word = "INSERT" />
+				<Key word = "SELECT" />
+				<Key word = "UPDATE" />
+				<Key word = "FROM" />
+				<Key word = "WHERE" />
+				<Key word = "HAVING" />
+				<Key word = "GROUP" />
+				<Key word = "BY" />
+				<Key word = "ORDER" />
+				<Key word = "CREATE" />
+				<Key word = "ALTER" />
+				<Key word = "ADD" />
+				<Key word = "NULL" />
+				<Key word = "IS" />
+				<Key word = "INTO" />
+				<Key word = "VALUES" />
+			</KeyWords>
+			<KeyWords name ="SqlTypes" bold="true" italic = "false" color="DeepSkyBlue">
+				<Key word = "BIGINT" />
+				<Key word = "NUMERIC" />
+				<Key word = "BIT" />
+				<Key word = "INT" />
+				<Key word = "SMALLINT" />
+				<Key word = "TINYINT" />
+				<Key word = "SMALLMONEY" />
+				<Key word = "DECIMAL" />
+				<Key word = "FLOAT" />
+				<Key word = "REAL" />
+				<Key word = "DATE" />
+				<Key word = "DATETIME" />
+				<Key word = "DATETIME2" />
+				<Key word = "DATETIMEOFFSET" />
+				<Key word = "TIME" />
+				<Key word = "SMALLDATETIME" />
+				<Key word = "CHAR" />
+				<Key word = "VARCHAR" />
+				<Key word = "TEXT" />
+				<Key word = "NCHAR" />
+				<Key word = "NVARCHAR" />
+				<Key word = "NTEXT" />
+				<Key word = "BINARY" />
+				<Key word = "VARBINARY" />
+				<Key word = "IMAGE" />
+				<Key word = "XML" />
+				<Key word = "CURSOR" />
+				<Key word = "TIMESTAMP" />
+				<Key word = "UNIQUEIDENTIFIER" />
+				<Key word = "HIERARCHYID" />
+				<Key word = "SQL_VARIANT" />
+				<Key word = "TABLE" />				
+			</KeyWords>
+			<KeyWords name ="SqlObjects" bold="true" italic = "true" color="DarkRed">
+				<Key word = "TABLE" />
+				<Key word = "PROC" />
+				<Key word = "PROCEDURE" />
+				<Key word = "FUNCTION" />
+				<Key word = "VIEW" />
+				<Key word = "TRIGGER" />
+				<Key word = "INDEX" />
+				<Key word = "DATABASE" />							
+			</KeyWords>
+			<KeyWords name ="FlowControlKeyWords" bold="true" italic = "true" color="Indigo">
+				<Key word = "IF" />
+				<Key word = "ELSE" />
+				<Key word = "CASE" />
+				<Key word = "WHEN" />
+				<Key word = "THEN" />
+				<Key word = "WHILE" />
+				<Key word = "WAITFOR" />
+				<Key word = "DELAY" />
+				<Key word = "RETURN" />
+				<Key word = "SWITCH" />
+				<Key word = "BREAK" />
+			</KeyWords>
+			<KeyWords name ="TSql" bold="true" italic = "false" color="#339900">
+				<Key word = "DECLARE" />
+				<Key word = "BEGIN" />
+				<Key word = "END" />
+				<Key word = "GO" />
+			</KeyWords>
+			<KeyWords name ="Punctuation" bold="false" italic = "false" color = "DarkSlateGray">
+				<Key word = "(" />
+				<Key word = ")" />				
+				<Key word = "[" />
+				<Key word = "]" />				
+			</KeyWords>
+			<KeyWords name ="Operators" bold="false" italic = "false" color="DarkSlateGray">
+				<Key word = "&lt;" />
+				<Key word = "&gt;" />
+				<Key word = "=" />				
+			</KeyWords>
+			<KeyWords name ="Functions" bold="true" italic = "false" color="BlueViolet">
+				<Key word = "STUFF" />
+				<Key word = "SUBSTRING" />
+				<Key word = "UPPER" />
+				<Key word = "LOWER" />
+				<Key word = "REVERSE" />
+				<Key word = "REPLACE" />
+				<Key word = "LTRIM" />
+				<Key word = "RTRIM" />
+				<Key word = "CAST" />
+				<Key word = "CONVERT" />
+				<Key word = "ISNULL" />
+				<Key word = "DATEDIFF" />
+				<Key word = "DATEADD" />
+				<Key word = "GETDATE" />
+				<Key word = "GETUTCDATE" />
+				<Key word = "ROW_NUMBER" />
+				<Key word = "OVER" />
+			</KeyWords>
+			<KeyWords name ="GroupByFunctions" bold="true" italic = "false" color="#AE1737">
+				<Key word = "AVG" />
+				<Key word = "MIN" />
+				<Key word = "CHECKSUM_AGG" />
+				<Key word = "SUM" />
+				<Key word = "COUNT" />
+				<Key word = "STDEV" />
+				<Key word = "COUNT_BIG" />
+				<Key word = "STDEVP" />
+				<Key word = "GROUPING" />
+				<Key word = "VAR" />
+				<Key word = "GROUPING_ID" />
+				<Key word = "VARP" />
+				<Key word = "MAX" />
+			</KeyWords>
+			<KeyWords name = "SystemTables" bold="false" italic="false" color="Teal">
+				<Key word = "SYSALTFILES" />
+				<Key word = "SYSLOCKINFO" />
+				<Key word = "SYSCACHEOBJECTS" />
+				<Key word = "SYSLOGINS" />
+				<Key word = "SYSCHARSETS" />
+				<Key word = "SYSMESSAGES" />
+				<Key word = "SYSCONFIGURES" />
+				<Key word = "SYSOLEDBUSERS" />
+				<Key word = "SYSCURCONFIGS" />
+				<Key word = "SYSPERFINFO" />
+				<Key word = "SYSDATABASES" />
+				<Key word = "SYSPROCESSES" />
+				<Key word = "SYSDEVICES" />
+				<Key word = "SYSREMOTELOGINS" />
+				<Key word = "SYSLANGUAGES" />
+				<Key word = "SYSSERVERS" />
+				<Key word = "SYSCOLUMNS" />
+				<Key word = "SYSINDEXKEYS" />
+				<Key word = "SYSCOMMENTS" />
+				<Key word = "SYSMEMBERS" />
+				<Key word = "SYSCONSTRAINTS" />
+				<Key word = "SYSOBJECTS" />
+				<Key word = "SYSDEPENDS" />
+				<Key word = "SYSPERMISSIONS" />
+				<Key word = "SYSFILEGROUPS" />
+				<Key word = "SYSPROTECTS" />
+				<Key word = "SYSFILES" />
+				<Key word = "SYSREFERENCES" />
+				<Key word = "SYSFOREIGNKEYS" />
+				<Key word = "SYSTYPES" />
+				<Key word = "SYSFULLTEXTCATALOGS" />
+				<Key word = "SYSUSERS" />
+				<Key word = "SYSINDEXES" />
+				<Key word = "SYSALERTS" />
+				<Key word = "SYSJOBSTEPS" />
+				<Key word = "SYSCATEGORIES" />
+				<Key word = "SYSNOTIFICATIONS" />
+				<Key word = "SYSDOWNLOADLIST" />
+				<Key word = "SYSOPERATORS" />
+				<Key word = "SYSJOBHISTORY" />
+				<Key word = "SYSTARGETSERVERGROUPMEMBERS" />
+				<Key word = "SYSJOBS" />
+				<Key word = "SYSTARGETSERVERGROUPS" />
+				<Key word = "SYSJOBSCHEDULES" />
+				<Key word = "SYSTARGETSERVERS" />
+				<Key word = "SYSJOBSERVERS" />
+				<Key word = "SYSTASKIDS" />
+				<Key word = "SYSDATABASES" />
+				<Key word = "SYSSERVERS" />
+			</KeyWords>			
+		</RuleSet>
+	</RuleSets>
+</SyntaxDefinition>
+

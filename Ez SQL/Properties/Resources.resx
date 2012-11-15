@@ -208,9 +208,6 @@
   <data name="CSharp_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CSharp_22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SQL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\SintaxHighLight\SQL.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Outlining" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Outlining.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -269,54 +266,57 @@
     <value>..\Resources\Toggle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Begin_end" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\Begin - end.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\Begin - end.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Complex_Snippet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\Complex Snippet.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\Complex Snippet.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Create_procedure" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\Create procedure.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\Create procedure.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Cross_join" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\Cross join.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\Cross join.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Cursor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\Cursor.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\Cursor.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="declare" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\declare.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\declare.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Inner_join" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\Inner join.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\Inner join.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Insert_into" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\Insert into.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\Insert into.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Insert_into_all" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\Insert into all.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\Insert into all.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Left_outer_join" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\Left outer join.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\Left outer join.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="order_by" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\order by.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\order by.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Outer_apply" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\Outer apply.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\Outer apply.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Right_outer_join" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\Right outer join.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\Right outer join.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="select" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\select.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\select.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Select_All" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\Select All.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\Select All.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Select_some_from" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\Select some from.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\Select some from.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Select_top_records" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Snippets\Select top records.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Default Objects\Snippets\Select top records.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SQL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Default Objects\SintaxHighLight\SQL.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

@@ -31,7 +31,7 @@ namespace Ez_SQL.QueryLog
             SGrid.Grid.SelectionChanged += Grid_SelectionChanged;
             try
             {
-                HighlightingManager.Manager.AddSyntaxModeFileProvider(new FileSyntaxModeProvider(MainForm.ExecDir + "\\SintaxHighLight\\"));
+                HighlightingManager.Manager.AddSyntaxModeFileProvider(new FileSyntaxModeProvider(MainForm.DataStorageDir + "\\SintaxHighLight\\"));
                 ScriptText.Document.HighlightingStrategy = HighlightingManager.Manager.FindHighlighter("SQL");
             }
             catch (Exception ex)

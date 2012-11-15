@@ -239,7 +239,7 @@
             this.BtnSnippetEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnSnippetEditor.Name = "BtnSnippetEditor";
             this.BtnSnippetEditor.Size = new System.Drawing.Size(43, 36);
-            this.BtnSnippetEditor.Text = "Import to database";
+            this.BtnSnippetEditor.Text = "Snippet editor";
             this.BtnSnippetEditor.Click += new System.EventHandler(this.BtnSnippetEditor_Click);
             // 
             // WorkPanel

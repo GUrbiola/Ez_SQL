@@ -130,7 +130,7 @@ namespace Ez_SQL
         }
         internal static void SaveToQueryLog(QueryRecord CurQR)
         {
-            string FileName = String.Format("{0}\\QueriesLog\\LogFile.xml", MainForm.ExecDir);
+            string FileName = String.Format("{0}\\QueriesLog\\LogFile.xml", MainForm.DataStorageDir);
             bool Appending = File.Exists(FileName);
 
             using (StreamWriter Writer = new StreamWriter(FileName, true, System.Text.Encoding.UTF8))

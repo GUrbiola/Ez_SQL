@@ -29,11 +29,11 @@ namespace Ez_SQL
         {
             get { return _ConxName; }
         }
-        private static string _ExecDir;
-        public static string ExecDir
+        private static string _DataStorageDir;
+        public static string DataStorageDir
         {
-            get { return _ExecDir; }
-            set { _ExecDir = value; }
+            get { return _DataStorageDir; }
+            set { _DataStorageDir = value; }
         }
         private static string _ConDataFileName;
         public static string ConDataFileName
@@ -100,141 +100,138 @@ namespace Ez_SQL
             MainMenu.Items.Insert(0, Helper);
             #endregion
 
-            ExecDir = Application.StartupPath;
-            ConDataFileName = String.Format("{0}\\ConnectionGroups.xml", ExecDir);
-
-            if (!Directory.Exists(String.Format("{0}\\Snippets", ExecDir)))//create snippets dir, and create default snippets 
+            //not using tha app path anymore, better yet is to use a diferent folder for each winuser, that uses the app
+            //this also makes unnecesary the manifest, and the problems it causes
+            //DataStorageDir = Application.StartupPath;
+            DataStorageDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Ez SQL";
+            if (!Directory.Exists(DataStorageDir))
             {
-                Directory.CreateDirectory(String.Format("{0}\\Snippets", ExecDir));
+                Directory.CreateDirectory(DataStorageDir);
+            }
+
+            ConDataFileName = String.Format("{0}\\ConnectionGroups.xml", DataStorageDir);
+
+
+            if (!Directory.Exists(String.Format("{0}\\Snippets", DataStorageDir)))//create snippets dir, and create default snippets 
+            {
+                Directory.CreateDirectory(String.Format("{0}\\Snippets", DataStorageDir));
 
                 #region Create the default snippets files
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Begin - end.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Begin - end.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.Begin_end, 0, Properties.Resources.Begin_end.Length);
                     writer.Flush();
                     writer.Close();
                 }
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Begin - end.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
-                {
-                    writer.Write(Properties.Resources.Begin_end, 0, Properties.Resources.Begin_end.Length);
-                    writer.Flush();
-                    writer.Close();
-                }
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Complex Snippet.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Complex Snippet.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.Complex_Snippet, 0, Properties.Resources.Complex_Snippet.Length);
                     writer.Flush();
                     writer.Close();
                 }
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Create procedure.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Create procedure.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.Create_procedure, 0, Properties.Resources.Create_procedure.Length);
                     writer.Flush();
                     writer.Close();
                 }
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Cross join.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Cross join.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.Cross_join, 0, Properties.Resources.Cross_join.Length);
                     writer.Flush();
                     writer.Close();
                 }
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Cursor.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Cursor.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.Cursor, 0, Properties.Resources.Cursor.Length);
                     writer.Flush();
                     writer.Close();
                 }
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\declare.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\declare.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.declare, 0, Properties.Resources.declare.Length);
                     writer.Flush();
                     writer.Close();
                 }
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Inner join.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Inner join.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.Inner_join, 0, Properties.Resources.Inner_join.Length);
                     writer.Flush();
                     writer.Close();
                 }
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Insert into.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Insert into.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.Insert_into, 0, Properties.Resources.Insert_into.Length);
                     writer.Flush();
                     writer.Close();
                 }
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Insert into all.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Insert into all.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.Insert_into_all, 0, Properties.Resources.Insert_into_all.Length);
                     writer.Flush();
                     writer.Close();
                 }
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Left outer join.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Left outer join.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.Left_outer_join, 0, Properties.Resources.Left_outer_join.Length);
                     writer.Flush();
                     writer.Close();
                 } 
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\order by.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\order by.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.order_by, 0, Properties.Resources.order_by.Length);
                     writer.Flush();
                     writer.Close();
                 } 
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Outer apply.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Outer apply.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.Outer_apply, 0, Properties.Resources.Outer_apply.Length);
                     writer.Flush();
                     writer.Close();
                 } 
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Right outer join.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Right outer join.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.Right_outer_join, 0, Properties.Resources.Right_outer_join.Length);
                     writer.Flush();
                     writer.Close();
                 } 
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\select.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\select.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.select, 0, Properties.Resources.select.Length);
                     writer.Flush();
                     writer.Close();
                 } 
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Select all.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Select all.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.Select_All, 0, Properties.Resources.Select_All.Length);
                     writer.Flush();
                     writer.Close();
                 } 
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Select some from.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Select some from.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.Select_some_from, 0, Properties.Resources.Select_some_from.Length);
                     writer.Flush();
                     writer.Close();
                 } 
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Select top records.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Select top records.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     writer.Write(Properties.Resources.Select_top_records, 0, Properties.Resources.Select_top_records.Length);
                     writer.Flush();
                     writer.Close();
                 } 
-                //using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Some snippet with unaliased object.snp", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
-                //{
-                //    writer.Write(Properties.Resources.Some_snippet_with_unaliased_object, 0, Properties.Resources.Some_snippet_with_unaliased_object.Length);
-                //    writer.Flush();
-                //    writer.Close();
-                //}
                 #endregion
             }
-            if (!Directory.Exists(String.Format("{0}\\QueriesLog", ExecDir)))
+            if (!Directory.Exists(String.Format("{0}\\QueriesLog", DataStorageDir)))
             {
-                Directory.CreateDirectory(String.Format("{0}\\QueriesLog", ExecDir));
+                Directory.CreateDirectory(String.Format("{0}\\QueriesLog", DataStorageDir));
             }
-            if (!Directory.Exists(MainForm.ExecDir + "\\SintaxHighLight"))
+            if (!Directory.Exists(MainForm.DataStorageDir + "\\SintaxHighLight"))
             {
-                Directory.CreateDirectory(MainForm.ExecDir + "\\SintaxHighLight\\");
+                Directory.CreateDirectory(MainForm.DataStorageDir + "\\SintaxHighLight\\");
             }
-            if (!File.Exists(String.Format("{0}\\SintaxHighLight\\SQL.xshd", ExecDir)))
+            if (!File.Exists(String.Format("{0}\\SintaxHighLight\\SQL.xshd", DataStorageDir)))
             {
-                using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\SQL.xshd", ExecDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\SQL.xshd", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
                     Writer.Write(Properties.Resources.SQL, 0, Properties.Resources.SQL.Length);
                     Writer.Close();
@@ -494,9 +491,9 @@ namespace Ez_SQL
             else
                 Snippets.Clear();
 
-            if (Directory.Exists(String.Format("{0}\\Snippets", MainForm.ExecDir)))
+            if (Directory.Exists(String.Format("{0}\\Snippets", MainForm.DataStorageDir)))
             {
-                string[] Files = Directory.GetFiles(String.Format("{0}\\Snippets", MainForm.ExecDir), "*.snp");
+                string[] Files = Directory.GetFiles(String.Format("{0}\\Snippets", MainForm.DataStorageDir), "*.snp");
                 foreach (string f in Files)
                 {
                     try

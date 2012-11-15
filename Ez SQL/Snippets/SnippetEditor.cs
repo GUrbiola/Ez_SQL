@@ -31,7 +31,7 @@ namespace Ez_SQL.Snippets
 
             try
             {
-                HighlightingManager.Manager.AddSyntaxModeFileProvider(new FileSyntaxModeProvider(MainForm.ExecDir + "\\SintaxHighLight\\"));
+                HighlightingManager.Manager.AddSyntaxModeFileProvider(new FileSyntaxModeProvider(MainForm.DataStorageDir + "\\SintaxHighLight\\"));
                 ScriptText.Document.HighlightingStrategy = HighlightingManager.Manager.FindHighlighter("SQL");
             }
             catch (Exception ex)
@@ -60,9 +60,9 @@ namespace Ez_SQL.Snippets
             ScriptText.Text = "";
             ScriptText.Refresh();
 
-            if(Directory.Exists(String.Format("{0}\\Snippets", MainForm.ExecDir)))
+            if(Directory.Exists(String.Format("{0}\\Snippets", MainForm.DataStorageDir)))
             {
-                string[] Files = Directory.GetFiles(String.Format("{0}\\Snippets", MainForm.ExecDir), "*.snp");
+                string[] Files = Directory.GetFiles(String.Format("{0}\\Snippets", MainForm.DataStorageDir), "*.snp");
                 foreach (string f in Files)
                 {
                     try
@@ -126,7 +126,7 @@ namespace Ez_SQL.Snippets
                 return;
             }
 
-            GenerateSnippet().SerializeToXmlFile(String.Format("{0}\\Snippets\\{1}.snp", MainForm.ExecDir, TxtName.Text));
+            GenerateSnippet().SerializeToXmlFile(String.Format("{0}\\Snippets\\{1}.snp", MainForm.DataStorageDir, TxtName.Text));
             LoadSnippets();
 
         }
@@ -145,7 +145,7 @@ namespace Ez_SQL.Snippets
             {
                 if (MessageBox.Show("Do you want to delete the current snippet(" + SelectedSnippet.Name + ")?", "Delete snippet", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    File.Delete(String.Format("{0}\\Snippets\\{1}.snp", MainForm.ExecDir, SelectedSnippet.Name));
+                    File.Delete(String.Format("{0}\\Snippets\\{1}.snp", MainForm.DataStorageDir, SelectedSnippet.Name));
                     LoadSnippets();
                 }
             }
