@@ -392,7 +392,7 @@ namespace Ez_SQL
             {
                 Clipboard.Clear();
                 Clipboard.SetText(CurrentConnection.ConnectionString);
-                MessageBox.Show("COnnection string copied to clipboard:" + Environment.NewLine + CurrentConnection.ConnectionString, "Connection string copied", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Connection string copied to clipboard:" + Environment.NewLine + CurrentConnection.ConnectionString, "Connection string copied", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         #endregion

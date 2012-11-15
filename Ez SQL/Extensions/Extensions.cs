@@ -801,7 +801,7 @@ namespace Ez_SQL.Extensions
         #region Auxiliar functions/items
         #region Uppercased reserved words and Sql DataTypes, for tokenization of strings
         public static HashSet<string> ReservedWords = new HashSet<string>{"@@FETCH_STATUS", "@@IDENTITY","ADD","ALL","ALTER","AND","ANY ","AS","ASC","AUTHORIZATION","AVG","BACKUP",
-                                                      "BETWEEN","BREAK","BROWSE","BULK","BY","CASCADE","CASE","CHECK","CHECKPOINT","CLOSE",
+                                                      "BETWEEN","BREAK","BROWSE","BULK","BY","CASCADE","CASE","CATCH", "CHECK","CHECKPOINT","CLOSE",
                                                       "CLUSTERED","COALESCE","COLLATE","COLUMN","COMMIT","COMPUTE","CONSTRAINT","CONTAINS","CONTAINSTABLE",
                                                       "CONTINUE","CONVERT","COUNT","CREATE","CROSS","CURRENT","CURRENT_DATE","CURRENT_TIME","CURRENT_TIMESTAMP",
                                                       "CURRENT_USER","CURSOR","DATABASE","DATABASEPASSWORD","DATEADD","DATEDIFF","DATENAME","DATEPART",
@@ -816,7 +816,7 @@ namespace Ez_SQL.Extensions
                                                       "PRIMARY","PRINT","PROC","PROCEDURE","PUBLIC","RAISERROR","READ","READTEXT","RECONFIGURE","REFERENCES",
                                                       "REPLICATION","RESTORE","RESTRICT","RETURN","REVOKE","RIGHT","ROLLBACK","ROWCOUNT","ROWGUIDCOL",
                                                       "RULE","SAVE","SCHEMA","SELECT","SESSION_USER","SET","SETUSER","SHUTDOWN","SOME","STATISTICS",
-                                                      "SUM","SYSTEM_USER","TABLE","TEXTSIZE","THEN","TO","TOP","TRAN","TRANSACTION","TRIGGER","TRUNCATE",
+                                                      "SUM","SYSTEM_USER","TABLE","TEXTSIZE","THEN","TO","TOP","TRAN","TRANSACTION","TRIGGER","TRUNCATE", "TRY",
                                                       "TSEQUAL","UNION","UNIQUE","UPDATE","UPDATETEXT","USE","USER","VALUES","VARYING","VIEW","WAITFOR",
                                                       "WHEN","WHERE","WHILE","WITH","WRITETEXT"};
         public static HashSet<string> DataTypes = new HashSet<string>{
