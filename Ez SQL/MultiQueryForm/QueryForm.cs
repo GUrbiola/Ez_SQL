@@ -695,7 +695,7 @@ namespace Ez_SQL.MultiQueryForm
                     TokenList tokens2 = Query.Text.GetTokens();
                     selToken2 = tokens2.GetTokenAtOffset(Query.CurrentOffset());
 
-                    if (selToken2.Type == TokenType.WORD)
+                    if (selToken2 != null && selToken2.Type == TokenType.WORD)
                     {
                         ISqlObject Obj = DataProvider.IsSqlObject(selToken2.Text);
                         if (Obj != null)
@@ -1472,7 +1472,7 @@ namespace Ez_SQL.MultiQueryForm
                     TokenList tokens = Query.Text.GetTokens();
                     selToken = tokens.GetTokenAtOffset(Query.CurrentOffset());
 
-                    if (selToken.Type == TokenType.WORD)
+                    if (selToken != null && selToken.Type == TokenType.WORD)
                     {
                         ISqlObject Obj = DataProvider.IsSqlObject(selToken.Text);
                         if (Obj != null)
@@ -1491,6 +1491,9 @@ namespace Ez_SQL.MultiQueryForm
             int tokenIndex;
             TokenList tokens = script.GetTokens();
             Token t = tokens.GetTokenAtOffset(Query.CurrentOffset(), out tokenIndex);
+            
+            if (t == null)
+                return;
 
             ISqlObject Obj = DataProvider.IsSqlObject(t.Text);
             if (Obj != null)

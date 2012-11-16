@@ -16,7 +16,7 @@ namespace Ez_SQL.QueryLog
 {
     public partial class HistoricForm : WeifenLuo.WinFormsUI.Docking.DockContent
     {
-        readonly string path = Program.StartPath;
+        readonly string path = MainForm.DataStorageDir;
         private List<QueryInfo> Qs;
  
         public HistoricForm()
