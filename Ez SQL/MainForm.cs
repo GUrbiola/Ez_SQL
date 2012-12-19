@@ -100,7 +100,7 @@ namespace Ez_SQL
             MainMenu.Items.Insert(0, Helper);
             #endregion
 
-            //not using tha app path anymore, better yet is to use a diferent folder for each winuser, that uses the app
+            //not using tha app path anymore, better yet is to use a diferent folder for each winuser that uses the app,
             //this also makes unnecesary the manifest, and the problems it causes
             //DataStorageDir = Application.StartupPath;
             DataStorageDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Ez SQL";

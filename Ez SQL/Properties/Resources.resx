@@ -317,6 +317,6 @@
     <value>..\Default Objects\Snippets\Select top records.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SQL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Default Objects\SintaxHighLight\SQL.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\SQL.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

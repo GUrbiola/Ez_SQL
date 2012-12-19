@@ -30,6 +30,7 @@ namespace Ez_SQL.MultiQueryForm
         }
         Keys LastKeyPressed;
 
+        private List<string> ResultNaming;
         private SqlConnector DataProvider;
         private QueryExecutor Executor;
         private MainForm Parent;
@@ -104,6 +105,17 @@ namespace Ez_SQL.MultiQueryForm
                 CurrentScript = Query.ActiveTextAreaControl.SelectionManager.SelectedText;
             else
                 CurrentScript = Query.Text;
+
+            TokenList TList = CurrentScript.GetTokens();
+
+            //check for naming results
+            ResultNaming = new List<string>();
+            foreach (Token t in TList.List)
+            {
+                if (t.Type == TokenType.LINECOMMENT && t.Text.ToUpper().Contains("NAME:"))
+                    ResultNaming.Add(t.Text.Substring(t.Text.ToUpper().IndexOf("NAME:") + 5).Trim(' ', '\r', '\n'));
+            }
+
             Executor.AsyncExecuteDataSet(CurrentScript);
         }
         private void BtnStop_Click(object sender, EventArgs e)
@@ -423,7 +435,12 @@ namespace Ez_SQL.MultiQueryForm
                         TableTab.Padding = new System.Windows.Forms.Padding(3);
                         TableTab.Size = new System.Drawing.Size(900, 150);
                         TableTab.TabIndex = 0;
-                        TableTab.Text = "Resultado " + index.ToString();
+                        
+                        if(ResultNaming.Count >= index)
+                            TableTab.Text = ResultNaming[index - 1];
+                        else
+                            TableTab.Text = "Result " + index.ToString();
+                        
                         TableTab.UseVisualStyleBackColor = true;
                         TableTab.ResumeLayout(false);
 
@@ -728,7 +745,6 @@ namespace Ez_SQL.MultiQueryForm
             CurPos = Query.CurrentOffset();
             TxtBef = Query.Document.GetText(0, CurPos);
             TxtAft = Query.Document.GetText(CurPos, Query.Text.Length - CurPos);
-
 
             #region Autocomplete/intellisense code
             if (IsIntellisenseOn)
