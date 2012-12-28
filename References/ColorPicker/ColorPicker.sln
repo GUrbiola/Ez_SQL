@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPickerTest", "ColorPicker\ColorPickerTest.csproj", "{0F72CF0B-90B5-4A5F-97F0-0CF8E2D5AB0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPickerLib", "ColorPickerLib\ColorPickerLib.csproj", "{2CD4662C-BFA3-42D3-BC99-453E3E4C0D78}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F72CF0B-90B5-4A5F-97F0-0CF8E2D5AB0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F72CF0B-90B5-4A5F-97F0-0CF8E2D5AB0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F72CF0B-90B5-4A5F-97F0-0CF8E2D5AB0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F72CF0B-90B5-4A5F-97F0-0CF8E2D5AB0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CD4662C-BFA3-42D3-BC99-453E3E4C0D78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CD4662C-BFA3-42D3-BC99-453E3E4C0D78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CD4662C-BFA3-42D3-BC99-453E3E4C0D78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CD4662C-BFA3-42D3-BC99-453E3E4C0D78}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

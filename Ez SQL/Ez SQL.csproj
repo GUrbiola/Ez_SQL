@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -38,6 +39,9 @@
   <ItemGroup>
     <Reference Include="AddressBarExt">
       <HintPath>..\References\AddressBarExt\AddressBarEx_2.0\bin\Release\AddressBarExt.dll</HintPath>
+    </Reference>
+    <Reference Include="ColorPickerLib">
+      <HintPath>..\References\ColorPicker\ColorPickerLib\bin\Debug\ColorPickerLib.dll</HintPath>
     </Reference>
     <Reference Include="HDesarrollo">
       <HintPath>..\References\HDesarrollo\HDesarrollo.dll</HintPath>
@@ -117,6 +121,12 @@
     <Compile Include="DataBaseObjects\View.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Extensions\XmlSerializer.cs" />
+    <Compile Include="EzConfig\SyntaxColorsConfigurator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EzConfig\SyntaxColorsConfigurator.Designer.cs">
+      <DependentUpon>SyntaxColorsConfigurator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Custom Controls\LoadingInfo.cs">
       <SubType>UserControl</SubType>
@@ -198,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Custom Controls\LoadingInfo.resx">
       <DependentUpon>LoadingInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EzConfig\SyntaxColorsConfigurator.resx">
+      <DependentUpon>SyntaxColorsConfigurator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MultiQueryForm\ChildSelector.resx">
       <DependentUpon>ChildSelector.cs</DependentUpon>

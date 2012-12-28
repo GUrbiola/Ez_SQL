@@ -105,6 +105,7 @@ namespace Ez_SQL.MultiQueryForm
             TabHolder.ShowToolTips = true;
         }
 
+        #region Events to manage the lock/unlock of the results tab
         void TabHolder_MouseClick(object sender, MouseEventArgs e)
         {
             bool resultsTab = false;
@@ -175,6 +176,7 @@ namespace Ez_SQL.MultiQueryForm
                 }
             }
         }
+        #endregion
 
         #region Code for the actions in the toolstrip of the query form
         private void BtnExecute_Click(object sender, EventArgs e)

@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2CD4662C-BFA3-42D3-BC99-453E3E4C0D78}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ColorPickerLib</RootNamespace>
+    <AssemblyName>ColorPickerLib</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ColorBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ColorPickerCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ColorPickerCtrl.designer.cs">
+      <DependentUpon>ColorPickerCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPickerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ColorPickerDialog.designer.cs">
+      <DependentUpon>ColorPickerDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPickerResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ColorPickerResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ColorTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ColorWheel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ColorWheelCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ColorWheelCtrl.designer.cs">
+      <DependentUpon>ColorWheelCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DropdownContainerControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EyedropColorPicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HSLColor.cs" />
+    <Compile Include="Images.cs" />
+    <Compile Include="LabelRotate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ColorPickerCtrl.resx">
+      <DependentUpon>ColorPickerCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ColorPickerDialog.resx">
+      <DependentUpon>ColorPickerDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ColorPickerResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ColorPickerResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ColorWheelCtrl.resx">
+      <DependentUpon>ColorWheelCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\colorbarIndicators.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eyedropper.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\popupcontainerbuttons.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

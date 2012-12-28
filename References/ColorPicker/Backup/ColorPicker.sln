@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPickerTest", "ColorPicker\ColorPickerTest.csproj", "{0F72CF0B-90B5-4A5F-97F0-0CF8E2D5AB0A}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccProjectName0 = Perforce\u0020Project
+		SccLocalPath0 = .
+		SccProvider0 = MSSCCI:Perforce\u0020SCM
+		CanCheckoutShared = true
+		SccProjectUniqueName1 = ColorPicker\\ColorPickerTest.csproj
+		SccLocalPath1 = ColorPicker
+		CanCheckoutShared = true
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F72CF0B-90B5-4A5F-97F0-0CF8E2D5AB0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F72CF0B-90B5-4A5F-97F0-0CF8E2D5AB0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F72CF0B-90B5-4A5F-97F0-0CF8E2D5AB0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F72CF0B-90B5-4A5F-97F0-0CF8E2D5AB0A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

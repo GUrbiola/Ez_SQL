@@ -55,12 +55,12 @@ namespace Ez_SQL.QueryLog
         }
         private void CleanData()
         {
-            //datos de la conexion
+            //Connection data
             TxtGroup.Text = "";
             TxtName.Text = "";
             TxtServer.Text = "";
             TxtDb.Text = "";
-            //datos de la ejecucion
+            //Execution data
             TxtStart.Text = "";
             TxtEnd.Text = "";
             TxtLapse.Text = "";
@@ -68,20 +68,20 @@ namespace Ez_SQL.QueryLog
             TxtAffected.Text = "";
             TxtTReturn.Text = "";
             TxtRightExec.Text = "";
-            //Script de SQL Ejecutado
+            //Executed script
             ScriptText.Text = "";
-            //Por ultimo carga de los errores si es que los hubo
+            //No errors to show
             ErrorGrid.DataSource = null;
         }
         private void LoadInfoFrom(int QueryKey)
         {
             QueryInfo Current = Qs.FindLast(X => X.Key == QueryKey);
-            //datos de la conexion
+            //Connection Data
             TxtGroup.Text = Current.Conx.Group;
             TxtName.Text = Current.Conx.Name;
             TxtServer.Text = Current.Conx.Server;
             TxtDb.Text = Current.Conx.Db;
-            //datos de la ejecucion
+            //Execution data
             TxtStart.Text = Current.Exec.StartTime.ToString("dd/MMM/yyyy HH:mm:ss.fff");
             TxtEnd.Text = Current.Exec.EndTime.ToString("dd/MMM/yyyy HH:mm:ss.fff");
             TxtLapse.Text = Current.Exec.Lapse.ToString();
@@ -89,10 +89,10 @@ namespace Ez_SQL.QueryLog
             TxtAffected.Text = Current.Exec.RecordsAffected.ToString();
             TxtTReturn.Text = Current.Exec.GridCount.ToString();
             TxtRightExec.Text = (Current.Exec.Correct == 1 ? "Yes" : "No");
-            //Script de SQL Ejecutado
+            //Executed script
             ScriptText.Text = Current.Script;
             ScriptText.Refresh();
-            //Por ultimo carga de los errores si es que los hubo
+            //Load the errors that the script generated(if any)
             ErrorGrid.DataSource = null;
             if (Current.Mistakes != null && Current.Mistakes.Count > 0)
             {
@@ -151,7 +151,7 @@ namespace Ez_SQL.QueryLog
                 Q.Exec.RecordsRead = int.Parse(ExecNode.Attributes["RecordsRead"].Value);
                 Q.Exec.GridCount = int.Parse(ExecNode.Attributes["GridCount"].Value);
 
-                CodeNode = Cq["Code"];//Codigo
+                CodeNode = Cq["Code"];//SQL Code/Script
                 Q.Script = TextFromXml(CodeNode.InnerText.Trim('"'));
 
                 ErrorsNode = ((XmlElement)Cq).GetElementsByTagName("Error");
