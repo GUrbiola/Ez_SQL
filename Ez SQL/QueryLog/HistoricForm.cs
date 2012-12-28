@@ -82,8 +82,8 @@ namespace Ez_SQL.QueryLog
             TxtServer.Text = Current.Conx.Server;
             TxtDb.Text = Current.Conx.Db;
             //datos de la ejecucion
-            TxtStart.Text = Current.Exec.StartTime.ToString("dd/MMM/yyyy hh:mm:ss.fff");
-            TxtEnd.Text = Current.Exec.EndTime.ToString("dd/MMM/yyyy hh:mm:ss.fff");
+            TxtStart.Text = Current.Exec.StartTime.ToString("dd/MMM/yyyy HH:mm:ss.fff");
+            TxtEnd.Text = Current.Exec.EndTime.ToString("dd/MMM/yyyy HH:mm:ss.fff");
             TxtLapse.Text = Current.Exec.Lapse.ToString();
             TxtReaded.Text = Current.Exec.RecordsRead.ToString();
             TxtAffected.Text = Current.Exec.RecordsAffected.ToString();

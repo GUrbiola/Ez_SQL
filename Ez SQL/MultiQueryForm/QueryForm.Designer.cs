@@ -65,12 +65,15 @@
             this.BDTxt = new System.Windows.Forms.ToolStripTextBox();
             this.ServerTxt = new System.Windows.Forms.ToolStripTextBox();
             this.TabHolder = new System.Windows.Forms.TabControl();
+            this.tabMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.LockTabButton = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainContainer)).BeginInit();
             this.MainContainer.Panel1.SuspendLayout();
             this.MainContainer.Panel2.SuspendLayout();
             this.MainContainer.SuspendLayout();
             this.popupMenu.SuspendLayout();
             this.ActionsToolStrip.SuspendLayout();
+            this.tabMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // PopIList
@@ -96,6 +99,7 @@
             this.TabIcons.Images.SetKeyName(1, "Clock.png");
             this.TabIcons.Images.SetKeyName(2, "Alert.png");
             this.TabIcons.Images.SetKeyName(3, "Edit.png");
+            this.TabIcons.Images.SetKeyName(4, "LockedTab.png");
             // 
             // FoldingRefresher
             // 
@@ -141,7 +145,7 @@
             this.selectionToolStripMenuItem,
             this.outlinningToolStripMenuItem});
             this.popupMenu.Name = "popupMenu";
-            this.popupMenu.Size = new System.Drawing.Size(187, 114);
+            this.popupMenu.Size = new System.Drawing.Size(187, 92);
             // 
             // goToDefinitionToolStripMenuItem
             // 
@@ -446,6 +450,21 @@
             this.TabHolder.Size = new System.Drawing.Size(954, 168);
             this.TabHolder.TabIndex = 0;
             // 
+            // tabMenu
+            // 
+            this.tabMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.LockTabButton});
+            this.tabMenu.Name = "tabMenu";
+            this.tabMenu.Size = new System.Drawing.Size(123, 26);
+            // 
+            // LockTabButton
+            // 
+            this.LockTabButton.Image = global::Ez_SQL.Properties.Resources.LockTab;
+            this.LockTabButton.Name = "LockTabButton";
+            this.LockTabButton.Size = new System.Drawing.Size(122, 22);
+            this.LockTabButton.Text = "Lock Tab";
+            this.LockTabButton.Click += new System.EventHandler(this.LockTabButton_Click);
+            // 
             // QueryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -463,6 +482,7 @@
             this.popupMenu.ResumeLayout(false);
             this.ActionsToolStrip.ResumeLayout(false);
             this.ActionsToolStrip.PerformLayout();
+            this.tabMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -504,5 +524,7 @@
         private System.Windows.Forms.ToolStripMenuItem collapseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem expandToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toggleToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip tabMenu;
+        private System.Windows.Forms.ToolStripMenuItem LockTabButton;
     }
 }

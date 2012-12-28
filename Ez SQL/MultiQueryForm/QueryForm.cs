@@ -48,6 +48,9 @@ namespace Ez_SQL.MultiQueryForm
         SearchAndReplace _findForm;
         private bool _lastSearchLoopedAround = false, _lastSearchWasBackward = false;
 
+        string clickedTab = "";
+        List<string> lockedTabs = new List<string>();
+
         public QueryForm(MainForm Parent, SqlConnector DataProvider, string Script = "")
         {
             InitializeComponent();
@@ -95,8 +98,83 @@ namespace Ez_SQL.MultiQueryForm
             Query.ActiveTextAreaControl.TextArea.MouseClick += MouseClicked;
 
             this.AutoScroll = false;
+
+            //handle mouse click, to show a context menu for the tabs
+            TabHolder.MouseClick += new MouseEventHandler(TabHolder_MouseClick);
+            //for locked tabs there can be some "comments" shown as tooltip
+            TabHolder.ShowToolTips = true;
         }
 
+        void TabHolder_MouseClick(object sender, MouseEventArgs e)
+        {
+            bool resultsTab = false;
+            if (e.Button == MouseButtons.Right)
+            {
+                clickedTab = "";
+                for (int i = 0; i < TabHolder.TabCount; ++i)
+                {
+                    if (TabHolder.GetTabRect(i).Contains(e.Location))
+                    {
+                        if (TabHolder.TabPages[i].Name.Contains("_"))
+                        {
+                            resultsTab = true;
+                            clickedTab = TabHolder.TabPages[i].Name;
+                        }
+                    }
+                }
+
+                if (resultsTab)
+                {
+                    if (lockedTabs.Contains(clickedTab))
+                    {
+                        LockTabButton.Image = Properties.Resources.UnlockTab;
+                        LockTabButton.Text = "Unlock This Tab";
+                        LockTabButton.Tag = "Unlock";
+                    }
+                    else
+                    {
+                        LockTabButton.Image = Properties.Resources.LockTab;
+                        LockTabButton.Text = "Lock Tab";
+                        LockTabButton.Tag = "Lock";
+                    }
+                    tabMenu.Show(TabHolder, e.Location);
+                }
+
+            }            
+        }
+        private void LockTabButton_Click(object sender, EventArgs e)
+        {
+            TabPage curTab = null;
+            //get the clicked tab
+            for (int i = 0; i < TabHolder.TabCount; ++i)
+            {
+                if (TabHolder.TabPages[i].Name.Equals(clickedTab, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    curTab = TabHolder.TabPages[i];
+                    break;
+                }
+            }
+            if (curTab != null)
+            {
+                //Determine if the clicked tab is locked or unlocked
+                if (LockTabButton.Tag.ToString().Equals("Lock", StringComparison.CurrentCultureIgnoreCase))
+                {//currently unlocked
+                    lockedTabs.Add(clickedTab);
+                    InputBox commentsInput = new InputBox(false, "Comments for results", "Add a comment for the tab to be locked(optional, will be a display on tab hover)");
+                    commentsInput.ShowDialog();
+                    curTab.ToolTipText = commentsInput.Input.Trim();
+                    curTab.ImageIndex = 4;
+                    curTab.ForeColor = Color.Navy;
+                }
+                else
+                {//currently locked
+                    lockedTabs.Remove(clickedTab);
+                    curTab.ToolTipText = "";
+                    curTab.ImageIndex = 0;
+                    curTab.ForeColor = Color.Black;
+                }
+            }
+        }
 
         #region Code for the actions in the toolstrip of the query form
         private void BtnExecute_Click(object sender, EventArgs e)
@@ -404,7 +482,25 @@ namespace Ez_SQL.MultiQueryForm
             if (CurrentExecutionInfo.HasErrors())//evitar dobles terminos??!!
                 return;
 
-            TabHolder.TabPages.Clear();
+            //Instead of cleaning all the tabs, just clean those who arent locked
+            //TabHolder.TabPages.Clear();
+            if (TabHolder.TabCount > 0)
+            {
+                int tabCount = TabHolder.TabCount;
+                for (int i = tabCount - 1; i >= 0; i--)
+                {
+                    if(TabHolder.TabPages[i].Name.Contains("_"))
+                    {//results tab
+                        if(!lockedTabs.Contains(TabHolder.TabPages[i].Name))
+                            TabHolder.TabPages.RemoveAt(i);
+                    }
+                    else
+                    {//messages tab
+                        TabHolder.TabPages.RemoveAt(i);
+                    }
+                }
+            }
+
             TabHolder.SuspendLayout();
 
             #region First we must add the results tab
@@ -431,10 +527,11 @@ namespace Ez_SQL.MultiQueryForm
                         TableTab.Controls.Add(Grid);
                         TableTab.ImageIndex = 0;
                         TableTab.Location = new System.Drawing.Point(4, 29);
-                        TableTab.Name = "TableTab_" + index.ToString();
+                        TableTab.Name = "TTab_" + Guid.NewGuid().ToString(); //"TableTab_" + index.ToString();
                         TableTab.Padding = new System.Windows.Forms.Padding(3);
                         TableTab.Size = new System.Drawing.Size(900, 150);
                         TableTab.TabIndex = 0;
+                                                
                         
                         if(ResultNaming.Count >= index)
                             TableTab.Text = ResultNaming[index - 1];
@@ -1610,5 +1707,6 @@ namespace Ez_SQL.MultiQueryForm
             }
         }
         #endregion
+
     }
 }

@@ -403,6 +403,16 @@ namespace Ez_SQL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LockTab {
+            get {
+                object obj = ResourceManager.GetObject("LockTab", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Maximize {
             get {
                 object obj = ResourceManager.GetObject("Maximize", resourceCulture);
@@ -716,6 +726,16 @@ namespace Ez_SQL.Properties {
         internal static System.Drawing.Bitmap UnComment {
             get {
                 object obj = ResourceManager.GetObject("UnComment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UnlockTab {
+            get {
+                object obj = ResourceManager.GetObject("UnlockTab", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
