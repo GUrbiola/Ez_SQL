@@ -1808,19 +1808,54 @@ namespace Ez_SQL.MultiQueryForm
             ISqlObject Obj = DataProvider.IsTableTypeObject(t.Text);
             if (Obj != null)
             {
-                Parent.AddQueryForm(Obj.Name, GenerateCSharpClassFromTable(Obj), DataProvider);
+                InputBox iBox = new InputBox(false, "Name of the Model", "Introduce the name that the class while, if you cancel this dialog or leave empty, the name of the table will be the name of the model.");
+                iBox.SetInput(Obj.Name);
+                iBox.ShowDialog();
+                string ModelName = iBox.Input;
+                Parent.AddQueryForm(Obj.Name, GenerateCSharpClassFromTable(Obj, ModelName, false), DataProvider);
             }
         }
-        private string GenerateCSharpClassFromTable(ISqlObject curTable)
+
+        //convert table to CSharp class, with the properties as [DataMember]
+        private void generateCClassForTableDataMemberToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string script = Query.Text;
+            int tokenIndex;
+            TokenList tokens = script.GetTokens();
+            Token t = tokens.GetTokenAtOffset(Query.CurrentOffset(), out tokenIndex);
+
+            if (t == null)
+                return;
+
+            ISqlObject Obj = DataProvider.IsTableTypeObject(t.Text);
+            if (Obj != null)
+            {
+                InputBox iBox = new InputBox(false, "Name of the Model", "Introduce the name that the class while, if you cancel this dialog or leave empty, the name of the table will be the name of the model.");
+                iBox.SetInput(Obj.Name);
+                iBox.ShowDialog();
+                string ModelName = iBox.Input;
+
+                Parent.AddQueryForm(Obj.Name, GenerateCSharpClassFromTable(Obj, ModelName, true), DataProvider);
+            }
+        }
+
+        private string GenerateCSharpClassFromTable(ISqlObject curTable, string ModelName = "", bool propAsDataMember = false)
         {
             List<Field> Pks = curTable.Childs.Where(x => x.IsPrimaryKey).Select(x => x as Field).ToList();
             string TableName, VarList = "", aux;
             StringBuilder SbBll = new StringBuilder();
 
 
-            TableName = curTable.Name;
+            if (String.IsNullOrEmpty(ModelName))
+            {
+                TableName = curTable.Name;
+            }
+            else
+            {
+                TableName = ModelName;
+            }
             SbBll.AppendLine(Indent(1) + "/// <summary>");
-            SbBll.AppendLine(Indent(1) + "/// Business layer class to manipulate the table: " + TableName);
+            SbBll.AppendLine(Indent(1) + "/// Business layer class to manipulate the table: " + curTable.Name);
             SbBll.AppendLine(Indent(1) + "/// </summary>");
             SbBll.AppendLine(String.Format("{0}public class {1}", Indent(1), TableName));
             SbBll.AppendLine(String.Format("{0}{{", Indent(1)));
@@ -1855,6 +1890,8 @@ namespace Ez_SQL.MultiQueryForm
                         SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
                         SbBll.AppendLine(String.Format("{0}/// Field Map, From {1}.{2} {3} -> To {4} {2}", Indent(2), curTable.Name, F.Name, F.Type, F.CSharpType));
                         SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+                        if(propAsDataMember)
+                            SbBll.AppendLine(String.Format("{0}[DataMember]", Indent(2)));
                         SbBll.AppendLine(String.Format("{0}public {1} {2}", Indent(2), F.CSharpType, F.Name));
                         SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
                         SbBll.AppendLine(String.Format("{0}get {{ return _{1}; }}", Indent(3), F.Name));
@@ -1867,6 +1904,8 @@ namespace Ez_SQL.MultiQueryForm
                         SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
                         SbBll.AppendLine(String.Format("{0}/// Field Map, From {1}.{2} {3} -> To {4} {2}", Indent(2), curTable.Name, F.Name, F.Type, F.CSharpType));
                         SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+                        if (propAsDataMember)
+                            SbBll.AppendLine(String.Format("{0}[DataMember]", Indent(2)));
                         SbBll.AppendLine(String.Format("{0}public {1} {2}", Indent(2), F.CSharpType, F.Name));
                         SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
                         SbBll.AppendLine(String.Format("{0}get {{ return _{1}; }}", Indent(3), F.Name));
@@ -1891,6 +1930,8 @@ namespace Ez_SQL.MultiQueryForm
                     SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
                     SbBll.AppendLine(String.Format("{0}/// Field Map, From {1}.{2} {3} -> To {4} {2}", Indent(2), curTable.Name, F.Name, F.Type, F.CSharpType));
                     SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+                    if (propAsDataMember)
+                        SbBll.AppendLine(String.Format("{0}[DataMember]", Indent(2)));
                     SbBll.AppendLine(String.Format("{0}public {1} {2}", Indent(2), F.CSharpType, F.Name));
                     SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
                     SbBll.AppendLine(String.Format("{0}get {{ return _{1}; }}", Indent(3), F.Name));
@@ -2243,6 +2284,7 @@ namespace Ez_SQL.MultiQueryForm
             return back;
         }
         #endregion
+
 
     }
 
