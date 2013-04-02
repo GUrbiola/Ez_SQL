@@ -30,6 +30,7 @@ namespace Ez_SQL.DataBaseObjects
         public string ReferenceParentName { get; set; }
         public ISqlChild ReferenceChild { get; set; }
         public string ReferenceChildName { get; set; }
+        public string CSharpType { get; set; }
         public Field()
         {
             _Kind = ChildType.Field;

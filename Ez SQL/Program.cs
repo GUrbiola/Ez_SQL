@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Ez_SQL.EzConfig;
 
 namespace Ez_SQL
 {
@@ -19,6 +20,8 @@ namespace Ez_SQL
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            TextEditorColorConfig X = new TextEditorColorConfig();
+            X.ToString();
             Application.Run(new MainForm());
             //Application.Run(new EzConfig.SyntaxColorsConfigurator());
         }

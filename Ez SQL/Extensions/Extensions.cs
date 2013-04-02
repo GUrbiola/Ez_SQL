@@ -755,6 +755,32 @@ namespace Ez_SQL.Extensions
         {
             return source.IndexOf(toCheck, comp) >= 0;
         }
+        public static string Indent(this string source, int indent = 1, int useSpaces = 4)
+        {
+            string back = source;
+            string spaces = "";
+
+            if (useSpaces > 0)
+            {
+                for (int i = 0; i < useSpaces; i++)
+                {
+                    spaces += " ";
+                }
+            }
+
+            for (int i = 0; i < indent; i++)
+            {
+                if (String.IsNullOrEmpty(spaces))
+                {
+                    back = "\t" + back;
+                }
+                else
+                {
+                    back = spaces + back;
+                }
+            }
+            return back;
+        }
         #endregion
 
         #region Extensions for IEnumerable
@@ -795,6 +821,19 @@ namespace Ez_SQL.Extensions
                 (one.R + two.R) >> 1,
                 (one.G + two.G) >> 1,
                 (one.B + two.B) >> 1);
+        }
+        public static Color StringToColor(this string HtmlColor)
+        {
+            return ColorTranslator.FromHtml(HtmlColor);
+        }
+        public static string ColorToString(this Color HtmlColor)
+        {
+            Color Aux = Color.FromArgb(HtmlColor.ToArgb());
+            return ColorTranslator.ToHtml(Aux);
+       }
+        public static string BoolAsString(this bool boolean)
+        {
+            return boolean ? "true" : "false";
         }
         #endregion
 

@@ -67,6 +67,7 @@
             this.TabHolder = new System.Windows.Forms.TabControl();
             this.tabMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.LockTabButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateClassForTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainContainer)).BeginInit();
             this.MainContainer.Panel1.SuspendLayout();
             this.MainContainer.Panel2.SuspendLayout();
@@ -143,15 +144,16 @@
             this.goToDefinitionToolStripMenuItem,
             this.reservedWordsToolStripMenuItem,
             this.selectionToolStripMenuItem,
-            this.outlinningToolStripMenuItem});
+            this.outlinningToolStripMenuItem,
+            this.generateClassForTableToolStripMenuItem});
             this.popupMenu.Name = "popupMenu";
-            this.popupMenu.Size = new System.Drawing.Size(187, 92);
+            this.popupMenu.Size = new System.Drawing.Size(220, 136);
             // 
             // goToDefinitionToolStripMenuItem
             // 
             this.goToDefinitionToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.GoToDefinition;
             this.goToDefinitionToolStripMenuItem.Name = "goToDefinitionToolStripMenuItem";
-            this.goToDefinitionToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.goToDefinitionToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.goToDefinitionToolStripMenuItem.Text = "Go to definition (F12)";
             this.goToDefinitionToolStripMenuItem.Click += new System.EventHandler(this.goToDefinitionToolStripMenuItem_Click);
             // 
@@ -162,7 +164,7 @@
             this.toLowerCaseToolStripMenuItem});
             this.reservedWordsToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Words;
             this.reservedWordsToolStripMenuItem.Name = "reservedWordsToolStripMenuItem";
-            this.reservedWordsToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.reservedWordsToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.reservedWordsToolStripMenuItem.Text = "Reserved words";
             // 
             // toUpperCaseToolStripMenuItem
@@ -188,7 +190,7 @@
             this.toLowerCaseToolStripMenuItem1});
             this.selectionToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Selection;
             this.selectionToolStripMenuItem.Name = "selectionToolStripMenuItem";
-            this.selectionToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.selectionToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.selectionToolStripMenuItem.Text = "Selection";
             // 
             // toUpperCseToolStripMenuItem
@@ -215,7 +217,7 @@
             this.toggleToolStripMenuItem});
             this.outlinningToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Outlining;
             this.outlinningToolStripMenuItem.Name = "outlinningToolStripMenuItem";
-            this.outlinningToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.outlinningToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.outlinningToolStripMenuItem.Text = "Outlining/Folding";
             // 
             // collapseToolStripMenuItem
@@ -465,6 +467,13 @@
             this.LockTabButton.Text = "Lock Tab";
             this.LockTabButton.Click += new System.EventHandler(this.LockTabButton_Click);
             // 
+            // generateClassForTableToolStripMenuItem
+            // 
+            this.generateClassForTableToolStripMenuItem.Name = "generateClassForTableToolStripMenuItem";
+            this.generateClassForTableToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.generateClassForTableToolStripMenuItem.Text = "Generate C# Class for Table";
+            this.generateClassForTableToolStripMenuItem.Click += new System.EventHandler(this.generateClassForTableToolStripMenuItem_Click);
+            // 
             // QueryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -526,5 +535,6 @@
         private System.Windows.Forms.ToolStripMenuItem toggleToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip tabMenu;
         private System.Windows.Forms.ToolStripMenuItem LockTabButton;
+        private System.Windows.Forms.ToolStripMenuItem generateClassForTableToolStripMenuItem;
     }
 }

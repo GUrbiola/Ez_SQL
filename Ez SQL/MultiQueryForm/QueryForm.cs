@@ -51,6 +51,10 @@ namespace Ez_SQL.MultiQueryForm
         string clickedTab = "";
         List<string> lockedTabs = new List<string>();
 
+        public static Dictionary<string, string> SqlVsCSharp;
+        public static Dictionary<string, string> SqlVsCSharpDb;
+        public static Dictionary<string, string> CSharpVsSql;
+
         public QueryForm(MainForm Parent, SqlConnector DataProvider, string Script = "")
         {
             InitializeComponent();
@@ -103,6 +107,88 @@ namespace Ez_SQL.MultiQueryForm
             TabHolder.MouseClick += new MouseEventHandler(TabHolder_MouseClick);
             //for locked tabs there can be some "comments" shown as tooltip
             TabHolder.ShowToolTips = true;
+
+            #region Matching types, between SQL and C#, both ways
+            if (SqlVsCSharp == null)
+            {
+                SqlVsCSharp = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                SqlVsCSharp.Add("bigint", "int");
+                SqlVsCSharp.Add("binary", "int");
+                SqlVsCSharp.Add("bit", "bool");
+                SqlVsCSharp.Add("char", "string");
+                SqlVsCSharp.Add("date", "DateTime");
+                SqlVsCSharp.Add("datetime", "DateTime");
+                SqlVsCSharp.Add("datetime2", "DateTime");
+                SqlVsCSharp.Add("float", "float");
+                SqlVsCSharp.Add("int", "int");
+                SqlVsCSharp.Add("decimal", "float");
+                SqlVsCSharp.Add("money", "float");
+                SqlVsCSharp.Add("nchar", "string");
+                SqlVsCSharp.Add("ntext", "string");
+                SqlVsCSharp.Add("numeric", "int");
+                SqlVsCSharp.Add("nvarchar", "string");
+                SqlVsCSharp.Add("real", "float");
+                SqlVsCSharp.Add("smalldatetime", "DateTime");
+                SqlVsCSharp.Add("smallint", "int");
+                SqlVsCSharp.Add("smallmoney", "float");
+                SqlVsCSharp.Add("sysname", "string");
+                SqlVsCSharp.Add("text", "string");
+                SqlVsCSharp.Add("timestamp", "DateTime");
+                SqlVsCSharp.Add("tinyint", "int");
+                SqlVsCSharp.Add("varbinary", "int");
+                SqlVsCSharp.Add("varchar", "string");
+
+                SqlVsCSharp.Add("System.Boolean", "bool");
+                SqlVsCSharp.Add("System.Int32", "int");
+                SqlVsCSharp.Add("System.String", "string");
+                SqlVsCSharp.Add("System.Decimal", "float");
+                SqlVsCSharp.Add("System.Double", "float");
+                SqlVsCSharp.Add("System.DateTime", "DateTime");
+            }
+            if (SqlVsCSharpDb == null)
+            {
+                SqlVsCSharpDb = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                SqlVsCSharpDb.Add("bigint", "SqlDbType.BigInt");
+                SqlVsCSharpDb.Add("binary", "SqlDbType.Binary");
+                SqlVsCSharpDb.Add("bit", "SqlDbType.Bit");
+                SqlVsCSharpDb.Add("char", "SqlDbType.Char");
+                SqlVsCSharpDb.Add("datetime", "SqlDbType.DateTime");
+                SqlVsCSharpDb.Add("float", "SqlDbType.Float");
+                SqlVsCSharpDb.Add("int", "SqlDbType.Int");
+                SqlVsCSharpDb.Add("decimal", "SqlDbType.Decimal");
+                SqlVsCSharpDb.Add("money", "SqlDbType.Float");
+                SqlVsCSharpDb.Add("nchar", "SqlDbType.NChar");
+                SqlVsCSharpDb.Add("ntext", "SqlDbType.NText");
+                SqlVsCSharpDb.Add("numeric", "SqlDbType.Int");
+                SqlVsCSharpDb.Add("nvarchar", "SqlDbType.NVarChar");
+                SqlVsCSharpDb.Add("real", "SqlDbType.Real");
+                SqlVsCSharpDb.Add("smalldatetime", "SqlDbType.SmallDateTime");
+                SqlVsCSharpDb.Add("smallint", "SqlDbType.SmallInt");
+                SqlVsCSharpDb.Add("smallmoney", "SqlDbType.SmallMoney");
+                SqlVsCSharpDb.Add("sysname", "SqlDbType.Text");
+                SqlVsCSharpDb.Add("text", "SqlDbType.Text");
+                SqlVsCSharpDb.Add("timestamp", "SqlDbType.Timestamp");
+                SqlVsCSharpDb.Add("tinyint", "SqlDbType.TinyInt");
+                SqlVsCSharpDb.Add("varbinary", "SqlDbType.VarBinary");
+                SqlVsCSharpDb.Add("varchar", "SqlDbType.VarChar");
+            }
+
+            if (CSharpVsSql == null)
+            {
+                CSharpVsSql = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                CSharpVsSql.Add("System.Char", "char");
+                CSharpVsSql.Add("System.Boolean", "bit");
+                CSharpVsSql.Add("System.Int16", "int");
+                CSharpVsSql.Add("System.Int32", "int");
+                CSharpVsSql.Add("System.Int64", "int");
+                CSharpVsSql.Add("System.String", "varchar");
+                CSharpVsSql.Add("System.Single", "float");
+                CSharpVsSql.Add("System.Decimal", "float");
+                CSharpVsSql.Add("System.Double", "float");
+                CSharpVsSql.Add("System.DateTime", "DateTime");
+            }
+ 
+            #endregion
         }
 
         #region Events to manage the lock/unlock of the results tab
@@ -1708,7 +1794,456 @@ namespace Ez_SQL.MultiQueryForm
 
             }
         }
+        //convert table to CSharp class
+        private void generateClassForTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string script = Query.Text;
+            int tokenIndex;
+            TokenList tokens = script.GetTokens();
+            Token t = tokens.GetTokenAtOffset(Query.CurrentOffset(), out tokenIndex);
+
+            if (t == null)
+                return;
+
+            ISqlObject Obj = DataProvider.IsTableTypeObject(t.Text);
+            if (Obj != null)
+            {
+                Parent.AddQueryForm(Obj.Name, GenerateCSharpClassFromTable(Obj), DataProvider);
+            }
+        }
+        private string GenerateCSharpClassFromTable(ISqlObject curTable)
+        {
+            List<Field> Pks = curTable.Childs.Where(x => x.IsPrimaryKey).Select(x => x as Field).ToList();
+            string TableName, VarList = "", aux;
+            StringBuilder SbBll = new StringBuilder();
+
+
+            TableName = curTable.Name;
+            SbBll.AppendLine(Indent(1) + "/// <summary>");
+            SbBll.AppendLine(Indent(1) + "/// Business layer class to manipulate the table: " + TableName);
+            SbBll.AppendLine(Indent(1) + "/// </summary>");
+            SbBll.AppendLine(String.Format("{0}public class {1}", Indent(1), TableName));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(1)));
+
+            #region Variables y propiedades de la clase
+            SbBll.AppendLine(String.Format("{0}#region Variables and properties", Indent(2)));
+            for (int i = 0; i < curTable.Childs.Count; i++)
+            {
+                Field F = curTable.Childs[i] as Field;
+                if (F == null)
+                    continue;
+
+                if (SqlVsCSharp.ContainsKey(F.Type))
+                {
+                    if (F.Nullable && !SqlVsCSharp[F.Type].Equals("string", StringComparison.CurrentCultureIgnoreCase))
+                        F.CSharpType = SqlVsCSharp[F.Type] + "?";
+                    else
+                        F.CSharpType = SqlVsCSharp[F.Type];
+                }
+                else
+                {
+                    F.CSharpType = "??";
+                }
+
+                F.DefaultValue = F.Nullable ? "null" : DefaultValueFor(F.CSharpType);
+
+                if (F.IsPrimaryKey)
+                {
+                    if (Pks.Count > 1)
+                    {
+                        SbBll.AppendLine(String.Format("{0}private {1} _{2} = {3};", Indent(2), F.CSharpType, F.Name, F.DefaultValue));
+                        SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+                        SbBll.AppendLine(String.Format("{0}/// Field Map, From {1}.{2} {3} -> To {4} {2}", Indent(2), curTable.Name, F.Name, F.Type, F.CSharpType));
+                        SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+                        SbBll.AppendLine(String.Format("{0}public {1} {2}", Indent(2), F.CSharpType, F.Name));
+                        SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
+                        SbBll.AppendLine(String.Format("{0}get {{ return _{1}; }}", Indent(3), F.Name));
+                        SbBll.AppendLine(String.Format("{0}set {{ _{1} = value; }}", Indent(3), F.Name));
+                        SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+                    }
+                    else
+                    {
+                        SbBll.AppendLine(String.Format("{0}private {1} _{2} = {3};", Indent(2), F.CSharpType, F.Name, F.DefaultValue));
+                        SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+                        SbBll.AppendLine(String.Format("{0}/// Field Map, From {1}.{2} {3} -> To {4} {2}", Indent(2), curTable.Name, F.Name, F.Type, F.CSharpType));
+                        SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+                        SbBll.AppendLine(String.Format("{0}public {1} {2}", Indent(2), F.CSharpType, F.Name));
+                        SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
+                        SbBll.AppendLine(String.Format("{0}get {{ return _{1}; }}", Indent(3), F.Name));
+                        SbBll.AppendLine(String.Format("{0}set {{ _{1} = value; }}", Indent(3), F.Name));
+                        SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+                        if (!F.Name.Equals("id", StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+                            SbBll.AppendLine(String.Format("{0}/// Alias for primary key field", Indent(2)));
+                            SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+                            SbBll.AppendLine(String.Format("{0}public {1} {2}", Indent(2), F.CSharpType, "Id"));
+                            SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
+                            SbBll.AppendLine(String.Format("{0}get {{ return _{1}; }}", Indent(3), F.Name));
+                            SbBll.AppendLine(String.Format("{0}set {{ _{1} = value; }}", Indent(3), F.Name));
+                            SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+                        }
+                    }
+                }
+                else
+                {
+                    SbBll.AppendLine(String.Format("{0}private {1} _{2} = {3};", Indent(2), F.CSharpType, F.Name, F.DefaultValue));
+                    SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+                    SbBll.AppendLine(String.Format("{0}/// Field Map, From {1}.{2} {3} -> To {4} {2}", Indent(2), curTable.Name, F.Name, F.Type, F.CSharpType));
+                    SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+                    SbBll.AppendLine(String.Format("{0}public {1} {2}", Indent(2), F.CSharpType, F.Name));
+                    SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
+                    SbBll.AppendLine(String.Format("{0}get {{ return _{1}; }}", Indent(3), F.Name));
+                    SbBll.AppendLine(String.Format("{0}set {{ _{1} = value; }}", Indent(3), F.Name));
+                    SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+                }
+            }
+            SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// Total number of fields, for this table", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}public int FieldCount {{ get {{ return {1}; }} }}", Indent(2), curTable.Childs.Count.ToString()));
+            SbBll.AppendLine(String.Format("{0}#endregion", Indent(2)));
+            #endregion
+
+            #region Constructores de la clase
+            SbBll.AppendLine(String.Format("{0}#region Class contructors, default, and one with only the Id(PK)", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// Basic constructor, parameterless", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}public {1}()", Indent(2), TableName));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+
+            if (Pks.Count > 1)
+            {
+                SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+                SbBll.AppendLine(String.Format("{0}/// Constructor with only PK", Indent(2)));
+                SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+                foreach (Field Pk in Pks)
+                    SbBll.AppendLine(String.Format("{0}/// <param name=\"{1}\">Field that is part of the PK of the record.</param>", Indent(2), Pk.Name));
+                aux = String.Format("{0}public {1}(", Indent(2), Name);
+                foreach (Field Pk in Pks)
+                    aux += String.Format("{0} {1}, ", Pk.CSharpType, Pk.Name);
+                SbBll.AppendLine(aux.Substring(0, aux.Length - 2) + ")");
+                SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
+                foreach (Field Pk in Pks)
+                    SbBll.AppendLine(String.Format("{0}this.{1} = {1};", Indent(3), Pk.Name));
+                SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+                SbBll.AppendLine(String.Format("{0}#endregion", Indent(2)));
+            }
+            else
+            {
+                SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+                SbBll.AppendLine(String.Format("{0}/// Constructor with only PK", Indent(2)));
+                SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+                SbBll.AppendLine(String.Format("{0}/// <param name=\"Id\">PK of the record.</param>", Indent(2)));
+                SbBll.AppendLine(String.Format("{0}public {1}({2} Id)", Indent(2), TableName, Pks[0].CSharpType));
+                SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
+                SbBll.AppendLine(String.Format("{0}this.{1} = Id;", Indent(3), Pks[0].Name));
+                SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+                SbBll.AppendLine(String.Format("{0}#endregion", Indent(2)));
+            }
+            #endregion
+
+            #region ConvertToEntity(DataTable table) y Sobrecarga ConvertToEntity(DataTable table, int firstRecords)
+            SbBll.AppendLine(String.Format("{0}#region Static function to convert and create from a datatable objects", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// Converts a datatable to a list of objects of this class.", Indent(2), TableName));
+            SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// <param name=\"table\">The datatable to convert.</param>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// <returns>List of objects of this class, created from ther datatable</returns>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}public static List<{1}> ConvertToObject(DataTable table)", Indent(2), TableName));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}return ConvertToObject(table, -1);", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+
+            SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// Converts a datatable to a list of objects of this class.", Indent(2), TableName));
+            SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// <param name=\"table\">The datatable to convert.</param>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// <param name=\"firstRecords\">Number of records to convert, if -1 then all the records are converted.</param>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// <returns>List of objects of this class, created from ther datatable</returns>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}public static List<{1}> ConvertToObject(DataTable table, int firstRecords)", Indent(2), TableName));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}List<{1}> back = new List<{1}>();", Indent(3), TableName));
+            SbBll.AppendLine(String.Format("{0}int i, t;", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}if (table == null || table.Rows.Count == 0)", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}return back;", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}if(firstRecords > 0)", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}t = Math.Min(firstRecords, table.Rows.Count);", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}else", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}t = table.Rows.Count;", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}", Indent(3)));
+
+            SbBll.AppendLine(String.Format("{0}for (i = 0; i < t; i++)", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}{1} obj = new {1}();", Indent(4), TableName));
+            for (int i = 0; i < curTable.Childs.Count; i++)
+            {
+                Field F = curTable.Childs[i] as Field;
+                if (F == null)
+                    continue;
+                switch (F.CSharpType)
+                {
+                    case "int":
+                        SbBll.AppendLine(String.Format("{0}if (table.Rows[i][\"{1}\"] != DBNull.Value && !String.IsNullOrEmpty(table.Rows[i][\"{1}\"].ToString()))", Indent(4), F.Name));
+                        SbBll.AppendLine(String.Format("{0}obj.{1} = int.Parse(table.Rows[i][\"{1}\"].ToString());", Indent(4), F.Name));
+                        break;
+                    case "string":
+                        SbBll.AppendLine(String.Format("{0}obj.{1} = table.Rows[i][\"{1}\"].ToString();", Indent(4), F.Name));
+                        break;
+                    case "DateTime":
+                        SbBll.AppendLine(String.Format("{0}if (table.Rows[i][\"{1}\"] != DBNull.Value && !String.IsNullOrEmpty(table.Rows[i][\"{1}\"].ToString()))", Indent(4), F.Name));
+                        SbBll.AppendLine(String.Format("{0}obj.{1} = DateTime.Parse(table.Rows[i][\"{1}\"].ToString());", Indent(4), F.Name));
+                        break;
+                    case "float":
+                        SbBll.AppendLine(String.Format("{0}if (table.Rows[i][\"{1}\"] != DBNull.Value && !String.IsNullOrEmpty(table.Rows[i][\"{1}\"].ToString()))", Indent(4), F.Name));
+                        SbBll.AppendLine(String.Format("{0}obj.{1} = Single.Parse(table.Rows[i][\"{1}\"].ToString());", Indent(4), F.Name));
+                        break;
+                    case "bool":
+                        SbBll.AppendLine(String.Format("{0}if (table.Rows[i][\"{1}\"] != DBNull.Value && !String.IsNullOrEmpty(table.Rows[i][\"{1}\"].ToString()))", Indent(4), F.Name));
+                        SbBll.AppendLine(String.Format("{0}obj.{1} = bool.Parse(table.Rows[i][\"{1}\"].ToString());", Indent(4), F.Name));
+                        break;
+                }
+            }
+            SbBll.AppendLine(String.Format("{0}back.Add(obj);", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}}}", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}return back;", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}#endregion", Indent(2)));
+            #endregion
+
+            #region Convertidores (ToParams(), ToParams(int Opcion), ToDictionary(), ToList())
+            SbBll.AppendLine(String.Format("{0}#region Methods to convert the current object to an array/list/dictionary of his fields", Indent(2)));
+            #region Conversion to an array
+            SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// Converts the current object to an array of his fields values ({1} -> object[]).", Indent(2), TableName));
+            SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// <returns>Arreglo de objetos(object[]) creado a partir del objeto actual.</returns>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}public object[] ToParams()", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}List<object> objs = new List<object>();", Indent(3)));
+            for (int i = 0; i < curTable.Childs.Count; i++)
+            {
+                Field F = curTable.Childs[i] as Field;
+                if (F != null)
+                    SbBll.AppendLine(String.Format("{0}objs.Add({1} == {2} ? null : (object){1});", Indent(3), F.Name, F.DefaultValue));
+            }
+            SbBll.AppendLine(String.Format("{0}return objs.ToArray();", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+            #endregion
+
+            #region Conversion to a list
+            SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// Converts the current object to alist of his field values ({1} -> <![CDATA[List<object>]]>).", Indent(2), TableName));
+            SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// <returns>List of objects created from the current object.</returns>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}public List<object> ToList()", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}List<object> objs = new List<object>();", Indent(3)));
+            for (int i = 0; i < curTable.Childs.Count; i++)
+            {
+                Field F = curTable.Childs[i] as Field;
+                if (F != null)
+                    SbBll.AppendLine(String.Format("{0}objs.Add({1} == {2} ? null : (object){1});", Indent(3), F.Name, F.DefaultValue));
+            }
+            SbBll.AppendLine(String.Format("{0}return objs;", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+            #endregion
+
+            #region Conversion to a dictionary
+            SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// Converts the current object to a dictionary of his fields(<![CDATA[Dictionary<string, object>]]>) ({1} -> <![CDATA[Dictionary<string, object>]]>).", Indent(2), TableName));
+            SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// <returns>Object dictionary, the key is the name of the field(<![CDATA[Dictionary<string, object>]]>).</returns>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}public Dictionary<string, object> ToDictionary()", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}Dictionary<string, object> Dict = new Dictionary<string, object>();", Indent(3)));
+            for (int i = 0; i < curTable.Childs.Count; i++)
+            {
+                Field F = curTable.Childs[i] as Field;
+                if (F != null)
+                    SbBll.AppendLine(String.Format("{0}Dict.Add(\"{1}\", {1} == {2} ? DBNull.Value : (object){1});", Indent(3), F.Name, F.DefaultValue));
+            }
+            SbBll.AppendLine(String.Format("{0}return Dict;", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+            #endregion
+            SbBll.AppendLine(String.Format("{0}#endregion", Indent(2)));
+            #endregion
+
+            #region Indexers of the class, by field number(position on the table) and by field name(case insensitive)
+            SbBll.AppendLine(String.Format("{0}#region Indexers of the class, by field number(position on the table) and by field name(case insensitive)", Indent(2)));
+            #region Integer indexer
+            SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// Gets or sets the value of the field with an \"index == i\" as an object.", Indent(2), TableName));
+            SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}public object this[int i]", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}get", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}if(i >= 0 && i < {1})", Indent(4), curTable.Childs.Count.ToString()));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}switch(i)", Indent(5)));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(5)));
+            for (int i = 0; i < curTable.Childs.Count; i++)
+            {
+                Field F = curTable.Childs[i] as Field;
+                if (F != null)
+                {
+                    SbBll.AppendLine(String.Format("{0}case {1}:", Indent(6), i.ToString()));
+                    SbBll.AppendLine(String.Format("{0}return {1};", Indent(7), F.Name));
+                }
+            }
+            SbBll.AppendLine(String.Format("{0}}}", Indent(5)));
+            SbBll.AppendLine(String.Format("{0}}}", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}return null;", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}}}", Indent(3)));
+
+
+            SbBll.AppendLine(String.Format("{0}set", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}if(i >= 0 && i < {1})", Indent(4), curTable.Childs.Count.ToString()));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}switch(i)", Indent(5)));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(5)));
+            for (int i = 0; i < curTable.Childs.Count; i++)
+            {
+                Field F = curTable.Childs[i] as Field;
+                if (F != null)
+                {
+                    SbBll.AppendLine(String.Format("{0}case {1}:", Indent(6), i.ToString()));
+                    SbBll.AppendLine(String.Format("{0}if(value is {1})", Indent(7), F.CSharpType));
+                    SbBll.AppendLine(String.Format("{0}{1} = ({2})value;", Indent(8), F.Name,
+                                                   F.CSharpType));
+                    SbBll.AppendLine(String.Format("{0}else", Indent(7)));
+                    SbBll.AppendLine(String.Format("{0}{{", Indent(7)));
+                    SbBll.AppendLine(String.Format("{0}try", Indent(8), F.Name));
+                    SbBll.AppendLine(String.Format("{0}{{", Indent(8)));
+                    SbBll.AppendLine(String.Format("{0}{1} = ({2})value;", Indent(9), F.Name, F.CSharpType));
+                    SbBll.AppendLine(String.Format("{0}}}", Indent(8)));
+                    SbBll.AppendLine(String.Format("{0}catch(Exception ex)", Indent(8), F.Name));
+                    SbBll.AppendLine(String.Format("{0}{{", Indent(8)));
+                    SbBll.AppendLine(String.Format("{0}throw new Exception(\"Data type mismatch for the field: {1}/index: {2}\", ex);", Indent(9), F.Name, i));
+                    SbBll.AppendLine(String.Format("{0}}}", Indent(8)));
+                    SbBll.AppendLine(String.Format("{0}}}", Indent(7)));
+                    SbBll.AppendLine(String.Format("{0}break;", Indent(7)));
+                }
+            }
+            SbBll.AppendLine(String.Format("{0}}}", Indent(5)));
+            SbBll.AppendLine(String.Format("{0}}}", Indent(4)));
+
+            SbBll.AppendLine(String.Format("{0}}}", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+            #endregion
+
+            #region String indexer
+            SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}/// Gets or sets the value of the field whose name is: \"fieldName\" as an object (case insensitive.)", Indent(2), TableName));
+            SbBll.AppendLine(String.Format("{0}/// </summary>", Indent(2)));
+            //string aux = field.ToLower();
+            SbBll.AppendLine(String.Format("{0}public object this[string fieldName]", Indent(2)));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
+
+            SbBll.AppendLine(String.Format("{0}get", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}string aux = fieldName.ToLower();", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}switch(aux)", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(4)));
+            for (int i = 0; i < curTable.Childs.Count; i++)
+            {
+                Field F = curTable.Childs[i] as Field;
+                if (F != null)
+                {
+                    SbBll.AppendLine(String.Format("{0}case \"{1}\":", Indent(5), F.Name.ToLower()));
+                    SbBll.AppendLine(String.Format("{0}return {1};", Indent(6), F.Name));
+                }
+            }
+            SbBll.AppendLine(String.Format("{0}}}", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}return null;", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}}}", Indent(3)));
+
+            SbBll.AppendLine(String.Format("{0}set", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}string aux = fieldName.ToLower();", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}switch(aux)", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}{{", Indent(4)));
+            for (int i = 0; i < curTable.Childs.Count; i++)
+            {
+                Field F = curTable.Childs[i] as Field;
+                if (F != null)
+                {
+                    SbBll.AppendLine(String.Format("{0}case \"{1}\":", Indent(5), F.Name.ToLower()));
+                    SbBll.AppendLine(String.Format("{0}if(value is {1})", Indent(6), F.CSharpType));
+                    SbBll.AppendLine(String.Format("{0}{{", Indent(6)));
+                    SbBll.AppendLine(String.Format("{0}{1} = ({2}) value;", Indent(6), F.Name,
+                                                   F.CSharpType));
+                    SbBll.AppendLine(String.Format("{0}}}", Indent(6)));
+                    SbBll.AppendLine(String.Format("{0}else", Indent(6), F.CSharpType));
+                    SbBll.AppendLine(String.Format("{0}{{", Indent(6)));
+                    SbBll.AppendLine(String.Format("{0}try", Indent(7), F.Name));
+                    SbBll.AppendLine(String.Format("{0}{{", Indent(7)));
+                    SbBll.AppendLine(String.Format("{0}{1} = ({2})value;", Indent(8), F.Name, F.CSharpType));
+                    SbBll.AppendLine(String.Format("{0}}}", Indent(7)));
+                    SbBll.AppendLine(String.Format("{0}catch(Exception ex)", Indent(7), F.Name));
+                    SbBll.AppendLine(String.Format("{0}{{", Indent(7)));
+                    SbBll.AppendLine(String.Format("{0}throw new Exception(\"Data type mismatch for the field: {1}/index: {2}\", ex);", Indent(8), F.Name, i));
+                    SbBll.AppendLine(String.Format("{0}}}", Indent(7)));
+                    SbBll.AppendLine(String.Format("{0}}}", Indent(6)));
+                    SbBll.AppendLine(String.Format("{0}break;", Indent(6)));
+                }
+            }
+            SbBll.AppendLine(String.Format("{0}}}", Indent(4)));
+            SbBll.AppendLine(String.Format("{0}}}", Indent(3)));
+            SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+            #endregion
+            SbBll.AppendLine(String.Format("{0}#endregion", Indent(2)));
+            #endregion
+
+            SbBll.AppendLine(String.Format("{0}}}", Indent(1)));
+
+            return SbBll.ToString();
+        }
+        private string DefaultValueFor(string Type)
+        {
+            string back = "0";
+            switch (Type.ToLower())
+            {
+                case "string":
+                    back = "String.Empty";
+                    break;
+                case "int":
+                    back = "0";
+                    break;
+                case "float":
+                    back = "0";
+                    break;
+                case "bool":
+                case "boolean":
+                    back = "false";
+                    break;
+                case "datetime":
+                case "datetime2":
+                    back = "new DateTime()";
+                    break;
+            }
+            return back;
+        }
+        private string Indent(int level)
+        {
+            string back = "";
+            if (level > 0)
+            {
+                for (int i = 0; i < level; i++)
+                {
+                    back += "\t";
+                }
+            }
+            return back;
+        }
         #endregion
 
     }
+
 }

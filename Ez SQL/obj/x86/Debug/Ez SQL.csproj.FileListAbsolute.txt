@@ -59,7 +59,6 @@ C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\ColorPickerLib.pdb
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\PopupControl.xml
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.ExcelXml.xml
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.Extensions.xml
-C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csprojResolveAssemblyReference.cache
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.AdditionalForms.ObjectSearcher.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.ConxAdmin.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.InputBox.resources
@@ -78,3 +77,46 @@ C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Snippets.SnippetEditor.resour
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.GenerateResource.Cache
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
+C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csprojResolveAssemblyReference.cache
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.exe
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.pdb
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\AddressBarExt.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\ColorPickerLib.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\HDesarrollo.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\ICSharpCode.TextEditor.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\PopupControl.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\WeifenLuo.WinFormsUI.Docking.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\AxInterop.MSWinsockLib.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\OpenNETCF.Desktop.Communication.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\Yogesh.ExcelXml.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\Interop.NiceLabel5WR.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\Microsoft.Data.ConnectionUI.Dialog.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\Microsoft.Data.ConnectionUI.SqlCeDataProvider.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\Interop.MSWinsockLib.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\Yogesh.Extensions.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\Microsoft.Data.ConnectionUI.dll
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\AddressBarExt.pdb
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\ColorPickerLib.pdb
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\PopupControl.xml
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\Yogesh.ExcelXml.xml
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\Yogesh.Extensions.xml
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.AdditionalForms.ObjectSearcher.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.ConxAdmin.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.InputBox.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.SQLConnectForm.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.AnimatedWaitTextBox.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.LoadingInfo.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.EzConfig.SyntaxColorsConfigurator.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ChildSelector.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ObjectSelector.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.SearchAndReplace.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.QueryLog.HistoricForm.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MainForm.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.QueryForm.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Properties.Resources.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Snippets.SnippetEditor.resources
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
+C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
