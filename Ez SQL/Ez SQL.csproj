@@ -121,12 +121,18 @@
     <Compile Include="DataBaseObjects\View.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Extensions\XmlSerializer.cs" />
+    <Compile Include="EzConfig\ConfigRule.cs" />
+    <Compile Include="EzConfig\Delimiter.cs" />
+    <Compile Include="EzConfig\Digits.cs" />
+    <Compile Include="EzConfig\Environment.cs" />
+    <Compile Include="EzConfig\RuleSet.cs" />
     <Compile Include="EzConfig\SyntaxColorsConfigurator.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EzConfig\SyntaxColorsConfigurator.Designer.cs">
       <DependentUpon>SyntaxColorsConfigurator.cs</DependentUpon>
     </Compile>
+    <Compile Include="EzConfig\TextEditorColorConfig.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Custom Controls\LoadingInfo.cs">
       <SubType>UserControl</SubType>
