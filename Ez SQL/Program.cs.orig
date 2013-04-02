@@ -20,8 +20,13 @@ namespace Ez_SQL
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
+            TextEditorColorConfig X = new TextEditorColorConfig();
+            X.ToString();
+=======
             //TextEditorColorConfig X = new TextEditorColorConfig();
             //X.ToString();
+>>>>>>> 45e500e04ee9878241ee0d1e24022b67773fd129
             Application.Run(new MainForm());
             //Application.Run(new EzConfig.SyntaxColorsConfigurator());
         }
