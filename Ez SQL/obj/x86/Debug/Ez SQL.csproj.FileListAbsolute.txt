@@ -40,7 +40,6 @@ C:\JustForFun\Ez SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.exe
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.pdb
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\AddressBarExt.dll
-C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\ColorPickerLib.dll
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\HDesarrollo.dll
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\ICSharpCode.TextEditor.dll
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\PopupControl.dll
@@ -55,7 +54,6 @@ C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Interop.MSWinsockLib.dll
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.Extensions.dll
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Microsoft.Data.ConnectionUI.dll
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\AddressBarExt.pdb
-C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\ColorPickerLib.pdb
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\PopupControl.xml
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.ExcelXml.xml
 C:\Just for fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.Extensions.xml
@@ -74,10 +72,8 @@ C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MainForm.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.QueryForm.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Properties.Resources.resources
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Snippets.SnippetEditor.resources
-C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.GenerateResource.Cache
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
 C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
-C:\Just for fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csprojResolveAssemblyReference.cache
 C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.exe
 C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.pdb
 C:\Users\gurbiola\Desktop\Ez_SQL\Ez SQL\bin\Debug\AddressBarExt.dll
@@ -160,3 +156,6 @@ C:\Just For Fun\Ez SQL\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Just For Fun\Ez SQL\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Just For Fun\Ez SQL\obj\x86\Debug\Ez SQL.exe
 C:\Just For Fun\Ez SQL\obj\x86\Debug\Ez SQL.pdb
+C:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\GenerateResource.write.1.tlog

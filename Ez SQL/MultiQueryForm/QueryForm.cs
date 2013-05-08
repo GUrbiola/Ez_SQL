@@ -119,18 +119,18 @@ namespace Ez_SQL.MultiQueryForm
                 SqlVsCSharp.Add("date", "DateTime");
                 SqlVsCSharp.Add("datetime", "DateTime");
                 SqlVsCSharp.Add("datetime2", "DateTime");
-                SqlVsCSharp.Add("float", "float");
+                SqlVsCSharp.Add("float", "double");
                 SqlVsCSharp.Add("int", "int");
                 SqlVsCSharp.Add("decimal", "float");
-                SqlVsCSharp.Add("money", "float");
+                SqlVsCSharp.Add("money", "double");
                 SqlVsCSharp.Add("nchar", "string");
                 SqlVsCSharp.Add("ntext", "string");
                 SqlVsCSharp.Add("numeric", "int");
                 SqlVsCSharp.Add("nvarchar", "string");
-                SqlVsCSharp.Add("real", "float");
+                SqlVsCSharp.Add("real", "double");
                 SqlVsCSharp.Add("smalldatetime", "DateTime");
                 SqlVsCSharp.Add("smallint", "int");
-                SqlVsCSharp.Add("smallmoney", "float");
+                SqlVsCSharp.Add("smallmoney", "double");
                 SqlVsCSharp.Add("sysname", "string");
                 SqlVsCSharp.Add("text", "string");
                 SqlVsCSharp.Add("timestamp", "DateTime");
@@ -1839,20 +1839,20 @@ namespace Ez_SQL.MultiQueryForm
             }
         }
 
-        private string GenerateCSharpClassFromTable(ISqlObject curTable, string ModelName = "", bool propAsDataMember = false)
+        private string GenerateCSharpClassFromTable(ISqlObject curTable, string modelName = "", bool propAsDataMember = false)
         {
             List<Field> Pks = curTable.Childs.Where(x => x.IsPrimaryKey).Select(x => x as Field).ToList();
-            string TableName, VarList = "", aux;
+            string TableName, aux;
             StringBuilder SbBll = new StringBuilder();
 
 
-            if (String.IsNullOrEmpty(ModelName))
+            if (String.IsNullOrEmpty(modelName))
             {
                 TableName = curTable.Name;
             }
             else
             {
-                TableName = ModelName;
+                TableName = modelName;
             }
             SbBll.AppendLine(Indent(1) + "/// <summary>");
             SbBll.AppendLine(Indent(1) + "/// Business layer class to manipulate the table: " + curTable.Name);
@@ -1972,7 +1972,7 @@ namespace Ez_SQL.MultiQueryForm
                 SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
                 SbBll.AppendLine(String.Format("{0}#endregion", Indent(2)));
             }
-            else
+            else if (Pks.Count > 0)
             {
                 SbBll.AppendLine(String.Format("{0}/// <summary>", Indent(2)));
                 SbBll.AppendLine(String.Format("{0}/// Constructor with only PK", Indent(2)));
@@ -1982,6 +1982,10 @@ namespace Ez_SQL.MultiQueryForm
                 SbBll.AppendLine(String.Format("{0}{{", Indent(2)));
                 SbBll.AppendLine(String.Format("{0}this.{1} = Id;", Indent(3), Pks[0].Name));
                 SbBll.AppendLine(String.Format("{0}}}", Indent(2)));
+                SbBll.AppendLine(String.Format("{0}#endregion", Indent(2)));
+            }
+            else
+            {
                 SbBll.AppendLine(String.Format("{0}#endregion", Indent(2)));
             }
             #endregion
