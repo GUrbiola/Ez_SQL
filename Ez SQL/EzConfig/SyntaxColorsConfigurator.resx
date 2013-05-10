@@ -117,4 +117,637 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="txtEditorPreview.Text" xml:space="preserve">
+    <value>CREATE PROCEDURE [dbo].[StartDistribution](@SalaryBudget FLOAT, @EquityBudget FLOAT, @ReviewPeriod INT, @CutOffDate DATETIME, @TopPerformerBudgetPercent FLOAT, @UserId INT, @LastCompRevisionDateAccepted DATE) AS
+BEGIN
+	SET NOCOUNT ON
+	BEGIN TRANSACTION;	
+
+	--before running this SP , we need to have the ranks updated and the employee data completed(JobCode, LocationName, Rating, Salary, Equity)
+	DECLARE @NeededBudgetSalary FLOAT, @NeededBudgetEquity FLOAT, @FactorSalary FLOAT, @FactorEquity FLOAT, @EmployeeId INT, @CompensationPeriodId INT, @CompensationDetailId INT, @Msg VARCHAR(200), @GeoFactor FLOAT
+	DECLARE @JobCodeId INT, @JobCode VARCHAR(20), @Location VARCHAR(100), @LocationId INT, @CreationActionLogId INT, @Salary FLOAT, @Rating INT, @Equity INT, @LastCompensationPeriodId INT
+	
+	SELECT
+		@LastCompensationPeriodId = MAX(Cp.Id)
+	FROM
+		dbo.CompensationPeriods Cp
+	
+	--FIXME maybe there is a better way to get the budgets...
+	--determine the expected budget for the salary raise, and for the equity raise
+	SELECT
+		@NeededBudgetSalary = ROUND(SUM( ISNULL(Rr.Raise, 0) * ISNULL(Gf.Factor, 1) ), 3),
+		@NeededBudgetEquity = ROUND(SUM( ISNULL(EM.Equity,0) * ISNULL(Gf.Factor, 1) ), 0)
+	FROM
+		dbo.Employee AS E 
+		INNER JOIN [dbo].[GetEmployeesForCompensationTool] () AS EmpsForComp ON E.EmployeeID = EmpsForComp.EmployeeId
+		LEFT OUTER JOIN dbo.Location L ON E.LocationName = L.Name
+		LEFT OUTER JOIN dbo.GeoFactors Gf ON L.GeoFactor = Gf.Id
+		OUTER APPLY dbo.GetRecommendedRaisePercent (E.JobCode, E.Salary, E.Rating) AS Rr
+		LEFT JOIN dbo.JobCodes J ON E.JobCode=J.Code --[aaguirre]
+		LEFT JOIN [dbo].[EquityMatrix] EM ON (J.Category = EM.Category AND J.[Level]= EM.[Level] AND E.Rating = EM.Rating) --[aaguirre]
+	WHERE
+		dbo.DetermineElegibility (E.EmployeeID, @LastCompensationPeriodId) = 1 --only elegible employees are considered for a raise
+	
+	--TODO this should be printed only when debugging, need to remove when it gets to prod
+	PRINT 'Needed budget for Salary:'
+	PRINT @NeededBudgetSalary
+	PRINT 'Needed budget for Equity:'
+	PRINT @NeededBudgetEquity
+	
+	BEGIN TRY
+	
+		IF @NeededBudgetSalary = 0 OR @NeededBudgetEquity = 0
+		BEGIN
+	   	RAISERROR ('We dont need any money and/or equity for this compensation period!', -- Message text.
+	              16, -- Severity.
+	              1 -- State.
+	              );		
+		END
+		
+		--fold Here we create first a the Compensation period record
+		
+			--Deactivate active compensation period, if any(create a log action for this deactivation)
+			INSERT INTO dbo.ActionLogs (ActionType, CompensationPeriod, [DATE], Description, Employee)
+			SELECT
+				9,--Automatic cancellation
+				Cp.Id,
+				getdate(),
+				'Compensation period cancelled automatically, because the creation of a new compensation period',
+				@UserId--Employee that is creating the new compensation period
+			FROM
+				dbo.CompensationPeriods Cp
+			WHERE
+				Cp.Status = 1--Any compensation period which is active
+					
+			UPDATE
+				dbo.CompensationPeriods
+			SET
+				dbo.CompensationPeriods.Status = 3, --Set as Cancelled...
+				dbo.CompensationPeriods.EndDate = getdate()
+			WHERE
+				dbo.CompensationPeriods.Status = 1--Any compensation period which is active
+			
+			INSERT INTO dbo.CompensationPeriods (EquityBudget, EquityExpectedBudget, ReviewPeriod, SalaryBudget, SalaryExpectedBudget, StartDate, Status, TopPerformerBudget, CutOffDate, LastCompRevisionAccepted)
+			VALUES(
+				@EquityBudget,
+				@NeededBudgetEquity,
+				@ReviewPeriod,
+				@SalaryBudget * (1.00 - @TopPerformerBudgetPercent),
+				@NeededBudgetSalary,
+				getdate(),
+				1,--Active
+				@SalaryBudget * @TopPerformerBudgetPercent,
+				@CutOffDate,
+				@LastCompRevisionDateAccepted
+				)
+		
+			--store the id of this compensation period to later use
+			SET @CompensationPeriodId = SCOPE_IDENTITY()
+			
+			PRINT 'Compensation Period:'
+			PRINT @CompensationPeriodId
+			
+			--Create a log action for this Creation of a new compensation period
+			INSERT INTO dbo.ActionLogs (ActionType, CompensationPeriod, [DATE], Description, Employee)
+			SELECT
+				5,--Distribution started
+				Cp.Id,
+				getdate(),
+				'A new compensation period has been created.',
+				@UserId --Employee that is creating the new compensation period
+			FROM
+				dbo.CompensationPeriods Cp
+			
+			--store the id of the action to reference to it later
+			SET @CreationActionLogId = SCOPE_IDENTITY()	
+			
+			PRINT 'Action Log:'
+			PRINT @CreationActionLogId
+			
+		--/fold
+		
+		
+		SELECT 
+			@FactorSalary = cp.FactorSalary,
+			@FactorEquity = cp.FactorEquity
+		FROM
+			dbo.CompensationPeriods cp
+		WHERE
+			cp.Id = @CompensationPeriodId
+	
+		TRUNCATE TABLE RecommendedBefDist
+		INSERT INTO RecommendedBefDist
+		SELECT
+			E.EmployeeID, 
+			Rr.Percentile,
+			Rr.Raise,
+			Rr.RaisePerc,
+			CASE 
+				dbo.DetermineElegibility (E.EmployeeID, 1000) 
+				WHEN 1 THEN ROUND(E.Salary * Rr.RaisePerc * Gf.Factor, 3)
+				ELSE 0 
+			END AS RaiseConsideringElegibility
+		FROM
+			dbo.Employee AS E LEFT OUTER JOIN dbo.Location L ON E.LocationName = L.Name
+			LEFT OUTER JOIN dbo.GeoFactors Gf ON L.GeoFactor = Gf.Id
+			OUTER APPLY dbo.GetRecommendedRaisePercent (E.JobCode, E.Salary, E.Rating) AS Rr
+		WHERE
+			E.Enabled = 1
+		
+		DECLARE PTR CURSOR FOR
+		SELECT EmployeeId, JobCode, LocationName, Salary, Rating, Equity  FROM [dbo].[GetEmployeesForCompensationTool] ()
+	
+		OPEN PTR
+	
+		FETCH NEXT FROM PTR
+		INTO @EmployeeId, @JobCode, @Location, @Salary, @Rating, @Equity
+	
+		WHILE @@FETCH_STATUS = 0
+		BEGIN
+			SET @JobCodeId = NULL
+			
+			--validate the jobcode does exists
+			IF NOT EXISTS (SELECT Jc.Code FROM dbo.JobCodes Jc WHERE Jc.Code = @JobCode)
+			BEGIN
+				SELECT @Msg = 'Job code not found: ' + @JobCode + ', for the Employee with Id: ' + CONVERT(VARCHAR(10), @EmployeeId)
+				RAISERROR(@Msg, 16, 1)
+			END
+			--get the JobCodeId
+			SELECT @JobCodeId = Jc.Id FROM dbo.JobCodes Jc WHERE Jc.Code = @JobCode
+			
+			--validate that the location does exists, to be mapped to our location list
+			IF NOT EXISTS (SELECT Lc.Name FROM dbo.Location Lc WHERE Lc.Name = @Location)
+			BEGIN
+				SELECT @Msg = 'Location not found: ' + @Location + ', for the Employee with Id: ' + CONVERT(VARCHAR(10), @EmployeeId)
+				RAISERROR(@Msg, 16, 1)
+			END
+			--get the LocationId
+			SELECT @LocationId = Lc.LocationID, @GeoFactor = Gf.Factor FROM dbo.Location Lc INNER JOIN dbo.GeoFactors Gf ON Lc.GeoFactor = Gf.Id WHERE Lc.Name = @Location
+			
+			
+			INSERT INTO dbo.CompensationDetails(CompensationPeriod, Employee, IsElegible, IsPromoted, IsTopPerformer, IsWaitingReclasification, JobCode, Location, NewJobCode, RadfordPercentile, Rating, Salary, Equity, SubmissionRank, Rank, Manager, RecommendedSalaryRaise, RecommendedEquityRaise)
+			SELECT
+				@CompensationPeriodId,
+				E.EmployeeID,
+				dbo.DetermineValidityForComp (@EmployeeId, @CompensationPeriodId),--Determine if the current employee is elegible for this comp period
+				0,                                     --Promoted Default: false
+				0,                                     --Top Performer Default: false
+				0,                                     --Waiting Reclasification Default: false
+				@JobCodeId,
+				@LocationId,
+				NULL,                                  --New job code default: false
+				Rr.Percentile,                         --Percentile from the current salary(before the raise)
+				E.Rating,
+				E.Salary,
+				E.Equity,
+				99,                                    --default level for submission rank
+				E.Rank, 							  --employee's rank
+				E.ManagerID,                           --employee's manager
+				CASE 
+					dbo.DetermineElegibility (@EmployeeId, @CompensationPeriodId) 
+					WHEN 1 THEN ROUND(@Salary * Rr.RaisePerc * @GeoFactor * @FactorSalary, 3)
+					ELSE 0 
+				END,                                   --Recommended Salary Raise * @GeoFactor * Factor
+				CASE 
+					dbo.DetermineElegibility (@EmployeeId, @CompensationPeriodId) 
+					WHEN 1 THEN 
+						--ROUND(CONVERT(FLOAT, @Equity) * Rr.RaisePerc * @GeoFactor * @FactorEquity, 0)
+						ROUND(CONVERT(FLOAT, ISNULL(EM.Equity,0)) * @GeoFactor * @FactorEquity, 0) --[aaguirre]
+					ELSE 0 
+				END                                    --Recommended Equity Raise * @GeoFactor * Factor
+			FROM
+				dbo.Employee AS E 
+				OUTER APPLY dbo.GetRecommendedRaisePercent (E.JobCode, E.Salary, E.Rating) AS Rr
+				LEFT JOIN dbo.JobCodes J ON E.JobCode=J.Code --[aaguirre]
+				LEFT JOIN [dbo].[EquityMatrix] EM ON (J.Category = EM.Category AND J.[Level]= EM.[Level] AND E.Rating = EM.Rating) --[aaguirre]
+			WHERE
+				E.EmployeeID = @EmployeeId
+			
+			--store the id of this compensation detail to later use
+			SET @CompensationDetailId = SCOPE_IDENTITY()
+	
+			
+			--start salary history
+			INSERT INTO dbo.SalaryHistory (ActionLog, CompensationDetail, Creation, IsLatest, RadfordPercentile, SalaryRaise, RecommendedSalaryRaise)
+			SELECT
+				@CreationActionLogId, --Action Log
+				@CompensationDetailId,--Compensation Period
+				getdate(),            --Creation of the record
+				1,                    --Is this the latest(since is the first record, it always is)
+				dbo.GetRadfordPercentile 
+				(
+					@JobCode /*varchar*/,
+					@Salary + 
+						CASE
+							dbo.DetermineElegibility (@EmployeeId, @CompensationPeriodId) 
+							WHEN 1 THEN ROUND(@Salary * Rr.RaisePerc * @GeoFactor * @FactorSalary, 3)
+							ELSE 0 
+						END, 
+					@Rating /*int*/
+				), 					 --Percentile according to Radford data
+				CASE 
+					dbo.DetermineElegibility (@EmployeeId, @CompensationPeriodId) 
+					WHEN 1 THEN ROUND(@Salary * Rr.RaisePerc * @GeoFactor * @FactorSalary, 3)
+					ELSE 0 
+				END,                  --Manager Salary Raise
+				CASE 
+					dbo.DetermineElegibility (@EmployeeId, @CompensationPeriodId) 
+					WHEN 1 THEN ROUND(@Salary * Rr.RaisePerc * @GeoFactor * @FactorSalary, 3)
+					ELSE 0 
+				END                   --Recommended Salary Raise
+			FROM
+				dbo.GetRecommendedRaisePercent (@JobCode /*int*/, @Salary /*float*/, @Rating /*int*/) AS Rr
+			
+			--start equity history
+			INSERT  INTO dbo.EquityHistory (ActionLog, CompensationDetail, Creation, EquityRaise, RecommendedEquityRaise, IsLatest)
+			SELECT
+				@CreationActionLogId, --Action Log
+				@CompensationDetailId,--Compensation Period
+				getdate(),            --Creation of the record
+				CASE 
+					dbo.DetermineElegibility (@EmployeeId, @CompensationPeriodId) 
+					WHEN 1 THEN 
+						--ROUND(CONVERT(FLOAT, @Equity) * Rr.RaisePerc * @GeoFactor * @FactorEquity, 0)
+						ROUND(CONVERT(FLOAT, ISNULL(EM.Equity,0)) * @GeoFactor * @FactorEquity, 0) --[aaguirre]
+					ELSE 0 
+				END,                  --Manager Equity Raise
+				CASE 
+					dbo.DetermineElegibility (@EmployeeId, @CompensationPeriodId) 
+					WHEN 1 THEN 
+						--ROUND(CONVERT(FLOAT, @Equity) * Rr.RaisePerc * @GeoFactor * @FactorEquity, 0)
+						ROUND(CONVERT(FLOAT, ISNULL(EM.Equity,0)) * @GeoFactor * @FactorEquity, 0) --[aaguirre]
+					ELSE 0 
+				END,                  --Recommended Equity Raise
+				1                     --Is this the latest(since is the first record, it always is)
+			FROM
+				dbo.GetRecommendedRaisePercent (@JobCode /*int*/, @Salary /*float*/, @Rating /*int*/) AS Rr
+				JOIN dbo.Employee AS E ON (E.EmployeeID = @EmployeeId) --[aaguirre]
+				LEFT JOIN dbo.JobCodes J ON E.JobCode=J.Code --[aaguirre]
+				LEFT JOIN [dbo].[EquityMatrix] EM ON (J.Category = EM.Category AND J.[Level]= EM.[Level] AND E.Rating = EM.Rating) --[aaguirre]
+
+				
+			--start top performer history
+			INSERT INTO dbo.TopPerformerHistory (ActionLog, CompensationDetail, Creation, IsLatest, TopPerformerRaise)
+			VALUES(
+				@CreationActionLogId, --Action Log
+				@CompensationDetailId,--Compensation Period
+				getdate(),            --Creation of the record
+				1,                    --Is this the latest(since is the first record, it always is)
+				0                     --Top performer salary raise always starts as 0, since this is expected to be set by the VP MANUALLY
+				)
+			
+			--To start the team budget history(bith tables) we need to have all the employees in the CompensationDetails table,
+			--so this is also pending until the end of the execution of the cursor
+			
+			FETCH NEXT FROM PTR
+			INTO @EmployeeId, @JobCode, @Location, @Salary, @Rating, @Equity
+		END
+	
+		CLOSE PTR
+		DEALLOCATE PTR
+		
+		--From the data calculated before we now populate the team budget history tables
+		INSERT INTO dbo.BudgetSalaryHistory (ActionLog, CompensationDetail, Creation, IsLatest, TotalBudget)
+		SELECT
+			@CreationActionLogId,
+			Cd.Id,
+			getdate(),
+			1,
+			ROUND(ISNULL(( SELECT SUM(Cd2.RecommendedSalaryRaise) FROM dbo.GetHierarchyNode (Cd.Employee) Hn INNER JOIN dbo.CompensationDetails Cd2 ON Hn.EmployeeId = Cd2.Employee AND Cd2.CompensationPeriod = @CompensationPeriodId WHERE Hn.EmployeeId != Cd.Employee ), 0), 3)
+		FROM
+			dbo.CompensationDetails Cd
+		WHERE
+			Cd.CompensationPeriod = @CompensationPeriodId
+	
+		INSERT INTO dbo.BudgetEquityHistory (ActionLog, CompensationDetail, Creation, IsLatest, TotalBudget)
+		SELECT
+			@CreationActionLogId,
+			Cd.Id,
+			getdate(),
+			1,
+			ROUND(ISNULL(( SELECT SUM(Cd2.RecommendedEquityRaise) FROM dbo.GetHierarchyNode (Cd.Employee) Hn INNER JOIN dbo.CompensationDetails Cd2 ON Hn.EmployeeId = Cd2.Employee AND Cd2.CompensationPeriod = @CompensationPeriodId WHERE Hn.EmployeeId != Cd.Employee ), 0), 0)
+		FROM
+			dbo.CompensationDetails Cd
+		WHERE
+			Cd.CompensationPeriod = @CompensationPeriodId	
+			
+		--Then we update the complete the compensation details table with the explanation of why each employee has no raise recommendation
+		UPDATE
+			Cd
+		SET
+			Cd.RecommendationZero = dbo.GetZeroRecommendationExplanation ( Cd.Employee, Cd.CompensationPeriod )
+		FROM
+			dbo.CompensationDetails Cd
+		WHERE
+			Cd.CompensationPeriod = @CompensationPeriodId
+			AND Cd.RecommendedSalaryRaise = 0
+		
+		--refresh the ranks for each employee
+		EXEC dbo.RefreshEmployeeRanks 
+		
+		--adjustments to the equity budget
+		DECLARE @CurEqB INT, @MainCompDetail INT, @SecondaryCompDetail INT
+		SELECT
+			@CurEqB = Beh.TotalBudget,
+			@MainCompDetail = Cd.Id
+		FROM
+			dbo.BudgetEquityHistory Beh INNER JOIN dbo.CompensationDetails Cd ON Cd.Id = Beh.CompensationDetail
+		WHERE
+			Cd.Employee = 344--main
+			AND Cd.CompensationPeriod = @CompensationPeriodId
+		
+		--ensure main has the whole budget, that was meant to be distributed
+		UPDATE
+			Beh
+		SET
+			Beh.AvailableBudget = 0,
+			Beh.TotalBudget = @EquityBudget
+		FROM
+			dbo.BudgetEquityHistory Beh
+		WHERE
+			Beh.CompensationDetail = @MainCompDetail
+		
+		--now, we need to adjust secondary's equity with the difference
+		SELECT
+			@SecondaryCompDetail = Cd.Id
+		FROM
+			dbo.BudgetEquityHistory Beh INNER JOIN dbo.CompensationDetails Cd ON Cd.Id = Beh.CompensationDetail
+		WHERE
+			Cd.Employee = 31--secondary
+			AND Cd.CompensationPeriod = @CompensationPeriodId		
+		
+		UPDATE
+			Beh
+		SET
+			Beh.TotalBudget = Beh.TotalBudget + (@CurEqB - @EquityBudget),
+			Beh.AvailableBudget = (@CurEqB - @EquityBudget)
+		FROM
+			dbo.BudgetEquityHistory AS Beh
+		WHERE
+			Beh.CompensationDetail = @SecondaryCompDetail
+			
+		
+		
+			
+		
+	END TRY
+	BEGIN CATCH
+	   IF @@TRANCOUNT &gt; 0
+	       ROLLBACK TRANSACTION;
+		
+		EXEC dbo.ReThrowErrorWithLogging
+			@Debug = 1, --bit
+			@logError = 1, --bit
+			@ProcedureName = 'StartDistribution' --varchar
+	END CATCH
+	
+	IF @@TRANCOUNT &gt; 0
+	   COMMIT TRANSACTION;	
+END
+</value>
+  </data>
+  <metadata name="treeIcons.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="treeIcons.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADC
+        NgAAAk1TRnQBSQFMAgEBCQEAAUABAAFAAQABFgEAARYBAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFY
+        AwABQgMAAQEBAAEYBQABEAFELQAG/wH2AfMB8Qn/5AAG/wb+A/0D/Ab7AacBWQE2AfQB8gHxBvsD/AP9
+        Bv4G/9IAA/4D/QP7A/gD9QPwA+wD6QGkAUwBKQGrAWsBTwHWAc4BywPsA/AD9AP4A/sD/QP+0gAD/wP+
+        A/0D/AP7A/oD+AP3AaUBTQEpAa4BYAE4Aa4BaQFKAd4B0wHOAfIB8AHvA/sD/AP9A/4D/+QABv8BowFN
+        ASoBwQF7AU8BsQFlAT0BsQFqAUsB2wHDAbgB+QH4Aff2AAGlAU0BKgG+AXcBSwG0AWoBQgGxAWgBQQGy
+        AWsBTQHcAcQBugH5AvjzAAGkAU4BKwG+AXcBTAGnAVUBLQGxAWgBPwGsAWQBPgGxAWsBTAHbAcUBugH6
+        AfkB+NIAAcYBlwGDAcYBlwGDAcYBlwGDAcYBlwGDAcYBlwGDAcYBlwGDAcYBlwGDAcYBlwGDAcYBlwGD
+        AcYBlwGDAaMBTgEoAcABewFQAaYBUQEpAakBVQEtAawBYwE8AaoBYAE7AbEBaQFJAdwBxAG6AfsC+s8A
+        AagBUgErAb4BdwFNAcABeQFQAcABeQFQAcABeQFQAcABeQFQAcABeQFQAb4BdwFNAbwBcwFKAbwBcwFJ
+        Ab0BdgFNAcMBgQFVAaIBTwEnAacBUQEpAakBVAEsAaoBXgE3AacBWAEzAa4BYwFBAe8B6AHmA//MAAGr
+        AVUBLQG/AXkBUQGiAUsBKAGiAUsBKAGiAUsBKAGiAUsBKAGiAUsBKAGhAUsBKAGhAUsBJwGmAU8BKgGm
+        AVEBKgGpAVQBLAGhAUwBJgGkAU4BKAGnAVEBKQGoAVMBKgGqAVgBMQGnAVIBLAGuAWUBRQH0AfAB7gP/
+        yQABrAFXAS4BvgF4AVABqQFTASoBqQFTASoBqQFTASoBqQFTASoBqQFTASoBqQFTASoBqQFTASoBqQFT
+        ASoBqQFTASoBqQFTASoBqQFTASoBqQFTASoBqQFTASoBqQFTASoBqQFTASoBrgFcATMBqAFSASwBqAFS
+        AS0B8QHrAejJAAGtAVoBLwHAAX0BVAG0AWEBMgG0AWEBMgG0AWEBMgG0AWEBMgG0AWEBMgG0AWEBMgG0
+        AWEBMgG0AWEBMgG0AWEBMgG0AWEBMgG0AWEBMgG0AWEBMgG0AWEBMgG0AWEBMgG0AWEBMgG0AWEBMgG2
+        AWQBNgGpAVYBLwG5AXgBWckAAa8BXAExAcUBhQFeAb8BbwE5Ab8BbwE5Ab8BbwE5Ab8BbwE5Ab8BbwE5
+        Ab8BbwE5Ab8BbwE5Ab8BbwE5Ab8BbwE5Ab8BbwE5Ab8BbwE5Ab8BbwE5Ab8BbwE5Ab8BbwE5Ab8BcAE6
+        AbwBawE3Aa8BXwE2AbsBfAFeAesB4QHcyQABsgFfATQBygGNAWkByQGFAVcByQGFAVcByQGFAVcByQGF
+        AVcByQGFAVcByQGFAVcByQGGAVgBygGGAVkBywGIAVsBywGIAVkByQGCAU8BxgF8AUcBxgF8AUcBxwF+
+        AUkBxAF6AUgBsgFiATkBvwGHAW8B6wHhAdsD/skAAbMBYQEzAccBhgFjAckBjQFrAckBjQFrAckBjQFr
+        AckBjQFrAckBjQFrAckBjQFrAcoBkAFvAcsBkAFwAc4BlAF0Ad0BsAGVAdUBmQFsAc8BjAFZAdABjwFc
+        AcwBigFeAboBcQFNAcUBlAF+AfEB7AHpA/7MAAHeAcYBuAHeAcYBuAHeAcYBuAHeAcYBuAHeAcYBuAHe
+        AcYBuAHeAcYBuAHeAcYBuAHeAcYBuAHeAcYBuAG0AWABMAHdAa8BkQHUAZcBZAHXAZwBbAHSAZgBbwG5
+        AXIBUAHKAZ8BjQHyAe0B6wP+7QABtgFjATIB3QGvAZEB2AGgAXAB1gGgAXkBuwF4AVYBvQGDAWsB7AHj
+        Ad8D/vAAAbIBXgEvAeEBuAGhAd0BrwGQAcEBgAFaAbsBgAFoAeUB1wHRAvsB+vMAAa0BWAEsAeIBvgGx
+        AbkBcgFQAccBmAGCAfQB8QHvA/z2AAGpAVMBLgG2AWwBSAHHAZgBhAH5AfgB9/wAAaQBUQErAckBmQGE
+        A/z/AAGsAWABP/YAA/0D+APxA8IDtQO0A70D7QP1A/sD/pYAA/sB1AHMAbgBogGJAVIBqQGSAWEB3gHY
+        AcsD/BgAA/wB4AHaAc4BqQGUAWIBoQGLAVMB1AHMAbkC+gH5A/8SAAP9A/gD8QO/BtkDwAPsA/MD+QP+
+        EgAB9QHtAesB8QHcAdcB8QHbAdUB9wHyAfEB8gHiAd4B7wHTAcwB8AHXAdEB9gHwAe4B8wHlAeEB7wHT
+        AcwB7wHTAcwB9QHtAesB9AHoAeUB7wHTAcwB7wHTAcwB9QHrAegB9AHrAegB8AHVAc4B8gHgAdwB+QH1
+        AfRIAAHYAdABvQGNAXABKAGNAW4BJgGNAW4BJgGkAYwBVAHoAeQB2wP+EgAD/gHoAeQB3AGcAYIBSAGN
+        AW4BJgGNAXABKAGQAW8BKgHZAdEBwAP9DAAD5QPfAwAD/wP4A8UG1gPGA/cD/wMAA98D5A8AAewBwAG0
+        AecBigFyAekBlgGAAfEB2wHVAeoBrAGbAekBgQFnAeoBjQF1Ae8B1QHNAewBtQGmAekBgQFnAekBgQFn
+        Ae4BzQHEAe0BvQGyAekBgQFnAekBgQFnAe4BxgG7Ae4BxgG7AeoBgwFoAegBkAF5AfIB4AHbSAABsAGb
+        AWwBkAFyASoBkAFyASoBkAFyASoBkwFyASwBzgHDAakC+gH5EgAC+QH4AckBuwGfAZABcgEqAZABcgEq
+        AZABcgEqAZABcgEqAbUBogF3AvwB+wkAA9UDvwPEA8cDwgPEBtUD1gPVA8QDwwPHA8kDwwPVDAAB5gGl
+        AZQB5wGjAZAB8AHbAdUB8gHhAdsB8QHdAdYB8AHaAdMB8QHbAdUB8QHgAdoB8QHeAdgB8AHaAdMB8AHa
+        AdMB8QHfAdoB8QHeAdgB8AHaAdMB8AHaAdMB8QHfAdkB8QHeAdkB7wHTAcoB5AGAAWUB7gHUAc1IAAG+
+        Aa4BhwGSAXQBLQGTAXIBKwGTAXIBKwGSAXQBLQGwAZkBagHwAe4B6Q8AA/8B8AHtAekBpQGLAVIBkgF0
+        AS0BkwFyASsBkgF0AS0BkwFyASsBwgGxAY0D/AYAA+QDuwPJA80DzwPSA9QD1QPWA9cG2APXA9YD1QPS
+        A74D5AkAAe8B2AHRAe0BzwHGAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHc
+        AfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfEB3gHZAewBxQG6
+        AfQB6wHoAwAD/gP9EgAD/Qz+A/8JAAP+A/wD/QP/BgAB4QHbAc4BlgF5ATIBlQF0AS0BlQF0AS0BlAF2
+        AS8BmgF7ATkB1gHNAbkB8QHvAeoB8QHvAesB8QHvAesB8QHvAesB8QHvAesB8AHtAegB1QHKAbUBlwF2
+        ATABlAF2AS8BlQF0AS0BlAF2AS8BlgF5ATEB4AHZAcsC/gH9BgAD3QO5A78DwAPDA8kJ0gPUA9gD3Qbb
+        A9gDzQPAA90JAAHsAdUBzgHrAc0BxQHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHy
+        AeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHwAd4B2AHn
+        AcIBtwHyAeoB5wMAAcABzgHlAa8BwQHfA/sMAAP8AcQB0QHkAakBuwHWAcoBxAG1Ac8BxQGzAc8BxQGz
+        AdIBygG6AeIB3gHVAvYB9QLwAfQCvwHbAqMBzQKmAcwCzwHgA/wDAAL3AfUBqwGSAVgBmAF2AS8BmAF2
+        AS8BlwF4ATEBmAF2AS8BqQGQAVgBtwGiAXUBuQGkAXkBuQGkAXkBuAGlAXkBuQGkAXkBtwGiAXUBpwGM
+        AVIBmAF2AS8BlwF4ATEBmAF2AS8BlwF4ATEBrQGUAV0B9AHzAfAD/wkAA7sDxgPIA8cDzAPBA7gDxAPP
+        A9ID2APiA94D0APKA7oMAAHWAZkBiAHcAaABjQHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHy
+        AeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHv
+        AdkB0gHNAXIBWAHnAc8ByAMAAU0BgQHMASYBYwHEAdcB3wHrA/8GAAP/AeQB6QHwAU4BfwHKARgBVQGw
+        AaEBlgF7Ab4BsQGYAb0BsAGVAa4BnQF5AZ0BhwFYAa8BpQGbAY4BjAG9AnoBvgKxAdMCoAHJAlgBpALE
+        AdgDAAP9AdABxQGrAZsBegEzAZoBeQExAZkBegEzAZsBeQExAZoBewEzAZoBeQExAZoBeQExAZoBeQEx
+        AZkBegEzAZoBeQExAZkBegEzAZoBeQExAZsBeQExAZoBewEzAZoBeQExAZsBfQE1AdEBxQGsAvsB+gwA
+        A7IDxAPIA9MDxwPJA8YDxAPBA8sD0wPUA9kDzQPIA7QMAAHTAZcBhAHYAZ4BjAHyAeEB3AHyAeEB3AHy
+        AeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHy
+        AeEB3AHyAeEB3AHyAeEB3AHuAdkB0gHHAW8BUwHlAc4BxwMAAZ4BuAHbARYBXAHHAX8BoQHVAfgE+QH6
+        AvkB+gH4AvkBpQG7Ad4BIAFiAcUBNQFiAZgB0AHNAcYB+AH3AfYC9wH2Ae4B7QHpAbMBogF/AXkBYgFH
+        AXQBbQGfAtUB5wP7AvgB+QKfAccCXQGiAwAD/gHvAewB5wGjAYUBQgGcAX0BNQGbAX0BNQGdAX0BNgGc
+        AX0BNgGcAX0BNQGcAX0BNQGcAX0BNQGbAX0BNQGcAX0BNQGcAX0BNgGcAX0BNgGdAX0BNgGcAX0BNgGc
+        AX0BNQGnAYoBSQHsAegB4gP+BgAD/wP4A7EDxgPOA8sDyAPNA8YDuQO4A8EDyQPHA88D0QPLA7YD+AP/
+        BgAB5wHNAcYB5wHIAb4B8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHh
+        AdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8QHeAdgB4QG3AaoB8AHm
+        AeMDAAHwAfIB9QEcAWIByQEiAWUBygFQAYABzAFRAYEBywFRAYABygFQAYABywEpAWoBygEWAVwBxQFn
+        AW4BaQHbAdgB0Ab/AvkB+AG7AawBjQF7AWIBSgGXAZIBrwLyAfUGAAL1AfcC4AHoBgAB+QH4AfcBwgGw
+        AYkBnwF9ATYBngF/ATgBnwF+ATcBnwGAATkBnwF9ATYBnwF9ATYBnwF9ATYBngF/ATgBnwF9ATYBnwF/
+        ATkBnwF+ATcBnwF+ATcBnwGAATkBoAF+ATYBxQGyAY0B9wH2AfQGAAPWA7IDugPGA8sD0wPIA80DwQP0
+        BgAD8wO9A7wDxAPXA88DywO9A7QD1gMAAewB2wHWAesB0gHLAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHc
+        AfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHc
+        AfIB4QHcAfAB3wHZAecBygHAAfMB7AHqAwAD/gFzAZoB1AEcAWEBygFHAYEB0AGBAacB2AGCAacB2QFV
+        AYoB0QEeAWUBygEvAWYBrAGNAXsBUQG8AakBhgHOAcYBsgHOAcUBsQG8AasBiQGeAYUBVQFtAV4BdwGM
+        AYsBwAL0AfYGAAP/A/4GAAP9AeIB3AHOAaQBggE+AaEBgQE7AaIBgAE5AaEBgQE7AaIBgAE5AcMBrgGD
+        Ac4BvwGeAc8BwAGfAbwBpgF2AaEBgQE7AaIBgAE5AaIBgAE5AaEBgQE7AaUBgwE/AeIB2wHNA/0GAAO9
+        A8EDxgPKA88D0wPMA9ADtAwAA7UDxgO6A88D0wPPA8oDxgO9AwAByQGUAYIB0gGbAYkB8gHhAdwB8gHh
+        AdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHh
+        AdwB8gHhAdwB8gHhAdwB8gHhAdwB7gHYAdIBvAFqAVAB4gHNAcYGAAHUAdwB6AEdAWIBxwGAAaEB1wP9
+        AfwC/QGoAb4B3wEeAWIBxwFiAXgBjwGhAYUBTQG1AZoBaQG6AacBgAG3AaMBewGqAYsBVgGzAZ8BgAGi
+        AZ8BwwJqAbsC6QHwAwAD/wLbAeYCjgG6CQAB9AHyAe8BtgGbAWgBowGBAT0BpAGCATsBowGBAT0BpAGC
+        ATsB3AHSAb8D/QMAAcsBuQGXAaMBgQE9AaUBggE7AaQBggE7AaMBgQE9AbsBowFzAfEB7wHqCQADvgPG
+        A8oDzgbSA84D0gOzDAADuQPRA8QDxQPOA9IDzgPKA70DAAHLAZUBhAHSAZ0BigHyAeEB3AHyAeEB3AHy
+        AeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHy
+        AeEB3AHyAeEB3AHyAeEB3AHuAdkB0gG9AW0BUQHjAc0BxgYAAfkC+gFKAX4BywFaAYgBzgHnAesB8QHu
+        AfAB9AF3AZwB0wE+AXkBygGmAawBrgGxAZIBWwHgAdsB0gP/A/4B7gHsAegBqQGMAVkBmAGGAYcCXwGz
+        Ap0BygLvAfMC5QHsAlcBoAJ/AbYJAAL6AfkB1gHJAbIBqgGHAUIBpgGDAT8BpgGDAT8BpgGDAT8BvQGk
+        AXMC+wP6AfkBqQGIAUUBpgGDAT8BpgGDAT8BpgGDAT8BqgGHAUIB1wHLAbEC+gH5CQAD1gO3A7sD0gPV
+        A9MD0APTA8ID8gYAA/IDxgPWA84GyAPRA78DvAPWAwAB4gHGAb0B4wHBAbUB8gHhAdwB8gHhAdwB8gHh
+        AdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHh
+        AdwB8gHhAdwB8gHhAdwB7wHcAdYB2gGtAZ4B7gHjAd8GAAP9AbIBxAHfATkBcgHIAbkBygHjAdAB2wHr
+        AUEBegHLAZcBsgHbAcoBxQG8AboBmgFhAdsB1AHIAfkE+AH3Ae0B6QHkAbMBkwFdAcsBvAGmAdQB0wHk
+        AnUBvAJQAacCTwGlAoQBvQLzAfYJAAP+AeoB5gHdAbIBkwFVAakBhQE/AagBhQFBAakBhQE/AasBiAFC
+        AfAB7QHnAeIB2gHLAakBhQE/AagBhQFBAakBhQE/AakBhQFAAbUBmAFgAeoB5QHcA/8MAAP/A/kDugbY
+        A88D1gPdA8cGvgPEA9kD1wbSA8oDuAP5A/8GAAHwAeIB3gHuAdkB0gHyAeEB3AHyAeEB3AHyAeEB3AHy
+        AeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHy
+        AeEB3AHyAeEB3AHxAeAB2gHsAdQBzAH1Ae8B7gYAA/8B6QHtAfIBPwF3AckBcAGXAdQBjAGrAdoBOQF1
+        AckB0gHcAeoB4QHcAdIBwAGlAXMBxgGvAYcBzQG9AaEBzAG6AZsBvwGnAXsBxQGsAYMB5wHiAdoD/wL5
+        AfoC7QHxAvAB8wP9DwAB9QH0AfIBywG4AZIBrAGIAUQBqwGIAUQBqwGIAUQBqwGIAUQB0gHDAaYBvgGm
+        AXcBqwGIAUQBqwGIAUQBqwGIAUQBrAGIAUUBzgG8AZkB9gH1AfMVAAO0A9wD3gPVA9wG3gbdA9wD2QPX
+        A9YD3gPTA7UMAAHYAakBmQHdAawBnAHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHy
+        AeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHyAeEB3AHvAdoB0wHO
+        AYYBbwHoAdUBzwkAAfgB+QH6AY8BqwHYATQBcAHMATYBcgHLAXoBngHVAe4B8QH0AfYB9QHzAeIB2wHN
+        Ad4B1QHDAd4B1AHDAd4B1AHDAeEB2AHKAe4B6gHlA/0eAAL9AfwB4QHYAcYBswGRAU8BrgGKAUYBrwGL
+        AUQBrwGLAUQBtgGWAVcBrgGKAUYBrwGLAUQBrgGKAUYBrwGLAUQBtQGXAVYB4QHZAcgD/hUAA74D4APj
+        A+kD2gPWCd0D3APUA9YD5gPkA9wDvQwAAdkBpAGRAd0BpwGWAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHc
+        AfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHc
+        AfIB4QHcAe8B2gHTAdEBgQFmAegB0wHMCQAD/QHWAd4B6gFLAYEBzgFEAX0BzQHAAc8B5QH7AvwV/yQA
+        Ae8B7AHnAcMBqQF5AbABjAFJAbABjAFGAbEBjAFGAbEBjAFGAbABjAFIAbEBjAFGAbABjAFIAbEBjAFH
+        AcUBrgGAAfIB7wHrFQAD3APSA+UD6QPqA+sD5APnCeYD4wPqA+kD6APkA9AD3AkAAeYBxgG7AecBwgG1
+        AfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHc
+        AfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfIB4QHcAfAB3QHXAeABrQGcAe8B4gHeDAAC+QH6AdMB3QHr
+        Ac8B2gHpAfQB9gH4PAAB+gL5AdYByAGrAbYBkAFNAbMBjwFJAbQBjwFJAbQBjwFJAbQBjgFLAbQBjwFJ
+        AbMBjgFLAbcBlAFRAdkBywGwAvwB+xUAA+MD1QPqA+sD7gbtD+4G7QPsA+oD1QPkCQAB8wHoAeUB8QHe
+        AdgB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHh
+        AdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdsB8AHcAdUB9wHyAfEPAAb+PwAD/gHn
+        AeIB1QG+AZ8BZgG2AZEBSwG3AZEBSwG3AZEBSwG2AZABTQG3AZEBSwG1AZABTQHBAaQBbAHqAeUB2xsA
+        A9MD2APfBswDzwzyA9UDywPOA+ID3QPUDAAB6gG/AbEB6wG9Aa4B8gHhAdwB8gHhAdwB8gHhAdwB8gHh
+        AdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHhAdwB8gHh
+        AdwB8gHhAdwB8AHcAdYB5gGmAY8B8AHfAdpXAAH1AfQB8QHOAboBkgG4AZMBUAG4AZIBTwG4AZMBTwG3
+        AZIBTwG4AZIBTwG6AZUBUAHQAbsBkgL5AfgeAAPjA90GAAP3A9gG+APXA/cGAAPdA+IPAAHsAcQBtgHp
+        AacBkgHtAb8BsQHxAd4B2AHtAcgBvAHtAbYBpQHtAbsBqwHwAdsB1AHuAcwBwQHtAbYBpQHtAbYBpQHw
+        AdcBzwHvAdABxQHtAbYBpQHtAbYBpQHvAdMBygHvAdMBygHsAbQBogHqAaIBigHwAeEB21cAA/4B4AHW
+        AsEBnQFeAbsBlQFQAbsBlQFQAboBlAFSAbsBlQFQAcEBnwFjAeMB2gHJA/4qAAP/A8kG9QPKA/8bAAHx
+        AeEB2wHtAcQBtwHtAcIBswHzAegB5QHuAc0BwgHtAbcBpQHtAb0BrQHyAeQB4AHvAdMBygHtAbcBpQHt
+        AbcBpQHxAeAB2gHwAdgBzwHtAbcBpQHtAbcBpQHxAdwB1QHxAdsB1QHtAbkBqAHuAcwBwAH1Ae8B7VoA
+        AfYB9QHzAdQBvQGVAb4BmQFWAb4BmAFSAb0BlwFUAcABmwFWAdQBwAGYAvoB+TAAA9YGygPWtwAB+AH3
+        AfUB3wHSAbgBzgGyAX0BzQGyAX4B4gHVAb8B+wL6YwAG/yf+Bv91AAP+Bv0D/lEAA/0D9AHrAuwD5QHg
+        AuED3gPbA9kD1gHVAtYE1QLWAdUC1gHYAtkD3gPlA+8D+wP+bAAD/wP7AekB5wHlAcgBwwG9AcQBvAG2
+        AesB6QHoA/wD/wkAA/k29gP5AwAD/wP1AaoBrQGsAaABowGiAaABowGiAaABowGiAaABowGiAaABowGi
+        AaABowGiAaABowGiAaABowGiAaABowGiAaABowGiAaABowGiAaABowGiAaABowGiAaABowGiAaUCpwPs
+        A/5sAAP9AeEB3QHaAcEBrwGbAdIBwwGyAdcBzQG9AcYBtwGlAegB5gHkA/4GAAOhNk8DlgP2AwAD/wPv
+        AZ8BowGiAeUB5gHnAeMB5QHmAeMC5QHjAeQB5QHiAuQB4gLkAeIB4wHkAeEC4wHgAuMB4ALjAeAC4gHg
+        AuIB3wHhAeIB4wLkAakBrAGrAeUB5gHlA/5pAAP+Ae0B7AHpAcoBwQG3AdsBzwG/AdMBxQGzAdABwgGu
+        AdUBxgGzAdIBywHDAe8B7QHsA/4DAANPAdEBzQHKAeAB3QHbAe4B7QHsAv0B/Cr/A08D9gMAA/8D7wGf
+        AaMBogHkAeUB5gHWAdkB2gHKAcwBzQHJAswByAHLAcwBxwHKAcsBxgHJAcoBxAHIAckBwwLIAcMCxwHC
+        AcYBxwHBAcUBxgHJAc0BzgHdAuABqQGsAasB5wHoAecD/gwAA/4C8QH0At4B6AL3AfgC9gH0AegB5QHd
+        AeUB4AHXAeUB4AHXAeUB4AHXAeQB4AHXAeUB4QHYAe8B7QHpA/4D+gHmAe0B6QHaAecB4AHiAewB5gH4
+        AfkB+AP/FQAD/QH2AvUB9wL2A/4DAAH1AfQB8wHSAccBuwHUAccBtQHgAdkBzgHlAeEB3AHmAeIC3gHU
+        AcgBygG6AasBygG/AbMB8wLyAwADTwHQAcwByQHfAdwB2gHtAesB6gP7Kv8DTwP2AwAD/wPyAaEBpQGk
+        AegC6gHYAdsB3AHLAc4BzwHLAc0BzgHKAs0ByQLMAcgCywHHAsoBxQHJAcoBxQLJAcQByAHJAcMBxwHI
+        AcsBzgHPAd8C4QGpAawBqwHrAewB6wP/DAAC+QH6AqoByAJLAZcCzgHeAdYB0AHCAakBkAFcAaUBigFL
+        AaQBiQFPAaEBiAFPAaABiAFPAaABiAFSAcYBuwGjAfEB9AHyAbgB1wHGAYUBvwGfAYsBwgGlAX0BvgGa
+        AaABywGzAfIB9QH0DAAD/AHvAe4B7QH3AvYB7gHtAesB2wHXAdMB1QHPAcgD+QLxAfAB3AHYAdUB2AHQ
+        AcUB5QHaAdEB2wHVAdAC8wHyA/cB2gHUAcwB4QHZAcsB2wHQAcIB5QHiAd8DAANPAc4BygHGAdwB2QHW
+        AeoB6AHnAfgC9wz/CdwV/wNPA/YGAAP0AaIBpgGlAe0C7gHWAdgB2QHEAcYBxwHEAcUBxgHDAsUBwgHE
+        AcUBwALEAcABwwHEAb8BwgHDAb4BwQHCAb0BwAHBAbwCwAHIAcsBzAHjAuUBrAGvAa4D7Q8AAvQB9gJ+
+        AbECDgF+ArEBzQHZAdQBygGpAY0BUgGdAX0BNQHTAckBswHiAd0B0gHiAd0B0wHiAd4B1QHqAekB4wHN
+        AeAB1gFjAbYBjQG8AdoBywHqAfEB7QHKAeAB1QFRAbEBgQGmAdABuwkAA/wB4wHhAeAB1wHRAcwB0gHJ
+        AcEBxAG2AakB0QHDAbMByQG3AaIByQG/AbQBxgG8Aa8B0AHFAbkBxAG2AagB3wHUAccB0gHKAcEB0AHM
+        AcgB0wHPAcsB0wHMAcQB3gHUAcQB0AHKAcIB9gH1AfQDAANPAcoBxQHCAdgB1AHSAeUB4wHhAfMB8gHx
+        A/8G3AEfAVEB2QEVAYoB6gEXAWkB4APcA/8J3Ab/AvoB+QNPA/YGAAP1AaIBpgGlAe0C7gHfAeEB4gHX
+        AtkB1gLYAdUC1wHUAdYB1wHSAtYB0gHVAdYB0QLUAdAB0wHUAc8B0gHTAc4B0QLSAdUB1wHmAugBrQGw
+        Aa8D7Q8AAvQB9gJ8AbACDgGAAq4BywP2AdYBzQG6AaYBiAFLAbkBpwGBAvQB8gb+A/wByAHeAdQBnAHN
+        AbcB9AH3AfUD/wH6AfsB+gFkAb4BlQFQAbcBhwYAA/8D+AHcAdkB1gHeAdEBwwHMAb4BqwHUAcYBuQHc
+        AdEBwgHaAc0BvQHGAbcBowG7AaYBjQHNAb0BpwG+AaoBkQHkAdkBywHqAeUB3gHVAc0BwwHXAc4ByQHx
+        AfAB7gHzAfAB7AHOAcUBvQH9AvwDAANPAcUBwAG8AdIBzgHLAd8B3QHaAewB6gHpCQABLAFUAdkBRQFw
+        AeABKQFcBNwJAAn/AfMB8gHxA08D9gYAA/UBogGmAaUC7gHvAdUC1wG/AsABvgLAAbwCvwG8Ab4BvwG7
+        Ar0BuwG8Ab0BugK8AbkCvAG4AboBuwG3AroBxQHJAcoB5wHoAekBrQGwAa8D7Q8AAvQB9gJ7AbECDwGC
+        Aq4BzAP8A/sB1gHNAbwBpAGIAU0BsgGcAXAB7gHsAekG/wH6AvsB+QH6AfkD/gP/Ae0B8gHwAVYBvgGQ
+        AXABxQGhAwAD/QHcAdcB0wHDAbYBpwGxAaMBkQHbAc8BwQHyAe4B6AH4AfUB8gHuAecB3gHsAeQB3AHq
+        AeIB1gHbAc4BvgHFAbQBnAG7AaUBiwGwAZcBfgHIAbkBqAHsAeYB4AHrAeYB3gHXAc4BwwHTAcgBuwHx
+        AfAB7wP+AwADTwG/AbkBtQHMAccBxAHYAdUB0gHkAeIB4AMAA9cD/wFeAXwB4wHEAc8B9QFfAXwB4hL/
+        AfYB9QH0AesB6QHoA08D9gYAA/UBogGmAaUB7gLvAeYB5wHoAeIC5AHhAeMB5AHgAeIB4wHeAeEB4gHe
+        AuEB3QLgAdwB3gHfAdsB3gHfAdoC3QHZAtwB2gLdAecC6QGtAbABrwPtDwAC9AH2An4BtQIRAYcCrgHO
+        A/wDAAP9Ad8B2QHNAaUBhgFMAa0BlAFgAecB5AHdA/8DAAP6Ab0B3AHQAXoByQGrAU0BvgGRAVQBwgGW
+        AecB8AHsAwAB6QHoAeYB1AHIAbkB6AHhAdgB1wHLAb4B9gHzAfAB/gL9AewB6AHgAd8B1wHMAdwB1AHI
+        Ae0B5gHeAe4B5gHcAd0B0QHAAccBtQGeAcYBswGdAcIBrwGZAeAB1wHLAdsB0wHOAfIB8QHvA/wD/gYA
+        A08BvAG2AbEBxAG/AbsB0AHMAckB2wHYAdUDAAHOAc0BzAL4AfcV/wL9AfwB9QH0AfMB6wHqAegB4QHe
+        Ad0DTwP2BgAD9QGiAaYBpQPvAdMC1QG4AroBuAG5AboBuAK5AbcCuAG1AbcBuAG0ArcBtAG2AbcBswG1
+        AbYBsgK0AbECtAHEAccByAHoAuoBrQGwAa8D7Q8AAvQB9gJ8AbYCEgGOAq4BzwP8BgAD/wHuAewB6QGt
+        AY0BUQG2AZwBaQHxAfAB7QP/A/wB0QHnAd8BiAHRAbYBPgHCAZABegHLAa0B+gL7AwAC/AH7AcsBwAG1
+        AeAB1AHFAfEB6wHjAfsB+QH4AeAB2gHWAvYB9QP/AwAB9AHzAfIB4wHZAcsB7gHnAt4B0gHCAcgBtwGj
+        AdIByAG+AeoB6AHmAfoC+Q8AA08B4AHeAdwB0AHNAcoByAHEAcAB0QHNAcoDAAHEAcIBwQHsAeoB6QHz
+        AfIB8QPVA9gD2gP8AvoB+QH2AfUB9AHwAe8B7gHsAeoB6QHrAekB6AHsAuoDTwP2BgAD9QGmAaoBqAP4
+        AekC6gHlAuYB5ALlAeMC5QHiAuQB4QHjAeQB4AHiAeMB3wHhAeIB3gLgAdwB3wHgAdsC3wHdAuAB6QLq
+        Aa0BsAGvA+0GAAP8A/sD/gL0AfYCfwG6AhUBkwKwAdEB7gHtAuwB6gHmA/wDAAP/AdsB0wHEAbMBkQFP
+        AdMBxwGvAfYB+AH3AeYB7gHrA/sD/wHFAeQB2QE7AcABjwHTAeYB3wP+AvQB8wHCAbcBrwHiAdgBzAH4
+        AfYB8QHfAdoB0wHwAe8B7QwAAe8B7gHtAegB4gHYAesB5AHZAdIBwwG0Ac8BxgG9AfgC9wP+DwADTwHl
+        AeIB4QHoAeYB5AHqAegB5wHiAeAB3gMAAcIBwAG9AcUBwwHCARwBTwHZARUBigHqARcBaAHgAs8BzgHz
+        AvEB0QLQAdIB0QHQAdMC0gH0AfMC8gHxAfAB7wHuAe0DTwP2BgAD9QGmAaoBqAH4AvkB2gLbAcQCxQHD
+        AsUBwgLEAcEBwgHDAsEBwwHAAsEBvwLBAb4CwAG9AsABvQK/AcoBzQHOAekB6gHrAa0BsAGvA+0GAAKV
+        AcYCbQG1AtAB4QLmAe4CewG8AhUBmgGyAbEB0wHPAcUCswGVAV8B7gHrAeYD/gMAAecB5AHeAbUBkgFP
+        Ac4BvwGeAdoB7AHlAVwBxQGhAc8B6AHfAfcC+QG9AeEB1QE8AcUBkwHLAeIB2gH3AvYBuwGpAZUB2wHQ
+        AcEB2gHMAb0B6wHkAdoB3wHcAdcD+gwAA/8BxgG3AaYB8AHrAeQB2wHPAcAB1wHIAbYB1AHMAcMC9QH0
+        DwADTwHoAeYB5AHqAegB5wHsAesB6gHvAe0B7AkAASsBUwHZAUUBcAHgASgBWwHcAdUC1AkAAvQC8wHy
+        AvEB8ALvAe4B7QNPA/YGAAP1AaYBqgGoAfgC+QPoAd8C4ALeAd8B3QLeAdwC3QHbAt0B2gLcAdsC3AHl
+        AeYB5wHkAucB4gLlAdcB2gHcAd4B3wHgAakBrAGrA+0GAAKZAcsCUQGvAjIBpAJmAbkCVQG1AhgBoQKx
+        AdUB4AHaAdEBvwGjAXEBzQG7AZ0B8QHuAeoB8wHxAe4BzwG+AaABwAGfAWIB3gHWAcYB8wH3AfUBnAHY
+        AcQBdgHOAbABkAHUAb0BXwHMAacBcgHPAbAB9AH3AfYD9QG9AawBmQHcAdABwwHRAcIBrgHiAdcByQHW
+        AdAByQP3DAAD+wG+Aa4BnAHxAesB5QHeAdIBwwHjAdoBzQHmAeIB3wP6DwADTwHsAesB6QHtAewB6wHv
+        Ae4B7QHxAe8B7gMAAdEB0AHPAfQB8wHyAV0BewHiAcQBzwH1AVwBegHiAvYB9QH2AvUB9gP1A/QD8wPy
+        AfEB8AHxAfAB7wNPA/YGAAP1AaYBqgGoA/kC4QHiAc8C0AHOAs8CzgHPAc0CzgHMAc0BzgHLAcwBzQHM
+        As4B5QLnAd4C4AHXAtoBxAHGAccBvAK+AZsBnwGdA+0GAAP9AuAB6wKZAc4CQQGyAhoBqgIZAagCsQHW
+        A/UB3gHUAcMBxgGuAYEBxwGuAYQBxgGuAYQBxgGrAXgB2AHJAbAB9wH2AfUD/wH2AfkB+AHUAeoB4wG8
+        AeMB1wHIAecB3QHxAfYB9AP+A/0B6gHnAeMBxAG5AasBzgHAAaoB7AHlAdkB0AHHAb8B4gHgAd4D/Ab+
+        A/sB1wHUAdIB2gHNAcAB+gH4AfcB4wHYAc8B3AHTAckB9AHzAfID/g8AA08B8gHxAfAB8gHxAfAB8wHy
+        AfEB9AHzAfIDAAHTAtIB9gL1AvYB9QH3AvYB9wL2AvcB9gH3AvYB9wH2AfUC9gH1AfYD9QT0AfMB9AHz
+        AfIDTwP2BgAD9QGmAaoBqAP6AuYB5wHZAtoB2ALZAdcB2AHZAdcC2ALWAdcB1AHVAdYB1QLXAeQC5gHN
+        As8BuAG6AbsBnwKhAaACogGRAZUBkwPtCQAD/wL6AfsCwQHfAkoBuQIbAawCsgHYA/wD+wHuAesC5gHf
+        AdMB5gHeAdEB6wHnAeAB+QH4AfcD/wYACf8JAAP6AcEBtQGqAdMBxQGwAeIB1wHIAd4B1gHJAcMBugGw
+        AdoB1wHWA+sB6gLpAdQB0AHNAbwBsgGnAfsB+gH5AfoB9wH1AeYB3wHYAd0B1wHRAfsC+hIAA08C+AH3
+        AvgB9wL4AfcB+AL3AwAB+QL4AvkB+AP5AfoC+QH6AvkB+gL5AfoH+QH4AvkB+AH5BPgB9wH4AvcDTwP2
+        BgAD9QGmAaoBqAP7A+gD2wLaAdsB2AHZAdoB2ALZAdcC2AHWA9cB2AHZAd8C4QGrAqwBkwGWAZUBgwGH
+        AYYBigKNAYkBjQGMA+0PAAL6AfsCvwHgAmQBwQLPAeUD/i0AAfgC9wGsAZsBiAHbAc8BwAHgAdMBxQHt
+        AeUB2gHdAdUByAHDAbwBsQG9AbUBrQG/AbgBsAHIAb8BtgH1AfIB7QH8AfoB+QH3AfQB8gHvAeoB5AHS
+        AcsBwgHvAu4SAANPDP8q/gNPA/sGAAP1AaYBqgGoA/sD5QLTBNIG0QHPAtABzgHPAtAC0QHdAd8B3gGr
+        AqwBzAHOAc0BzwLRAbIBtAGzAY4BkgGQA+0PAAP/AvkB+gLqAfIC+AH6MAAD/AHeAdoB1QHaAdQBzQHb
+        AdIBxwHuAecB3wHxAesB4wHuAekC3wHVAckB5QHcAdMB9wH0Ae8B+gH4AvUB8gHvAdwB0wHIAeEB3gHa
+        AeIB3wHcA/oSAAOoNk8DwAkAA/UBpAGoAacD9wPtA+YB5QHmBOUD5APjAeIC4wLiAeMB4QLiAbwCvQPy
+        A+UBpwGqAakByAHKAckD+ksAA/8D/AL2AfUB4gHeAdsB9gHyAe4B9wH1AfEB+gH5AfcB9gHzAe8B+AH1
+        AfEB/AH7AfkB+wH6AfcB9QHzAfEB1AHLAcEB+wL6A/xaAAP1AZwBoAGeA+QD+Qn9BvwD9wH2AvcB8gLz
+        A98D4AG1AbcBtgHEAcYBxQP3A/5RAAP9AegB5QHhAdQBxwG1AdwB0wHJAecB4QHaAfMB8AHqAfMB7gLo
+        AeIB3AHSAcUBuAHeAdQBxAHrAecB5GAAA/sDygGNAZICkAGUAZIBkAGVAZMBkAGVAZMBkAGVAZMBkAGV
+        AZMBkAGVAZMBjwGUAZIBjwGUAZIBjwGUAZIBjgGSAZABjQGRAZABwQHEAcMD+AP/VAAD/wP9AfkC+AP6
+        AewB6gHoAekB5QHgAfQB8gHwAewB6gHoAvsB+gH4AvcD/fMAAfgC9wHeAdgBzwHYAc8BwwP8IQABQgFN
+        AT4HAAE+AwABKAMAAVgDAAFCAwABAQEAAQEFAAEYAQMWAAP/AQAB/wGBAfwJAAHgAQABBAkAAeABAAEE
+        CQAB4AEAAQQJAAH/AYABfAkAAf8B4AE8CQAB/wHgARwJAAGAAQABDAkAAYABAAEECQABgAsAAYALAAGA
+        CwABgAsAAYALAAGAAQABBAkAAYABAAEMCQAB/wHgARwJAAH/AeABPAkAAf8B4AF8CQAB/wHhAfwJAAH/
+        AeMB/AkAAf8B7wH8CQAB/AEAAX8F/wHgAX8BgAEAAfwBAAF+AgABHwL/AeABPwIAAfIBAQE+AgABHwL/
+        AeABPwIAAeABAAEeAgABHwL/AeABPgIAAcABAAEOAgABEwHwATgBYAMAAcABAAEOAgABEQHgAQABIAMA
+        AeABAAEeAgABEAHAAQABIAEAAQEBAAHgAQABHgIAARACAAEgAQABAQEAAYABAAEGAgABEAEAAQMBMAEA
+        AQMCAAEwAQICAAEQAQABAwEwAQABAwIAAXgBAgIAARgBAAECATgBBAEHAgABeAECAgABGAIAATgBAAEH
+        AgABMAECAgABGAIAATgBAAEHAQABgAEAAQYCAAEYAgABfAEAAQ8BAAHgAQABHgIAARwBAAEPAfwBAAEP
+        AQAB4AEAAR4CAAEcAQABHwH+AQABHwEAAcABAAEOAgABHgEfAf8B/gEAAR8BAAHAAQABDgIAAR8BPwH/
+        Af4BAAE/AQAB4AEAAR4CAAEfA/8BAAE/AQAB8wEDAT4CAAEfA/8BAAE/AQAB/wEDAf4CAAEfA/8BgAF/
+        AQAB/wGHB/8BwAH/AQAD/wGAAQABPwT/AYcBAAP/AgABHwP/Af4BAQEAAcABAAECAgABHwP/Af4BAQEA
+        AYABAAECAgABHwP/AfwCAAGAAQABAgIAAR4CAAE/AYQCAAGAAQABAgIAAR4CAAE8AwABgAEAAQMCAAE+
+        AgABOAMAAYABAAEDAgABPgIAATADAAGAAQABAwIAAT4CAAEgAwABgAEAAQMCAAE+AQgBEAEgAQABAQEA
+        AYABAAEDAgABPgEMAQABIAEQAQ8BAAGAAQABAwIAATABAgIAAXgBDwEAAYABAAEDAgABMAEBAgABeAEP
+        AQABgAEAAQMCAAEwAwABeAEPAQABgAEAAQMCAAEwBAABDwEAAYABAAEDAgABOAEAARgB4AEAAR8BAAGA
+        AQABAwIAAT4BDwH/AeABAAEfAQABgAEAAQMCAAE+AR8B/wHgAQABHwEAAYABAAEHAgABPwL/AeABAAE/
+        AQAD/wIAAT8C/wH4AQAB/wEAA/8CAAF/Av8B+AEAAf8BAAn/AYcB/wEACw==
+</value>
+  </data>
 </root>

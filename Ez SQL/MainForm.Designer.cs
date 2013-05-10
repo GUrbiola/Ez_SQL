@@ -58,6 +58,7 @@
             this.BtnSearch = new System.Windows.Forms.ToolStripButton();
             this.BtnHistoric = new System.Windows.Forms.ToolStripButton();
             this.BtnSnippetEditor = new System.Windows.Forms.ToolStripButton();
+            this.BtnConfigColors = new System.Windows.Forms.ToolStripButton();
             this.WorkPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.BgWorker = new System.ComponentModel.BackgroundWorker();
@@ -186,7 +187,8 @@
             this.BtnNewQuery,
             this.BtnSearch,
             this.BtnHistoric,
-            this.BtnSnippetEditor});
+            this.BtnSnippetEditor,
+            this.BtnConfigColors});
             this.SideMenu.Location = new System.Drawing.Point(0, 0);
             this.SideMenu.Name = "SideMenu";
             this.SideMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -241,6 +243,18 @@
             this.BtnSnippetEditor.Size = new System.Drawing.Size(43, 36);
             this.BtnSnippetEditor.Text = "Snippet editor";
             this.BtnSnippetEditor.Click += new System.EventHandler(this.BtnSnippetEditor_Click);
+            // 
+            // BtnConfigColors
+            // 
+            this.BtnConfigColors.AutoSize = false;
+            this.BtnConfigColors.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnConfigColors.Image = global::Ez_SQL.Properties.Resources.ColorCOnfig;
+            this.BtnConfigColors.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.BtnConfigColors.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnConfigColors.Name = "BtnConfigColors";
+            this.BtnConfigColors.Size = new System.Drawing.Size(43, 36);
+            this.BtnConfigColors.Text = "Configure the query editor colors";
+            this.BtnConfigColors.Click += new System.EventHandler(this.BtnConfigColors_Click);
             // 
             // WorkPanel
             // 
@@ -380,5 +394,7 @@
         private Custom_Controls.StatusStripIcon ResizeIcon;
         private System.Windows.Forms.StatusStrip StatusBar;
         private System.Windows.Forms.ToolStripButton BtnSnippetEditor;
+        private System.Windows.Forms.ToolStripButton BtnConfigColors;
+        
     }
 }

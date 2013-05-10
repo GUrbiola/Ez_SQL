@@ -70,6 +70,7 @@ namespace Ez_SQL
             set { _Connectors = value; }
         }
         SnippetEditor Sform;
+        EzConfig.SyntaxColorsConfigurator ColorConfigTab;
         private List<Snippet> Snippets;
 
         public MainForm()
@@ -464,6 +465,19 @@ namespace Ez_SQL
                 Sform.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft);
             }
         }
+        private void BtnConfigColors_Click(object sender, EventArgs e)
+        {
+            if (ColorConfigTab == null)
+            {
+                ColorConfigTab = new EzConfig.SyntaxColorsConfigurator();
+                ColorConfigTab.TabText = "Syntax Highlighting Config";
+            }
+            if (!ColorConfigTab.Visible)
+            {
+                ColorConfigTab.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
+            }
+        }
+
         #endregion
         #region Method to add a new tab query from an already opened form(can be a query form(F12 or ctrl + click) or can be from a search dialog)
         public void AddQueryForm(string title, string text, SqlConnector DataProvider)

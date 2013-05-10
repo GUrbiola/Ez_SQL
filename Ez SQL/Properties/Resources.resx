@@ -142,6 +142,9 @@
   <data name="Function" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Function.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="CSharpClass" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CSharpClass.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Select_All" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Default Objects\Snippets\Select All.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -154,11 +157,11 @@
   <data name="Create_procedure" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Default Objects\Snippets\Create procedure.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Collapse" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Collapse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="New_Window32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\New_Window32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UnComment" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnComment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DB_Search32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DB_Search32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,11 +190,17 @@
   <data name="Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Background.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ImportToDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImportToDB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Play" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CSharp_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CSharp_22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ResizeIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ResizeIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Next" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Next.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -214,11 +223,11 @@
   <data name="SnippetEditor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SnippetEditor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Restore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Restore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Right_outer_join" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Default Objects\Snippets\Right outer join.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ResizeIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ResizeIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Previous" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Previous.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -253,11 +262,14 @@
   <data name="DelBookmark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DelBookmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="UnComment" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UnComment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="UnlockTab" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnlockTab.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Restore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Restore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Comment" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Comment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Book_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Book_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="order_by" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Default Objects\Snippets\order by.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -271,8 +283,8 @@
   <data name="GoToDefinition" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GoToDefinition.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Comment" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Comment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Outer_apply" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Default Objects\Snippets\Outer apply.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Cursor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Default Objects\Snippets\Cursor.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -280,11 +292,8 @@
   <data name="Complex_Snippet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Default Objects\Snippets\Complex Snippet.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ImportToDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImportToDB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Outer_apply" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Default Objects\Snippets\Outer apply.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Collapse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Collapse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Insert_into" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Default Objects\Snippets\Insert into.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -298,8 +307,8 @@
   <data name="DBGroup" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DBGroup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Book_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Book_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LockTab" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LockTab.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CopyConnectionString" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CopyConnectionString.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -319,10 +328,7 @@
   <data name="Maximize" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Maximize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LockTab" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LockTab.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="UnlockTab" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UnlockTab.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ColorCOnfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ColorCOnfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

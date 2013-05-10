@@ -41,7 +41,7 @@
       <HintPath>..\References\AddressBarExt\AddressBarEx_2.0\bin\Release\AddressBarExt.dll</HintPath>
     </Reference>
     <Reference Include="ColorPickerLib">
-      <HintPath>..\References\ColorPicker\ColorPickerLib\bin\Debug\ColorPickerLib.dll</HintPath>
+      <HintPath>..\References\ColorPicker\ColorPicker\bin\Debug\ColorPickerLib.dll</HintPath>
     </Reference>
     <Reference Include="HDesarrollo">
       <HintPath>..\References\HDesarrollo\HDesarrollo.dll</HintPath>
@@ -121,6 +121,13 @@
     <Compile Include="DataBaseObjects\View.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Extensions\XmlSerializer.cs" />
+    <Compile Include="EzConfig\ColorConfig\ConfigItemDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EzConfig\ColorConfig\ConfigItemDialog.Designer.cs">
+      <DependentUpon>ConfigItemDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EzConfig\ColorConfig\Nodes\SyntaxNode.cs" />
     <Compile Include="EzConfig\ConfigRule.cs" />
     <Compile Include="EzConfig\Delimiter.cs" />
     <Compile Include="EzConfig\Digits.cs" />
@@ -214,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Custom Controls\LoadingInfo.resx">
       <DependentUpon>LoadingInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EzConfig\ColorConfig\ConfigItemDialog.resx">
+      <DependentUpon>ConfigItemDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EzConfig\SyntaxColorsConfigurator.resx">
       <DependentUpon>SyntaxColorsConfigurator.cs</DependentUpon>
@@ -407,6 +417,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppIcon.ico" />
+    <None Include="Resources\ColorCOnfig.png" />
+    <None Include="Resources\CSharpClass.png" />
     <None Include="Resources\UnlockTab.png" />
     <None Include="Resources\LockTab.png" />
     <None Include="Resources\Toggle.png" />

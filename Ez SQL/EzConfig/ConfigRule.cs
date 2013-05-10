@@ -25,38 +25,75 @@ namespace Ez_SQL.EzConfig
 
             if (String.IsNullOrEmpty(Rule))
             {
-                sb.AppendLine
-                    (
-                        String.Format
+                if (Type.Equals("span", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    sb.AppendLine
                         (
-                            "<{0} name =\"{1}\" bold=\"{2}\" italic=\"{3}\" color =\"{4}\" stopateol =\"{5}\">",
-                            Type,
-                            Name,
-                            Bold.BoolAsString(),
-                            Italic.BoolAsString(),
-                            Color.ColorToString(),
-                            StopAtEOL.BoolAsString()
-                        ).Indent(3)
-                    );
+                            String.Format
+                                (
+                                    "<{0} name=\"{1}\" bold=\"{2}\" italic=\"{3}\" color=\"{4}\" stopateol =\"{5}\" >",
+                                    Type,
+                                    Name,
+                                    Bold.BoolAsString(),
+                                    Italic.BoolAsString(),
+                                    Color.ColorToString(),
+                                    StopAtEOL.BoolAsString()
+                                ).Indent(3)
+                        );
+                }
+                else
+                {
+                    sb.AppendLine
+                        (
+                            String.Format
+                                (
+                                    "<{0} name=\"{1}\" bold=\"{2}\" italic=\"{3}\" color=\"{4}\" >",
+                                    Type,
+                                    Name,
+                                    Bold.BoolAsString(),
+                                    Italic.BoolAsString(),
+                                    Color.ColorToString()
+                                ).Indent(3)
+                        );                    
+                }
             }
             else
             {
-                sb.AppendLine
-                    (
-                        String.Format
+                if (Type.Equals("span", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    sb.AppendLine
                         (
-                            "<{0} name =\"{1}\" rule=\"{2}\" bold=\"{3}\" italic=\"{4}\" color =\"{5}\" stopateol =\"{6}\">",
-                            Type,
-                            Name, 
-                            Rule,
-                            Bold.BoolAsString(),
-                            Italic.BoolAsString(),
-                            Color.ColorToString(),
-                            StopAtEOL.BoolAsString()
-                        ).Indent(3)
-                    );
-
+                            String.Format
+                            (
+                                "<{0} name=\"{1}\" rule=\"{2}\" bold=\"{3}\" italic=\"{4}\" color=\"{5}\" stopateol=\"{6}\" >",
+                                Type,
+                                Name,
+                                Rule,
+                                Bold.BoolAsString(),
+                                Italic.BoolAsString(),
+                                Color.ColorToString(),
+                                StopAtEOL.BoolAsString()
+                            ).Indent(3)
+                        );
+                }
+                else
+                {
+                    sb.AppendLine
+                        (
+                            String.Format
+                            (
+                                "<{0} name=\"{1}\" rule=\"{2}\" bold=\"{3}\" italic=\"{4}\" color=\"{5}\" >",
+                                Type,
+                                Name,
+                                Rule,
+                                Bold.BoolAsString(),
+                                Italic.BoolAsString(),
+                                Color.ColorToString()
+                            ).Indent(3)
+                        );
+                }
             }
+
             if (SpecialSymbols == null || SpecialSymbols.Count == 0)
             {
                 foreach (string word in Words)

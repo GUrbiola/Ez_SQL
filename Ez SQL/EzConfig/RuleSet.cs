@@ -32,7 +32,7 @@ namespace Ez_SQL.EzConfig
             {
                 sb.AppendLine(cr.ToString());
             }
-            sb.AppendLine("</RuleSet>".Indent(1));
+            sb.AppendLine("</RuleSet>".Indent(2));
             return sb.ToString();
         }
     }

@@ -92,10 +92,8 @@ namespace Ez_SQL.MultiQueryForm
             #region Code to assign the method that will handle the key press event and the method to refresh the folding
             //Method that handles autocomplete and key shortcuts
             Query.ActiveTextAreaControl.TextArea.DoProcessDialogKey += Query_DoProcessDialogKey;
-            //Methos that refresh the folding
+            //Method that refresh the folding
             Query.Document.DocumentChanged += Query_DocumentChanged;
-            ////just to catch @ input and # input
-            //Query.ActiveTextAreaControl.TextArea.KeyEventHandler += new ICSharpCode.TextEditor.KeyEventHandler(TextArea_KeyEventHandler);
             #endregion
 
             //capture mouse click, to manage ctr + click
@@ -558,7 +556,7 @@ namespace Ez_SQL.MultiQueryForm
             BtnExecute.Enabled = false;
             BtnStop.Enabled = true;
             BtnExtremeStop.Enabled = true;
-            Query.Enabled = false;
+            Query.Document.ReadOnly = true;
         }
         void ExecutionEnded()
         {
@@ -754,7 +752,7 @@ namespace Ez_SQL.MultiQueryForm
             BtnExecute.Enabled = true;
             BtnStop.Enabled = false;
             BtnExtremeStop.Enabled = false;
-            Query.Enabled = true;
+            Query.Document.ReadOnly = false;
 
             Query.Focus();
         }

@@ -49,6 +49,7 @@
             this.expandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateClassForTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateCClassForTableDataMemberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ActionsToolStrip = new System.Windows.Forms.ToolStrip();
             this.BtnExecute = new System.Windows.Forms.ToolStripButton();
             this.BtnStop = new System.Windows.Forms.ToolStripButton();
@@ -68,7 +69,6 @@
             this.TabHolder = new System.Windows.Forms.TabControl();
             this.tabMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.LockTabButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.generateCClassForTableDataMemberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainContainer)).BeginInit();
             this.MainContainer.Panel1.SuspendLayout();
             this.MainContainer.Panel2.SuspendLayout();
@@ -248,10 +248,19 @@
             // 
             // generateClassForTableToolStripMenuItem
             // 
+            this.generateClassForTableToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.CSharpClass;
             this.generateClassForTableToolStripMenuItem.Name = "generateClassForTableToolStripMenuItem";
             this.generateClassForTableToolStripMenuItem.Size = new System.Drawing.Size(296, 22);
             this.generateClassForTableToolStripMenuItem.Text = "Generate C# Class for Table";
             this.generateClassForTableToolStripMenuItem.Click += new System.EventHandler(this.generateClassForTableToolStripMenuItem_Click);
+            // 
+            // generateCClassForTableDataMemberToolStripMenuItem
+            // 
+            this.generateCClassForTableDataMemberToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.CSharpClass;
+            this.generateCClassForTableDataMemberToolStripMenuItem.Name = "generateCClassForTableDataMemberToolStripMenuItem";
+            this.generateCClassForTableDataMemberToolStripMenuItem.Size = new System.Drawing.Size(296, 22);
+            this.generateCClassForTableDataMemberToolStripMenuItem.Text = "Generate C# Class for Table(DataMember)";
+            this.generateCClassForTableDataMemberToolStripMenuItem.Click += new System.EventHandler(this.generateCClassForTableDataMemberToolStripMenuItem_Click);
             // 
             // ActionsToolStrip
             // 
@@ -475,13 +484,6 @@
             this.LockTabButton.Size = new System.Drawing.Size(122, 22);
             this.LockTabButton.Text = "Lock Tab";
             this.LockTabButton.Click += new System.EventHandler(this.LockTabButton_Click);
-            // 
-            // generateCClassForTableDataMemberToolStripMenuItem
-            // 
-            this.generateCClassForTableDataMemberToolStripMenuItem.Name = "generateCClassForTableDataMemberToolStripMenuItem";
-            this.generateCClassForTableDataMemberToolStripMenuItem.Size = new System.Drawing.Size(296, 22);
-            this.generateCClassForTableDataMemberToolStripMenuItem.Text = "Generate C# Class for Table(DataMember)";
-            this.generateCClassForTableDataMemberToolStripMenuItem.Click += new System.EventHandler(this.generateCClassForTableDataMemberToolStripMenuItem_Click);
             // 
             // QueryForm
             // 

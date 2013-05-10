@@ -17,13 +17,10 @@ namespace Ez_SQL
         static void Main()
         {
             StartPath = Application.StartupPath;
-
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //TextEditorColorConfig X = new TextEditorColorConfig();
-            //X.ToString();
             Application.Run(new MainForm());
-            //Application.Run(new EzConfig.SyntaxColorsConfigurator());
         }
     }
 }
