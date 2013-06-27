@@ -781,6 +781,16 @@ namespace Ez_SQL.Extensions
             }
             return back;
         }
+        public static string AsValidXML(this string source)
+        {
+            string back = source;
+            back = back.Replace("<", "&lt;");
+            back = back.Replace("&", "&amp;");
+            back = back.Replace(">", "&gt;");
+            back = back.Replace("\"", "&quot;");
+            back = back.Replace("'", "&apos;");
+            return back;
+        }
         #endregion
 
         #region Extensions for IEnumerable

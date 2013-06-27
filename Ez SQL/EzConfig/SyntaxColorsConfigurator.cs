@@ -37,7 +37,7 @@ namespace Ez_SQL.EzConfig
             }
             #endregion
 
-            colorConfig = new TextEditorColorConfig(MainForm.DataStorageDir + "\\SintaxHighLight\\SQL.xhsd");
+            colorConfig = new TextEditorColorConfig(MainForm.DataStorageDir + "\\SintaxHighLight\\SQL.xshd");
             LoadTree();
         }
         private void LoadTree()

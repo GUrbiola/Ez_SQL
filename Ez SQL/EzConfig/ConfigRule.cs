@@ -98,19 +98,30 @@ namespace Ez_SQL.EzConfig
             {
                 foreach (string word in Words)
                 {
-                    sb.AppendLine(String.Format("<Key word=\"{0}\" />", word).Indent(4));
+                    sb.AppendLine(String.Format("<Key word=\"{0}\" />", word.AsValidXML()).Indent(4));
                 }
             }
             else
             {
-                foreach (KeyValuePair<string, string> specialSymbol in SpecialSymbols)
+                if (Type.Equals("span", StringComparison.CurrentCultureIgnoreCase))
                 {
-                    sb.AppendLine(String.Format("<{0}>{1}</{0}>", specialSymbol.Key, specialSymbol.Value).Indent(4));
+                    foreach (KeyValuePair<string, string> specialSymbol in SpecialSymbols)
+                    {
+                        sb.AppendLine(String.Format("<{0}>{1}</{0}>", specialSymbol.Key, specialSymbol.Value.AsValidXML()).Indent(4));
+                    }
+                }
+                else
+                {
+                    foreach (KeyValuePair<string, string> specialSymbol in SpecialSymbols)
+                    {
+                        sb.AppendLine(String.Format("<{0}>{1}</{0}>", specialSymbol.Key, specialSymbol.Value.AsValidXML()).Indent(4));
+                    }
                 }
             }
             sb.AppendLine(String.Format("</{0}>", Type).Indent(3));
 
             return sb.ToString();
+
         }
     }
 }
