@@ -272,6 +272,8 @@ namespace Ez_SQL.MultiQueryForm
 
             TokenList TList = CurrentScript.GetTokens();
 
+
+
             //check for naming results
             ResultNaming = new List<string>();
             foreach (Token t in TList.List)
@@ -747,6 +749,11 @@ namespace Ez_SQL.MultiQueryForm
                 CurrentExecutionInfo.GridCount = ResultsTables;
                 CurrentExecutionInfo.Correct = (error ? 0 : 1);
                 Globals.SaveToQueryLog(CurrentExecutionInfo);
+            }
+
+            if (lockedTabs != null && lockedTabs.Count > 0)
+            {
+                TabHolder.SelectTab(lockedTabs.Count);
             }
 
             BtnExecute.Enabled = true;

@@ -230,8 +230,10 @@ order by
                     {
                         Comment = "",
                         Computed = Convert.ToInt32(Info.Rows[i]["Calculated"]) == 1,
+                        DefaultValue = Info.Rows[i]["DefaultValue"].ToString(),
                         Id = Convert.ToInt32(Info.Rows[i]["ColumnId"]),
                         ForeignKey = Convert.ToInt32(Info.Rows[i]["ReferenceFieldId"]),
+                        IsForeignKey = Convert.ToInt32(Info.Rows[i]["ReferenceFieldId"]) > 0,
                         IsIdentity = Convert.ToInt32(Info.Rows[i]["IsIdentity"]) == 1,
                         IsPrimaryKey = Convert.ToInt32(Info.Rows[i]["PKey"]) == 1,
                         Name = Info.Rows[i]["ColumnName"].ToString(),
@@ -240,6 +242,13 @@ order by
                         Precision = Convert.ToInt32(Info.Rows[i]["Precision"]),
                         Type = Info.Rows[i]["ColumnType"].ToString()
                     };
+                    if (Field.IsForeignKey)
+                    {
+                        Field.ReferenceChildName = Info.Rows[i]["ReferenceFieldName"].ToString();
+                        Field.ReferenceParentName = Info.Rows[i]["ReferenceTable"].ToString();
+                    }
+
+
                     if (Field.IsIdentity)
                     {
                         Field.Increment = Convert.ToInt32(Info.Rows[i]["Increment"]);

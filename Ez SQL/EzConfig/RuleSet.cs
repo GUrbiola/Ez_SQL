@@ -20,7 +20,7 @@ namespace Ez_SQL.EzConfig
 
             if (IsMainRuleSet)
             {
-                sb.AppendLine(String.Format("<RuleSet ignorecase=\"{0}\">", IgnoreCase.BoolAsString()).Indent(2));
+                sb.AppendLine("<RuleSet ignorecase=\"true\">".Indent(2));
             }
             else
             {

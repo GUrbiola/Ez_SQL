@@ -76,17 +76,22 @@ namespace Ez_SQL.DataBaseObjects
             if (!String.IsNullOrEmpty(fields))
                 sc.AppendLine(String.Format("\t,CONSTRAINT PK_{0} PRIMARY KEY({1})", Name, fields.Substring(0, fields.Length - 2)));
 
+            List<string> ParentReferences = new List<string>();
             //create foreign keys
             foreach (ISqlChild child in Childs)
             {
                 if (child.IsForeignKey)
                 {
-                    sc.AppendLine(String.Format("\t,CONSTRAINT FK_{0}_{1} FOREIGN KEY({2}) REFERENCES {3}({4})",
+                    //,CONSTRAINT FK_CompensationDetails_Id FOREIGN KEY(CompensationPeriod) REFERENCES Id(CompensationPeriods)
+                    sc.AppendLine(String.Format("\t,CONSTRAINT FK_{0}_{1}{5} FOREIGN KEY({2}) REFERENCES {3}({4})",
                                                                 Name,
                                                                 child.ReferenceParentName,
                                                                 child.Name,
                                                                 child.ReferenceParentName,
-                                                                child.ReferenceChildName));
+                                                                child.ReferenceChildName,
+                                                                !ParentReferences.Contains(child.ReferenceParentName) ? "" : ParentReferences.Count(x => x == child.ReferenceParentName).ToString()
+                                                                ));
+                    ParentReferences.Add(child.ReferenceParentName);
                 }
             }
             sc.AppendLine(")");

@@ -132,6 +132,7 @@
     <Compile Include="EzConfig\Delimiter.cs" />
     <Compile Include="EzConfig\Digits.cs" />
     <Compile Include="EzConfig\Environment.cs" />
+    <Compile Include="EzConfig\AppConfig.cs" />
     <Compile Include="EzConfig\RuleSet.cs" />
     <Compile Include="EzConfig\SyntaxColorsConfigurator.cs">
       <SubType>Form</SubType>
