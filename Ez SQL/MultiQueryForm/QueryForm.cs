@@ -272,7 +272,22 @@ namespace Ez_SQL.MultiQueryForm
 
             TokenList TList = CurrentScript.GetTokens();
 
-
+            if (MainForm.ApplicationConfiguration.CheckForDangerousExecutions)
+            {
+                int dangerToken = DangerousExecution(TList);
+                if (dangerToken >= 0)
+                {
+                    if (MessageBox.Show(
+                        "The query that is requested to be executed, might be harmful, it contains a delete or update clause that is not restricted by a where clause, are you sure you want ot execute this query?",
+                        "Dangerous Query Execution",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
+            }
 
             //check for naming results
             ResultNaming = new List<string>();
@@ -283,6 +298,40 @@ namespace Ez_SQL.MultiQueryForm
             }
 
             Executor.AsyncExecuteDataSet(CurrentScript);
+        }
+        private int DangerousExecution(TokenList list)
+        {
+            int tokenIndex = -1;
+            int foreachindex = 0;
+            List<string> QueryBreakers = new List<string>() { "CREATE", "DROP", "USE", "SELECT", "UPDATE", "DELETE", "DECLARE", "PRINT", "IF", "BEGIN", "TRANSACTION", 
+                "RAISERROR", "INSERT", "SET", "TRUNCATE", "FETCH", "INTO", "CLOSE", "DEALLOCATE", "ALTER", "EXEC", "OPEN", "COMMIT", "ROLLBACK"};
+            List<string> CheckForDangerWords = new List<string>() {  "UPDATE", "DELETE" };
+            string DangerCleaner = "WHERE";
+
+
+            foreach (Token token in list.List)
+            {
+                if (tokenIndex >= 0)
+                {
+                    if(token.Text.ToUpper().Equals(DangerCleaner))
+                    {
+                        tokenIndex = -1;
+                    }
+                    else if (QueryBreakers.Contains(token.Text.ToUpper()))
+                    {
+                        return tokenIndex;
+                    }
+                }
+                else
+                {
+                    if (CheckForDangerWords.Contains(token.Text.ToUpper()))
+                    {
+                        tokenIndex = foreachindex;
+                    }
+                }
+                foreachindex++;
+            }
+            return tokenIndex;
         }
         private void BtnStop_Click(object sender, EventArgs e)
         {
@@ -1820,7 +1869,6 @@ namespace Ez_SQL.MultiQueryForm
                 Parent.AddQueryForm(Obj.Name, GenerateCSharpClassFromTable(Obj, ModelName, false), DataProvider);
             }
         }
-
         //convert table to CSharp class, with the properties as [DataMember]
         private void generateCClassForTableDataMemberToolStripMenuItem_Click(object sender, EventArgs e)
         {

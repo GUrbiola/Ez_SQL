@@ -12,7 +12,11 @@ using Ez_SQL.ConnectionBarNodes;
 using Ez_SQL.DataBaseObjects;
 using System.IO;
 using Ez_SQL.Extensions;
+using Ez_SQL.EzConfig;
+using Ez_SQL.Properties;
 using Ez_SQL.Snippets;
+using HDesarrollo.Controles;
+using Environment = System.Environment;
 
 namespace Ez_SQL
 {
@@ -63,6 +67,13 @@ namespace Ez_SQL
                 return new Point(this.Location.X + X, this.Location.Y + Y);
             }
         }
+
+        private static AppConfig _ApplicationConfiguration;
+        public static AppConfig ApplicationConfiguration
+        {
+            get { return _ApplicationConfiguration; }
+            private set { _ApplicationConfiguration = value; }
+        }
         private List<SqlConnector> _Connectors;
         public List<SqlConnector> Connectors
         {
@@ -76,6 +87,23 @@ namespace Ez_SQL
         public MainForm()
         {
             InitializeComponent();
+
+            #region Get the configuration for the app
+            Propiedades prop = new Propiedades();
+            prop.FileName = MainForm.DataStorageDir + "\\EzConfig.cfg";
+            if (File.Exists(prop.FileName))
+            {
+                prop.LoadData();
+            }
+            else
+            {
+                prop.AddProperty("CheckForDangerousExecutions", "1");
+                prop.SaveData();
+            }
+            _ApplicationConfiguration = new AppConfig();
+            _ApplicationConfiguration.CheckForDangerousExecutions = prop.GetValue("CheckForDangerousExecutions") == "1";
+            #endregion
+
 
             StatusBar.Padding = new Padding(StatusBar.Padding.Left, StatusBar.Padding.Top, StatusBar.Padding.Left, StatusBar.Padding.Bottom);
 

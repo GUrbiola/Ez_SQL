@@ -104,8 +104,8 @@ namespace Ez_SQL.EzConfig
                     StopAtEOL = false
                 };
             Strings.SpecialSymbols = new Dictionary<string, string>();
-            Strings.SpecialSymbols.Add("Begin", "&apos;");
-            Strings.SpecialSymbols.Add("End", "&apos;");
+            Strings.SpecialSymbols.Add("Begin", "'");
+            Strings.SpecialSymbols.Add("End", "'");
             Rl1.Rules.Add(Strings);
 
             //Join Keywords

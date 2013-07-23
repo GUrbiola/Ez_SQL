@@ -421,6 +421,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppIcon.ico" />
+    <None Include="Resources\AppConfig.png" />
     <None Include="Resources\ColorCOnfig.png" />
     <None Include="Resources\CSharpClass.png" />
     <None Include="Resources\UnlockTab.png" />

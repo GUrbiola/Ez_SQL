@@ -28,8 +28,8 @@
 				<End>*/</End>
 			</Span>
 			<Span name ="String" bold ="true" italic ="false" color="#808080" stopateol ="false">
-				<Begin>&apos;</Begin>
-				<End>&apos;</End>
+				<Begin>'</Begin>
+				<End>'</End>
 			</Span>
 			<KeyWords name="JoinKeywords" bold="true" italic="false" color="#020262">
 				<Key word="INNER" />
