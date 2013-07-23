@@ -24,7 +24,7 @@ namespace Ez_SQL.EzConfig
             }
             else
             {
-                sb.AppendLine(String.Format("<RuleSet name=\"{0}\" ignorecase=\"{1}\">", Name, IgnoreCase.BoolAsString()).Indent(2));
+                sb.AppendLine(String.Format("<RuleSet name=\"{0}\" ignorecase=\"true\">", Name).Indent(2));
             }
 
             sb.AppendLine(Delimiters.ToString());

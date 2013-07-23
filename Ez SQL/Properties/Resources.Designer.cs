@@ -74,6 +74,20 @@ namespace Ez_SQL.Properties {
             }
         }
         
+        internal static byte[] Almost_Selenitic {
+            get {
+                object obj = ResourceManager.GetObject("Almost_Selenitic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Almost_Son_of_Obsidian {
+            get {
+                object obj = ResourceManager.GetObject("Almost_Son_of_Obsidian", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon AppIcon {
             get {
                 object obj = ResourceManager.GetObject("AppIcon", resourceCulture);
@@ -533,6 +547,13 @@ namespace Ez_SQL.Properties {
             get {
                 object obj = ResourceManager.GetObject("ToUpperCase", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static byte[] TurboC {
+            get {
+                object obj = ResourceManager.GetObject("TurboC", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

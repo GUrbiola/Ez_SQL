@@ -70,7 +70,7 @@ namespace Ez_SQL
             set { _Connectors = value; }
         }
         SnippetEditor Sform;
-        EzConfig.SyntaxColorsConfigurator ColorConfigTab;
+        //EzConfig.SyntaxColorsConfigurator ColorConfigTab;
         private List<Snippet> Snippets;
 
         public MainForm()
@@ -467,15 +467,10 @@ namespace Ez_SQL
         }
         private void BtnConfigColors_Click(object sender, EventArgs e)
         {
-            if (ColorConfigTab == null)
-            {
-                ColorConfigTab = new EzConfig.SyntaxColorsConfigurator();
-                ColorConfigTab.TabText = "Syntax Highlighting Config";
-            }
-            if (!ColorConfigTab.Visible)
-            {
-                ColorConfigTab.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
-            }
+            EzConfig.SyntaxColorsConfigurator ColorConfigTab;
+            ColorConfigTab = new EzConfig.SyntaxColorsConfigurator();
+            ColorConfigTab.TabText = "Syntax Highlighting Config";
+            ColorConfigTab.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
         }
 
         #endregion

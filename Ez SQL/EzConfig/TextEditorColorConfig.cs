@@ -672,7 +672,7 @@ namespace Ez_SQL.EzConfig
             {
                 RuleSet rs = new RuleSet();
                 rs.Rules = new List<ConfigRule>();
-                rs.Delimiters = new Delimiter() { DelimiterChars = @"=!&gt;&lt;+-/*%&amp;|^~.}{,;][?:()" };
+                rs.Delimiters = new Delimiter() { DelimiterChars = @"=!&gt;&lt;+-/*%&amp;|^~.}{,;][?()" };
                 if (xmlRuleSet.Attribute("name") != null)
                 {
                     rs.Name = xmlRuleSet.Attribute("name").Value;

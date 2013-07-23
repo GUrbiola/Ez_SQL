@@ -315,6 +315,8 @@
     <None Include="Resources\AddConnection.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Almost Selenitic.xshd" />
+    <None Include="Resources\Almost Son of Obsidian.xshd" />
     <None Include="Resources\AppIcon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -413,6 +415,7 @@
     <None Include="Resources\Stop.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TurboC.xshd" />
     <None Include="Resources\UnComment.png" />
   </ItemGroup>
   <ItemGroup>

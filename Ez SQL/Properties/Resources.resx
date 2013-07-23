@@ -331,4 +331,13 @@
   <data name="ColorCOnfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ColorCOnfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Almost_Selenitic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Almost Selenitic.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Almost_Son_of_Obsidian" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Almost Son of Obsidian.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TurboC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TurboC.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

@@ -39,6 +39,7 @@ namespace Ez_SQL.EzConfig
 
             colorConfig = new TextEditorColorConfig(MainForm.DataStorageDir + "\\SintaxHighLight\\SQL.xshd");
             LoadTree();
+            cmbStyles.SelectedIndex = 0;
         }
         private void LoadTree()
         {
@@ -281,6 +282,53 @@ namespace Ez_SQL.EzConfig
             helper.Write(colorConfig.ToString());
             helper.Flush();
             helper.Close();
+        }
+
+        private void cmbStyles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbStyles.SelectedIndex > 0)
+            {
+                //Current - 0
+                //Default - 1
+                //Son of Obsidian - 2
+                //Selenitic - 3
+                //Old Timer(Turbo C++) - 4
+
+                switch (cmbStyles.SelectedIndex)
+                {
+                    case 1:
+                        colorConfig = new TextEditorColorConfig("");
+                        LoadTree();
+                        btnRefreshPreview_Click(null, null);
+                        break;
+                    case 2:
+                        using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\Preview.xshd", MainForm.DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                        {
+                            Writer.Write(Properties.Resources.Almost_Son_of_Obsidian, 0, Properties.Resources.Almost_Son_of_Obsidian.Length);
+                            Writer.Close();
+                        }
+                        break;
+                    case 3:
+                        using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\Preview.xshd", MainForm.DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                        {
+                            Writer.Write(Properties.Resources.Almost_Selenitic, 0, Properties.Resources.Almost_Selenitic.Length);
+                            Writer.Close();
+                        }
+                        break;
+                    case 4:
+                        using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\Preview.xshd", MainForm.DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                        {
+                            Writer.Write(Properties.Resources.TurboC, 0, Properties.Resources.TurboC.Length);
+                            Writer.Close();
+                        }
+                        break;
+
+                }
+                colorConfig = new TextEditorColorConfig(MainForm.DataStorageDir + "\\SintaxHighLight\\Preview.xshd");
+                LoadTree();
+                btnRefreshPreview_Click(null, null);
+            }
+            
         }
     }
 }
