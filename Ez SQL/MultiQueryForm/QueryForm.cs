@@ -304,7 +304,7 @@ namespace Ez_SQL.MultiQueryForm
             int tokenIndex = -1;
             int foreachindex = 0;
             List<string> QueryBreakers = new List<string>() { "CREATE", "DROP", "USE", "SELECT", "UPDATE", "DELETE", "DECLARE", "PRINT", "IF", "BEGIN", "TRANSACTION", 
-                "RAISERROR", "INSERT", "SET", "TRUNCATE", "FETCH", "INTO", "CLOSE", "DEALLOCATE", "ALTER", "EXEC", "OPEN", "COMMIT", "ROLLBACK"};
+                "RAISERROR", "INSERT", "TRUNCATE", "FETCH", "INTO", "CLOSE", "DEALLOCATE", "ALTER", "EXEC", "OPEN", "COMMIT", "ROLLBACK"};
             List<string> CheckForDangerWords = new List<string>() {  "UPDATE", "DELETE" };
             string DangerCleaner = "WHERE";
 
@@ -697,7 +697,7 @@ namespace Ez_SQL.MultiQueryForm
             ResultsTab.SuspendLayout();
             ColumnHeader MessageColumn1 = new ColumnHeader();
             MessageColumn1.Text = "";
-            MessageColumn1.Width = 750;
+            MessageColumn1.Width = Math.Max(this.Width, 750);
             MessageList.Columns.AddRange(new ColumnHeader[] { MessageColumn1 });
             MessageList.Dock = System.Windows.Forms.DockStyle.Fill;
             MessageList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
