@@ -162,3 +162,5 @@ C:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
 C:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
+C:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.Dialogs.GenerateClass.resources
+C:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.CSharp.SharpCodeForm.resources

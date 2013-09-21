@@ -54,6 +54,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -95,6 +96,12 @@
     </Compile>
     <Compile Include="ConnectionManagement\SQLConnectForm.designer.cs">
       <DependentUpon>SQLConnectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpForm\SharpCodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharpForm\SharpCodeForm.designer.cs">
+      <DependentUpon>SharpCodeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Custom Controls\AnimatedWaitTextBox.cs">
       <SubType>UserControl</SubType>
@@ -158,6 +165,13 @@
       <DependentUpon>ChildSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="MultiQueryForm\CompletionDataProvider.cs" />
+    <Compile Include="MultiQueryForm\Dialogs\GenerateClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MultiQueryForm\Dialogs\GenerateClass.Designer.cs">
+      <DependentUpon>GenerateClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultiQueryForm\Dialogs\GenerateClassModelSettings.cs" />
     <Compile Include="MultiQueryForm\ObjectSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,6 +231,9 @@
     <EmbeddedResource Include="ConnectionManagement\SQLConnectForm.resx">
       <DependentUpon>SQLConnectForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CSharpForm\SharpCodeForm.resx">
+      <DependentUpon>SharpCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Custom Controls\AnimatedWaitTextBox.resx">
       <DependentUpon>AnimatedWaitTextBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -231,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MultiQueryForm\ChildSelector.resx">
       <DependentUpon>ChildSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultiQueryForm\Dialogs\GenerateClass.resx">
+      <DependentUpon>GenerateClass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MultiQueryForm\ObjectSelector.resx">
       <DependentUpon>ObjectSelector.cs</DependentUpon>
@@ -416,6 +436,7 @@
     <None Include="Resources\Stop.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Transaction.snp" />
     <None Include="Resources\TurboC.xshd" />
     <None Include="Resources\UnComment.png" />
   </ItemGroup>

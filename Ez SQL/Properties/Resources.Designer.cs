@@ -186,6 +186,13 @@ namespace Ez_SQL.Properties {
             }
         }
         
+        internal static byte[] CSharp {
+            get {
+                object obj = ResourceManager.GetObject("CSharp", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap CSharp_22 {
             get {
                 object obj = ResourceManager.GetObject("CSharp_22", resourceCulture);
@@ -554,6 +561,13 @@ namespace Ez_SQL.Properties {
             get {
                 object obj = ResourceManager.GetObject("ToUpperCase", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static byte[] Transaction {
+            get {
+                object obj = ResourceManager.GetObject("Transaction", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

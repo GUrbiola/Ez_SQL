@@ -23,7 +23,7 @@ namespace Ez_SQL.MultiQueryForm
             _SelectedChilds = new List<string>();
             this.Objects = Objects;
             this.StartsWith = StartsWith;
-            this.Objects.Sort();
+            //this.Objects.Sort();//Why the hell did i thought that sorting the columns would be a good idea?!
             ChkList.Items.Clear();
             foreach (string obj in Objects)
             {

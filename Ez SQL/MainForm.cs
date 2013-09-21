@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
+using Ez_SQL.CSharp;
 using Ez_SQL.ConnectionBarNodes;
 using Ez_SQL.DataBaseObjects;
 using System.IO;
@@ -266,6 +267,14 @@ namespace Ez_SQL
                     Writer.Close();
                 }
             }
+            if (!File.Exists(String.Format("{0}\\SintaxHighLight\\CSharp.xshd", DataStorageDir)))
+            {
+                using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\CSharp.xshd", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                {
+                    Writer.Write(Properties.Resources.CSharp, 0, Properties.Resources.CSharp.Length);
+                    Writer.Close();
+                }
+            } 
             LoadSnippets();
         }
 
@@ -510,6 +519,13 @@ namespace Ez_SQL
             dlg.Text = String.Format("{0}", title);
             dlg.ShowIcon = true;
             dlg.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
+        }
+        public void AddCSharpCodeForm(string title, string text)
+        {
+            CSharp.SharpCodeForm sharpForm = new SharpCodeForm(text);
+            sharpForm.Text = title;
+            sharpForm.ShowIcon = true;
+            sharpForm.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
         }
         #endregion
 

@@ -17,7 +17,7 @@ namespace Ez_SQL
         static void Main()
         {
             StartPath = Application.StartupPath;
-            
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

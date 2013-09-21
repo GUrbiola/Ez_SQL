@@ -343,4 +343,10 @@
   <data name="AppConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="CSharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CSharp.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Transaction" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Transaction.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

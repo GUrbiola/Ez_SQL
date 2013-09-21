@@ -294,7 +294,7 @@ FROM
 WHERE  
 	sobj.xtype = 'V' 
 ORDER BY
-	sobj.id, cols.name";
+	sobj.id, cols.colid";
 
             DataTable Info = new DataTable();
             SqlCommand cmd = new SqlCommand(sql, Connection);
@@ -404,7 +404,7 @@ WHERE
 	sobj.xtype = 'P' 
 	AND sobj.category = 0
 ORDER BY
-	sobj.id, cols.name";
+	sobj.id, cols.colid";
 
             DataTable Info = new DataTable();
             SqlCommand cmd = new SqlCommand(sql, Connection);

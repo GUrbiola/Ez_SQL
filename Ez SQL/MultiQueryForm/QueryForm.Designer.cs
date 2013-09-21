@@ -49,7 +49,6 @@
             this.expandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateClassForTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generateCClassForTableDataMemberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ActionsToolStrip = new System.Windows.Forms.ToolStrip();
             this.BtnExecute = new System.Windows.Forms.ToolStripButton();
             this.BtnStop = new System.Windows.Forms.ToolStripButton();
@@ -146,16 +145,15 @@
             this.reservedWordsToolStripMenuItem,
             this.selectionToolStripMenuItem,
             this.outlinningToolStripMenuItem,
-            this.generateClassForTableToolStripMenuItem,
-            this.generateCClassForTableDataMemberToolStripMenuItem});
+            this.generateClassForTableToolStripMenuItem});
             this.popupMenu.Name = "popupMenu";
-            this.popupMenu.Size = new System.Drawing.Size(297, 158);
+            this.popupMenu.Size = new System.Drawing.Size(220, 136);
             // 
             // goToDefinitionToolStripMenuItem
             // 
             this.goToDefinitionToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.GoToDefinition;
             this.goToDefinitionToolStripMenuItem.Name = "goToDefinitionToolStripMenuItem";
-            this.goToDefinitionToolStripMenuItem.Size = new System.Drawing.Size(296, 22);
+            this.goToDefinitionToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.goToDefinitionToolStripMenuItem.Text = "Go to definition (F12)";
             this.goToDefinitionToolStripMenuItem.Click += new System.EventHandler(this.goToDefinitionToolStripMenuItem_Click);
             // 
@@ -166,7 +164,7 @@
             this.toLowerCaseToolStripMenuItem});
             this.reservedWordsToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Words;
             this.reservedWordsToolStripMenuItem.Name = "reservedWordsToolStripMenuItem";
-            this.reservedWordsToolStripMenuItem.Size = new System.Drawing.Size(296, 22);
+            this.reservedWordsToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.reservedWordsToolStripMenuItem.Text = "Reserved words";
             // 
             // toUpperCaseToolStripMenuItem
@@ -192,7 +190,7 @@
             this.toLowerCaseToolStripMenuItem1});
             this.selectionToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Selection;
             this.selectionToolStripMenuItem.Name = "selectionToolStripMenuItem";
-            this.selectionToolStripMenuItem.Size = new System.Drawing.Size(296, 22);
+            this.selectionToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.selectionToolStripMenuItem.Text = "Selection";
             // 
             // toUpperCseToolStripMenuItem
@@ -219,7 +217,7 @@
             this.toggleToolStripMenuItem});
             this.outlinningToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Outlining;
             this.outlinningToolStripMenuItem.Name = "outlinningToolStripMenuItem";
-            this.outlinningToolStripMenuItem.Size = new System.Drawing.Size(296, 22);
+            this.outlinningToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.outlinningToolStripMenuItem.Text = "Outlining/Folding";
             // 
             // collapseToolStripMenuItem
@@ -250,17 +248,9 @@
             // 
             this.generateClassForTableToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.CSharpClass;
             this.generateClassForTableToolStripMenuItem.Name = "generateClassForTableToolStripMenuItem";
-            this.generateClassForTableToolStripMenuItem.Size = new System.Drawing.Size(296, 22);
+            this.generateClassForTableToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.generateClassForTableToolStripMenuItem.Text = "Generate C# Class for Table";
             this.generateClassForTableToolStripMenuItem.Click += new System.EventHandler(this.generateClassForTableToolStripMenuItem_Click);
-            // 
-            // generateCClassForTableDataMemberToolStripMenuItem
-            // 
-            this.generateCClassForTableDataMemberToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.CSharpClass;
-            this.generateCClassForTableDataMemberToolStripMenuItem.Name = "generateCClassForTableDataMemberToolStripMenuItem";
-            this.generateCClassForTableDataMemberToolStripMenuItem.Size = new System.Drawing.Size(296, 22);
-            this.generateCClassForTableDataMemberToolStripMenuItem.Text = "Generate C# Class for Table(DataMember)";
-            this.generateCClassForTableDataMemberToolStripMenuItem.Click += new System.EventHandler(this.generateCClassForTableDataMemberToolStripMenuItem_Click);
             // 
             // ActionsToolStrip
             // 
@@ -547,6 +537,5 @@
         private System.Windows.Forms.ContextMenuStrip tabMenu;
         private System.Windows.Forms.ToolStripMenuItem LockTabButton;
         private System.Windows.Forms.ToolStripMenuItem generateClassForTableToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem generateCClassForTableDataMemberToolStripMenuItem;
     }
 }

@@ -755,9 +755,9 @@ namespace Ez_SQL.Extensions
         {
             return source.IndexOf(toCheck, comp) >= 0;
         }
-        public static string Indent(this string source, int indent = 1, int useSpaces = 4)
+        public static string Indent(this string source, int indent = 1, int useSpaces = 0)
         {
-            string back = source;
+            string back = String.IsNullOrEmpty(source) ? "" : source;
             string spaces = "";
 
             if (useSpaces > 0)
@@ -767,17 +767,14 @@ namespace Ez_SQL.Extensions
                     spaces += " ";
                 }
             }
+            else
+            {
+                spaces = "\t";
+            }
 
             for (int i = 0; i < indent; i++)
             {
-                if (String.IsNullOrEmpty(spaces))
-                {
-                    back = "\t" + back;
-                }
-                else
-                {
-                    back = spaces + back;
-                }
+                back = spaces + back;
             }
             return back;
         }
@@ -790,6 +787,10 @@ namespace Ez_SQL.Extensions
             back = back.Replace("\"", "&quot;");
             back = back.Replace("'", "&apos;");
             return back;
+        }
+        public static string FirstLetterLowerCase(this string source)
+        {
+            return source.Substring(0, 1).ToLower() + source.Substring(1);
         }
         #endregion
 
