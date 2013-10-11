@@ -183,6 +183,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_FCF098FD01E59E31DF98B1118C31165E"
+        "OwnerKey" = "8:_ECF9852B483C43ED87BD977CCB96461E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_FF249565AD1AD15F451FCBDF871F071A"
         "OwnerKey" = "8:_C2C4922657136C280DF61934C3C838D9"
         "MsmSig" = "8:_UNDEFINED"
@@ -221,6 +227,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_5C85275798C62DA0E6E2AE134E12C4EF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_FCF098FD01E59E31DF98B1118C31165E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -885,6 +897,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FCF098FD01E59E31DF98B1118C31165E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MagicLibrary, Version=1.7.0.0, Culture=neutral, PublicKeyToken=3a6eb82f876a49bc"
+                "ScatterAssemblies"
+                {
+                    "_FCF098FD01E59E31DF98B1118C31165E"
+                    {
+                    "Name" = "8:MagicLibrary.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MagicLibrary.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_AD0B5EC620A447D6909ED760FED9364B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FF249565AD1AD15F451FCBDF871F071A"
             {
             "AssemblyRegister" = "3:1"
@@ -983,15 +1026,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Ez SQL"
-        "ProductCode" = "8:{FAACFBF1-7F10-4A3F-B27E-64E22C54D0F4}"
-        "PackageCode" = "8:{4B74639B-0E92-4640-88E9-94892DAB2A99}"
+        "ProductCode" = "8:{4A99F864-3899-472C-A4EE-D5ADA192F85D}"
+        "PackageCode" = "8:{655BFB6F-13D6-4A96-BBDA-C7398BE5C4FE}"
         "UpgradeCode" = "8:{61A49AEB-7CE0-4EF7-9B43-9161100D5D64}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.10"
+        "ProductVersion" = "8:1.0.11"
         "Manufacturer" = "8:El Cid"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

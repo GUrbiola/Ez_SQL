@@ -876,7 +876,7 @@ ORDER BY
                     else
                         return null;
                 }
-                return DbObjects.Find
+                return DbObjects.FirstOrDefault
                     (
                         X =>
                             (X.Kind == ObjectType.Table || X.Kind == ObjectType.TableFunction || X.Kind == ObjectType.View)
@@ -893,7 +893,7 @@ ORDER BY
                     else
                         return null;
                 }
-                return DbObjects.Find
+                return DbObjects.FirstOrDefault
                     (
                         X =>
                             (X.Kind == ObjectType.Table || X.Kind == ObjectType.TableFunction || X.Kind == ObjectType.View)
@@ -917,7 +917,7 @@ ORDER BY
                     else
                         return null;
                 }
-                return DbObjects.Find
+                return DbObjects.FirstOrDefault
                     (
                         X =>
                             X.Kind == ObjectType.TableFunction
@@ -934,7 +934,7 @@ ORDER BY
                     else
                         return null;
                 }
-                return DbObjects.Find
+                return DbObjects.FirstOrDefault
                     (
                         X =>
                             X.Kind == ObjectType.TableFunction
@@ -943,6 +943,46 @@ ORDER BY
                     );
             }
 
+            return null;
+        }
+        internal ISqlObject IsStoredProcedure(string spName)
+        {
+            List<string> Data = spName.Split('.').ToList();
+
+            if (Data.Count == 1)
+            {
+                if (Data[0].Contains('('))//if contains a '(' can be a table valued function, so remove everything after that including it
+                {
+                    if (Data[0].IndexOf('(') > 0)
+                        Data[0] = Data[0].Substring(0, Data[0].IndexOf('(') - 1);
+                    else
+                        return null;
+                }
+                return DbObjects.FirstOrDefault
+                    (
+                        X =>
+                            X.Kind == ObjectType.Procedure
+                            && X.Schema.Equals("dbo", StringComparison.CurrentCultureIgnoreCase)
+                            && X.Name.Equals(Data[0], StringComparison.CurrentCultureIgnoreCase)
+                    );
+            }
+            else if (Data.Count == 2)
+            {
+                if (Data[1].Contains('('))//if contains a '(' can be a table valued function, so remove everything after that including it
+                {
+                    if (Data[1].IndexOf('(') > 0)
+                        Data[1] = Data[1].Substring(0, Data[1].IndexOf('(') - 1);
+                    else
+                        return null;
+                }
+                return DbObjects.FirstOrDefault
+                    (
+                        X =>
+                            X.Kind == ObjectType.Procedure
+                            && X.Schema.Equals(Data[0], StringComparison.CurrentCultureIgnoreCase)
+                            && X.Name.Equals(Data[1], StringComparison.CurrentCultureIgnoreCase)
+                    );
+            }
             return null;
         }
 

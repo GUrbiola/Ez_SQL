@@ -180,11 +180,12 @@
             // 
             this.BtnCopy.AutoSize = false;
             this.BtnCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnCopy.Image = global::Ez_SQL.Properties.Resources.CopyConnectionString;
             this.BtnCopy.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.BtnCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnCopy.Name = "BtnCopy";
             this.BtnCopy.Size = new System.Drawing.Size(28, 28);
-            this.BtnCopy.ToolTipText = "Copia todo el Codigo de este Ventana";
+            this.BtnCopy.ToolTipText = "Copy all text";
             this.BtnCopy.Click += new System.EventHandler(this.BtnCopy_Click);
             // 
             // MsgLabel

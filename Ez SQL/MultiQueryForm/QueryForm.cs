@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -1851,17 +1852,688 @@ namespace Ez_SQL.MultiQueryForm
             ISqlObject Obj = DataProvider.IsTableTypeObject(t.Text);
             if (Obj != null)
             {
-                GenerateClass curTable;
-                curTable = (Obj as Table) == null ? new GenerateClass(Obj as DataBaseObjects.View) : new GenerateClass(Obj as Table);
+                GenerateClass curTableGenerationDialog;
+                curTableGenerationDialog = (Obj as Table) == null ? new GenerateClass(Obj as DataBaseObjects.View) : new GenerateClass(Obj as Table);
                 
-                if (curTable.ShowDialog() == DialogResult.OK)
+                if (curTableGenerationDialog.ShowDialog() == DialogResult.OK)
                 {
-                    Parent.AddCSharpCodeForm(Obj.Name, curTable.GenerateCSharpCode);
+                    Parent.AddCSharpCodeForm(Obj.Name, curTableGenerationDialog.GenerateCSharpCode);
                 }
             }
         }
+        //generate CSharp code for Stored Procedure Execution
+        private void generateMethodForStoreProcedureExecutionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string script = Query.Text;
+            int tokenIndex;
+            TokenList tokens = script.GetTokens();
+            Token t = tokens.GetTokenAtOffset(Query.CurrentOffset(), out tokenIndex);
+
+            if (t == null)
+                return;
+
+            ISqlObject Obj = DataProvider.IsStoredProcedure(t.Text);
+            if (Obj != null)
+            {
+                string csharpCodeResult;
+                List<Field> returnColumns = GetReturnColumnsFromProcedure(Obj as Procedure);
+                Procedure proc = Obj as Procedure;
+                
+                if (returnColumns != null && returnColumns.Count > 0)
+                {//Query
+                    csharpCodeResult = GetCSharpForQueryMethod(proc, returnColumns);
+                    if(!String.IsNullOrEmpty(csharpCodeResult))
+                        Parent.AddCSharpCodeForm(Obj.Name, csharpCodeResult);
+                }
+                else
+                {//NonQuery
+                    csharpCodeResult = GetCSharpForNonQueryMethod(proc);
+                    if (!String.IsNullOrEmpty(csharpCodeResult))
+                        Parent.AddCSharpCodeForm(Obj.Name, csharpCodeResult);                    
+                }
+
+
+                //return method.ToString();
+            }
+        }
+
+        private string GetCSharpForNonQueryMethod(Procedure proc)
+        {
+            string buffer;
+            StringBuilder method = new StringBuilder();
+            //gets settings to create method
+            NonQuerySp settingsDialog = new NonQuerySp();
+            if (settingsDialog.ShowDialog() != DialogResult.OK)
+                return "";
+            GenerateNonQuerySpModelSettings settings = settingsDialog.CurrentSettings;
+
+            //write the "region start"
+            if (settings.InsideRegion)
+                method.AppendLine(String.Format("#region Method to execute the SP: {0}.{1}", proc.Schema, proc.Name).Indent(2));
+
+            #region write the first line of real code, the signature of the method
+            bool parameterless = true;
+            buffer = String.Format("public void {0}(", proc.Name);
+            foreach (ISqlChild parameter in proc.Childs.Where(x => x.Kind == ChildType.Parameter))
+            {
+                parameterless = false;
+                if (SqlVsCSharp.ContainsKey(parameter.Type))
+                    buffer += String.Format("{0} {1}, ", SqlVsCSharp[parameter.Type], parameter.Name.Trim('@'));
+                else
+                    buffer += String.Format("??? {0}, ", parameter.Name.Trim('@'));
+            }
+
+            if (parameterless)
+            {
+                method.AppendLine(ExtensionHelper.Indent(buffer, 2) + ")");
+            }
+            else
+            {
+                method.AppendLine(ExtensionHelper.Indent(buffer.Substring(0, buffer.Length - 2), 2) + ")");
+            }
+            #endregion
+
+            method.AppendLine("{".Indent(2)); //opening bracket of the whole method
+
+            if (settings.LogStart) //check if was required log the start of the method
+                method.AppendLine(String.Format("log.debug(\"Start of Method that Executes the SP: {0}.{1}\");", proc.Schema, proc.Name).Indent(3));
+
+            #region creation of the command object
+            method.AppendLine(String.Format("SqlCommand sqlCommand = new SqlCommand(\"{0}.{1}\", this.Connection);", proc.Schema, proc.Name).Indent(3));
+            method.AppendLine("sqlCommand.CommandType = CommandType.StoredProcedure;".Indent(3));
+            method.AppendLine();
+            #endregion
+
+            #region assignation of the parameters
+            foreach (ISqlChild parameter in proc.Childs.Where(x => x.Kind == ChildType.Parameter))
+            {
+                if (SqlVsCSharpDb.ContainsKey(parameter.Type))
+                    method.AppendLine(String.Format("sqlCommand.Parameters.Add(new SqlParameter(\"{0}\", {1}, {2}));", parameter.Name, SqlVsCSharpDb[parameter.Type], parameter.Precision).Indent(3));
+                else
+                    method.AppendLine(String.Format("sqlCommand.Parameters.Add(new SqlParameter(\"{0}\", {1}, {2}));", parameter.Name, "??", parameter.Precision).Indent(3));
+                method.AppendLine(String.Format("sqlCommand.Parameters[\"{0}\"].Value = {1};", parameter.Name, parameter.Name.Trim('@')).Indent(3));
+            }
+            #endregion
+
+            method.AppendLine("try".Indent(3));
+            method.AppendLine("{".Indent(3)); //start of try
+
+            //If the time elapsed must be measured
+            if (settings.MeasureTimeElapsed)
+                method.AppendLine("This.Executing = true;".Indent(4));
+
+            //Open the connection to the DB
+            method.AppendLine("sqlCommand.Connection.Open();".Indent(4));
+            if (settings.SaveRowsAffectedCount)
+            {
+                method.AppendLine("RowsAffected = Command.ExecuteNonQuery();".Indent(4));
+            }
+            else
+            {
+                method.AppendLine("Command.ExecuteNonQuery();".Indent(4));
+            }
+
+            method.AppendLine("}".Indent(3)); //end of try
+
+            #region SQL Exception Handling
+
+            method.AppendLine("catch (SqlException sqlex)".Indent(3));
+            method.AppendLine("{".Indent(3)); //start of Sql Exception Catch
+            method.AppendLine("LastMessage = sqlex.Errors[0].Message;".Indent(4));
+            method.AppendLine("LastSqlException = sqlex;".Indent(4));
+
+            if (settings.LogException)
+            {
+                method.AppendLine(String.Format("log.Error(\"SqlException on Execution of SP: {0}.{1}\", sqlex.GetBaseException());", proc.Schema, proc.Name).Indent(4));
+            }
+            method.AppendLine("throw;".Indent(4));
+
+            method.AppendLine("}".Indent(3)); //end of Sql Exception Catch
+
+            #endregion
+
+            #region Generic Exception Handling
+
+            method.AppendLine("catch (Exception ex)".Indent(3));
+            method.AppendLine("{".Indent(3)); //start of Exception Catch
+            method.AppendLine("LastMessage = ex.Message;".Indent(4));
+            method.AppendLine("LastException = ex;".Indent(4));
+
+            if (settings.LogException)
+            {
+                method.AppendLine(String.Format("log.Error(\"Exception on Execution of SP: {0}.{1}\", ex);", proc.Schema, proc.Name).Indent(4));
+            }
+            method.AppendLine("throw;".Indent(4));
+
+            method.AppendLine("}".Indent(3)); //end of Exception Catch
+
+            #endregion
+
+            #region block "finally", of the try-catch
+            method.AppendLine("finally".Indent(3));
+            method.AppendLine("{".Indent(3));
+            method.AppendLine("if (Command.Connection.State != ConnectionState.Closed)".Indent(4));
+            method.AppendLine("Command.Connection.Close();".Indent(5));
+            method.AppendLine("Command.Dispose();".Indent(4));
+
+            //If the time elapsed must be measured
+            if (settings.MeasureTimeElapsed)
+                method.AppendLine("This.Executing = false;".Indent(4));
+
+            if (settings.LogEnd) //check if was required log the start of the method
+                method.AppendLine(String.Format("log.debug(\"End of Method that Executes the SP: {0}.{1}\");", proc.Schema, proc.Name).Indent(4));
+
+            method.AppendLine("}".Indent(3));
+            #endregion
+
+            method.AppendLine("}".Indent(2)); //closing bracket of the whole method
+
+            if (settings.InsideRegion)
+                method.AppendLine("#endregion".Indent(2)); //closing the region
+
+            return method.ToString();
+        }
+
+        private string GetCSharpForQueryMethod(Procedure proc, List<Field> returnColumns)
+        {
+            string buffer;
+            StringBuilder method = new StringBuilder();
+            //gets settings to create method
+            QuerySp settingsDialog = new QuerySp();
+            if (settingsDialog.ShowDialog() != DialogResult.OK)
+                return "";
+            GenerateQuerySpModelSettings settings = settingsDialog.CurrentSettings;
+
+            //write the "region start"
+            if (settings.InsideRegion)
+                method.AppendLine(String.Format("#region Method to execute the SP: {0}.{1}", proc.Schema, proc.Name).Indent(2));
+
+            #region write the first line of real code, the signature of the method
+            bool parameterless = true;
+            buffer = "public ";
+            if (settings.IsList)
+                buffer += "List<";
+            buffer += settings.ReturnName;
+            if (settings.IsList)
+                buffer += ">";
+            buffer += String.Format(" {0}(", proc.Name);
+            foreach (ISqlChild parameter in proc.Childs.Where(x => x.Kind == ChildType.Parameter))
+            {
+                parameterless = false;
+                if (SqlVsCSharp.ContainsKey(parameter.Type))
+                    buffer += String.Format("{0} {1}, ", SqlVsCSharp[parameter.Type], parameter.Name.Trim('@'));
+                else
+                    buffer += String.Format("??? {0}, ", parameter.Name.Trim('@'));
+            }
+
+            if (parameterless)
+            {
+                method.AppendLine(ExtensionHelper.Indent(buffer, 2) + ")");
+            }
+            else
+            {
+                method.AppendLine(ExtensionHelper.Indent(buffer.Substring(0, buffer.Length - 2), 2) + ")");
+            }
+
+            #endregion
+
+            method.AppendLine("{".Indent(2)); //opening bracket of the whole method
+
+            if (settings.LogStart) //check if was required log the start of the method
+                method.AppendLine(String.Format("log.debug(\"Start of Method that Executes the SP: {0}.{1}\");", proc.Schema, proc.Name).Indent(3));
+
+            //declaration of the object/primitive that will be returned
+            if (settings.IsList)
+            {
+                if (settings.IsObject)
+                    method.AppendLine(String.Format("List<{0}> back = new List<{0}>();", settings.ReturnName).Indent(3));
+                else
+                    method.AppendLine(String.Format("List<{0}> back = List<{0}>();", settings.ReturnName).Indent(3));
+            }
+            else
+            {
+                if (settings.IsObject)
+                    method.AppendLine(String.Format("{0} back = new {0}();", settings.ReturnName).Indent(3));
+                else
+                    method.AppendLine(String.Format("{0} back = {1};", settings.ReturnName, PrimitiveInitialization(settings.ReturnName)).Indent(3));
+            }
+            method.AppendLine();
+
+            #region creation of the command object
+            method.AppendLine(String.Format("SqlCommand sqlCommand = new SqlCommand(\"{0}.{1}\", this.Connection);", proc.Schema, proc.Name).Indent(3));
+            method.AppendLine("sqlCommand.CommandType = CommandType.StoredProcedure;".Indent(3));
+            method.AppendLine();
+            #endregion
+
+            #region assignation of the parameters
+            foreach (ISqlChild parameter in proc.Childs.Where(x => x.Kind == ChildType.Parameter))
+            {
+                if (SqlVsCSharpDb.ContainsKey(parameter.Type))
+                    method.AppendLine(String.Format("sqlCommand.Parameters.Add(new SqlParameter(\"{0}\", {1}, {2}));", parameter.Name, SqlVsCSharpDb[parameter.Type], parameter.Precision).Indent(3));
+                else
+                    method.AppendLine(String.Format("sqlCommand.Parameters.Add(new SqlParameter(\"{0}\", {1}, {2}));", parameter.Name, "??", parameter.Precision).Indent(3));
+                method.AppendLine(String.Format("sqlCommand.Parameters[\"{0}\"].Value = {1};", parameter.Name, parameter.Name.Trim('@')).Indent(3));
+            }
+            #endregion
+
+            method.AppendLine("try".Indent(3));
+            method.AppendLine("{".Indent(3)); //start of try
+
+            //If the time elapsed must be measured
+            if (settings.MeasureTimeElapsed)
+                method.AppendLine("This.Executing = true;".Indent(4));
+
+            //Open the connection to the DB
+            method.AppendLine("sqlCommand.Connection.Open();".Indent(4));
+            
+            if (settings.IsList)
+            {
+                #region Code to Handle Lists
+
+                if (settings.SaveRowsReadCount)
+                    method.AppendLine("RowsReaded = 0;".Indent(4));
+
+                method.AppendLine("using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())".Indent(4));
+                method.AppendLine("{".Indent(4)); //start of using statement
+                method.AppendLine("while (sqlDataReader.Read())".Indent(5));
+                method.AppendLine("{".Indent(5));
+
+                if (settings.SaveRowsReadCount)
+                    method.AppendLine("RowsReaded++;".Indent(6));
+
+                if (settings.IsObject)
+                {
+                    #region Map results to an object and add it to the list
+
+                    method.AppendLine(String.Format("{0} obj = new {0}();", settings.ReturnName).Indent(6));
+                    foreach (Field f in returnColumns)
+                    {
+                        if (f.CSharpType.Equals("string"))
+                        {
+                            method.AppendLine(String.Format("obj.{0} = sqlDataReader[\"{0}\"].ToString();", f.Name).Indent(6));
+                        }
+                        else if (f.CSharpType.Equals("bool"))
+                        {
+                            method.AppendLine(
+                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(
+                                String.Format("obj.{0} = Convert.ToBoolean(sqlDataReader[\"{0}\"].ToString());", f.Name)
+                                      .Indent(7));
+                            method.AppendLine("else".Indent(6));
+                            method.AppendLine(String.Format("obj.{0} = false;", f.Name).Indent(7));
+                        }
+                        else if (f.CSharpType.Equals("int"))
+                        {
+                            method.AppendLine(
+                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(
+                                String.Format("obj.{0} = Convert.ToInt32(sqlDataReader[\"{0}\"].ToString());", f.Name).Indent(7));
+                            method.AppendLine("else".Indent(6));
+                            method.AppendLine(String.Format("obj.{0} = 0;", f.Name).Indent(7));
+                        }
+                        else if (f.CSharpType.Equals("decimal"))
+                        {
+                            method.AppendLine(
+                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(
+                                String.Format("obj.{0} = Convert.ToDecimal(sqlDataReader[\"{0}\"].ToString());", f.Name)
+                                      .Indent(7));
+                            method.AppendLine("else".Indent(6));
+                            method.AppendLine(String.Format("obj.{0} = 0;", f.Name).Indent(7));
+                        }
+                        else if (f.CSharpType.Equals("double"))
+                        {
+                            method.AppendLine(
+                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(
+                                String.Format("obj.{0} = Convert.ToDouble(sqlDataReader[\"{0}\"].ToString());", f.Name)
+                                      .Indent(7));
+                            method.AppendLine("else".Indent(6));
+                            method.AppendLine(String.Format("obj.{0} = 0;", f.Name).Indent(7));
+                        }
+                        else if (f.CSharpType.Equals("DateTime"))
+                        {
+                            method.AppendLine(
+                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(
+                                String.Format("obj.{0} = Convert.ToDateTime(sqlDataReader[\"{0}\"].ToString());", f.Name)
+                                      .Indent(7));
+                            method.AppendLine("else".Indent(6));
+                            method.AppendLine(String.Format("obj.{0} = new DateTime(1900, 1, 1);", f.Name).Indent(7));
+                        }
+                    }
+
+                    #endregion
+                }
+                else
+                {
+                    #region Map first column of the results to a primitive and add it to the list
+
+                    method.AppendLine(
+                        String.Format("{0} obj = {1};", settings.ReturnName, PrimitiveInitialization(settings.ReturnName))
+                              .Indent(6));
+                    Field primitiveField = returnColumns[0];
+
+                    if (primitiveField.CSharpType.Equals("string"))
+                    {
+                        method.AppendLine("obj = sqlDataReader[0].ToString();".Indent(6));
+                    }
+                    else if (primitiveField.CSharpType.Equals("bool"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(6));
+                        method.AppendLine("obj = Convert.ToBoolean(sqlDataReader[0].ToString());".Indent(7));
+                        method.AppendLine("else".Indent(6));
+                        method.AppendLine("obj = false;".Indent(7));
+                    }
+                    else if (primitiveField.CSharpType.Equals("int"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(6));
+                        method.AppendLine("obj = Convert.ToInt32(sqlDataReader[0].ToString());".Indent(7));
+                        method.AppendLine("else".Indent(6));
+                        method.AppendLine("obj = 0;".Indent(7));
+                    }
+                    else if (primitiveField.CSharpType.Equals("decimal"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(6));
+                        method.AppendLine("obj = Convert.ToDecimal(sqlDataReader[0].ToString());".Indent(7));
+                        method.AppendLine("else".Indent(6));
+                        method.AppendLine("obj = 0;".Indent(7));
+                    }
+                    else if (primitiveField.CSharpType.Equals("double"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(6));
+                        method.AppendLine("obj = Convert.ToDouble(sqlDataReader[0].ToString());".Indent(7));
+                        method.AppendLine("else".Indent(6));
+                        method.AppendLine("obj = 0;".Indent(7));
+                    }
+                    else if (primitiveField.CSharpType.Equals("DateTime"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(6));
+                        method.AppendLine("obj = Convert.ToDateTime(sqlDataReader[0].ToString());".Indent(7));
+                        method.AppendLine("else".Indent(6));
+                        method.AppendLine("obj = new DateTime(1900, 1, 1);".Indent(7));
+                    }
+
+                    #endregion
+                }
+                method.AppendLine();
+                method.AppendLine("back.Add(obj);".Indent(6));
+                method.AppendLine("}".Indent(5));
+
+                #endregion
+            }
+            else
+            {
+                #region Code to handle single object/primitive
+
+                if (settings.SaveRowsReadCount)
+                    method.AppendLine("RowsReaded = 0;".Indent(4));
+
+                method.AppendLine(
+                    "using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader(CommandBehavior.SingleResult))".Indent(4));
+                method.AppendLine("{".Indent(4)); //start of using statement
+                method.AppendLine("if (sqlDataReader.Read())".Indent(5));
+                method.AppendLine("{".Indent(5));
+
+                if (settings.SaveRowsReadCount)
+                    method.AppendLine("RowsReaded = 1;".Indent(6));
+
+                if (settings.IsObject)
+                {
+                    #region Map results to an object
+
+                    foreach (Field f in returnColumns)
+                    {
+                        if (f.CSharpType.Equals("string"))
+                        {
+                            method.AppendLine(String.Format("back.{0} = sqlDataReader[\"{0}\"].ToString();", f.Name).Indent(6));
+                        }
+                        else if (f.CSharpType.Equals("bool"))
+                        {
+                            method.AppendLine(
+                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(
+                                String.Format("back.{0} = Convert.ToBoolean(sqlDataReader[\"{0}\"].ToString());", f.Name)
+                                      .Indent(7));
+                            method.AppendLine("else".Indent(6));
+                            method.AppendLine(String.Format("back.{0} = false;", f.Name).Indent(7));
+                        }
+                        else if (f.CSharpType.Equals("int"))
+                        {
+                            method.AppendLine(
+                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(
+                                String.Format("back.{0} = Convert.ToInt32(sqlDataReader[\"{0}\"].ToString());", f.Name)
+                                      .Indent(7));
+                            method.AppendLine("else".Indent(6));
+                            method.AppendLine(String.Format("back.{0} = 0;", f.Name).Indent(7));
+                        }
+                        else if (f.CSharpType.Equals("decimal"))
+                        {
+                            method.AppendLine(
+                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(
+                                String.Format("back.{0} = Convert.ToDecimal(sqlDataReader[\"{0}\"].ToString());", f.Name)
+                                      .Indent(7));
+                            method.AppendLine("else".Indent(6));
+                            method.AppendLine(String.Format("back.{0} = 0;", f.Name).Indent(7));
+                        }
+                        else if (f.CSharpType.Equals("double"))
+                        {
+                            method.AppendLine(
+                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(
+                                String.Format("back.{0} = Convert.ToDouble(sqlDataReader[\"{0}\"].ToString());", f.Name)
+                                      .Indent(7));
+                            method.AppendLine("else".Indent(6));
+                            method.AppendLine(String.Format("back.{0} = 0;", f.Name).Indent(7));
+                        }
+                        else if (f.CSharpType.Equals("DateTime"))
+                        {
+                            method.AppendLine(
+                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(
+                                String.Format("back.{0} = Convert.ToDateTime(sqlDataReader[\"{0}\"].ToString());", f.Name)
+                                      .Indent(7));
+                            method.AppendLine("else".Indent(6));
+                            method.AppendLine(String.Format("back.{0} = new DateTime(1900, 1, 1);", f.Name).Indent(7));
+                        }
+                    }
+
+                    #endregion
+                }
+                else
+                {
+                    #region Map first column of the results to an object and add it to the list
+
+                    //method.AppendLine(String.Format("{0} obj = {1};", settings.ReturnName, PrimitiveInitialization(settings.ReturnName)).Indent(6));
+                    Field primitiveField = returnColumns[0];
+
+                    if (primitiveField.CSharpType.Equals("string"))
+                    {
+                        method.AppendLine("back = sqlDataReader[0].ToString();".Indent(6));
+                    }
+                    else if (primitiveField.CSharpType.Equals("bool"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(6));
+                        method.AppendLine("back = Convert.ToBoolean(sqlDataReader[0].ToString());".Indent(7));
+                        method.AppendLine("else".Indent(6));
+                        method.AppendLine("back = false;".Indent(7));
+                    }
+                    else if (primitiveField.CSharpType.Equals("int"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(6));
+                        method.AppendLine("back = Convert.ToInt32(sqlDataReader[0].ToString());".Indent(7));
+                        method.AppendLine("else".Indent(6));
+                        method.AppendLine("back = 0;".Indent(7));
+                    }
+                    else if (primitiveField.CSharpType.Equals("decimal"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(6));
+                        method.AppendLine("back = Convert.ToDecimal(sqlDataReader[0].ToString());".Indent(7));
+                        method.AppendLine("else".Indent(6));
+                        method.AppendLine("back = 0;".Indent(7));
+                    }
+                    else if (primitiveField.CSharpType.Equals("double"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(6));
+                        method.AppendLine("back = Convert.ToDouble(sqlDataReader[0].ToString());".Indent(7));
+                        method.AppendLine("else".Indent(6));
+                        method.AppendLine("back = 0;".Indent(7));
+                    }
+                    else if (primitiveField.CSharpType.Equals("DateTime"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(6));
+                        method.AppendLine("back = Convert.ToDateTime(sqlDataReader[0].ToString());".Indent(7));
+                        method.AppendLine("else".Indent(6));
+                        method.AppendLine("back = new DateTime(1900, 1, 1);".Indent(7));
+                    }
+
+                    #endregion
+                }
+                method.AppendLine("}".Indent(5));
+
+                #endregion
+            }
+
+            method.AppendLine("}".Indent(4)); //end of using statement
+            method.AppendLine("}".Indent(3)); //end of try
+
+            #region SQL Exception Handling
+
+            method.AppendLine("catch (SqlException sqlex)".Indent(3));
+            method.AppendLine("{".Indent(3)); //start of Sql Exception Catch
+            method.AppendLine("LastMessage = sqlex.Errors[0].Message;".Indent(4));
+            method.AppendLine("LastSqlException = sqlex;".Indent(4));
+
+            if (settings.LogException)
+            {
+                method.AppendLine(String.Format("log.Error(\"SqlException on Execution of SP: {0}.{1}\", sqlex.GetBaseException());",proc.Schema, proc.Name).Indent(4));
+            }
+            method.AppendLine("throw;".Indent(4));
+
+            method.AppendLine("}".Indent(3)); //end of Sql Exception Catch
+
+            #endregion
+
+            #region Generic Exception Handling
+
+            method.AppendLine("catch (Exception ex)".Indent(3));
+            method.AppendLine("{".Indent(3)); //start of Exception Catch
+            method.AppendLine("LastMessage = ex.Message;".Indent(4));
+            method.AppendLine("LastException = ex;".Indent(4));
+
+            if (settings.LogException)
+            {
+                method.AppendLine(String.Format("log.Error(\"Exception on Execution of SP: {0}.{1}\", ex);", proc.Schema, proc.Name).Indent(4));
+            }
+            method.AppendLine("throw;".Indent(4));
+
+            method.AppendLine("}".Indent(3)); //end of Exception Catch
+
+            #endregion
+
+            #region block "finally", of the try-catch
+            method.AppendLine("finally".Indent(3));
+            method.AppendLine("{".Indent(3));
+            method.AppendLine("if (Command.Connection.State != ConnectionState.Closed)".Indent(4));
+            method.AppendLine("Command.Connection.Close();".Indent(5));
+            method.AppendLine("Command.Dispose();".Indent(4));
+
+            //If the time elapsed must be measured
+            if (settings.MeasureTimeElapsed)
+                method.AppendLine("This.Executing = false;".Indent(4));
+
+            if (settings.LogEnd) //check if was required log the start of the method
+                method.AppendLine(String.Format("log.debug(\"End of Method that Executes the SP: {0}.{1}\");", proc.Schema, proc.Name).Indent(4));
+
+            method.AppendLine("}".Indent(3));
+            #endregion
+
+            method.AppendLine("return back;".Indent(3)); //closing bracket of the whole method
+            method.AppendLine("}".Indent(2)); //closing bracket of the whole method
+
+            if (settings.InsideRegion)
+                method.AppendLine("#endregion".Indent(2)); //closing the region
+
+            return method.ToString();
+        }
+
+        private string PrimitiveInitialization(string primitive)
+        {
+            if (primitive.Equals("bool"))
+                return "false";
+
+            if (primitive.Equals("int"))
+                return "0";
+            
+            if (primitive.Equals("string"))
+                return "\"\"";
+
+            if (primitive.Equals("float"))
+                return "0.0";
+            
+            if (primitive.Equals("double"))
+                return "0.0";
+            
+            if (primitive.Equals("DateTime"))
+                return "new DateTime(1900,1,1)";
+ 
+            return "\"\"";
+        }
         #endregion
 
+        private List<Field> GetReturnColumnsFromProcedure(Procedure proc)
+        {
+            List<Field> Back = new List<Field>();
+
+            if (proc == null || String.IsNullOrEmpty(proc.Schema) || String.IsNullOrEmpty(proc.Name))
+            {
+                return Back;
+            }
+
+            using (SqlCommand command = new SqlCommand(String.Format("{0}.{1}", proc.Schema, proc.Name), Executor.Connection))
+            {
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                try
+                {
+                    command.Connection.Open();
+                    SqlCommandBuilder.DeriveParameters(command);
+                    SqlDataAdapter Daa = new SqlDataAdapter();
+                    Daa.SelectCommand = command;
+                    DataSet ds = new DataSet("buff");
+                    Daa.GetFillParameters();
+                    Daa.FillSchema(ds, SchemaType.Source, "buff");
+                    foreach (DataTable tab in ds.Tables)
+                    {
+                        foreach (DataColumn col in tab.Columns)
+                        {
+                            if (SqlVsCSharp.ContainsKey(col.DataType.ToString()))
+                            {
+                                Field aux = new Field()
+                                    {
+                                        Name = col.Caption,
+                                        Type = col.DataType.ToString(),
+                                        CSharpType = SqlVsCSharp[col.DataType.ToString()]
+                                    };
+                               
+                                if (!Back.Exists(x => x.Name.Equals(col.Caption, StringComparison.CurrentCultureIgnoreCase)))
+                                {
+                                    Back.Add(aux);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    command.Connection.Close();
+                    MessageBox.Show(ex.Message, "Exception thrown when trying to pull the return data of the Stored Procedure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                command.Connection.Close();
+            }
+            return Back;
+        }
 
     }
 

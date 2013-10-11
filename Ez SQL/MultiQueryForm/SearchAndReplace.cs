@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Ez_SQL.CSharp;
 using ICSharpCode.TextEditor.Document;
 using ICSharpCode.TextEditor;
 using System.Diagnostics;
@@ -37,12 +38,52 @@ namespace Ez_SQL.MultiQueryForm
 			}
 		}
         QueryForm Parent;
+        SharpCodeForm StepParent;
 
 		private void UpdateTitleBar()
 		{
             Text = "Text search or replace";
 
 		}
+
+        public void ShowFor(SharpCodeForm parent, TextEditorControl editor, bool replaceMode)
+        {
+            Editor = editor;
+            StepParent = parent;
+
+            _search.ClearScanRegion();
+            var sm = editor.ActiveTextAreaControl.SelectionManager;
+            if (sm.HasSomethingSelected && sm.SelectionCollection.Count == 1)
+            {
+                var sel = sm.SelectionCollection[0];
+                if (sel.StartPosition.Line == sel.EndPosition.Line)
+                    TxtSearch.Text = sm.SelectedText;
+                else
+                    _search.SetScanRegion(sel);
+            }
+            else
+            {
+                // Get the current word that the caret is on
+                Caret caret = editor.ActiveTextAreaControl.Caret;
+                int start = TextUtilities.FindWordStart(editor.Document, caret.Offset);
+                int endAt = TextUtilities.FindWordEnd(editor.Document, caret.Offset);
+                TxtSearch.Text = editor.Document.GetText(start, endAt - start);
+            }
+
+            //ReplaceMode = replaceMode;
+
+            this.Owner = (Form)editor.TopLevelControl;
+            this.Show();
+
+            TxtSearch.SelectAll();
+            TxtSearch.Focus();
+
+            if (!_highlightGroups.ContainsKey(_editor))
+                _highlightGroups[_editor] = new HighlightGroup(_editor);
+            HighlightGroup group = _highlightGroups[_editor];
+            group.ClearMarkers();            
+        }
+
         public void ShowFor(QueryForm parent, TextEditorControl editor, bool replaceMode)
 		{
 			Editor = editor;
