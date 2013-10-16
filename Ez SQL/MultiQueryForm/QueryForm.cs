@@ -1973,7 +1973,7 @@ namespace Ez_SQL.MultiQueryForm
             //Create the transaction and assign it to the command
             if (settings.UseTransaction)
             {
-                method.AppendLine(String.Format("transaction = this.Conexion.BeginTransaction(\"Trans_{0}\");", proc.Name).Indent(4));
+                method.AppendLine(String.Format("transaction = this.Connection.BeginTransaction(\"Trans_{0}\");", proc.Name).Indent(4));
                 method.AppendLine("sqlCommand.Transaction = transaction;".Indent(4));
             }
 
@@ -2001,7 +2001,11 @@ namespace Ez_SQL.MultiQueryForm
                 method.AppendLine(String.Format("log.Error(\"SqlException on Execution of SP: {0}.{1}\", sqlex.GetBaseException());", proc.Schema, proc.Name).Indent(4));
 
             if (settings.UseTransaction)
-                method.AppendLine("transaction.Rollback();".Indent(4));
+            {
+                method.AppendLine("if(transaction != null)".Indent(4));
+                method.AppendLine("transaction.Rollback();".Indent(5));
+            }
+
 
             method.AppendLine("throw;".Indent(4));
 
@@ -2016,9 +2020,13 @@ namespace Ez_SQL.MultiQueryForm
 
             if (settings.LogException)
                 method.AppendLine(String.Format("log.Error(\"Exception on Execution of SP: {0}.{1}\", ex);", proc.Schema, proc.Name).Indent(4));
-            
+
             if (settings.UseTransaction)
-                method.AppendLine("transaction.Rollback();".Indent(4));
+            {
+                method.AppendLine("if(transaction != null)".Indent(4));
+                method.AppendLine("transaction.Rollback();".Indent(5));
+            }
+
             
             method.AppendLine("throw;".Indent(4));
 
@@ -2149,7 +2157,7 @@ namespace Ez_SQL.MultiQueryForm
             //Create the transaction and assign it to the command
             if (settings.UseTransaction)
             {
-                method.AppendLine(String.Format("transaction = this.Conexion.BeginTransaction(\"Trans_{0}\");", proc.Name).Indent(4));
+                method.AppendLine(String.Format("transaction = this.Connection.BeginTransaction(\"Trans_{0}\");", proc.Name).Indent(4));
                 method.AppendLine("sqlCommand.Transaction = transaction;".Indent(4));
             }
 
@@ -2429,7 +2437,10 @@ namespace Ez_SQL.MultiQueryForm
                 method.AppendLine(String.Format("log.Error(\"SqlException on Execution of SP: {0}.{1}\", sqlex.GetBaseException());",proc.Schema, proc.Name).Indent(4));
 
             if (settings.UseTransaction)
-                method.AppendLine("transaction.Rollback();".Indent(4));
+            {
+                method.AppendLine("if(transaction != null)".Indent(4));
+                method.AppendLine("transaction.Rollback();".Indent(5));
+            }
 
             method.AppendLine("throw;".Indent(4));
 
@@ -2446,7 +2457,11 @@ namespace Ez_SQL.MultiQueryForm
                 method.AppendLine(String.Format("log.Error(\"Exception on Execution of SP: {0}.{1}\", ex);", proc.Schema, proc.Name).Indent(4));
 
             if (settings.UseTransaction)
-                method.AppendLine("transaction.Rollback();".Indent(4));
+            {
+                method.AppendLine("if(transaction != null)".Indent(4));
+                method.AppendLine("transaction.Rollback();".Indent(5));
+            }
+
 
             method.AppendLine("throw;".Indent(4));
 
