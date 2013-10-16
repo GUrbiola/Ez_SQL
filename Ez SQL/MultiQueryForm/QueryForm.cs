@@ -1936,7 +1936,12 @@ namespace Ez_SQL.MultiQueryForm
             method.AppendLine("{".Indent(2)); //opening bracket of the whole method
 
             if (settings.LogStart) //check if was required log the start of the method
-                method.AppendLine(String.Format("log.debug(\"Start of Method that Executes the SP: {0}.{1}\");", proc.Schema, proc.Name).Indent(3));
+                method.AppendLine(String.Format("log.Debug(\"Start of Method that Executes the SP: {0}.{1}\");", proc.Schema, proc.Name).Indent(3));
+            
+            #region creation of transaction object
+            if (settings.UseTransaction)
+                method.AppendLine("SqlTransaction transaction = null;".Indent(3));
+            #endregion
 
             #region creation of the command object
             method.AppendLine(String.Format("SqlCommand sqlCommand = new SqlCommand(\"{0}.{1}\", this.Connection);", proc.Schema, proc.Name).Indent(3));
@@ -1960,68 +1965,79 @@ namespace Ez_SQL.MultiQueryForm
 
             //If the time elapsed must be measured
             if (settings.MeasureTimeElapsed)
-                method.AppendLine("This.Executing = true;".Indent(4));
+                method.AppendLine("this.Executing = true;".Indent(4));
 
             //Open the connection to the DB
             method.AppendLine("sqlCommand.Connection.Open();".Indent(4));
+
+            //Create the transaction and assign it to the command
+            if (settings.UseTransaction)
+            {
+                method.AppendLine(String.Format("transaction = this.Conexion.BeginTransaction(\"Trans_{0}\");", proc.Name).Indent(4));
+                method.AppendLine("sqlCommand.Transaction = transaction;".Indent(4));
+            }
+
             if (settings.SaveRowsAffectedCount)
             {
-                method.AppendLine("RowsAffected = Command.ExecuteNonQuery();".Indent(4));
+                method.AppendLine("RowsAffected = sqlCommand.ExecuteNonQuery();".Indent(4));
             }
             else
             {
-                method.AppendLine("Command.ExecuteNonQuery();".Indent(4));
+                method.AppendLine("sqlCommand.ExecuteNonQuery();".Indent(4));
             }
+
+            if (settings.UseTransaction)
+                method.AppendLine("transaction.Commit();".Indent(4));
 
             method.AppendLine("}".Indent(3)); //end of try
 
             #region SQL Exception Handling
-
             method.AppendLine("catch (SqlException sqlex)".Indent(3));
             method.AppendLine("{".Indent(3)); //start of Sql Exception Catch
             method.AppendLine("LastMessage = sqlex.Errors[0].Message;".Indent(4));
             method.AppendLine("LastSqlException = sqlex;".Indent(4));
 
             if (settings.LogException)
-            {
                 method.AppendLine(String.Format("log.Error(\"SqlException on Execution of SP: {0}.{1}\", sqlex.GetBaseException());", proc.Schema, proc.Name).Indent(4));
-            }
+
+            if (settings.UseTransaction)
+                method.AppendLine("transaction.Rollback();".Indent(4));
+
             method.AppendLine("throw;".Indent(4));
 
             method.AppendLine("}".Indent(3)); //end of Sql Exception Catch
-
             #endregion
 
             #region Generic Exception Handling
-
             method.AppendLine("catch (Exception ex)".Indent(3));
             method.AppendLine("{".Indent(3)); //start of Exception Catch
             method.AppendLine("LastMessage = ex.Message;".Indent(4));
             method.AppendLine("LastException = ex;".Indent(4));
 
             if (settings.LogException)
-            {
                 method.AppendLine(String.Format("log.Error(\"Exception on Execution of SP: {0}.{1}\", ex);", proc.Schema, proc.Name).Indent(4));
-            }
+            
+            if (settings.UseTransaction)
+                method.AppendLine("transaction.Rollback();".Indent(4));
+            
             method.AppendLine("throw;".Indent(4));
 
             method.AppendLine("}".Indent(3)); //end of Exception Catch
-
             #endregion
 
             #region block "finally", of the try-catch
             method.AppendLine("finally".Indent(3));
             method.AppendLine("{".Indent(3));
-            method.AppendLine("if (Command.Connection.State != ConnectionState.Closed)".Indent(4));
-            method.AppendLine("Command.Connection.Close();".Indent(5));
-            method.AppendLine("Command.Dispose();".Indent(4));
+            method.AppendLine("if (sqlCommand.Connection.State != ConnectionState.Closed)".Indent(4));
+            method.AppendLine("sqlCommand.Connection.Close();".Indent(5));
+            method.AppendLine("sqlCommand.Dispose();".Indent(4));
 
             //If the time elapsed must be measured
             if (settings.MeasureTimeElapsed)
-                method.AppendLine("This.Executing = false;".Indent(4));
+                method.AppendLine("this.Executing = false;".Indent(4));
 
             if (settings.LogEnd) //check if was required log the start of the method
-                method.AppendLine(String.Format("log.debug(\"End of Method that Executes the SP: {0}.{1}\");", proc.Schema, proc.Name).Indent(4));
+                method.AppendLine(String.Format("log.Debug(\"End of Method that Executes the SP: {0}.{1}\");", proc.Schema, proc.Name).Indent(4));
 
             method.AppendLine("}".Indent(3));
             #endregion
@@ -2080,7 +2096,7 @@ namespace Ez_SQL.MultiQueryForm
             method.AppendLine("{".Indent(2)); //opening bracket of the whole method
 
             if (settings.LogStart) //check if was required log the start of the method
-                method.AppendLine(String.Format("log.debug(\"Start of Method that Executes the SP: {0}.{1}\");", proc.Schema, proc.Name).Indent(3));
+                method.AppendLine(String.Format("log.Debug(\"Start of Method that Executes the SP: {0}.{1}\");", proc.Schema, proc.Name).Indent(3));
 
             //declaration of the object/primitive that will be returned
             if (settings.IsList)
@@ -2097,6 +2113,10 @@ namespace Ez_SQL.MultiQueryForm
                 else
                     method.AppendLine(String.Format("{0} back = {1};", settings.ReturnName, PrimitiveInitialization(settings.ReturnName)).Indent(3));
             }
+            #region creation of transaction object
+            if (settings.UseTransaction)
+                method.AppendLine("SqlTransaction transaction = null;".Indent(3));
+            #endregion
             method.AppendLine();
 
             #region creation of the command object
@@ -2121,17 +2141,23 @@ namespace Ez_SQL.MultiQueryForm
 
             //If the time elapsed must be measured
             if (settings.MeasureTimeElapsed)
-                method.AppendLine("This.Executing = true;".Indent(4));
+                method.AppendLine("this.Executing = true;".Indent(4));
 
             //Open the connection to the DB
             method.AppendLine("sqlCommand.Connection.Open();".Indent(4));
-            
+
+            //Create the transaction and assign it to the command
+            if (settings.UseTransaction)
+            {
+                method.AppendLine(String.Format("transaction = this.Conexion.BeginTransaction(\"Trans_{0}\");", proc.Name).Indent(4));
+                method.AppendLine("sqlCommand.Transaction = transaction;".Indent(4));
+            }
+
             if (settings.IsList)
             {
                 #region Code to Handle Lists
-
                 if (settings.SaveRowsReadCount)
-                    method.AppendLine("RowsReaded = 0;".Indent(4));
+                    method.AppendLine("RowsRead = 0;".Indent(4));
 
                 method.AppendLine("using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())".Indent(4));
                 method.AppendLine("{".Indent(4)); //start of using statement
@@ -2139,12 +2165,11 @@ namespace Ez_SQL.MultiQueryForm
                 method.AppendLine("{".Indent(5));
 
                 if (settings.SaveRowsReadCount)
-                    method.AppendLine("RowsReaded++;".Indent(6));
+                    method.AppendLine("RowsRead++;".Indent(6));
 
                 if (settings.IsObject)
                 {
                     #region Map results to an object and add it to the list
-
                     method.AppendLine(String.Format("{0} obj = new {0}();", settings.ReturnName).Indent(6));
                     foreach (Field f in returnColumns)
                     {
@@ -2259,15 +2284,13 @@ namespace Ez_SQL.MultiQueryForm
                 method.AppendLine();
                 method.AppendLine("back.Add(obj);".Indent(6));
                 method.AppendLine("}".Indent(5));
-
                 #endregion
             }
             else
             {
                 #region Code to handle single object/primitive
-
                 if (settings.SaveRowsReadCount)
-                    method.AppendLine("RowsReaded = 0;".Indent(4));
+                    method.AppendLine("RowsRead = 0;".Indent(4));
 
                 method.AppendLine(
                     "using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader(CommandBehavior.SingleResult))".Indent(4));
@@ -2276,12 +2299,11 @@ namespace Ez_SQL.MultiQueryForm
                 method.AppendLine("{".Indent(5));
 
                 if (settings.SaveRowsReadCount)
-                    method.AppendLine("RowsReaded = 1;".Indent(6));
+                    method.AppendLine("RowsRead = 1;".Indent(6));
 
                 if (settings.IsObject)
                 {
                     #region Map results to an object
-
                     foreach (Field f in returnColumns)
                     {
                         if (f.CSharpType.Equals("string"))
@@ -2339,13 +2361,11 @@ namespace Ez_SQL.MultiQueryForm
                             method.AppendLine(String.Format("back.{0} = new DateTime(1900, 1, 1);", f.Name).Indent(7));
                         }
                     }
-
                     #endregion
                 }
                 else
                 {
                     #region Map first column of the results to an object and add it to the list
-
                     //method.AppendLine(String.Format("{0} obj = {1};", settings.ReturnName, PrimitiveInitialization(settings.ReturnName)).Indent(6));
                     Field primitiveField = returnColumns[0];
 
@@ -2388,64 +2408,64 @@ namespace Ez_SQL.MultiQueryForm
                         method.AppendLine("else".Indent(6));
                         method.AppendLine("back = new DateTime(1900, 1, 1);".Indent(7));
                     }
-
                     #endregion
                 }
                 method.AppendLine("}".Indent(5));
-
                 #endregion
             }
 
             method.AppendLine("}".Indent(4)); //end of using statement
+            if (settings.UseTransaction)
+                method.AppendLine("transaction.Commit();".Indent(4));
             method.AppendLine("}".Indent(3)); //end of try
 
             #region SQL Exception Handling
-
             method.AppendLine("catch (SqlException sqlex)".Indent(3));
             method.AppendLine("{".Indent(3)); //start of Sql Exception Catch
             method.AppendLine("LastMessage = sqlex.Errors[0].Message;".Indent(4));
             method.AppendLine("LastSqlException = sqlex;".Indent(4));
 
             if (settings.LogException)
-            {
                 method.AppendLine(String.Format("log.Error(\"SqlException on Execution of SP: {0}.{1}\", sqlex.GetBaseException());",proc.Schema, proc.Name).Indent(4));
-            }
+
+            if (settings.UseTransaction)
+                method.AppendLine("transaction.Rollback();".Indent(4));
+
             method.AppendLine("throw;".Indent(4));
 
             method.AppendLine("}".Indent(3)); //end of Sql Exception Catch
-
             #endregion
 
             #region Generic Exception Handling
-
             method.AppendLine("catch (Exception ex)".Indent(3));
             method.AppendLine("{".Indent(3)); //start of Exception Catch
             method.AppendLine("LastMessage = ex.Message;".Indent(4));
             method.AppendLine("LastException = ex;".Indent(4));
 
             if (settings.LogException)
-            {
                 method.AppendLine(String.Format("log.Error(\"Exception on Execution of SP: {0}.{1}\", ex);", proc.Schema, proc.Name).Indent(4));
-            }
+
+            if (settings.UseTransaction)
+                method.AppendLine("transaction.Rollback();".Indent(4));
+
             method.AppendLine("throw;".Indent(4));
 
             method.AppendLine("}".Indent(3)); //end of Exception Catch
-
             #endregion
 
             #region block "finally", of the try-catch
             method.AppendLine("finally".Indent(3));
             method.AppendLine("{".Indent(3));
-            method.AppendLine("if (Command.Connection.State != ConnectionState.Closed)".Indent(4));
-            method.AppendLine("Command.Connection.Close();".Indent(5));
-            method.AppendLine("Command.Dispose();".Indent(4));
+            method.AppendLine("if (sqlCommand.Connection.State != ConnectionState.Closed)".Indent(4));
+            method.AppendLine("sqlCommand.Connection.Close();".Indent(5));
+            method.AppendLine("sqlCommand.Dispose();".Indent(4));
 
             //If the time elapsed must be measured
             if (settings.MeasureTimeElapsed)
-                method.AppendLine("This.Executing = false;".Indent(4));
+                method.AppendLine("this.Executing = false;".Indent(4));
 
             if (settings.LogEnd) //check if was required log the start of the method
-                method.AppendLine(String.Format("log.debug(\"End of Method that Executes the SP: {0}.{1}\");", proc.Schema, proc.Name).Indent(4));
+                method.AppendLine(String.Format("log.Debug(\"End of Method that Executes the SP: {0}.{1}\");", proc.Schema, proc.Name).Indent(4));
 
             method.AppendLine("}".Indent(3));
             #endregion
