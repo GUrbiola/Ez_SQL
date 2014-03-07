@@ -2214,7 +2214,7 @@ namespace Ez_SQL.MultiQueryForm
                             method.AppendLine("else".Indent(6));
                             method.AppendLine(String.Format("obj.{0} = 0;", f.Name).Indent(7));
                         }
-                        else if (f.CSharpType.Equals("double"))
+                        else if (f.CSharpType.Equals("double") || f.CSharpType.Equals("float"))
                         {
                             method.AppendLine(
                                 String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
@@ -2272,7 +2272,7 @@ namespace Ez_SQL.MultiQueryForm
                         method.AppendLine("else".Indent(6));
                         method.AppendLine("obj = 0;".Indent(7));
                     }
-                    else if (primitiveField.CSharpType.Equals("double"))
+                    else if (primitiveField.CSharpType.Equals("double") || primitiveField.CSharpType.Equals("float"))
                     {
                         method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(6));
                         method.AppendLine("obj = Convert.ToDouble(sqlDataReader[0].ToString());".Indent(7));
@@ -2348,7 +2348,7 @@ namespace Ez_SQL.MultiQueryForm
                             method.AppendLine("else".Indent(6));
                             method.AppendLine(String.Format("back.{0} = 0;", f.Name).Indent(7));
                         }
-                        else if (f.CSharpType.Equals("double"))
+                        else if (f.CSharpType.Equals("double") || f.CSharpType.Equals("float"))
                         {
                             method.AppendLine(
                                 String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
@@ -2402,7 +2402,7 @@ namespace Ez_SQL.MultiQueryForm
                         method.AppendLine("else".Indent(6));
                         method.AppendLine("back = 0;".Indent(7));
                     }
-                    else if (primitiveField.CSharpType.Equals("double"))
+                    else if (primitiveField.CSharpType.Equals("double") || primitiveField.CSharpType.Equals("float"))
                     {
                         method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(6));
                         method.AppendLine("back = Convert.ToDouble(sqlDataReader[0].ToString());".Indent(7));
