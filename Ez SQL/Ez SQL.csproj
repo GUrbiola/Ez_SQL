@@ -113,6 +113,12 @@
     <Compile Include="Custom Controls\AnimatedWaitTextBox.designer.cs">
       <DependentUpon>AnimatedWaitTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom Controls\SideToSideTextComparer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom Controls\SideToSideTextComparer.Designer.cs">
+      <DependentUpon>SideToSideTextComparer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom Controls\StatusStripIcon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -258,6 +264,9 @@
     <EmbeddedResource Include="Custom Controls\LoadingInfo.resx">
       <DependentUpon>LoadingInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Custom Controls\SideToSideTextComparer.resx">
+      <DependentUpon>SideToSideTextComparer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EzConfig\ColorConfig\ConfigItemDialog.resx">
       <DependentUpon>ConfigItemDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -293,7 +302,7 @@
       <DependentUpon>QueryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -368,13 +377,18 @@
     <None Include="Resources\Background.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Begin - end.snp" />
+    <None Include="Resources\Complex Snippet.snp" />
     <None Include="Resources\ConxPlug.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CopyConnectionString.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Create procedure.snp" />
+    <None Include="Resources\Cross join.snp" />
     <None Include="Resources\CSharp.xshd" />
+    <None Include="Resources\Cursor.snp" />
     <None Include="Resources\Database.png" />
   </ItemGroup>
   <ItemGroup>
@@ -384,6 +398,9 @@
     <None Include="Resources\DBGroup.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\declare.snp" />
+    <None Include="Resources\Drop Table Helper.snp" />
+    <None Include="Resources\Drop Table.snp" />
     <None Include="Resources\Exit.png" />
   </ItemGroup>
   <ItemGroup>
@@ -396,6 +413,11 @@
     <None Include="Resources\ImportToDB.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Inner join.snp" />
+    <None Include="Resources\Insert into all.snp" />
+    <None Include="Resources\Insert into.snp" />
+    <None Include="Resources\Is Unique.snp" />
+    <None Include="Resources\Left outer join.snp" />
     <None Include="Resources\Maximize.png" />
   </ItemGroup>
   <ItemGroup>
@@ -408,6 +430,9 @@
     <None Include="Resources\New_Window32.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\order by.snp" />
+    <None Include="Resources\Outer apply.snp" />
+    <None Include="Resources\Record Count.snp" />
     <None Include="Resources\Refresh.png" />
   </ItemGroup>
   <ItemGroup>
@@ -450,17 +475,24 @@
     <None Include="Resources\RedAlert.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Right outer join.snp" />
     <None Include="Resources\Save.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Search.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Select all.snp" />
+    <None Include="Resources\Select count.snp" />
+    <None Include="Resources\Select some from.snp" />
+    <None Include="Resources\Select top records.snp" />
+    <None Include="Resources\select.snp" />
     <None Include="Resources\SQL.xshd" />
     <None Include="Resources\Stop.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Transaction.snp" />
+    <None Include="Resources\Truncate Table.snp" />
     <None Include="Resources\TurboC.xshd" />
     <None Include="Resources\UnComment.png" />
   </ItemGroup>
@@ -478,6 +510,7 @@
     <None Include="Resources\ToUpperCase.png" />
     <None Include="Resources\Outlining.png" />
     <None Include="Resources\Selection.png" />
+    <None Include="Resources\Where.snp" />
     <None Include="Resources\Words.png" />
     <None Include="Resources\GoToDefinition.png" />
     <None Include="Resources\Filter.png" />

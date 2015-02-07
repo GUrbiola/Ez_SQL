@@ -9,7 +9,7 @@ using ICSharpCode.TextEditor;
 
 namespace Ez_SQL.MultiQueryForm
 {
-    public enum FilteringType { Table, View, Procedure, ScalarFunction, TableFunction, FieldItem, ScriptItem, Any, Smart }
+    public enum FilteringType { Table, View, Procedure, ScalarFunction, TableFunction, FieldItem, ScriptItem, Any, Smart, None }
     public class CompletionDataProvider: ICompletionDataProvider
     {
         private ImageList imageList;
@@ -103,7 +103,11 @@ namespace Ez_SQL.MultiQueryForm
         {
             //List<ISqlObject> BackItems = new List<ISqlObject>();
             List<ICompletionData> BackItems = new List<ICompletionData>();
-            
+
+            if (SqlServerData == null)
+                return BackItems.ToArray();
+
+
             switch (FilteringOption)
             {
                 case FilteringType.Table:

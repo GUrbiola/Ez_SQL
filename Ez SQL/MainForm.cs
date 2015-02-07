@@ -63,8 +63,8 @@ namespace Ez_SQL
             get
             {
                 int X, Y;
-                X = SideMenu.Width + 10;
-                Y = MainMenu.Height + 10;
+                X = this.Width - 337;
+                Y = this.Height - 103;
                 return new Point(this.Location.X + X, this.Location.Y + Y);
             }
         }
@@ -149,7 +149,7 @@ namespace Ez_SQL
                 #region Create the default snippets files
                 using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Begin - end.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
-                    writer.Write(Properties.Resources.Begin_end, 0, Properties.Resources.Begin_end.Length);
+                    writer.Write(Properties.Resources.Begin___end, 0, Properties.Resources.Begin___end.Length);
                     writer.Flush();
                     writer.Close();
                 }
@@ -225,15 +225,9 @@ namespace Ez_SQL
                     writer.Flush();
                     writer.Close();
                 } 
-                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\select.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
-                {
-                    writer.Write(Properties.Resources.select, 0, Properties.Resources.select.Length);
-                    writer.Flush();
-                    writer.Close();
-                } 
                 using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Select all.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
-                    writer.Write(Properties.Resources.Select_All, 0, Properties.Resources.Select_All.Length);
+                    writer.Write(Properties.Resources.Select_all, 0, Properties.Resources.Select_all.Length);
                     writer.Flush();
                     writer.Close();
                 } 
@@ -248,7 +242,55 @@ namespace Ez_SQL
                     writer.Write(Properties.Resources.Select_top_records, 0, Properties.Resources.Select_top_records.Length);
                     writer.Flush();
                     writer.Close();
-                } 
+                }
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Drop Table Helper.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                {
+                    writer.Write(Properties.Resources.Drop_Table_Helper, 0, Properties.Resources.Drop_Table_Helper.Length);
+                    writer.Flush();
+                    writer.Close();
+                }
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Drop Table.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                {
+                    writer.Write(Properties.Resources.Drop_Table, 0, Properties.Resources.Drop_Table.Length);
+                    writer.Flush();
+                    writer.Close();
+                }
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Is Unique.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                {
+                    writer.Write(Properties.Resources.Is_Unique, 0, Properties.Resources.Is_Unique.Length);
+                    writer.Flush();
+                    writer.Close();
+                }
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Record Count.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                {
+                    writer.Write(Properties.Resources.Record_Count, 0, Properties.Resources.Record_Count.Length);
+                    writer.Flush();
+                    writer.Close();
+                }
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Select Count.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                {
+                    writer.Write(Properties.Resources.Select_count, 0, Properties.Resources.Select_count.Length);
+                    writer.Flush();
+                    writer.Close();
+                }
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Truncate Table.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                {
+                    writer.Write(Properties.Resources.Truncate_Table, 0, Properties.Resources.Truncate_Table.Length);
+                    writer.Flush();
+                    writer.Close();
+                }
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Where.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                {
+                    writer.Write(Properties.Resources.Where, 0, Properties.Resources.Where.Length);
+                    writer.Flush();
+                    writer.Close();
+                }
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Select.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                {
+                    writer.Write(Properties.Resources.select, 0, Properties.Resources.select.Length);
+                    writer.Flush();
+                    writer.Close();
+                }
                 #endregion
             }
             if (!Directory.Exists(String.Format("{0}\\QueriesLog", DataStorageDir)))
@@ -289,6 +331,10 @@ namespace Ez_SQL
         }
         private void BtnMax_Click(object sender, EventArgs e)
         {
+            Screen currentScreen = Screen.FromControl(this);
+            _ScreenSize = currentScreen.WorkingArea.Size;
+            
+
             if (this.Size == _ScreenSize)
             {//is maximized
                 _IsMaximized = false;
@@ -303,7 +349,8 @@ namespace Ez_SQL
                 _IsMaximized = true;
                 _LastSize = this.Size;
                 _LastLocation = this.Location;
-                this.Location = _ZeroZero;
+                this.Location = currentScreen.WorkingArea.Location;
+                ;//_ZeroZero;
                 this.Size = _ScreenSize;
 
                 BtnMax.Image = Properties.Resources.Restore;
@@ -381,7 +428,7 @@ namespace Ez_SQL
         {
             string[] Data;
             if (nca.OUniqueID.ToString().Contains("Name"))
-            {//si contiene toda la informacion, grupo de conexiones, nombre de conexion y connectionstring
+            {
                 Data = nca.OUniqueID.ToString().Split('|');
                 _ConxGroup = Data[1].Split(':')[1];
                 _ConxName = Data[2].Split(':')[1];
@@ -573,6 +620,4 @@ namespace Ez_SQL
         }
         #endregion
     }
-
-
 }

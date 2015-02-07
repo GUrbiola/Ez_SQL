@@ -48,6 +48,12 @@ namespace Ez_SQL.Extensions
             int SelectionLength = 0;
             if (String.IsNullOrEmpty(InsStr))
                 return;
+
+            if (TxtEditor.ActiveTextAreaControl.SelectionManager.HasSomethingSelected)
+            {
+                TxtEditor.ActiveTextAreaControl.SelectionManager.RemoveSelectedText();
+            }
+
             if (Position == -1)
             {
                 Position = TxtEditor.CurrentOffset();
@@ -79,8 +85,7 @@ namespace Ez_SQL.Extensions
             TxtEditor.ActiveTextAreaControl.ScrollTo(p1.Line, p1.Column);
             // Also move the caret to the end of the selection, because when the user 
             // presses F3, the caret is where we start searching next time.
-            TxtEditor.ActiveTextAreaControl.Caret.Position =
-                TxtEditor.Document.OffsetToPosition(offset + length);
+            TxtEditor.ActiveTextAreaControl.Caret.Position = TxtEditor.Document.OffsetToPosition(offset + length);
         }
         #endregion
 

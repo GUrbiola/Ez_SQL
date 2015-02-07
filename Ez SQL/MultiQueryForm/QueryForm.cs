@@ -57,6 +57,8 @@ namespace Ez_SQL.MultiQueryForm
         public static Dictionary<string, string> SqlVsCSharpDb;
         public static Dictionary<string, string> CSharpVsSql;
 
+        private FilteringType curFiltering = FilteringType.None;
+
         public QueryForm(MainForm Parent, SqlConnector DataProvider, string Script = "")
         {
             InitializeComponent();
@@ -974,18 +976,22 @@ namespace Ez_SQL.MultiQueryForm
                 case Keys.Control | Keys.T://Toggle outlining
                     if (LastKeyPressed == (Keys.Control | Keys.O))
                     {
-                        LastKeyPressed = Keys.Space;//clean the last key pressed aux var, to avoid wrong behavior
+                        LastKeyPressed = Keys.Space; //clean the last key pressed aux var, to avoid wrong behavior
                         if (Query.Enabled)
                             toggleToolStripMenuItem_Click(null, null);
                         return NoEcho;
                     }
-                    return NoEcho;
+                    else
+                    {
+                        break;
+                    }
             }
             #endregion
 
             CurPos = Query.CurrentOffset();
             TxtBef = Query.Document.GetText(0, CurPos);
             TxtAft = Query.Document.GetText(CurPos, Query.Text.Length - CurPos);
+
 
             #region Autocomplete/intellisense code
             if (IsIntellisenseOn)
@@ -995,23 +1001,24 @@ namespace Ez_SQL.MultiQueryForm
                 {
                     case Keys.Back:
                         AutocompleteDialog.Close();
-                        if (CurrentFilterString != null && CurrentFilterString.Length > 0)
+                        if (!String.IsNullOrEmpty(CurrentFilterString))
                         {
                             CurrentFilterString = CurrentFilterString.Remove(CurrentFilterString.Length - 1);
                             CancelAutoCompleteClosure = true;
-                            ShowIntellisense(CurrentFilterString, GetAliasesAndAuxiliarTables(Query.Text), FilteringType.Smart);
+                            ShowIntellisense(CurrentFilterString, GetAliasesAndAuxiliarTables(Query.Text), curFiltering);
                         }
                         return NoEcho;
                     case Keys.Escape:
                         AutocompleteDialog.Close();
+                        curFiltering = FilteringType.None;
                         break;
                     case Keys.OemMinus:
                         CurrentFilterString += "-";
-                        ShowIntellisense(CurrentFilterString, GetAliasesAndAuxiliarTables(Query.Text), FilteringType.Smart);
+                        ShowIntellisense(CurrentFilterString, GetAliasesAndAuxiliarTables(Query.Text), curFiltering);
                         return Echo;
                     case Keys.OemMinus | Keys.Shift:
                         CurrentFilterString += "_";
-                        ShowIntellisense(CurrentFilterString, GetAliasesAndAuxiliarTables(Query.Text), FilteringType.Smart);
+                        ShowIntellisense(CurrentFilterString, GetAliasesAndAuxiliarTables(Query.Text), curFiltering);
                         return Echo;
                     case (Keys)65601:
                     case Keys.A:
@@ -1086,7 +1093,7 @@ namespace Ez_SQL.MultiQueryForm
                     case System.Windows.Forms.Keys.LButton | System.Windows.Forms.Keys.Back | System.Windows.Forms.Keys.ShiftKey | System.Windows.Forms.Keys.Space:
                     case System.Windows.Forms.Keys.ShiftKey | System.Windows.Forms.Keys.Space:
                         CurrentFilterString += ((char)keyData).ToString();
-                        ShowIntellisense(CurrentFilterString, GetAliasesAndAuxiliarTables(Query.Text), FilteringType.Smart);
+                        ShowIntellisense(CurrentFilterString, GetAliasesAndAuxiliarTables(Query.Text), curFiltering);
                         return Echo;
                     case Keys.Delete:
                     case Keys.Left:
@@ -1104,6 +1111,7 @@ namespace Ez_SQL.MultiQueryForm
             else
             {
                 LastKeyPressed = keyData;
+
                 #region Code to handle the key pressed if the intellisense is inactive
                 switch (keyData)
                 {
@@ -1120,7 +1128,23 @@ namespace Ez_SQL.MultiQueryForm
                         }
                         CurrentFilterString = CurrentWord;
                         AutoCompleteStartOffset = CurPos - CurrentWord.Length;
-                        ShowIntellisense(CurrentWord, GetAliasesAndAuxiliarTables(Query.Text), FilteringType.Smart);
+                        curFiltering = FilteringType.Smart;
+                        ShowIntellisense(CurrentWord, GetAliasesAndAuxiliarTables(Query.Text), curFiltering);
+                        return NoEcho;
+                    case Keys.T | Keys.Control://ctrl + T , Show autocomplete for "field" items
+                        CurrentToken = TxtBef.GetLastToken();
+                        if (CurrentToken.Type == TokenType.EMPTYSPACE || CurrentToken.Type == TokenType.COMMA)
+                        {
+                            CurrentWord = "";
+                        }
+                        else
+                        {
+                            CurrentWord = CurrentToken.Text;
+                        }
+                        CurrentFilterString = CurrentWord;
+                        AutoCompleteStartOffset = CurPos - CurrentWord.Length;
+                        curFiltering = FilteringType.FieldItem;
+                        ShowIntellisense(CurrentWord, GetAliasesAndAuxiliarTables(Query.Text), curFiltering);
                         return NoEcho;
                     case Keys.Space://if the text before is an @ or an #, show posible vars or temp tables
                         LastToken = TxtBef.GetLastToken();
@@ -1174,6 +1198,15 @@ namespace Ez_SQL.MultiQueryForm
                             }
                             return Echo;
                         }
+                        else if (LastToken.Text.Equals("from", StringComparison.CurrentCultureIgnoreCase) || LastToken.Text.Equals("join", StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            Query.InsertString(" ");
+                            CurrentFilterString = "";
+                            AutoCompleteStartOffset = CurPos + 1;
+                            curFiltering = FilteringType.FieldItem;
+                            ShowIntellisense("", GetAliasesAndAuxiliarTables(Query.Text), curFiltering);
+                            return NoEcho;
+                        }
                         break;
                     case Keys.OemPeriod:
                     case Keys.Decimal://show Sql Object childs... if any
@@ -1192,7 +1225,8 @@ namespace Ez_SQL.MultiQueryForm
                         }
                         CurrentFilterString = CurrentWord;
                         AutoCompleteStartOffset = CurPos - CurrentWord.Length;
-                        ShowIntellisense(CurrentWord, GetAliasesAndAuxiliarTables(Query.Text), FilteringType.Smart);
+                        curFiltering = FilteringType.Smart;
+                        ShowIntellisense(CurrentWord, GetAliasesAndAuxiliarTables(Query.Text), curFiltering);
                         return NoEcho;
                     case Keys.S | Keys.Control://ctrl + s , show list of snippets
                         List<string> SnippetsNames = new List<string>();
@@ -1655,9 +1689,9 @@ namespace Ez_SQL.MultiQueryForm
                     completionDataProvider = new CompletionDataProvider(DataProvider, PopIList, Data[0], Data[1], Data[2]);
                     AutoCompleteLength = Data[2].Length;
                     break;
-                default://no filter string, so show all
-                case 0://no filter string, so show all
-                    completionDataProvider = new CompletionDataProvider(DataProvider, PopIList, null, "", null);
+                default://no filter string, show empty
+                case 0://no filter string, show empty
+                    completionDataProvider = new CompletionDataProvider(null, PopIList, null, "", null);
                     AutoCompleteLength = 0;
                     break;
             }
