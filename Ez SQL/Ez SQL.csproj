@@ -46,8 +46,9 @@
     <Reference Include="HDesarrollo">
       <HintPath>..\References\HDesarrollo\HDesarrollo.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.TextEditor">
-      <HintPath>..\References\TextEditor\Lib\ICSharpCode.TextEditor.dll</HintPath>
+    <Reference Include="ICSharpCode.TextEditor, Version=3.2.1.6466, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ICSharpCode.TextEditor.3.2.1.6466\lib\Net20\ICSharpCode.TextEditor.dll</HintPath>
     </Reference>
     <Reference Include="MagicLibrary">
       <HintPath>..\References\Magic Library\MagicLibrary.dll</HintPath>
@@ -112,6 +113,24 @@
     </Compile>
     <Compile Include="Custom Controls\AnimatedWaitTextBox.designer.cs">
       <DependentUpon>AnimatedWaitTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\DifferenceEngine\Engine\DiffEngineLevel.cs" />
+    <Compile Include="Custom Controls\DifferenceEngine\Engine\DiffEngine.cs" />
+    <Compile Include="Custom Controls\DifferenceEngine\Implementations\DiffListString.cs" />
+    <Compile Include="Custom Controls\DifferenceEngine\Implementations\DiffListTextFile.cs" />
+    <Compile Include="Custom Controls\DifferenceEngine\Implementations\DiffListText.cs" />
+    <Compile Include="Custom Controls\DifferenceEngine\Implementations\TextLine.cs" />
+    <Compile Include="Custom Controls\DifferenceEngine\Structure\DiffResultSpanStatus.cs" />
+    <Compile Include="Custom Controls\DifferenceEngine\Structure\DiffState.cs" />
+    <Compile Include="Custom Controls\DifferenceEngine\Structure\DiffStateList.cs" />
+    <Compile Include="Custom Controls\DifferenceEngine\Structure\DiffStatus.cs" />
+    <Compile Include="Custom Controls\DifferenceEngine\Structure\IDiffList.cs" />
+    <Compile Include="Custom Controls\DifferenceEngine\Structure\DiffResultSpan.cs" />
+    <Compile Include="Custom Controls\SideToSideLineComparer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom Controls\SideToSideLineComparer.Designer.cs">
+      <DependentUpon>SideToSideLineComparer.cs</DependentUpon>
     </Compile>
     <Compile Include="Custom Controls\SideToSideTextComparer.cs">
       <SubType>UserControl</SubType>
@@ -231,6 +250,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SideToSideTester.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SideToSideTester.Designer.cs">
+      <DependentUpon>SideToSideTester.cs</DependentUpon>
+    </Compile>
     <Compile Include="Snippets\Snippet.cs" />
     <Compile Include="Snippets\SnippetEditor.cs">
       <SubType>Form</SubType>
@@ -263,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Custom Controls\LoadingInfo.resx">
       <DependentUpon>LoadingInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom Controls\SideToSideLineComparer.resx">
+      <DependentUpon>SideToSideLineComparer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Custom Controls\SideToSideTextComparer.resx">
       <DependentUpon>SideToSideTextComparer.cs</DependentUpon>
@@ -311,6 +339,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SideToSideTester.resx">
+      <DependentUpon>SideToSideTester.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Snippets\SnippetEditor.resx">
       <DependentUpon>SnippetEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -352,6 +383,7 @@
     <None Include="Default Objects\Snippets\Select some from.snp" />
     <None Include="Default Objects\Snippets\Select top records.snp" />
     <None Include="Default Objects\Snippets\select.snp" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -522,7 +554,6 @@
     <None Include="Resources\CSharp321.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="LoadControl\" />
     <Folder Include="Templates\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

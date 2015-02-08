@@ -33,6 +33,7 @@
             this.LabTxt1 = new System.Windows.Forms.Label();
             this.Txt2 = new ICSharpCode.TextEditor.TextEditorControl();
             this.LabTxt2 = new System.Windows.Forms.Label();
+            this.LineComparer = new Ez_SQL.Custom_Controls.SideToSideLineComparer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -56,7 +57,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.Txt2);
             this.splitContainer1.Panel2.Controls.Add(this.LabTxt2);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(2);
-            this.splitContainer1.Size = new System.Drawing.Size(732, 587);
+            this.splitContainer1.Size = new System.Drawing.Size(732, 520);
             this.splitContainer1.SplitterDistance = 358;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -66,7 +67,8 @@
             this.Txt1.IsReadOnly = false;
             this.Txt1.Location = new System.Drawing.Point(2, 25);
             this.Txt1.Name = "Txt1";
-            this.Txt1.Size = new System.Drawing.Size(354, 560);
+            this.Txt1.ShowVRuler = false;
+            this.Txt1.Size = new System.Drawing.Size(354, 493);
             this.Txt1.TabIndex = 0;
             this.Txt1.Text = "textEditorControl1";
             // 
@@ -87,7 +89,8 @@
             this.Txt2.IsReadOnly = false;
             this.Txt2.Location = new System.Drawing.Point(2, 25);
             this.Txt2.Name = "Txt2";
-            this.Txt2.Size = new System.Drawing.Size(366, 560);
+            this.Txt2.ShowVRuler = false;
+            this.Txt2.Size = new System.Drawing.Size(366, 493);
             this.Txt2.TabIndex = 2;
             this.Txt2.Text = "textEditorControl2";
             // 
@@ -102,11 +105,21 @@
             this.LabTxt2.TabIndex = 3;
             this.LabTxt2.Text = "Text 2";
             // 
+            // LineComparer
+            // 
+            this.LineComparer.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LineComparer.Location = new System.Drawing.Point(0, 520);
+            this.LineComparer.Name = "LineComparer";
+            this.LineComparer.Padding = new System.Windows.Forms.Padding(2);
+            this.LineComparer.Size = new System.Drawing.Size(732, 67);
+            this.LineComparer.TabIndex = 2;
+            // 
             // SideToSideTextComparer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.LineComparer);
             this.Name = "SideToSideTextComparer";
             this.Size = new System.Drawing.Size(732, 587);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -126,5 +139,6 @@
         private System.Windows.Forms.Label LabTxt1;
         private ICSharpCode.TextEditor.TextEditorControl Txt2;
         private System.Windows.Forms.Label LabTxt2;
+        private SideToSideLineComparer LineComparer;
     }
 }

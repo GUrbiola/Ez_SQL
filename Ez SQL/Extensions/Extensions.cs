@@ -87,6 +87,36 @@ namespace Ez_SQL.Extensions
             // presses F3, the caret is where we start searching next time.
             TxtEditor.ActiveTextAreaControl.Caret.Position = TxtEditor.Document.OffsetToPosition(offset + length);
         }
+        public static int CurrentLineNumber(this TextEditorControl TxtEditor)
+        {
+            return TxtEditor.Document.GetLineSegmentForOffset(TxtEditor.CurrentOffset()).LineNumber;
+        }
+        public static string GetLineText(this TextEditorControl TxtEditor, int LineNumber)
+        {
+            LineSegment line;
+            ICSharpCode.TextEditor.TextLocation Start;
+            string lineText = "";
+
+            if (LineNumber <= TxtEditor.Document.TotalNumberOfLines && LineNumber >= 0)
+            {
+                line = TxtEditor.Document.GetLineSegment(LineNumber);
+                Start = new ICSharpCode.TextEditor.TextLocation(0, line.LineNumber);
+                lineText = TxtEditor.Document.GetText(line.Offset, line.Length);
+            }
+
+            return lineText;
+        }
+        public static void MarkLine(this TextEditorControl TxtEditor, int LineNumber, Color MarkColor, TextMarkerType MarkType = TextMarkerType.SolidBlock)
+        {
+            LineSegment line = TxtEditor.Document.GetLineSegment(LineNumber);
+            TextMarker marker = new TextMarker(line.Offset, line.Length, MarkType, MarkColor);
+            TxtEditor.Document.MarkerStrategy.AddMarker(marker);
+        }
+        public static void SetMarker(this TextEditorControl TxtEditor, int Offset, int Length, Color MarkColor, TextMarkerType MarkType = TextMarkerType.SolidBlock)
+        {
+            TextMarker marker = new TextMarker(Offset, Length, MarkType, MarkColor);
+            TxtEditor.Document.MarkerStrategy.AddMarker(marker);
+        }
         #endregion
 
         #region Extensions for string

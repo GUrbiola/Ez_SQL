@@ -65,6 +65,7 @@
             this.BgWorker = new System.ComponentModel.BackgroundWorker();
             this.ResizeIcon = new Ez_SQL.Custom_Controls.StatusStripIcon();
             this.StatusBar = new System.Windows.Forms.StatusStrip();
+            this.BtnDbCompare = new System.Windows.Forms.ToolStripButton();
             this.MainMenu.SuspendLayout();
             this.SideMenu.SuspendLayout();
             this.StatusBar.SuspendLayout();
@@ -190,6 +191,7 @@
             this.BtnHistoric,
             this.BtnSnippetEditor,
             this.BtnConfigColors,
+            this.BtnDbCompare,
             this.BtnAppConfig});
             this.SideMenu.Location = new System.Drawing.Point(0, 0);
             this.SideMenu.Name = "SideMenu";
@@ -359,6 +361,17 @@
             this.StatusBar.TabIndex = 6;
             this.StatusBar.Text = "StatusBar";
             // 
+            // BtnDbCompare
+            // 
+            this.BtnDbCompare.AutoSize = false;
+            this.BtnDbCompare.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnDbCompare.Image = ((System.Drawing.Image)(resources.GetObject("BtnDbCompare.Image")));
+            this.BtnDbCompare.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.BtnDbCompare.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnDbCompare.Name = "BtnDbCompare";
+            this.BtnDbCompare.Size = new System.Drawing.Size(43, 36);
+            this.BtnDbCompare.Text = "Compare 2 DB Schemas";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,6 +422,7 @@
         private System.Windows.Forms.ToolStripButton BtnSnippetEditor;
         private System.Windows.Forms.ToolStripButton BtnConfigColors;
         private System.Windows.Forms.ToolStripButton BtnAppConfig;
+        private System.Windows.Forms.ToolStripButton BtnDbCompare;
         
     }
 }

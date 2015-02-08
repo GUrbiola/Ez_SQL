@@ -166,3 +166,52 @@ C:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.GenerateResource.Cache
 C:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
 C:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
 C:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csprojResolveAssemblyReference.cache
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.exe
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.pdb
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\AddressBarExt.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ColorPickerLib.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\HDesarrollo.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ICSharpCode.TextEditor.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\MagicLibrary.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\PopupControl.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\WeifenLuo.WinFormsUI.Docking.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\AxInterop.MSWinsockLib.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\OpenNETCF.Desktop.Communication.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.ExcelXml.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Interop.NiceLabel5WR.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Microsoft.Data.ConnectionUI.Dialog.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Microsoft.Data.ConnectionUI.SqlCeDataProvider.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Interop.MSWinsockLib.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.Extensions.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Microsoft.Data.ConnectionUI.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\AddressBarExt.pdb
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ColorPickerLib.pdb
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\PopupControl.xml
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.ExcelXml.xml
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.Extensions.xml
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.AdditionalForms.ObjectSearcher.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.ConxAdmin.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.InputBox.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.SQLConnectForm.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.CSharp.SharpCodeForm.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.AnimatedWaitTextBox.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.LoadingInfo.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.SideToSideLineComparer.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.SideToSideTextComparer.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.EzConfig.ColorConfig.ConfigItemDialog.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.EzConfig.SyntaxColorsConfigurator.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ChildSelector.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.Dialogs.GenerateClass.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.Dialogs.NonQuerySp.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.Dialogs.QuerySp.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ObjectSelector.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.SearchAndReplace.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.QueryLog.HistoricForm.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MainForm.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.QueryForm.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Properties.Resources.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.SideToSideTester.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Snippets.SnippetEditor.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.GenerateResource.Cache
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
