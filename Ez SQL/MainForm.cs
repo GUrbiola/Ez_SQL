@@ -23,6 +23,9 @@ namespace Ez_SQL
 {
     public partial class MainForm : Form
     {
+        DateTime lastClickTime;
+        Point lastClickLocation;
+
         private AddressBarExt.Controls.AddressBarExt AdBar = null;
         private string _ConxGroup;
         public string ConxGroup
@@ -318,10 +321,14 @@ namespace Ez_SQL
                 }
             } 
             LoadSnippets();
+
+            this.MainMenu.MouseDown += new MouseEventHandler(MainMenu_MouseDown);
         }
 
+
+
         #region Basic Functionality, minimize, maximize, restore, move dialog and resizing
-        private bool _IsMinimized = false;
+        //private bool _IsMinimized = false;
         private bool _IsMaximized;
         private Size _LastSize, _ScreenSize;
         private Point _LastLocation, _ZeroZero;
@@ -361,10 +368,6 @@ namespace Ez_SQL
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        private void MainMenu_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            BtnMax_Click(null, null);
-        }
         const int WM_NCHITTEST = 0x0084;
         const int HTCLIENT = 1;
         const int HTCAPTION = 2;
@@ -375,14 +378,42 @@ namespace Ez_SQL
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-        private void BtnMoveWindow_MouseDown(object sender, MouseEventArgs e)
+        //Method that replaces the previous double-click aevent and the move window event
+        void MainMenu_MouseDown(object sender, MouseEventArgs e)
         {
-            if (this.WindowState == FormWindowState.Normal && e.Button == MouseButtons.Left)
+            if (!lastClickLocation.IsInitialPoint() && (lastClickLocation == e.Location && DateTime.Now.Subtract(lastClickTime).TotalMilliseconds < 500))
             {
-                ReleaseCapture();
-                SendMessage(Handle, 0x00A1, HTCAPTION, 0);
+                lastClickLocation.SetToInitialPoint();
+                BtnMax_Click(null, null);
+            }
+            else
+            {
+                lastClickLocation = e.Location;
+                lastClickTime = DateTime.Now;
+
+                tempLabel.Text = String.Format("({0},{1}) - {2}", lastClickLocation.X, lastClickLocation.Y, lastClickTime.ToString("mm:ss.fff"));
+
+
+                //if (this.WindowState == FormWindowState.Normal && e.Button == MouseButtons.Left)
+                if (!_IsMaximized && e.Button == MouseButtons.Left)
+                {
+                    ReleaseCapture();
+                    SendMessage(Handle, 0x00A1, HTCAPTION, 0);
+                }
             }
         }
+        //private void MainMenu_MouseDoubleClick(object sender, MouseEventArgs e)
+        //{
+        //    BtnMax_Click(null, null);
+        //}
+        //private void BtnMoveWindow_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    if (this.WindowState == FormWindowState.Normal && e.Button == MouseButtons.Left)
+        //    {
+        //        ReleaseCapture();
+        //        SendMessage(Handle, 0x00A1, HTCAPTION, 0);
+        //    }
+        //}
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
@@ -619,5 +650,12 @@ namespace Ez_SQL
             return Snippets;
         }
         #endregion
+
+        private void BtnDbCompare_Click(object sender, EventArgs e)
+        {
+            Ez_SQL.DbComparer.DbComparer dbcForm = new Ez_SQL.DbComparer.DbComparer();
+            dbcForm.TabText = "Database Comparer";
+            dbcForm.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
+        }
     }
 }

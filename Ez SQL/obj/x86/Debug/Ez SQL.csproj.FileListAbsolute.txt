@@ -215,3 +215,7 @@ D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Snippets.SnippetEditor.resour
 D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.GenerateResource.Cache
 D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
 D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csprojResolveAssemblyReference.cache
+D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.DbComparer.DbComparer.resources
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ProgressODoom.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ProgressODoom.pdb

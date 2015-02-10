@@ -56,6 +56,9 @@
     <Reference Include="PopupControl">
       <HintPath>..\References\SimplePopup\PopupControl.dll</HintPath>
     </Reference>
+    <Reference Include="ProgressODoom">
+      <HintPath>..\References\Progress ODoom\ProgressODoom\bin\Debug\ProgressODoom.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
@@ -155,6 +158,12 @@
     <Compile Include="DataBaseObjects\Table.cs" />
     <Compile Include="DataBaseObjects\TableFunction.cs" />
     <Compile Include="DataBaseObjects\View.cs" />
+    <Compile Include="DbComparer\DbComparer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DbComparer\DbComparer.Designer.cs">
+      <DependentUpon>DbComparer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Extensions\XmlSerializer.cs" />
     <Compile Include="EzConfig\ColorConfig\ConfigItemDialog.cs">
@@ -294,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Custom Controls\SideToSideTextComparer.resx">
       <DependentUpon>SideToSideTextComparer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DbComparer\DbComparer.resx">
+      <DependentUpon>DbComparer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EzConfig\ColorConfig\ConfigItemDialog.resx">
       <DependentUpon>ConfigItemDialog.cs</DependentUpon>

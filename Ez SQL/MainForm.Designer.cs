@@ -52,20 +52,20 @@
             this.BtnClose = new System.Windows.Forms.ToolStripButton();
             this.BtnMax = new System.Windows.Forms.ToolStripButton();
             this.BtnMin = new System.Windows.Forms.ToolStripButton();
-            this.BtnMoveWindow = new System.Windows.Forms.ToolStripButton();
+            this.tempLabel = new System.Windows.Forms.ToolStripLabel();
             this.SideMenu = new System.Windows.Forms.ToolStrip();
             this.BtnNewQuery = new System.Windows.Forms.ToolStripButton();
             this.BtnSearch = new System.Windows.Forms.ToolStripButton();
             this.BtnHistoric = new System.Windows.Forms.ToolStripButton();
             this.BtnSnippetEditor = new System.Windows.Forms.ToolStripButton();
             this.BtnConfigColors = new System.Windows.Forms.ToolStripButton();
+            this.BtnDbCompare = new System.Windows.Forms.ToolStripButton();
             this.BtnAppConfig = new System.Windows.Forms.ToolStripButton();
             this.WorkPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.BgWorker = new System.ComponentModel.BackgroundWorker();
             this.ResizeIcon = new Ez_SQL.Custom_Controls.StatusStripIcon();
             this.StatusBar = new System.Windows.Forms.StatusStrip();
-            this.BtnDbCompare = new System.Windows.Forms.ToolStripButton();
             this.MainMenu.SuspendLayout();
             this.SideMenu.SuspendLayout();
             this.StatusBar.SuspendLayout();
@@ -82,7 +82,7 @@
             this.BtnClose,
             this.BtnMax,
             this.BtnMin,
-            this.BtnMoveWindow});
+            this.tempLabel});
             this.MainMenu.Location = new System.Drawing.Point(44, 0);
             this.MainMenu.Name = "MainMenu";
             this.MainMenu.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
@@ -90,7 +90,6 @@
             this.MainMenu.Size = new System.Drawing.Size(880, 32);
             this.MainMenu.TabIndex = 1;
             this.MainMenu.Text = "toolStrip1";
-            this.MainMenu.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.MainMenu_MouseDoubleClick);
             // 
             // BtnRefreshConnection
             // 
@@ -167,18 +166,11 @@
             this.BtnMin.Text = "Minimize";
             this.BtnMin.Click += new System.EventHandler(this.BtnMin_Click);
             // 
-            // BtnMoveWindow
+            // tempLabel
             // 
-            this.BtnMoveWindow.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.BtnMoveWindow.AutoSize = false;
-            this.BtnMoveWindow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnMoveWindow.Image = global::Ez_SQL.Properties.Resources.MoveWindow;
-            this.BtnMoveWindow.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.BtnMoveWindow.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnMoveWindow.Name = "BtnMoveWindow";
-            this.BtnMoveWindow.Size = new System.Drawing.Size(28, 28);
-            this.BtnMoveWindow.Text = "Move window";
-            this.BtnMoveWindow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnMoveWindow_MouseDown);
+            this.tempLabel.Name = "tempLabel";
+            this.tempLabel.Size = new System.Drawing.Size(86, 29);
+            this.tempLabel.Text = "toolStripLabel1";
             // 
             // SideMenu
             // 
@@ -259,6 +251,18 @@
             this.BtnConfigColors.Size = new System.Drawing.Size(43, 36);
             this.BtnConfigColors.Text = "Configure the query editor colors";
             this.BtnConfigColors.Click += new System.EventHandler(this.BtnConfigColors_Click);
+            // 
+            // BtnDbCompare
+            // 
+            this.BtnDbCompare.AutoSize = false;
+            this.BtnDbCompare.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnDbCompare.Image = ((System.Drawing.Image)(resources.GetObject("BtnDbCompare.Image")));
+            this.BtnDbCompare.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.BtnDbCompare.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnDbCompare.Name = "BtnDbCompare";
+            this.BtnDbCompare.Size = new System.Drawing.Size(43, 36);
+            this.BtnDbCompare.Text = "Compare 2 DB Schemas";
+            this.BtnDbCompare.Click += new System.EventHandler(this.BtnDbCompare_Click);
             // 
             // BtnAppConfig
             // 
@@ -361,17 +365,6 @@
             this.StatusBar.TabIndex = 6;
             this.StatusBar.Text = "StatusBar";
             // 
-            // BtnDbCompare
-            // 
-            this.BtnDbCompare.AutoSize = false;
-            this.BtnDbCompare.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnDbCompare.Image = ((System.Drawing.Image)(resources.GetObject("BtnDbCompare.Image")));
-            this.BtnDbCompare.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.BtnDbCompare.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnDbCompare.Name = "BtnDbCompare";
-            this.BtnDbCompare.Size = new System.Drawing.Size(43, 36);
-            this.BtnDbCompare.Text = "Compare 2 DB Schemas";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -410,7 +403,6 @@
         private System.Windows.Forms.ToolStripButton BtnClose;
         private System.Windows.Forms.ToolStripButton BtnMax;
         private System.Windows.Forms.ToolStripButton BtnMin;
-        private System.Windows.Forms.ToolStripButton BtnMoveWindow;
         private WeifenLuo.WinFormsUI.Docking.DockPanel WorkPanel;
         private System.Windows.Forms.ToolStripButton BtnNewQuery;
         private System.Windows.Forms.ToolStripButton BtnSearch;
@@ -423,6 +415,7 @@
         private System.Windows.Forms.ToolStripButton BtnConfigColors;
         private System.Windows.Forms.ToolStripButton BtnAppConfig;
         private System.Windows.Forms.ToolStripButton BtnDbCompare;
+        private System.Windows.Forms.ToolStripLabel tempLabel;
         
     }
 }

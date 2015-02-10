@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuerySp));
             this.wizardControl1 = new Crownwood.Magic.Controls.WizardControl();
             this.TypeOfReturnData = new Crownwood.Magic.Controls.WizardPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -59,6 +60,7 @@
             this.wizardControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wizardControl1.Location = new System.Drawing.Point(0, 0);
             this.wizardControl1.Name = "wizardControl1";
+            this.wizardControl1.Picture = ((System.Drawing.Image)(resources.GetObject("wizardControl1.Picture")));
             this.wizardControl1.SelectedIndex = 0;
             this.wizardControl1.Size = new System.Drawing.Size(709, 462);
             this.wizardControl1.TabIndex = 0;

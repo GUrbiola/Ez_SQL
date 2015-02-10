@@ -849,7 +849,6 @@ namespace Ez_SQL.Extensions
         }
         #endregion
 
-
         #region Miscellaneous extensions
         public static int InRange(this int x, int lo, int hi)
         {
@@ -880,6 +879,15 @@ namespace Ez_SQL.Extensions
         public static string BoolAsString(this bool boolean)
         {
             return boolean ? "true" : "false";
+        }
+        public static bool IsInitialPoint(this Point p)
+        {
+            return p.X == 0 && p.Y == 0;
+        }
+        public static void SetToInitialPoint(this Point p)
+        {
+            p.X = 0;
+            p.Y = 0;
         }
         #endregion
 
