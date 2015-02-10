@@ -53,3 +53,8 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
+*.dll
+*.exe
+*.pdb
+*.cache
+Debug/
