@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Ez_SQL.Extensions;
 using ICSharpCode.TextEditor.Gui.CompletionWindow;
 
 namespace Ez_SQL.DataBaseObjects
@@ -10,6 +11,17 @@ namespace Ez_SQL.DataBaseObjects
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string SafeScriptName 
+        {
+            get
+            {
+                if (Name.LastIndexOf(' ') >= 0 || Name.IsReserved())
+                {
+                    return String.Format("[{0}]", Name);
+                }
+                return Name;
+            }
+        }
         private ChildType _Kind;
         public ChildType Kind { get { return _Kind; } }
         public string Type { get; set; }

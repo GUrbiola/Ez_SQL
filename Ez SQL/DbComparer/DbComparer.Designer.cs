@@ -51,9 +51,9 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.tabRemove = new System.Windows.Forms.TabPage();
             this.gridDelete = new System.Windows.Forms.DataGridView();
-            this.sideToSideTextComparer1 = new Ez_SQL.Custom_Controls.SideToSideTextComparer();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.PopIList = new System.Windows.Forms.ImageList(this.components);
+            this.sideToSideTextComparer1 = new Ez_SQL.Custom_Controls.SideToSideTextComparer();
             this.panelSource.SuspendLayout();
             this.SourceMenu.SuspendLayout();
             this.panelDestination.SuspendLayout();
@@ -217,6 +217,7 @@
             this.tabNone.Controls.Add(this.gridNone);
             this.tabNone.Location = new System.Drawing.Point(4, 22);
             this.tabNone.Name = "tabNone";
+            this.tabNone.Padding = new System.Windows.Forms.Padding(2);
             this.tabNone.Size = new System.Drawing.Size(1265, 184);
             this.tabNone.TabIndex = 3;
             this.tabNone.Text = "Identical Objects";
@@ -230,14 +231,14 @@
             this.gridNone.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridNone.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridNone.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridNone.Location = new System.Drawing.Point(0, 0);
+            this.gridNone.Location = new System.Drawing.Point(2, 2);
             this.gridNone.MultiSelect = false;
             this.gridNone.Name = "gridNone";
             this.gridNone.ReadOnly = true;
             this.gridNone.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridNone.Size = new System.Drawing.Size(1265, 184);
+            this.gridNone.Size = new System.Drawing.Size(1261, 180);
             this.gridNone.TabIndex = 4;
-            this.gridNone.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCellClick);
+            this.gridNone.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridCellClick);
             // 
             // tabAdd
             // 
@@ -266,7 +267,7 @@
             this.gridAdd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridAdd.Size = new System.Drawing.Size(1259, 155);
             this.gridAdd.TabIndex = 5;
-            this.gridAdd.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCellClick);
+            this.gridAdd.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridCellClick);
             // 
             // btnAdd
             // 
@@ -277,6 +278,7 @@
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Apply Changes to Destination";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // tabUpdate
             // 
@@ -305,7 +307,7 @@
             this.gridUpdate.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridUpdate.Size = new System.Drawing.Size(1259, 155);
             this.gridUpdate.TabIndex = 5;
-            this.gridUpdate.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCellClick);
+            this.gridUpdate.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridCellClick);
             // 
             // btnUpdate
             // 
@@ -316,12 +318,14 @@
             this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "Apply Changes to Destination (DOES NOT WORK FOR TABLES)";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // tabRemove
             // 
             this.tabRemove.Controls.Add(this.gridDelete);
             this.tabRemove.Location = new System.Drawing.Point(4, 22);
             this.tabRemove.Name = "tabRemove";
+            this.tabRemove.Padding = new System.Windows.Forms.Padding(3);
             this.tabRemove.Size = new System.Drawing.Size(1265, 184);
             this.tabRemove.TabIndex = 2;
             this.tabRemove.Text = "Objects Only Found in Destination";
@@ -335,24 +339,14 @@
             this.gridDelete.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridDelete.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridDelete.Location = new System.Drawing.Point(0, 0);
+            this.gridDelete.Location = new System.Drawing.Point(3, 3);
             this.gridDelete.MultiSelect = false;
             this.gridDelete.Name = "gridDelete";
             this.gridDelete.ReadOnly = true;
             this.gridDelete.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridDelete.Size = new System.Drawing.Size(1265, 184);
+            this.gridDelete.Size = new System.Drawing.Size(1259, 178);
             this.gridDelete.TabIndex = 5;
-            this.gridDelete.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCellClick);
-            // 
-            // sideToSideTextComparer1
-            // 
-            this.sideToSideTextComparer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sideToSideTextComparer1.Location = new System.Drawing.Point(0, 0);
-            this.sideToSideTextComparer1.Name = "sideToSideTextComparer1";
-            this.sideToSideTextComparer1.Size = new System.Drawing.Size(1273, 267);
-            this.sideToSideTextComparer1.TabIndex = 0;
-            this.sideToSideTextComparer1.Text1Label = "Object from Source Database";
-            this.sideToSideTextComparer1.Text2Label = "Object from Destination Database";
+            this.gridDelete.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridCellClick);
             // 
             // bgWorker
             // 
@@ -370,6 +364,16 @@
             this.PopIList.Images.SetKeyName(2, "Procedure.png");
             this.PopIList.Images.SetKeyName(3, "Function.png");
             this.PopIList.Images.SetKeyName(4, "TableFunction.png");
+            // 
+            // sideToSideTextComparer1
+            // 
+            this.sideToSideTextComparer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sideToSideTextComparer1.Location = new System.Drawing.Point(0, 0);
+            this.sideToSideTextComparer1.Name = "sideToSideTextComparer1";
+            this.sideToSideTextComparer1.Size = new System.Drawing.Size(1273, 267);
+            this.sideToSideTextComparer1.TabIndex = 0;
+            this.sideToSideTextComparer1.Text1Label = "Object from Source Database";
+            this.sideToSideTextComparer1.Text2Label = "Object from Destination Database";
             // 
             // DbComparer
             // 

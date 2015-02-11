@@ -752,7 +752,7 @@ ORDER BY
             return Functions.Count;
         }
 
-        void Loader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private void Loader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             BackgroundWorker bw = sender as BackgroundWorker;
             e.Result = LoadInfo();
@@ -761,7 +761,7 @@ ORDER BY
                 e.Cancel = true;
             }
         }
-        void Loader_DoWork2(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private void Loader_DoWork2(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             BackgroundWorker bw = sender as BackgroundWorker;
             e.Result = LoadInfo(true);
@@ -770,7 +770,7 @@ ORDER BY
                 e.Cancel = true;
             }
         }
-        void Loader_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        private void Loader_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             if (ISenseRect != null)
             {
@@ -787,7 +787,7 @@ ORDER BY
             if (OnEndedLoad != null)
                 OnEndedLoad();
         }
-        void Loader_RunWorkerCompleted2(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        private void Loader_RunWorkerCompleted2(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             if (ISenseRect != null)
             {
@@ -804,7 +804,7 @@ ORDER BY
             if (OnEndedLoad != null)
                 OnEndedLoad();
         }
-        void Loader_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        private void Loader_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
             string[] Data = e.UserState.ToString().Split(new char[] { '|' });
             LoadDialog.SetInfo(Data[0], Data[1]);
@@ -862,7 +862,24 @@ ORDER BY
             }
             return 1;
         }
+        public bool ExecuteNonQuery(string query)
+        {
+            SqlCommand cmd = new SqlCommand(query, Connection);
+            try
+            {
+                cmd.Connection.Open();
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+            }
+            catch (Exception)
+            {
+                cmd.Connection.Close();
+                return false;
+            }
+            cmd.Dispose();
 
+            return true;
+        }
 
         internal ISqlObject IsTableTypeObject(string TableName)
         {

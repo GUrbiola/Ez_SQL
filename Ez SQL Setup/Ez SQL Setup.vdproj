@@ -117,6 +117,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_973B3C8F8978DA85F3E64B9DF70E8029"
+        "OwnerKey" = "8:_ECF9852B483C43ED87BD977CCB96461E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B991C17112DF169656F0848FC883B765"
         "OwnerKey" = "8:_56E5A71B41F68E2455B5EFDAE73A0ACF"
         "MsmSig" = "8:_UNDEFINED"
@@ -160,12 +166,6 @@
         "Entry"
         {
         "MsmKey" = "8:_C50A74112B50FD71080FA3F795DDA35F"
-        "OwnerKey" = "8:_ECF9852B483C43ED87BD977CCB96461E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D2BCBD79B8AC9724E0BF44961E56C77D"
         "OwnerKey" = "8:_ECF9852B483C43ED87BD977CCB96461E"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -215,12 +215,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_10A6E19E6D00474098DC220D6BFBFA1D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D2BCBD79B8AC9724E0BF44961E56C77D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -305,6 +299,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_11A9671376F29AEBD03C5EC0C659C13C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_973B3C8F8978DA85F3E64B9DF70E8029"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -711,6 +711,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_973B3C8F8978DA85F3E64B9DF70E8029"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:ICSharpCode.TextEditor, Version=3.2.1.6466, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_973B3C8F8978DA85F3E64B9DF70E8029"
+                    {
+                    "Name" = "8:ICSharpCode.TextEditor.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:ICSharpCode.TextEditor.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_AD0B5EC620A447D6909ED760FED9364B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B991C17112DF169656F0848FC883B765"
             {
             "AssemblyRegister" = "3:1"
@@ -818,37 +849,6 @@
                     }
                 }
             "SourcePath" = "8:Microsoft.Data.ConnectionUI.SqlCeDataProvider.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_AD0B5EC620A447D6909ED760FED9364B"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D2BCBD79B8AC9724E0BF44961E56C77D"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ICSharpCode.TextEditor, Version=3.0.0.3437, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_D2BCBD79B8AC9724E0BF44961E56C77D"
-                    {
-                    "Name" = "8:ICSharpCode.TextEditor.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:ICSharpCode.TextEditor.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_AD0B5EC620A447D6909ED760FED9364B"
@@ -1026,15 +1026,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Ez SQL"
-        "ProductCode" = "8:{7CCF5667-F697-4FD7-9E0F-281CDCE4268D}"
-        "PackageCode" = "8:{8E05D95D-9133-41E8-B82E-94BACD20FA64}"
+        "ProductCode" = "8:{B21366ED-D7B7-48C1-A5D5-DF2E6A546FB2}"
+        "PackageCode" = "8:{2CCDE0D9-D4F5-45F0-94E4-E103A38F0F9E}"
         "UpgradeCode" = "8:{61A49AEB-7CE0-4EF7-9B43-9161100D5D64}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.17"
+        "ProductVersion" = "8:1.0.18"
         "Manufacturer" = "8:El Cid"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

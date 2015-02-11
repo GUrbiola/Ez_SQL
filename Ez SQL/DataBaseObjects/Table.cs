@@ -35,9 +35,9 @@ namespace Ez_SQL.DataBaseObjects
             {
                 
                 if (Childs.IndexOf(child) > 0)
-                    sc.Append(String.Format("\t{0}{1}", ",", child.Name));
+                    sc.Append(String.Format("\t{0}{1}", ",", (child as Field).SafeScriptName));
                 else
-                    sc.Append(String.Format("\t{0}", child.Name));
+                    sc.Append(String.Format("\t{0}", (child as Field).SafeScriptName));
 
                 if (child.Computed)
                 {
