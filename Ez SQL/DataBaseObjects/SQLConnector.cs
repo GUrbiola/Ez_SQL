@@ -83,6 +83,7 @@ namespace Ez_SQL.DataBaseObjects
             get { return _DbObjects; }
             set { _DbObjects = value; }
         }
+
         
         internal void Initialize(Point Location, bool FullLoad = false)
         {

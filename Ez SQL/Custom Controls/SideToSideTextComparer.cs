@@ -47,6 +47,9 @@ namespace Ez_SQL.Custom_Controls
             }
             #endregion
 
+            Txt1.Text = "";
+            Txt2.Text = "";
+
             Txt1.IsReadOnly = true;
             Txt2.IsReadOnly = true;
 
@@ -72,6 +75,7 @@ namespace Ez_SQL.Custom_Controls
             Txt1.ActiveTextAreaControl.HScrollBar.Value = Txt2.ActiveTextAreaControl.HScrollBar.Value;
             Txt1.ActiveTextAreaControl.Refresh();
         }
+
         private void OnMouseClick(object sender, EventArgs e)
         {
             TextArea ted = sender as TextArea;
@@ -100,10 +104,12 @@ namespace Ez_SQL.Custom_Controls
             Txt1.ActiveTextAreaControl.Refresh();
         }
 
-
         public void LoadTexts(string txt1, string txt2)
         {
             DiffListText t1, t2;
+
+            Txt1.Text = "";
+            Txt2.Text = "";
 
             List<Tuple<string, LineHighlight>> finalT1 = new List<Tuple<string, LineHighlight>>();
             List<Tuple<string, LineHighlight>> finalT2 = new List<Tuple<string, LineHighlight>>();
@@ -158,6 +164,11 @@ namespace Ez_SQL.Custom_Controls
 
             LoadDiffResults(Txt1, finalT1);
             LoadDiffResults(Txt2, finalT2);
+
+            Txt1.Refresh();
+            Txt2.Refresh();
+
+            LineComparer.Clean();
         }
         private void LoadDiffResults(TextEditorControl txtEditor, List<Tuple<string, LineHighlight>> diffResults)
         {
@@ -185,6 +196,16 @@ namespace Ez_SQL.Custom_Controls
                 }
             }
         }
+
+        public void Clean()
+        {
+            Txt1.Text = "";
+            Txt2.Text = "";
+
+            Txt1.Refresh();
+            Txt2.Refresh();
+        }
+
     }
     public enum LineHighlight { Add, Remove, Update, None, Missing }
 }

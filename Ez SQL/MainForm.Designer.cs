@@ -52,7 +52,6 @@
             this.BtnClose = new System.Windows.Forms.ToolStripButton();
             this.BtnMax = new System.Windows.Forms.ToolStripButton();
             this.BtnMin = new System.Windows.Forms.ToolStripButton();
-            this.tempLabel = new System.Windows.Forms.ToolStripLabel();
             this.SideMenu = new System.Windows.Forms.ToolStrip();
             this.BtnNewQuery = new System.Windows.Forms.ToolStripButton();
             this.BtnSearch = new System.Windows.Forms.ToolStripButton();
@@ -81,8 +80,7 @@
             this.BtnCopyConnectionString,
             this.BtnClose,
             this.BtnMax,
-            this.BtnMin,
-            this.tempLabel});
+            this.BtnMin});
             this.MainMenu.Location = new System.Drawing.Point(44, 0);
             this.MainMenu.Name = "MainMenu";
             this.MainMenu.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
@@ -165,12 +163,6 @@
             this.BtnMin.Size = new System.Drawing.Size(28, 28);
             this.BtnMin.Text = "Minimize";
             this.BtnMin.Click += new System.EventHandler(this.BtnMin_Click);
-            // 
-            // tempLabel
-            // 
-            this.tempLabel.Name = "tempLabel";
-            this.tempLabel.Size = new System.Drawing.Size(86, 29);
-            this.tempLabel.Text = "toolStripLabel1";
             // 
             // SideMenu
             // 
@@ -415,7 +407,6 @@
         private System.Windows.Forms.ToolStripButton BtnConfigColors;
         private System.Windows.Forms.ToolStripButton BtnAppConfig;
         private System.Windows.Forms.ToolStripButton BtnDbCompare;
-        private System.Windows.Forms.ToolStripLabel tempLabel;
         
     }
 }

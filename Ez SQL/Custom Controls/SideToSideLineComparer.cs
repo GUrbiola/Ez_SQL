@@ -22,6 +22,9 @@ namespace Ez_SQL.Custom_Controls
         {
             InitializeComponent();
 
+            Line1.Text = "";
+            Line2.Text = "";
+
             Line1.ActiveTextAreaControl.VScrollBar.Hide();
             Line2.ActiveTextAreaControl.VScrollBar.Hide();
 
@@ -60,6 +63,9 @@ namespace Ez_SQL.Custom_Controls
 
         public void LoadTexts(string txt1, string txt2)
         {
+            Line1.Text = "";
+            Line2.Text = "";
+
             DiffListString t1, t2;
 
             List<Tuple<char, LineHighlight>> finalT1 = new List<Tuple<char, LineHighlight>>();
@@ -120,6 +126,9 @@ namespace Ez_SQL.Custom_Controls
             LoadDiffResults(Line1, finalT1);
             LoadDiffResults(Line2, finalT2);
 
+            Line1.Refresh();
+            Line2.Refresh();
+
         }
 
         private void LoadDiffResults(TextEditorControl txtEditor, List<Tuple<char, LineHighlight>> diffResults)
@@ -149,6 +158,15 @@ namespace Ez_SQL.Custom_Controls
                         break;
                 }
             }
+        }
+
+        public void Clean()
+        {
+            Line1.Text = "";
+            Line2.Text = "";
+
+            Line1.Refresh();
+            Line2.Refresh();
         }
     }
 }

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DbComparer));
             this.panelSource = new System.Windows.Forms.Panel();
             this.SourceMenu = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel = new System.Windows.Forms.ToolStripLabel();
@@ -35,14 +37,23 @@
             this.DestinationMenu = new System.Windows.Forms.ToolStrip();
             this.toolStripDestination = new System.Windows.Forms.ToolStripLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnGOOO = new System.Windows.Forms.Button();
             this.labProgressStatus = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabNone = new System.Windows.Forms.TabPage();
+            this.gridNone = new System.Windows.Forms.DataGridView();
             this.tabAdd = new System.Windows.Forms.TabPage();
+            this.gridAdd = new System.Windows.Forms.DataGridView();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.tabUpdate = new System.Windows.Forms.TabPage();
+            this.gridUpdate = new System.Windows.Forms.DataGridView();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.tabRemove = new System.Windows.Forms.TabPage();
+            this.gridDelete = new System.Windows.Forms.DataGridView();
             this.sideToSideTextComparer1 = new Ez_SQL.Custom_Controls.SideToSideTextComparer();
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.PopIList = new System.Windows.Forms.ImageList(this.components);
             this.panelSource.SuspendLayout();
             this.SourceMenu.SuspendLayout();
             this.panelDestination.SuspendLayout();
@@ -56,6 +67,14 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabNone.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridNone)).BeginInit();
+            this.tabAdd.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridAdd)).BeginInit();
+            this.tabUpdate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridUpdate)).BeginInit();
+            this.tabRemove.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDelete)).BeginInit();
             this.SuspendLayout();
             // 
             // panelSource
@@ -138,17 +157,17 @@
             this.splitContainer1.SplitterDistance = 635;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 2;
-            this.splitContainer1.SizeChanged += new System.EventHandler(this.splitContainer1_SizeChanged);
             // 
-            // button1
+            // btnGOOO
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.Location = new System.Drawing.Point(0, 34);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(1273, 30);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Start Comparison";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnGOOO.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnGOOO.Location = new System.Drawing.Point(0, 34);
+            this.btnGOOO.Name = "btnGOOO";
+            this.btnGOOO.Size = new System.Drawing.Size(1273, 30);
+            this.btnGOOO.TabIndex = 3;
+            this.btnGOOO.Text = "Start Comparison";
+            this.btnGOOO.UseVisualStyleBackColor = true;
+            this.btnGOOO.Click += new System.EventHandler(this.btnGOOO_Click);
             // 
             // labProgressStatus
             // 
@@ -158,7 +177,7 @@
             this.labProgressStatus.Name = "labProgressStatus";
             this.labProgressStatus.Size = new System.Drawing.Size(1273, 23);
             this.labProgressStatus.TabIndex = 5;
-            this.labProgressStatus.Text = "Heere Im going to show the information about the current status";
+            this.labProgressStatus.Text = "Here Im going to show the information about the current status";
             this.labProgressStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // splitContainer2
@@ -181,6 +200,7 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tabNone);
             this.tabControl1.Controls.Add(this.tabAdd);
             this.tabControl1.Controls.Add(this.tabUpdate);
             this.tabControl1.Controls.Add(this.tabRemove);
@@ -191,8 +211,37 @@
             this.tabControl1.Size = new System.Drawing.Size(1273, 210);
             this.tabControl1.TabIndex = 0;
             // 
+            // tabNone
+            // 
+            this.tabNone.Controls.Add(this.gridNone);
+            this.tabNone.Location = new System.Drawing.Point(4, 22);
+            this.tabNone.Name = "tabNone";
+            this.tabNone.Size = new System.Drawing.Size(1265, 184);
+            this.tabNone.TabIndex = 3;
+            this.tabNone.Text = "Identical Objects";
+            this.tabNone.UseVisualStyleBackColor = true;
+            // 
+            // gridNone
+            // 
+            this.gridNone.AllowUserToAddRows = false;
+            this.gridNone.AllowUserToDeleteRows = false;
+            this.gridNone.AllowUserToResizeRows = false;
+            this.gridNone.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridNone.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridNone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridNone.Location = new System.Drawing.Point(0, 0);
+            this.gridNone.MultiSelect = false;
+            this.gridNone.Name = "gridNone";
+            this.gridNone.ReadOnly = true;
+            this.gridNone.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridNone.Size = new System.Drawing.Size(1265, 184);
+            this.gridNone.TabIndex = 4;
+            this.gridNone.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCellClick);
+            // 
             // tabAdd
             // 
+            this.tabAdd.Controls.Add(this.gridAdd);
+            this.tabAdd.Controls.Add(this.btnAdd);
             this.tabAdd.Location = new System.Drawing.Point(4, 22);
             this.tabAdd.Name = "tabAdd";
             this.tabAdd.Padding = new System.Windows.Forms.Padding(3);
@@ -201,8 +250,37 @@
             this.tabAdd.Text = "Objects Only Found in Source";
             this.tabAdd.UseVisualStyleBackColor = true;
             // 
+            // gridAdd
+            // 
+            this.gridAdd.AllowUserToAddRows = false;
+            this.gridAdd.AllowUserToDeleteRows = false;
+            this.gridAdd.AllowUserToResizeRows = false;
+            this.gridAdd.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridAdd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridAdd.Location = new System.Drawing.Point(3, 3);
+            this.gridAdd.MultiSelect = false;
+            this.gridAdd.Name = "gridAdd";
+            this.gridAdd.ReadOnly = true;
+            this.gridAdd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridAdd.Size = new System.Drawing.Size(1259, 155);
+            this.gridAdd.TabIndex = 5;
+            this.gridAdd.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCellClick);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnAdd.Location = new System.Drawing.Point(3, 158);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(1259, 23);
+            this.btnAdd.TabIndex = 1;
+            this.btnAdd.Text = "Apply Changes to Destination";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            // 
             // tabUpdate
             // 
+            this.tabUpdate.Controls.Add(this.gridUpdate);
+            this.tabUpdate.Controls.Add(this.btnUpdate);
             this.tabUpdate.Location = new System.Drawing.Point(4, 22);
             this.tabUpdate.Name = "tabUpdate";
             this.tabUpdate.Padding = new System.Windows.Forms.Padding(3);
@@ -211,14 +289,59 @@
             this.tabUpdate.Text = "Objects With Differences";
             this.tabUpdate.UseVisualStyleBackColor = true;
             // 
+            // gridUpdate
+            // 
+            this.gridUpdate.AllowUserToAddRows = false;
+            this.gridUpdate.AllowUserToDeleteRows = false;
+            this.gridUpdate.AllowUserToResizeRows = false;
+            this.gridUpdate.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridUpdate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridUpdate.Location = new System.Drawing.Point(3, 3);
+            this.gridUpdate.MultiSelect = false;
+            this.gridUpdate.Name = "gridUpdate";
+            this.gridUpdate.ReadOnly = true;
+            this.gridUpdate.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridUpdate.Size = new System.Drawing.Size(1259, 155);
+            this.gridUpdate.TabIndex = 5;
+            this.gridUpdate.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCellClick);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnUpdate.Location = new System.Drawing.Point(3, 158);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(1259, 23);
+            this.btnUpdate.TabIndex = 3;
+            this.btnUpdate.Text = "Apply Changes to Destination (DOES NOT WORK FOR TABLES)";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            // 
             // tabRemove
             // 
+            this.tabRemove.Controls.Add(this.gridDelete);
             this.tabRemove.Location = new System.Drawing.Point(4, 22);
             this.tabRemove.Name = "tabRemove";
             this.tabRemove.Size = new System.Drawing.Size(1265, 184);
             this.tabRemove.TabIndex = 2;
             this.tabRemove.Text = "Objects Only Found in Destination";
             this.tabRemove.UseVisualStyleBackColor = true;
+            // 
+            // gridDelete
+            // 
+            this.gridDelete.AllowUserToAddRows = false;
+            this.gridDelete.AllowUserToDeleteRows = false;
+            this.gridDelete.AllowUserToResizeRows = false;
+            this.gridDelete.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridDelete.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridDelete.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridDelete.Location = new System.Drawing.Point(0, 0);
+            this.gridDelete.MultiSelect = false;
+            this.gridDelete.Name = "gridDelete";
+            this.gridDelete.ReadOnly = true;
+            this.gridDelete.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridDelete.Size = new System.Drawing.Size(1265, 184);
+            this.gridDelete.TabIndex = 5;
+            this.gridDelete.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCellClick);
             // 
             // sideToSideTextComparer1
             // 
@@ -230,6 +353,23 @@
             this.sideToSideTextComparer1.Text1Label = "Object from Source Database";
             this.sideToSideTextComparer1.Text2Label = "Object from Destination Database";
             // 
+            // bgWorker
+            // 
+            this.bgWorker.WorkerReportsProgress = true;
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorker_ProgressChanged);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+            // 
+            // PopIList
+            // 
+            this.PopIList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("PopIList.ImageStream")));
+            this.PopIList.TransparentColor = System.Drawing.Color.Transparent;
+            this.PopIList.Images.SetKeyName(0, "Table.png");
+            this.PopIList.Images.SetKeyName(1, "View.png");
+            this.PopIList.Images.SetKeyName(2, "Procedure.png");
+            this.PopIList.Images.SetKeyName(3, "Function.png");
+            this.PopIList.Images.SetKeyName(4, "TableFunction.png");
+            // 
             // DbComparer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,7 +377,7 @@
             this.ClientSize = new System.Drawing.Size(1273, 568);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.labProgressStatus);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnGOOO);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "DbComparer";
@@ -258,6 +398,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.tabNone.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridNone)).EndInit();
+            this.tabAdd.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridAdd)).EndInit();
+            this.tabUpdate.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridUpdate)).EndInit();
+            this.tabRemove.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridDelete)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -271,7 +419,7 @@
         private System.Windows.Forms.ToolStrip DestinationMenu;
         private System.Windows.Forms.ToolStripLabel toolStripDestination;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGOOO;
         private System.Windows.Forms.Label labProgressStatus;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TabControl tabControl1;
@@ -279,5 +427,14 @@
         private System.Windows.Forms.TabPage tabUpdate;
         private System.Windows.Forms.TabPage tabRemove;
         private Custom_Controls.SideToSideTextComparer sideToSideTextComparer1;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.ComponentModel.BackgroundWorker bgWorker;
+        private System.Windows.Forms.TabPage tabNone;
+        private System.Windows.Forms.DataGridView gridNone;
+        private System.Windows.Forms.ImageList PopIList;
+        private System.Windows.Forms.DataGridView gridAdd;
+        private System.Windows.Forms.DataGridView gridUpdate;
+        private System.Windows.Forms.DataGridView gridDelete;
     }
 }

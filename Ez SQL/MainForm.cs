@@ -391,10 +391,6 @@ namespace Ez_SQL
                 lastClickLocation = e.Location;
                 lastClickTime = DateTime.Now;
 
-                tempLabel.Text = String.Format("({0},{1}) - {2}", lastClickLocation.X, lastClickLocation.Y, lastClickTime.ToString("mm:ss.fff"));
-
-
-                //if (this.WindowState == FormWindowState.Normal && e.Button == MouseButtons.Left)
                 if (!_IsMaximized && e.Button == MouseButtons.Left)
                 {
                     ReleaseCapture();
@@ -402,18 +398,6 @@ namespace Ez_SQL
                 }
             }
         }
-        //private void MainMenu_MouseDoubleClick(object sender, MouseEventArgs e)
-        //{
-        //    BtnMax_Click(null, null);
-        //}
-        //private void BtnMoveWindow_MouseDown(object sender, MouseEventArgs e)
-        //{
-        //    if (this.WindowState == FormWindowState.Normal && e.Button == MouseButtons.Left)
-        //    {
-        //        ReleaseCapture();
-        //        SendMessage(Handle, 0x00A1, HTCAPTION, 0);
-        //    }
-        //}
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
