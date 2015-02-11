@@ -302,24 +302,29 @@ namespace Ez_SQL.DbComparer
                 if (destinationObjs.ContainsKey(ts.Key))
                 {
                     destinationObjs[ts.Key].LoadScript(new SqlCommand("", destinationConx.Connection));
-                    differencesFound.Add(
-                        String.Compare(ts.Value.Script, destinationObjs[ts.Key].Script, StringComparison.Ordinal) == 0
-                            ? new DifferenceModel()
-                            {
-                                Name = ts.Key,
-                                SourceScript = ts.Value.Script,
-                                DestinationScript = destinationObjs[ts.Key].Script,
-                                DiffType = DifferenceType.None,
-                                ObjectKind = type
-                            }
-                            : new DifferenceModel()
-                            {
-                                Name = ts.Key,
-                                SourceScript = ts.Value.Script,
-                                DestinationScript = destinationObjs[ts.Key].Script,
-                                DiffType = DifferenceType.Update,
-                                ObjectKind = type
-                            });
+                    if(String.Compare(ts.Value.Script, destinationObjs[ts.Key].Script, StringComparison.OrdinalIgnoreCase) == 0)
+                    {
+                        differencesFound.Add(new DifferenceModel()
+                        {
+                            Name = ts.Key,
+                            SourceScript = ts.Value.Script,
+                            DestinationScript = destinationObjs[ts.Key].Script,
+                            DiffType = DifferenceType.None,
+                            ObjectKind = type
+                        });
+                    }
+                    else
+                    {
+                        differencesFound.Add(new DifferenceModel()
+                        {
+                            Name = ts.Key,
+                            SourceScript = ts.Value.Script,
+                            DestinationScript = destinationObjs[ts.Key].Script,
+                            DiffType = DifferenceType.Update,
+                            ObjectKind = type
+                        });
+                    }
+
                 }
                 else
                 {
@@ -459,6 +464,51 @@ namespace Ez_SQL.DbComparer
                     sideToSideTextComparer1.LoadTexts(dm.SourceScript, dm.DestinationScript);
                 }
             }
+        }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            TabPage p = e.TabPage;
+            DataGridView grid = null;
+            DifferenceType dt = DifferenceType.None;
+            DifferenceModel dm;
+            string name;
+
+            if (p != null)
+            {
+                if (p == tabNone)
+                {
+                    grid = gridNone;
+                    dt = DifferenceType.None;
+                }
+                else if (p == tabAdd)
+                {
+                    grid = gridAdd;
+                    dt = DifferenceType.Add;
+                }
+                else if (p == tabUpdate)
+                {
+                    grid = gridUpdate;
+                    dt = DifferenceType.Update;
+                }
+                else if (p == tabRemove)
+                {
+                    grid = gridDelete;
+                    dt = DifferenceType.Delete;
+                }
+
+                if(grid != null && grid.SelectedRows != null && grid.SelectedRows.Count > 0)
+                {
+                    name = grid.SelectedRows[0].Cells[2].Value.ToString();
+                    dm = differencesFound.FirstOrDefault(x => x.DiffType == dt && x.Name == name);
+                    if (dm != null)
+                    {
+                        sideToSideTextComparer1.LoadTexts(dm.SourceScript, dm.DestinationScript);
+                    }
+                }
+                
+            }
+
         }
     }
 }
