@@ -36,8 +36,9 @@
             this.syntaxTreeView = new System.Windows.Forms.TreeView();
             this.treeIcons = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label1 = new System.Windows.Forms.Label();
             this.cmbStyles = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -48,10 +49,10 @@
             // 
             this.txtEditorPreview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtEditorPreview.IsReadOnly = false;
-            this.txtEditorPreview.Location = new System.Drawing.Point(0, 0);
+            this.txtEditorPreview.Location = new System.Drawing.Point(0, 23);
             this.txtEditorPreview.Name = "txtEditorPreview";
             this.txtEditorPreview.Padding = new System.Windows.Forms.Padding(3);
-            this.txtEditorPreview.Size = new System.Drawing.Size(838, 792);
+            this.txtEditorPreview.Size = new System.Drawing.Size(838, 769);
             this.txtEditorPreview.TabIndex = 1;
             this.txtEditorPreview.Text = resources.GetString("txtEditorPreview.Text");
             this.txtEditorPreview.VRulerRow = 0;
@@ -124,19 +125,10 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.txtEditorPreview);
+            this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Size = new System.Drawing.Size(1262, 792);
             this.splitContainer1.SplitterDistance = 420;
             this.splitContainer1.TabIndex = 10;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Predefined styles";
             // 
             // cmbStyles
             // 
@@ -154,6 +146,27 @@
             this.cmbStyles.Size = new System.Drawing.Size(420, 21);
             this.cmbStyles.TabIndex = 11;
             this.cmbStyles.SelectedIndexChanged += new System.EventHandler(this.cmbStyles_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Predefined styles";
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(838, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Calculate Context for Cursor";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // SyntaxColorsConfigurator
             // 
@@ -186,6 +199,7 @@
         private System.Windows.Forms.ImageList treeIcons;
         private System.Windows.Forms.ComboBox cmbStyles;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
 
     }
 }

@@ -14,6 +14,8 @@ using Ez_SQL.DataBaseObjects;
 using System.IO;
 using Ez_SQL.Extensions;
 using Ez_SQL.EzConfig;
+using Ez_SQL.Models;
+using Ez_SQL.MultiQueryForm;
 using Ez_SQL.Properties;
 using Ez_SQL.Snippets;
 using HDesarrollo.Controles;
@@ -92,23 +94,6 @@ namespace Ez_SQL
         {
             InitializeComponent();
 
-            #region Get the configuration for the app
-            Propiedades prop = new Propiedades();
-            prop.FileName = MainForm.DataStorageDir + "\\EzConfig.cfg";
-            if (File.Exists(prop.FileName))
-            {
-                prop.LoadData();
-            }
-            else
-            {
-                prop.AddProperty("CheckForDangerousExecutions", "1");
-                prop.SaveData();
-            }
-            _ApplicationConfiguration = new AppConfig();
-            _ApplicationConfiguration.CheckForDangerousExecutions = prop.GetValue("CheckForDangerousExecutions") == "1";
-            #endregion
-
-
             StatusBar.Padding = new Padding(StatusBar.Padding.Left, StatusBar.Padding.Top, StatusBar.Padding.Left, StatusBar.Padding.Bottom);
 
             #region Connection Bar
@@ -133,7 +118,7 @@ namespace Ez_SQL
             MainMenu.Items.Insert(0, Helper);
             #endregion
 
-            //not using tha app path anymore, better yet is to use a diferent folder for each winuser that uses the app,
+            //not using the app path anymore, better yet is to use a diferent folder for each winuser that uses the app,
             //this also makes unnecesary the manifest, and the problems it causes
             //DataStorageDir = Application.StartupPath;
             DataStorageDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Ez SQL";
@@ -471,6 +456,7 @@ namespace Ez_SQL
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoadConnectionsInfo();
+            LoadSession();
         }
 
         #region Top tool bar methods
@@ -640,6 +626,65 @@ namespace Ez_SQL
             Ez_SQL.DbComparer.DbComparer dbcForm = new Ez_SQL.DbComparer.DbComparer();
             dbcForm.TabText = "Database Comparer";
             dbcForm.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
+        }
+
+        public void CloseAllTabs()
+        {
+            for (int i = WorkPanel.Contents.Count - 1; i >= 0; i--)
+            {
+                WorkPanel.Contents[i].DockHandler.Close();    
+            }
+        }
+
+        public void CloseAllTabsButMe(QueryForm queryForm)
+        {
+            for (int i = WorkPanel.Contents.Count - 1; i >= 0; i--)
+            {
+                if (WorkPanel.Contents[i].DockHandler.Form != queryForm)
+                    WorkPanel.Contents[i].DockHandler.Close();
+            }
+        }
+
+        public void SaveSession()
+        {
+            List<Session> Ss = new List<Session>();
+            for (int i = 0; i < WorkPanel.Contents.Count; i++)
+            {
+                QueryForm form = WorkPanel.Contents[i].DockHandler.Form as QueryForm;
+                if (form != null)
+                {
+                    QueryForm buff = form;
+                    Session x = new Session();
+                    x.Connection = form.CurrentConnectionString;
+                    x.Query = form.CurrentQuery;
+                    Ss.Add(x);
+                }
+            }
+
+            if (!Directory.Exists(MainForm.DataStorageDir + "\\Session"))
+            {
+                Directory.CreateDirectory(MainForm.DataStorageDir + "\\Session");
+            }
+
+            Ss.SerializeToXmlFile(String.Format("{0}\\Session\\Session.xml", DataStorageDir));
+            CurrentConnection.Connection.ConnectionString.SerializeToXmlFile(String.Format("{0}\\Session\\CurrentConnection.xml", DataStorageDir));
+        }
+
+        private void LoadSession()
+        {
+            //List<Session> Ss;
+            //if (File.Exists(String.Format("{0}\\Session\\Session.xml", DataStorageDir)))
+            //{
+            //    Ss = String.Format("{0}\\Session\\Session.xml", DataStorageDir).DeserializeFromXmlFile() as List<Session>;
+            //    if (Ss != null && Ss.Count > 0)
+            //    {
+            //        foreach (Session s in Ss)
+            //        {
+                        
+            //        }
+            //    }
+
+            //}
         }
     }
 }

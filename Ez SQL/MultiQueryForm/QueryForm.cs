@@ -58,6 +58,8 @@ namespace Ez_SQL.MultiQueryForm
         public static Dictionary<string, string> CSharpVsSql;
 
         private FilteringType curFiltering = FilteringType.None;
+        public string CurrentQuery { get { return Query.Text; } }
+        public string CurrentConnectionString { get { return Executor.ConnectionString; } }
 
         public QueryForm(MainForm Parent, SqlConnector DataProvider, string Script = "")
         {
@@ -269,6 +271,8 @@ namespace Ez_SQL.MultiQueryForm
         #region Code for the actions in the toolstrip of the query form
         private void BtnExecute_Click(object sender, EventArgs e)
         {
+            Parent.SaveSession();
+
             if (Query.ActiveTextAreaControl.SelectionManager.HasSomethingSelected)
                 CurrentScript = Query.ActiveTextAreaControl.SelectionManager.SelectedText;
             else
@@ -276,7 +280,7 @@ namespace Ez_SQL.MultiQueryForm
 
             TokenList TList = CurrentScript.GetTokens();
 
-            if (MainForm.ApplicationConfiguration.CheckForDangerousExecutions)
+            if (MainForm.ApplicationConfiguration.CheckForDangerousExecutions || true)
             {
                 int dangerToken = DangerousExecution(TList);
                 if (dangerToken >= 0)
@@ -2602,6 +2606,21 @@ namespace Ez_SQL.MultiQueryForm
                 command.Connection.Close();
             }
             return Back;
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void closeAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.CloseAllTabs();
+        }
+
+        private void closeAllButThisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.CloseAllTabsButMe(this);
         }
 
     }

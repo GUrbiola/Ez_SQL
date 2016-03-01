@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace Ez_SQL
             EndOffsets = new List<int>();
             TokenLengths = new List<int>();
         }
+
         public void AddToken(Token Current)
         {
             if (Current == null || Current.IsTextEmpty)
@@ -237,6 +239,41 @@ namespace Ez_SQL
             if (beginFold)
                 return List.Where(X => X.Type == TokenType.LINECOMMENT && X.Text.StartsWith("--fold", StringComparison.CurrentCultureIgnoreCase)).ToList();
             return List.Where(X => X.Type == TokenType.LINECOMMENT && X.Text.StartsWith("--/fold", StringComparison.CurrentCultureIgnoreCase)).ToList();
+        }
+
+
+        //public void RemoveTokenAt(int index)
+        //{
+        //    List.RemoveAt(index);
+        //    StartOffsets.RemoveAt(index);
+        //    EndOffsets.RemoveAt(index);
+        //    TokenLengths.RemoveAt(index);
+
+        //    TokenList buff = new TokenList();
+        //    foreach (Token t in List)
+        //    {
+        //        buff.AddToken(t);
+        //    }
+
+        //    this.List = buff.List;
+        //    this.StartOffsets = buff.StartOffsets;
+        //    this.EndOffsets = buff.EndOffsets;
+        //    this.TokenLengths = buff.TokenLengths;
+        //}
+        public void AddTokenAt(int i, Token token)
+        {
+            TokenList buff = new TokenList();
+            for (int j = 0; j < this.TokenCount; j++)
+            {
+                if(j == i)
+                    buff.AddToken(token);
+                buff.AddToken(this[j]);
+            }
+
+            this.List = buff.List;
+            this.StartOffsets = buff.StartOffsets;
+            this.EndOffsets = buff.EndOffsets;
+            this.TokenLengths = buff.TokenLengths;            
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Ez_SQL.Extensions;
 using Ez_SQL.EzConfig.ColorConfig;
 using Ez_SQL.EzConfig.ColorConfig.Nodes;
 using ICSharpCode.TextEditor.Document;
@@ -329,6 +330,12 @@ namespace Ez_SQL.EzConfig
                 btnRefreshPreview_Click(null, null);
             }
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TokenList tl = txtEditorPreview.Text.GetTokens();
+            MessageBox.Show("Tokenizing completed", "Parsing SQL", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

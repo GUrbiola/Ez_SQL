@@ -73,7 +73,8 @@
 				<Key word = "COMMIMT" />
 				<Key word = "ROLLBACK" />
 				<Key word = "TRANSACTION" />
-			</KeyWords>
+        <Key word = "TRANS" />
+      </KeyWords>
 			<KeyWords name="DebugKeyWords" bold="true" italic="false" color="#FF9900">
 				<Key word = "TRY" />
 				<Key word = "CATCH" />

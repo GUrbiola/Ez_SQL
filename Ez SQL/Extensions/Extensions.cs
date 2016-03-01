@@ -49,26 +49,24 @@ namespace Ez_SQL.Extensions
             if (String.IsNullOrEmpty(InsStr))
                 return;
 
-            if (TxtEditor.ActiveTextAreaControl.SelectionManager.HasSomethingSelected)
-            {
-                TxtEditor.ActiveTextAreaControl.SelectionManager.RemoveSelectedText();
-            }
 
             if (Position == -1)
             {
-                Position = TxtEditor.CurrentOffset();
-                if (TxtEditor.ActiveTextAreaControl.TextArea.SelectionManager.HasSomethingSelected)
+                if (TxtEditor.ActiveTextAreaControl.SelectionManager.HasSomethingSelected)
                 {
                     SelectionLength = TxtEditor.ActiveTextAreaControl.TextArea.SelectionManager.SelectedText.Length;
+                    Position = TxtEditor.ActiveTextAreaControl.SelectionManager.SelectionCollection[0].Offset;
                     TxtEditor.ActiveTextAreaControl.TextArea.Caret.Position = TxtEditor.ActiveTextAreaControl.TextArea.SelectionManager.SelectionCollection[0].StartPosition;
                     TxtEditor.ActiveTextAreaControl.TextArea.SelectionManager.RemoveSelectedText();
                 }
+                else
+                {
+                    Position = TxtEditor.CurrentOffset();
+                }
             }
-            if (Position - SelectionLength >= 0)
-                TxtEditor.Document.Insert(Position - SelectionLength, InsStr);
-            else
-                TxtEditor.Document.Insert(Position, InsStr);
+            TxtEditor.Document.Insert(Position, InsStr);
             TxtEditor.ActiveTextAreaControl.Caret.Column += InsStr.Length;
+
             if (DoRefreshAfter)
                 TxtEditor.Refresh();
         }
@@ -553,7 +551,7 @@ namespace Ez_SQL.Extensions
                             #endregion
                             break;
                         case TokenType.WORD:
-                            wordTokenBreaker = new char[] { ' ', '\t', '\r', '\n', '\'', ',', '(', '[', '{', '}', ']', ')', '-', '*', '+', '/', '>', '<', '=' };
+                            wordTokenBreaker = new char[] { ' ', '\t', '\r', '\n', '\'', ',', '(', '[', '{', '}', ']', ')', '-', '*', '+', '/', '>', '<', '=', ';' };
                             #region Code to process a word token + something
                             if (wordTokenBreaker.Contains(CurChar))
                             {
@@ -570,6 +568,10 @@ namespace Ez_SQL.Extensions
                                 else if (CurChar.IsComma())
                                 {
                                     Back.AddToken(new Token(TokenType.COMMA, ","));
+                                }
+                                else if (CurChar.IsSemmiColon())
+                                {
+                                    Back.AddToken(new Token(TokenType.SEMMICOLON, ";"));
                                 }
                                 else if (CurChar.IsOpenBracket())
                                 {
@@ -760,6 +762,38 @@ namespace Ez_SQL.Extensions
             }
             if (Current != null)
                 Back.AddToken(Current);
+            
+            List<int> ToReplace = new List<int>();
+            for (int i = 0; i < Back.TokenCount - 2; i++)
+            {
+                if (
+                    Back[i].Type == TokenType.BLOCKSTART &&
+                    Back[i + 1].Type == TokenType.EMPTYSPACE &&
+                    Back[i + 2].Type == TokenType.RESERVED &&
+                    (Back[i + 2].Text.Equals("tran", StringComparison.CurrentCultureIgnoreCase) ||
+                     Back[i + 2].Text.Equals("transaction", StringComparison.CurrentCultureIgnoreCase)))
+                {
+                    ToReplace.Add(i);
+                }
+            }
+
+            if (ToReplace.Count > 0)
+            {
+                int found = 0;
+                foreach (int i in ToReplace)
+                {
+                    int buffIndex = i - (found * 2);
+
+                    Token buff = new Token(TokenType.BEGINTRANSACTION, String.Format("{0}{1}{2}", Back[buffIndex].Text, Back[buffIndex + 1].Text, Back[buffIndex + 2].Text));
+                    Back.RemoveTokenAt(buffIndex);
+                    Back.RemoveTokenAt(buffIndex);
+                    Back.RemoveTokenAt(buffIndex);
+                    Back.AddTokenAt(buffIndex, buff);
+
+                    found++;
+                }
+            }
+
 
             return Back;
 
@@ -929,6 +963,10 @@ namespace Ez_SQL.Extensions
         private static bool IsComma(this char c)
         {
             return c == ',';
+        }
+        private static bool IsSemmiColon(this char c)
+        {
+            return c == ';';
         }
         private static bool IsOpenBracket(this char c)
         {

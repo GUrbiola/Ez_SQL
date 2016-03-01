@@ -171,7 +171,7 @@ namespace Ez_SQL.DbComparer
                 differencesFound.Clear();
             }
 
-            this.Enabled = false;
+            //this.Enabled = false;
             this.Cursor = Cursors.WaitCursor;
             bgWorker.RunWorkerAsync();
         }
@@ -276,7 +276,7 @@ namespace Ez_SQL.DbComparer
             LoadGrid(DifferenceType.Update);
             LoadGrid(DifferenceType.Delete);
 
-            this.Enabled = true;
+            //this.Enabled = true;
             this.Cursor = Cursors.Default;
             
             labProgressStatus.Text = "Step 4: Completed!";
@@ -527,6 +527,8 @@ namespace Ez_SQL.DbComparer
         private void FindDifferencesBetweenObjects(ObjectType type)
         {
             Dictionary<string, ISqlObject> sourceObjs, destinationObjs;
+            
+            //Convert source/destination objects to dictionary for the comparison
             sourceObjs = sourceConx.DbObjects
                 .Where(x => x.Kind == type)
                 .Select(y => y)
@@ -542,13 +544,21 @@ namespace Ez_SQL.DbComparer
                 if (destinationObjs.ContainsKey(ts.Key))
                 {
                     destinationObjs[ts.Key].LoadScript(new SqlCommand("", destinationConx.Connection));
-                    if (String.Compare(ts.Value.Script, destinationObjs[ts.Key].Script, StringComparison.OrdinalIgnoreCase) == 0)
+                    
+                    //Seems like sometimes indentation(tabs) are saved as 4 spaces and sometimes as tabs(\t)
+                    //to avoid this causing false difference detection, both scripts have their tabs replaced 
+                    //by 4 spaces, not the "best" solution but is effective with the default configuration
+                    string buffSource, buffDestiny;
+                    buffSource = ts.Value.Script.Replace("\t", "    ");
+                    buffDestiny = destinationObjs[ts.Key].Script.Replace("\t", "    ");
+
+                    if (String.Compare(buffSource, buffDestiny, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         differencesFound.Add(new DifferenceModel()
                         {
                             Name = ts.Key,
-                            SourceScript = ts.Value.Script,
-                            DestinationScript = destinationObjs[ts.Key].Script,
+                            SourceScript = buffSource,
+                            DestinationScript = buffDestiny,
                             DiffType = DifferenceType.None,
                             ObjectKind = type
                         });

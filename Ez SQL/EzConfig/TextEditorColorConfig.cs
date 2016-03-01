@@ -211,7 +211,7 @@ namespace Ez_SQL.EzConfig
                     Italic = false,
                     Color = "#DA800A".StringToColor(),
                     StopAtEOL = true,
-                    Words = new List<string>() {"COMMMIT", "ROLLBACK", "TRANSACTION"}
+                    Words = new List<string>() {"COMMMIT", "ROLLBACK", "TRANSACTION", "TRAN"}
                 };
             Rl1.Rules.Add(TransactionKeyWords);
 

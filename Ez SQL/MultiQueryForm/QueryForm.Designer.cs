@@ -69,6 +69,10 @@
             this.TabHolder = new System.Windows.Forms.TabControl();
             this.tabMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.LockTabButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.ThisTabMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeAllButThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainContainer)).BeginInit();
             this.MainContainer.Panel1.SuspendLayout();
             this.MainContainer.Panel2.SuspendLayout();
@@ -76,6 +80,7 @@
             this.popupMenu.SuspendLayout();
             this.ActionsToolStrip.SuspendLayout();
             this.tabMenu.SuspendLayout();
+            this.ThisTabMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // PopIList
@@ -149,7 +154,7 @@
             this.generateClassForTableToolStripMenuItem,
             this.generateMethodForStoreProcedureExecutionToolStripMenuItem});
             this.popupMenu.Name = "popupMenu";
-            this.popupMenu.Size = new System.Drawing.Size(326, 158);
+            this.popupMenu.Size = new System.Drawing.Size(326, 136);
             // 
             // goToDefinitionToolStripMenuItem
             // 
@@ -485,14 +490,54 @@
             this.LockTabButton.Text = "Lock Tab";
             this.LockTabButton.Click += new System.EventHandler(this.LockTabButton_Click);
             // 
+            // ThisTabMenu
+            // 
+            this.ThisTabMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.closeToolStripMenuItem,
+            this.closeAllToolStripMenuItem,
+            this.closeAllButThisToolStripMenuItem});
+            this.ThisTabMenu.Name = "ThisTabMenu";
+            this.ThisTabMenu.Size = new System.Drawing.Size(167, 70);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Delete_24;
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // closeAllToolStripMenuItem
+            // 
+            this.closeAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("closeAllToolStripMenuItem.Image")));
+            this.closeAllToolStripMenuItem.Name = "closeAllToolStripMenuItem";
+            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeAllToolStripMenuItem.Text = "Close All";
+            this.closeAllToolStripMenuItem.Click += new System.EventHandler(this.closeAllToolStripMenuItem_Click);
+            // 
+            // closeAllButThisToolStripMenuItem
+            // 
+            this.closeAllButThisToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("closeAllButThisToolStripMenuItem.Image")));
+            this.closeAllButThisToolStripMenuItem.Name = "closeAllButThisToolStripMenuItem";
+            this.closeAllButThisToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeAllButThisToolStripMenuItem.Text = "Close All But This";
+            this.closeAllButThisToolStripMenuItem.Click += new System.EventHandler(this.closeAllButThisToolStripMenuItem_Click);
+            // 
             // QueryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(954, 384);
             this.Controls.Add(this.MainContainer);
+            this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((((((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft) 
+            | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) 
+            | WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) 
+            | WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom) 
+            | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "QueryForm";
+            this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.Unknown;
+            this.TabPageContextMenuStrip = this.ThisTabMenu;
             this.Text = "QueryForm";
             this.Load += new System.EventHandler(this.QueryForm_Load);
             this.MainContainer.Panel1.ResumeLayout(false);
@@ -503,6 +548,7 @@
             this.ActionsToolStrip.ResumeLayout(false);
             this.ActionsToolStrip.PerformLayout();
             this.tabMenu.ResumeLayout(false);
+            this.ThisTabMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -548,5 +594,9 @@
         private System.Windows.Forms.ToolStripMenuItem LockTabButton;
         private System.Windows.Forms.ToolStripMenuItem generateClassForTableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem generateMethodForStoreProcedureExecutionToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip ThisTabMenu;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeAllButThisToolStripMenuItem;
     }
 }

@@ -18,6 +18,23 @@ namespace Ez_SQL
         {
             StartPath = Application.StartupPath;
 
+
+            //#region Get the configuration for the app
+            //Propiedades prop = new Propiedades();
+            //prop.FileName = MainForm.DataStorageDir + "\\EzConfig.cfg";
+            //if (File.Exists(prop.FileName))
+            //{
+            //    prop.LoadData();
+            //}
+            //else
+            //{
+            //    prop.AddProperty("CheckForDangerousExecutions", "1");
+            //    prop.SaveData();
+            //}
+            //_ApplicationConfiguration = new AppConfig();
+            //_ApplicationConfiguration.CheckForDangerousExecutions = prop.GetValue("CheckForDangerousExecutions") == "1";
+            //#endregion
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

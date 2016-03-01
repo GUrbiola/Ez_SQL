@@ -1027,7 +1027,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Ez SQL"
         "ProductCode" = "8:{B21366ED-D7B7-48C1-A5D5-DF2E6A546FB2}"
-        "PackageCode" = "8:{2CCDE0D9-D4F5-45F0-94E4-E103A38F0F9E}"
+        "PackageCode" = "8:{39C02271-7655-46B1-A3E0-0F21F2DA832D}"
         "UpgradeCode" = "8:{61A49AEB-7CE0-4EF7-9B43-9161100D5D64}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
