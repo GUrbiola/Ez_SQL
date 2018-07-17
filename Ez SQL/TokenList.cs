@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Ez_SQL.DataBaseObjects;
 using Ez_SQL.Extensions;
 
 namespace Ez_SQL
@@ -274,6 +275,52 @@ namespace Ez_SQL
             this.StartOffsets = buff.StartOffsets;
             this.EndOffsets = buff.EndOffsets;
             this.TokenLengths = buff.TokenLengths;            
+        }
+
+        public void ParseTokens(SqlConnector conx)
+        {
+            if (conx == null)
+                return;
+
+            if (!conx.DbObjects.Any(x => x.Kind == ObjectType.Table))
+            {
+                if(!conx.TablesLoaded)
+                    conx.LoadTables(false);
+                if (!conx.ViewsLoaded)
+                    conx.LoadViews(false);
+                if (!conx.TableFunctionsLoaded)
+                    conx.LoadTableFunctions(false);
+
+                //create dictionary with object names
+                Dictionary<string, ISqlObject> sqlObjs = new Dictionary<string, ISqlObject>();
+                foreach (ISqlObject so in conx.DbObjects.Where(x => x.Kind == ObjectType.Table || x.Kind == ObjectType.View || x.Kind == ObjectType.TableFunction))
+                {
+                    if (!sqlObjs.ContainsKey(so.Name))
+                    {
+                        sqlObjs.Add(so.Name, so);
+                    }
+                    //TODO When there a duplicate name, then the difference lays on the schema each of them belongs to
+                    //TODO the code to handle that is pending for now
+                }
+
+
+
+                foreach (Token t in List)
+                {
+
+                    if (t.Type == TokenType.WORD)
+                    {
+                        
+                    }
+
+                }
+
+
+
+
+            }
+
+
         }
     }
 }

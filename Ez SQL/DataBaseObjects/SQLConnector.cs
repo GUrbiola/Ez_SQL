@@ -65,6 +65,13 @@ namespace Ez_SQL.DataBaseObjects
                 return "";
             }
         }
+
+        public bool TablesLoaded { get; set; }
+        public bool ViewsLoaded { get; set; }
+        public bool SPsLoaded { get; set; }
+        public bool TableFunctionsLoaded { get; set; }
+        public bool ScalarFunctionsLoaded { get; set; }
+
         #region Loading dialog
         public event EndingLoad OnEndedLoad;
         LoadingInfo LoadDialog;
@@ -75,7 +82,12 @@ namespace Ez_SQL.DataBaseObjects
         {
             Connection = new SqlConnection(ConnectionString);
             this.ConnectionString = ConnectionString;
-
+            
+            TablesLoaded = false;
+            ViewsLoaded = false;
+            SPsLoaded = false;
+            TableFunctionsLoaded = false;
+            ScalarFunctionsLoaded = false;
         }
         private List<ISqlObject> _DbObjects = new List<ISqlObject>();
         public List<ISqlObject> DbObjects 
@@ -271,6 +283,7 @@ order by
                 }
             }
             DbObjects.AddRange(Tables);
+            TablesLoaded = true;
             return Tables.Count;
         }
         public int LoadViews(bool FullLoad = false)
@@ -381,6 +394,7 @@ ORDER BY
 
             }
             DbObjects.AddRange(Views);
+            ViewsLoaded = true;
             return Views.Count;
         }
         public int LoadProcedures(bool FullLoad = false)
@@ -494,6 +508,7 @@ ORDER BY
 
             }
             DbObjects.AddRange(Procedures);
+            SPsLoaded = true;
             return Procedures.Count;
         }
         public int LoadScalarFunctions(bool FullLoad = false)
@@ -606,6 +621,7 @@ ORDER BY
 
             }
             DbObjects.AddRange(Functions);
+            ScalarFunctionsLoaded = true;
             return Functions.Count;
         }
         public int LoadTableFunctions(bool FullLoad = false)
@@ -749,6 +765,7 @@ ORDER BY
 
             }
             DbObjects.AddRange(Functions);
+            TableFunctionsLoaded = true;
             return Functions.Count;
         }
 

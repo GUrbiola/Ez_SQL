@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Ez_SQL.DataBaseObjects;
 using Ez_SQL.Extensions;
 using Ez_SQL.EzConfig.ColorConfig;
 using Ez_SQL.EzConfig.ColorConfig.Nodes;
@@ -15,10 +16,12 @@ namespace Ez_SQL.EzConfig
         private TextEditorColorConfig colorConfig;
         private bool _preventExpand = false;
         private DateTime _lastMouseDown = DateTime.Now;
+        private MainForm Parent;
 
-        public SyntaxColorsConfigurator()
+        public SyntaxColorsConfigurator(MainForm Parent)
         {
             InitializeComponent();
+            this.Parent = Parent;
             txtEditorPreview.Document.ReadOnly = true;
         }
         private void SyntaxColorsConfigurator_Load(object sender, EventArgs e)
@@ -334,8 +337,26 @@ namespace Ez_SQL.EzConfig
 
         private void button1_Click(object sender, EventArgs e)
         {
+            SqlConnector conx = new SqlConnector("Data Source=.\\SQLSERVER;Initial Catalog=CompensationDB;Integrated Security=True;Persist Security Info=True");
             TokenList tl = txtEditorPreview.Text.GetTokens();
+            tl.ParseTokens(conx);
             MessageBox.Show("Tokenizing completed", "Parsing SQL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void closeAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.CloseAllTabs();
+        }
+
+        private void closeAllButThisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.CloseAllTabsButMe(this);
         }
     }
 }

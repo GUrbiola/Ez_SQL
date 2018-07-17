@@ -280,7 +280,7 @@ namespace Ez_SQL.MultiQueryForm
 
             TokenList TList = CurrentScript.GetTokens();
 
-            if (MainForm.ApplicationConfiguration.CheckForDangerousExecutions || true)
+            if (true)//MainForm.ApplicationConfiguration.CheckForDangerousExecutions || true)
             {
                 int dangerToken = DangerousExecution(TList);
                 if (dangerToken >= 0)
@@ -574,6 +574,7 @@ namespace Ez_SQL.MultiQueryForm
             Query.ActiveTextAreaControl.Caret.Position = Query.Document.OffsetToPosition(range.Offset + range.Length);
         }
         #endregion
+
         #region Functions triggered at the start/ending of a query execution
         private void DoubleClickedResultItem(object sender, MouseEventArgs e)
         {
@@ -821,6 +822,7 @@ namespace Ez_SQL.MultiQueryForm
             Query.Focus();
         }
         #endregion
+
         #region Code to refresh the folding, it will execute a second when the "last change" has been made 2 seconds ago
         private int ToRefresh = 10;
         void Query_DocumentChanged(object sender, DocumentEventArgs e)
@@ -840,6 +842,7 @@ namespace Ez_SQL.MultiQueryForm
             }
         }
         #endregion
+
         bool Query_DoProcessDialogKey(Keys keyData)//Process hot keys
         {
             bool NoEcho = true, Echo = false;

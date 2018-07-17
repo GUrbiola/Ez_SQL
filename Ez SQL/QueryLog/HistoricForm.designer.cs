@@ -28,24 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH1 = new HDesarrollo.Controles.Grid.OpcionAH();
+            this.components = new System.ComponentModel.Container();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH46 = new HDesarrollo.Controles.Grid.OpcionAH();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HistoricForm));
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH2 = new HDesarrollo.Controles.Grid.OpcionAH();
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH3 = new HDesarrollo.Controles.Grid.OpcionAH();
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH4 = new HDesarrollo.Controles.Grid.OpcionAH();
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH5 = new HDesarrollo.Controles.Grid.OpcionAH();
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH6 = new HDesarrollo.Controles.Grid.OpcionAH();
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH7 = new HDesarrollo.Controles.Grid.OpcionAH();
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH8 = new HDesarrollo.Controles.Grid.OpcionAH();
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH9 = new HDesarrollo.Controles.Grid.OpcionAH();
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH10 = new HDesarrollo.Controles.Grid.OpcionAH();
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH11 = new HDesarrollo.Controles.Grid.OpcionAH();
-            GridViewExtensions.GridFilterFactories.DefaultGridFilterFactory defaultGridFilterFactory1 = new GridViewExtensions.GridFilterFactories.DefaultGridFilterFactory();
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH12 = new HDesarrollo.Controles.Grid.OpcionAH();
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH13 = new HDesarrollo.Controles.Grid.OpcionAH();
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH14 = new HDesarrollo.Controles.Grid.OpcionAH();
-            HDesarrollo.Controles.Grid.GridPrinter gridPrinter1 = new HDesarrollo.Controles.Grid.GridPrinter();
-            HDesarrollo.Controles.Grid.OpcionAH opcionAH15 = new HDesarrollo.Controles.Grid.OpcionAH();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH47 = new HDesarrollo.Controles.Grid.OpcionAH();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH48 = new HDesarrollo.Controles.Grid.OpcionAH();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH49 = new HDesarrollo.Controles.Grid.OpcionAH();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH50 = new HDesarrollo.Controles.Grid.OpcionAH();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH51 = new HDesarrollo.Controles.Grid.OpcionAH();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH52 = new HDesarrollo.Controles.Grid.OpcionAH();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH53 = new HDesarrollo.Controles.Grid.OpcionAH();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH54 = new HDesarrollo.Controles.Grid.OpcionAH();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH55 = new HDesarrollo.Controles.Grid.OpcionAH();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH56 = new HDesarrollo.Controles.Grid.OpcionAH();
+            GridViewExtensions.GridFilterFactories.DefaultGridFilterFactory defaultGridFilterFactory4 = new GridViewExtensions.GridFilterFactories.DefaultGridFilterFactory();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH57 = new HDesarrollo.Controles.Grid.OpcionAH();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH58 = new HDesarrollo.Controles.Grid.OpcionAH();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH59 = new HDesarrollo.Controles.Grid.OpcionAH();
+            HDesarrollo.Controles.Grid.GridPrinter gridPrinter4 = new HDesarrollo.Controles.Grid.GridPrinter();
+            HDesarrollo.Controles.Grid.OpcionAH opcionAH60 = new HDesarrollo.Controles.Grid.OpcionAH();
             this.MarkErrors = new HDesarrollo.Controles.Grid.CondicionMarcado();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.SGrid = new HDesarrollo.Controles.Grid.SmartGrid();
@@ -76,6 +77,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ErrorGrid = new System.Windows.Forms.DataGridView();
             this.ScriptText = new ICSharpCode.TextEditor.TextEditorControl();
+            this.ThisTabMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeAllButThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -87,6 +92,7 @@
             this.splitContainer3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorGrid)).BeginInit();
+            this.ThisTabMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // MarkErrors
@@ -125,108 +131,108 @@
             // 
             // SGrid
             // 
-            opcionAH1.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH1.Imagen")));
-            opcionAH1.TextoMenu = "Agregar...";
-            opcionAH1.ToolTip = "Agregar un Nuevo Registro";
-            opcionAH1.Visible = false;
-            this.SGrid.BotonAgregar = opcionAH1;
-            opcionAH2.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH2.Imagen")));
-            opcionAH2.TextoMenu = "Eliminar";
-            opcionAH2.ToolTip = "Eliminar el(los) Registros Seleccionados";
-            opcionAH2.Visible = false;
-            this.SGrid.BotonEliminar = opcionAH2;
-            opcionAH3.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH3.Imagen")));
-            opcionAH3.TextoMenu = "Opcion Extra 1";
-            opcionAH3.ToolTip = "Opcion Extra 1";
-            opcionAH3.Visible = false;
-            this.SGrid.BotonExtra1 = opcionAH3;
-            opcionAH4.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH4.Imagen")));
-            opcionAH4.TextoMenu = "Opcion Extra 2";
-            opcionAH4.ToolTip = "Opcion Extra 2";
-            opcionAH4.Visible = false;
-            this.SGrid.BotonExtra2 = opcionAH4;
-            opcionAH5.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH5.Imagen")));
-            opcionAH5.TextoMenu = "Opcion Extra 3";
-            opcionAH5.ToolTip = "Opcion Extra 3";
-            opcionAH5.Visible = false;
-            this.SGrid.BotonExtra3 = opcionAH5;
-            opcionAH6.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH6.Imagen")));
-            opcionAH6.TextoMenu = "Opcion Extra 4";
-            opcionAH6.ToolTip = "Opcion Extra 4";
-            opcionAH6.Visible = false;
-            this.SGrid.BotonExtra4 = opcionAH6;
-            opcionAH7.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH7.Imagen")));
-            opcionAH7.TextoMenu = "Opcion Extra 5";
-            opcionAH7.ToolTip = "Opcion Extra 5";
-            opcionAH7.Visible = false;
-            this.SGrid.BotonExtra5 = opcionAH7;
-            opcionAH8.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH8.Imagen")));
-            opcionAH8.TextoMenu = "Modificar";
-            opcionAH8.ToolTip = "Modificar Registro Seleccionado";
-            opcionAH8.Visible = false;
-            this.SGrid.BotonModificar = opcionAH8;
-            opcionAH9.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH9.Imagen")));
-            opcionAH9.TextoMenu = "Buscar en Tabla";
-            opcionAH9.ToolTip = "Abre ventana auxiliar para realizar busquedas en la tabla actual";
-            opcionAH9.Visible = true;
-            this.SGrid.Busqueda = opcionAH9;
-            opcionAH10.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH10.Imagen")));
-            opcionAH10.TextoMenu = "Elegir Columnas";
-            opcionAH10.ToolTip = "Abre ventana donde se pueden elegir las columnas que se mostraran en este control" +
+            opcionAH46.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH46.Imagen")));
+            opcionAH46.TextoMenu = "Agregar...";
+            opcionAH46.ToolTip = "Agregar un Nuevo Registro";
+            opcionAH46.Visible = false;
+            this.SGrid.BotonAgregar = opcionAH46;
+            opcionAH47.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH47.Imagen")));
+            opcionAH47.TextoMenu = "Eliminar";
+            opcionAH47.ToolTip = "Eliminar el(los) Registros Seleccionados";
+            opcionAH47.Visible = false;
+            this.SGrid.BotonEliminar = opcionAH47;
+            opcionAH48.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH48.Imagen")));
+            opcionAH48.TextoMenu = "Opcion Extra 1";
+            opcionAH48.ToolTip = "Opcion Extra 1";
+            opcionAH48.Visible = false;
+            this.SGrid.BotonExtra1 = opcionAH48;
+            opcionAH49.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH49.Imagen")));
+            opcionAH49.TextoMenu = "Opcion Extra 2";
+            opcionAH49.ToolTip = "Opcion Extra 2";
+            opcionAH49.Visible = false;
+            this.SGrid.BotonExtra2 = opcionAH49;
+            opcionAH50.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH50.Imagen")));
+            opcionAH50.TextoMenu = "Opcion Extra 3";
+            opcionAH50.ToolTip = "Opcion Extra 3";
+            opcionAH50.Visible = false;
+            this.SGrid.BotonExtra3 = opcionAH50;
+            opcionAH51.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH51.Imagen")));
+            opcionAH51.TextoMenu = "Opcion Extra 4";
+            opcionAH51.ToolTip = "Opcion Extra 4";
+            opcionAH51.Visible = false;
+            this.SGrid.BotonExtra4 = opcionAH51;
+            opcionAH52.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH52.Imagen")));
+            opcionAH52.TextoMenu = "Opcion Extra 5";
+            opcionAH52.ToolTip = "Opcion Extra 5";
+            opcionAH52.Visible = false;
+            this.SGrid.BotonExtra5 = opcionAH52;
+            opcionAH53.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH53.Imagen")));
+            opcionAH53.TextoMenu = "Modificar";
+            opcionAH53.ToolTip = "Modificar Registro Seleccionado";
+            opcionAH53.Visible = false;
+            this.SGrid.BotonModificar = opcionAH53;
+            opcionAH54.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH54.Imagen")));
+            opcionAH54.TextoMenu = "Buscar en Tabla";
+            opcionAH54.ToolTip = "Abre ventana auxiliar para realizar busquedas en la tabla actual";
+            opcionAH54.Visible = true;
+            this.SGrid.Busqueda = opcionAH54;
+            opcionAH55.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH55.Imagen")));
+            opcionAH55.TextoMenu = "Elegir Columnas";
+            opcionAH55.ToolTip = "Abre ventana donde se pueden elegir las columnas que se mostraran en este control" +
     "";
-            opcionAH10.Visible = true;
-            this.SGrid.Columnas = opcionAH10;
+            opcionAH55.Visible = true;
+            this.SGrid.Columnas = opcionAH55;
             this.SGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            opcionAH11.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH11.Imagen")));
-            opcionAH11.TextoMenu = "Exportar Tabla a Archivo";
-            opcionAH11.ToolTip = "Exportacion de Informacion a Archivo, se permiten varios formatos: Texto Plano, E" +
+            opcionAH56.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH56.Imagen")));
+            opcionAH56.TextoMenu = "Exportar Tabla a Archivo";
+            opcionAH56.ToolTip = "Exportacion de Informacion a Archivo, se permiten varios formatos: Texto Plano, E" +
     "xcel, HTML";
-            opcionAH11.Visible = true;
-            this.SGrid.Exportacion = opcionAH11;
+            opcionAH56.Visible = true;
+            this.SGrid.Exportacion = opcionAH56;
             this.SGrid.FilterBoxPosition = GridViewExtensions.FilterPosition.Off;
-            defaultGridFilterFactory1.CreateDistinctGridFilters = false;
-            defaultGridFilterFactory1.DefaultGridFilterType = typeof(GridViewExtensions.GridFilters.TextGridFilter);
-            defaultGridFilterFactory1.DefaultShowDateInBetweenOperator = false;
-            defaultGridFilterFactory1.DefaultShowNumericInBetweenOperator = false;
-            defaultGridFilterFactory1.HandleEnumerationTypes = true;
-            defaultGridFilterFactory1.MaximumDistinctValues = 20;
-            this.SGrid.FilterFactory = defaultGridFilterFactory1;
+            defaultGridFilterFactory4.CreateDistinctGridFilters = false;
+            defaultGridFilterFactory4.DefaultGridFilterType = typeof(GridViewExtensions.GridFilters.TextGridFilter);
+            defaultGridFilterFactory4.DefaultShowDateInBetweenOperator = false;
+            defaultGridFilterFactory4.DefaultShowNumericInBetweenOperator = false;
+            defaultGridFilterFactory4.HandleEnumerationTypes = true;
+            defaultGridFilterFactory4.MaximumDistinctValues = 20;
+            this.SGrid.FilterFactory = defaultGridFilterFactory4;
             this.SGrid.FilterTextVisible = false;
-            opcionAH12.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH12.Imagen")));
-            opcionAH12.TextoMenu = "Filtros";
-            opcionAH12.ToolTip = "Oculta o Muestra los Controles para el Filtrado de los Datos";
-            opcionAH12.Visible = true;
-            this.SGrid.Filtrado = opcionAH12;
+            opcionAH57.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH57.Imagen")));
+            opcionAH57.TextoMenu = "Filtros";
+            opcionAH57.ToolTip = "Oculta o Muestra los Controles para el Filtrado de los Datos";
+            opcionAH57.Visible = true;
+            this.SGrid.Filtrado = opcionAH57;
             this.SGrid.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SGrid.GridLines = false;
-            opcionAH13.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH13.Imagen")));
-            opcionAH13.TextoMenu = "Vista Preliminar/Impresion";
-            opcionAH13.ToolTip = "Muestra la vista preliminar de la rejilla, permitiendo la impresion de esta vista" +
+            opcionAH58.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH58.Imagen")));
+            opcionAH58.TextoMenu = "Vista Preliminar/Impresion";
+            opcionAH58.ToolTip = "Muestra la vista preliminar de la rejilla, permitiendo la impresion de esta vista" +
     "";
-            opcionAH13.Visible = true;
-            this.SGrid.Impresion = opcionAH13;
+            opcionAH58.Visible = true;
+            this.SGrid.Impresion = opcionAH58;
             this.SGrid.Location = new System.Drawing.Point(0, 0);
-            opcionAH14.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH14.Imagen")));
-            opcionAH14.TextoMenu = "Formato Condicional";
-            opcionAH14.ToolTip = "Permite crear un formato especifico para los registros que cumplan ciertas condic" +
+            opcionAH59.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH59.Imagen")));
+            opcionAH59.TextoMenu = "Formato Condicional";
+            opcionAH59.ToolTip = "Permite crear un formato especifico para los registros que cumplan ciertas condic" +
     "iones";
-            opcionAH14.Visible = true;
-            this.SGrid.Marcado = opcionAH14;
+            opcionAH59.Visible = true;
+            this.SGrid.Marcado = opcionAH59;
             this.SGrid.Marcados.AddRange(new HDesarrollo.Controles.Grid.CondicionMarcado[] {
             this.MarkErrors});
             this.SGrid.Name = "SGrid";
             this.SGrid.OpenAfterXport = false;
-            gridPrinter1.BottomMargin = 0;
-            gridPrinter1.LeftMargin = 0;
-            gridPrinter1.RightMargin = 0;
-            gridPrinter1.TopMargin = 0;
-            this.SGrid.Printer = gridPrinter1;
+            gridPrinter4.BottomMargin = 0;
+            gridPrinter4.LeftMargin = 0;
+            gridPrinter4.RightMargin = 0;
+            gridPrinter4.TopMargin = 0;
+            this.SGrid.Printer = gridPrinter4;
             this.SGrid.Size = new System.Drawing.Size(991, 184);
-            opcionAH15.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH15.Imagen")));
-            opcionAH15.TextoMenu = "Sumarizar por Columna";
-            opcionAH15.ToolTip = "Permite establecer una operacion de sumarizado de la columna seleccionada";
-            opcionAH15.Visible = true;
-            this.SGrid.Sumarizacion = opcionAH15;
+            opcionAH60.Imagen = ((System.Drawing.Image)(resources.GetObject("opcionAH60.Imagen")));
+            opcionAH60.TextoMenu = "Sumarizar por Columna";
+            opcionAH60.ToolTip = "Permite establecer una operacion de sumarizado de la columna seleccionada";
+            opcionAH60.Visible = true;
+            this.SGrid.Sumarizacion = opcionAH60;
             this.SGrid.TabIndex = 7;
             // 
             // groupBox1
@@ -506,6 +512,39 @@
             this.ScriptText.Size = new System.Drawing.Size(603, 216);
             this.ScriptText.TabIndex = 3;
             // 
+            // ThisTabMenu
+            // 
+            this.ThisTabMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.closeToolStripMenuItem,
+            this.closeAllToolStripMenuItem,
+            this.closeAllButThisToolStripMenuItem});
+            this.ThisTabMenu.Name = "ThisTabMenu";
+            this.ThisTabMenu.Size = new System.Drawing.Size(167, 70);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Delete_24;
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // closeAllToolStripMenuItem
+            // 
+            this.closeAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("closeAllToolStripMenuItem.Image")));
+            this.closeAllToolStripMenuItem.Name = "closeAllToolStripMenuItem";
+            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeAllToolStripMenuItem.Text = "Close All";
+            this.closeAllToolStripMenuItem.Click += new System.EventHandler(this.closeAllToolStripMenuItem_Click);
+            // 
+            // closeAllButThisToolStripMenuItem
+            // 
+            this.closeAllButThisToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("closeAllButThisToolStripMenuItem.Image")));
+            this.closeAllButThisToolStripMenuItem.Name = "closeAllButThisToolStripMenuItem";
+            this.closeAllButThisToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeAllButThisToolStripMenuItem.Text = "Close All But This";
+            this.closeAllButThisToolStripMenuItem.Click += new System.EventHandler(this.closeAllButThisToolStripMenuItem_Click);
+            // 
             // HistoricForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -514,6 +553,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "HistoricForm";
+            this.TabPageContextMenuStrip = this.ThisTabMenu;
             this.Text = "HistoricForm";
             this.Shown += new System.EventHandler(this.HistoricForm_Shown);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -528,6 +568,7 @@
             this.splitContainer3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ErrorGrid)).EndInit();
+            this.ThisTabMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -564,6 +605,10 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView ErrorGrid;
         private ICSharpCode.TextEditor.TextEditorControl ScriptText;
+        private System.Windows.Forms.ContextMenuStrip ThisTabMenu;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeAllButThisToolStripMenuItem;
 
 
     }

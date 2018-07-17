@@ -44,12 +44,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.Contains = new System.Windows.Forms.RadioButton();
             this.StartsWith = new System.Windows.Forms.RadioButton();
+            this.ThisTabMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeAllButThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TxtFilter = new Ez_SQL.Custom_Controls.AnimatedWaitTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridFields)).BeginInit();
+            this.ThisTabMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -230,6 +235,39 @@
             this.StartsWith.Text = "Starts by filter";
             this.StartsWith.UseVisualStyleBackColor = true;
             // 
+            // ThisTabMenu
+            // 
+            this.ThisTabMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.closeToolStripMenuItem,
+            this.closeAllToolStripMenuItem,
+            this.closeAllButThisToolStripMenuItem});
+            this.ThisTabMenu.Name = "ThisTabMenu";
+            this.ThisTabMenu.Size = new System.Drawing.Size(167, 70);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Delete_24;
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // closeAllToolStripMenuItem
+            // 
+            this.closeAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("closeAllToolStripMenuItem.Image")));
+            this.closeAllToolStripMenuItem.Name = "closeAllToolStripMenuItem";
+            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeAllToolStripMenuItem.Text = "Close All";
+            this.closeAllToolStripMenuItem.Click += new System.EventHandler(this.closeAllToolStripMenuItem_Click);
+            // 
+            // closeAllButThisToolStripMenuItem
+            // 
+            this.closeAllButThisToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("closeAllButThisToolStripMenuItem.Image")));
+            this.closeAllButThisToolStripMenuItem.Name = "closeAllButThisToolStripMenuItem";
+            this.closeAllButThisToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeAllButThisToolStripMenuItem.Text = "Close All But This";
+            this.closeAllButThisToolStripMenuItem.Click += new System.EventHandler(this.closeAllButThisToolStripMenuItem_Click);
+            // 
             // TxtFilter
             // 
             this.TxtFilter.DefaultImage = global::Ez_SQL.Properties.Resources.Filter;
@@ -258,12 +296,14 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "ObjectSearcher";
             this.Padding = new System.Windows.Forms.Padding(2);
+            this.TabPageContextMenuStrip = this.ThisTabMenu;
             this.Text = "ObjectSearcher";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridFields)).EndInit();
+            this.ThisTabMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,5 +324,9 @@
         private System.Windows.Forms.RadioButton Contains;
         private System.Windows.Forms.RadioButton StartsWith;
         private System.Windows.Forms.ImageList PopIList;
+        private System.Windows.Forms.ContextMenuStrip ThisTabMenu;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeAllButThisToolStripMenuItem;
     }
 }

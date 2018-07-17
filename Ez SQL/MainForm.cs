@@ -279,6 +279,12 @@ namespace Ez_SQL
                     writer.Flush();
                     writer.Close();
                 }
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Table Sizes.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                {
+                    writer.Write(Properties.Resources.Table_Sizes, 0, Properties.Resources.Table_Sizes.Length);
+                    writer.Flush();
+                    writer.Close();
+                }
                 #endregion
             }
             if (!Directory.Exists(String.Format("{0}\\QueriesLog", DataStorageDir)))
@@ -533,7 +539,7 @@ namespace Ez_SQL
         }
         private void BtnHistoric_Click(object sender, EventArgs e)
         {
-            QueryLog.HistoricForm Hform = new Ez_SQL.QueryLog.HistoricForm();
+            QueryLog.HistoricForm Hform = new Ez_SQL.QueryLog.HistoricForm(this);
             Hform.TabText = "Historic";
             Hform.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
         }
@@ -541,7 +547,7 @@ namespace Ez_SQL
         {
             if (Sform == null)
             {
-                Sform = new SnippetEditor();
+                Sform = new SnippetEditor(this);
                 Sform.TabText = "Snippet Editor";
                 Sform.Width = 400;
             }
@@ -553,7 +559,7 @@ namespace Ez_SQL
         private void BtnConfigColors_Click(object sender, EventArgs e)
         {
             EzConfig.SyntaxColorsConfigurator ColorConfigTab;
-            ColorConfigTab = new EzConfig.SyntaxColorsConfigurator();
+            ColorConfigTab = new EzConfig.SyntaxColorsConfigurator(this);
             ColorConfigTab.TabText = "Syntax Highlighting Config";
             ColorConfigTab.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
         }
@@ -570,7 +576,7 @@ namespace Ez_SQL
         }
         public void AddCSharpCodeForm(string title, string text)
         {
-            CSharp.SharpCodeForm sharpForm = new SharpCodeForm(text);
+            CSharp.SharpCodeForm sharpForm = new SharpCodeForm(this, text);
             sharpForm.Text = title;
             sharpForm.ShowIcon = true;
             sharpForm.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
@@ -623,7 +629,7 @@ namespace Ez_SQL
 
         private void BtnDbCompare_Click(object sender, EventArgs e)
         {
-            Ez_SQL.DbComparer.DbComparer dbcForm = new Ez_SQL.DbComparer.DbComparer();
+            Ez_SQL.DbComparer.DbComparer dbcForm = new Ez_SQL.DbComparer.DbComparer(this);
             dbcForm.TabText = "Database Comparer";
             dbcForm.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
         }
@@ -636,11 +642,11 @@ namespace Ez_SQL
             }
         }
 
-        public void CloseAllTabsButMe(QueryForm queryForm)
+        public void CloseAllTabsButMe(Form form)
         {
             for (int i = WorkPanel.Contents.Count - 1; i >= 0; i--)
             {
-                if (WorkPanel.Contents[i].DockHandler.Form != queryForm)
+                if (WorkPanel.Contents[i].DockHandler.Form != form)
                     WorkPanel.Contents[i].DockHandler.Close();
             }
         }

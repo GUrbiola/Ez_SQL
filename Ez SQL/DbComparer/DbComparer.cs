@@ -28,11 +28,13 @@ namespace Ez_SQL.DbComparer
             get { return _Connectors; }
             set { _Connectors = value; }
         }
+        private MainForm Parent;
 
-        public DbComparer()
+        public DbComparer(MainForm Parent)
         {
             InitializeComponent();
 
+            this.Parent = Parent;
             Connectors = new List<SqlConnector>();
 
             #region Connection Bar (Source)
@@ -662,5 +664,21 @@ namespace Ez_SQL.DbComparer
             tab.Text = String.Format("{0}({1})", tab.Text.IndexOf('(') >= 0 ? tab.Text.Substring(0, tab.Text.IndexOf('(')) : tab.Text, count);
         }
         #endregion 
+
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void closeAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.CloseAllTabs();
+        }
+
+        private void closeAllButThisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.CloseAllTabsButMe(this);
+        }
     }
 }

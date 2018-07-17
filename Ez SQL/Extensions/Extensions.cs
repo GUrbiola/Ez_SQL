@@ -794,9 +794,7 @@ namespace Ez_SQL.Extensions
                 }
             }
 
-
             return Back;
-
         }
         public static string GetUpperCasedLetters(this string Word, int MaxLength = -1)
         {

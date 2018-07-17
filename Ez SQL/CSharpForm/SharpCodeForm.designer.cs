@@ -44,7 +44,12 @@
             this.MsgLabel = new System.Windows.Forms.ToolStripLabel();
             this.SharpText = new ICSharpCode.TextEditor.TextEditorControl();
             this.FoldingRefresher = new System.Windows.Forms.Timer(this.components);
+            this.ThisTabMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeAllButThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ActionsToolStrip.SuspendLayout();
+            this.ThisTabMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // ActionsToolStrip
@@ -211,6 +216,39 @@
             this.FoldingRefresher.Interval = 200;
             this.FoldingRefresher.Tick += new System.EventHandler(this.FoldingRefresher_Tick);
             // 
+            // ThisTabMenu
+            // 
+            this.ThisTabMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.closeToolStripMenuItem,
+            this.closeAllToolStripMenuItem,
+            this.closeAllButThisToolStripMenuItem});
+            this.ThisTabMenu.Name = "ThisTabMenu";
+            this.ThisTabMenu.Size = new System.Drawing.Size(167, 92);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Delete_24;
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // closeAllToolStripMenuItem
+            // 
+            this.closeAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("closeAllToolStripMenuItem.Image")));
+            this.closeAllToolStripMenuItem.Name = "closeAllToolStripMenuItem";
+            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeAllToolStripMenuItem.Text = "Close All";
+            this.closeAllToolStripMenuItem.Click += new System.EventHandler(this.closeAllToolStripMenuItem_Click);
+            // 
+            // closeAllButThisToolStripMenuItem
+            // 
+            this.closeAllButThisToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("closeAllButThisToolStripMenuItem.Image")));
+            this.closeAllButThisToolStripMenuItem.Name = "closeAllButThisToolStripMenuItem";
+            this.closeAllButThisToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeAllButThisToolStripMenuItem.Text = "Close All But This";
+            this.closeAllButThisToolStripMenuItem.Click += new System.EventHandler(this.closeAllButThisToolStripMenuItem_Click);
+            // 
             // SharpCodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,6 +258,7 @@
             this.Controls.Add(this.ActionsToolStrip);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "SharpCodeForm";
+            this.TabPageContextMenuStrip = this.ThisTabMenu;
             this.TabText = "C# Code";
             this.Text = "SharpCodeForm";
             this.ToolTipText = "Ventana de Codigo de CSharp";
@@ -227,6 +266,7 @@
             this.Click += new System.EventHandler(this.BtnComment_Click);
             this.ActionsToolStrip.ResumeLayout(false);
             this.ActionsToolStrip.PerformLayout();
+            this.ThisTabMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -247,5 +287,9 @@
         private System.Windows.Forms.Timer FoldingRefresher;
         private System.Windows.Forms.ToolStripButton BtnCopy;
         private System.Windows.Forms.ToolStripLabel MsgLabel;
+        private System.Windows.Forms.ContextMenuStrip ThisTabMenu;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeAllButThisToolStripMenuItem;
     }
 }

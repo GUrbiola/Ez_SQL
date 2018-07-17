@@ -15,12 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_10A6E19E6D00474098DC220D6BFBFA1D"
-        "OwnerKey" = "8:_ECF9852B483C43ED87BD977CCB96461E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_11A9671376F29AEBD03C5EC0C659C13C"
         "OwnerKey" = "8:_ECF9852B483C43ED87BD977CCB96461E"
         "MsmSig" = "8:_UNDEFINED"
@@ -35,6 +29,12 @@
         {
         "MsmKey" = "8:_318C6C1DCA75E14C59EF6F1EAA70C549"
         "OwnerKey" = "8:_ECF9852B483C43ED87BD977CCB96461E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3EAAFE8501C98941469D7B27B571C6BC"
+        "OwnerKey" = "8:_318C6C1DCA75E14C59EF6F1EAA70C549"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -87,6 +87,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_608610EF2D6F0B920586A36691C31BE1"
+        "OwnerKey" = "8:_5DC48E2482D6B6F5F83C7C40ADDD32CC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_78DB20B55DFD48637853D3125996EFF7"
         "OwnerKey" = "8:_ECF9852B483C43ED87BD977CCB96461E"
         "MsmSig" = "8:_UNDEFINED"
@@ -113,6 +119,12 @@
         {
         "MsmKey" = "8:_7E50E7D39FF2B89BC49649D5B66FA89D"
         "OwnerKey" = "8:_C50A74112B50FD71080FA3F795DDA35F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_87A05E045F63BFFAEE893B2593B16587"
+        "OwnerKey" = "8:_ECF9852B483C43ED87BD977CCB96461E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -214,12 +226,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_10A6E19E6D00474098DC220D6BFBFA1D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_5C85275798C62DA0E6E2AE134E12C4EF"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -287,6 +293,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_318C6C1DCA75E14C59EF6F1EAA70C549"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_87A05E045F63BFFAEE893B2593B16587"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -412,37 +424,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_10A6E19E6D00474098DC220D6BFBFA1D"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WeifenLuo.WinFormsUI.Docking, Version=2.7.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_10A6E19E6D00474098DC220D6BFBFA1D"
-                    {
-                    "Name" = "8:WeifenLuo.WinFormsUI.Docking.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:WeifenLuo.WinFormsUI.Docking.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_AD0B5EC620A447D6909ED760FED9364B"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_11A9671376F29AEBD03C5EC0C659C13C"
             {
             "AssemblyRegister" = "3:1"
@@ -502,6 +483,26 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3EAAFE8501C98941469D7B27B571C6BC"
+            {
+            "SourcePath" = "8:MSWINSCK.OCX"
+            "TargetName" = "8:MSWINSCK.OCX"
+            "Tag" = "8:"
+            "Folder" = "8:_AD0B5EC620A447D6909ED760FED9364B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:4"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -649,6 +650,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_608610EF2D6F0B920586A36691C31BE1"
+            {
+            "SourcePath" = "8:nicelabel5wr.dll"
+            "TargetName" = "8:nicelabel5wr.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_AD0B5EC620A447D6909ED760FED9364B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_78DB20B55DFD48637853D3125996EFF7"
             {
             "AssemblyRegister" = "3:1"
@@ -694,6 +715,37 @@
                     }
                 }
             "SourcePath" = "8:Microsoft.Data.ConnectionUI.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_AD0B5EC620A447D6909ED760FED9364B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_87A05E045F63BFFAEE893B2593B16587"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:WeifenLuo.WinFormsUI.Docking, Version=2.9.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_87A05E045F63BFFAEE893B2593B16587"
+                    {
+                    "Name" = "8:WeifenLuo.WinFormsUI.Docking.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:WeifenLuo.WinFormsUI.Docking.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_AD0B5EC620A447D6909ED760FED9364B"
@@ -1026,15 +1078,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Ez SQL"
-        "ProductCode" = "8:{B21366ED-D7B7-48C1-A5D5-DF2E6A546FB2}"
-        "PackageCode" = "8:{39C02271-7655-46B1-A3E0-0F21F2DA832D}"
+        "ProductCode" = "8:{93599230-1C2A-442C-BA3E-1311CBC8C89C}"
+        "PackageCode" = "8:{8F894D86-3119-4F30-920D-F4079F1FACA1}"
         "UpgradeCode" = "8:{61A49AEB-7CE0-4EF7-9B43-9161100D5D64}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.18"
+        "ProductVersion" = "8:1.1.1"
         "Manufacturer" = "8:El Cid"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

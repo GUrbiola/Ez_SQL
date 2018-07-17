@@ -79,7 +79,7 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                     F.CSharpType = "??";
                 }
 
-                F.DefaultValue = F.Nullable ? "null" : DefaultValueFor(F.CSharpType);
+                F.DefaultValue = F.Nullable ? "null" : DefaultValueFor(F.CSharpType.EndsWith("?") ? F.CSharpType.Replace("?", "") : F.CSharpType);
 
                 if (settings.AutoImplementedProperties)
                 {
@@ -209,7 +209,7 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                     Field F = curTable.Childs[i] as Field;
                     if (F == null)
                         continue;
-                    switch (F.CSharpType)
+                    switch (F.CSharpType.Replace("?", ""))
                     {
                         case "int":
                             SbBll.AppendLine(String.Format("if (table.Rows[i][\"{0}\"] != DBNull.Value && !String.IsNullOrEmpty(table.Rows[i][\"{0}\"].ToString()))".Indent(4), F.Name));
@@ -225,6 +225,10 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                         case "float":
                             SbBll.AppendLine(String.Format("if (table.Rows[i][\"{0}\"] != DBNull.Value && !String.IsNullOrEmpty(table.Rows[i][\"{0}\"].ToString()))".Indent(4), F.Name));
                             SbBll.AppendLine(String.Format("obj.{0} = Single.Parse(table.Rows[i][\"{0}\"].ToString());".Indent(4), F.Name));
+                            break;
+                        case "double":
+                            SbBll.AppendLine(String.Format("if (table.Rows[i][\"{0}\"] != DBNull.Value && !String.IsNullOrEmpty(table.Rows[i][\"{0}\"].ToString()))".Indent(4), F.Name));
+                            SbBll.AppendLine(String.Format("obj.{0} = Double.Parse(table.Rows[i][\"{0}\"].ToString());".Indent(4), F.Name));
                             break;
                         case "bool":
                             SbBll.AppendLine(String.Format("if (table.Rows[i][\"{0}\"] != DBNull.Value && !String.IsNullOrEmpty(table.Rows[i][\"{0}\"].ToString()))".Indent(4), F.Name));
@@ -572,6 +576,7 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                     back = "0";
                     break;
                 case "float":
+                case "double":
                     back = "0";
                     break;
                 case "bool":

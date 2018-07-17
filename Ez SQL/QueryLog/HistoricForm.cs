@@ -18,10 +18,13 @@ namespace Ez_SQL.QueryLog
     {
         readonly string path = MainForm.DataStorageDir;
         private List<QueryInfo> Qs;
- 
-        public HistoricForm()
+        private MainForm Parent;
+
+        public HistoricForm(MainForm Parent)
         {
             InitializeComponent();
+
+            this.Parent = Parent;
             ReadQueryLog();
             SGrid.Grid.RowTemplate.Height = 35;
             SGrid.Grid.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
@@ -232,6 +235,21 @@ namespace Ez_SQL.QueryLog
             {
                 ScriptText.SelectLine(- 1);
             }
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void closeAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.CloseAllTabs();
+        }
+
+        private void closeAllButThisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.CloseAllTabsButMe(this);
         }
     }
 }

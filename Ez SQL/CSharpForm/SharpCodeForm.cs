@@ -19,14 +19,16 @@ namespace Ez_SQL.CSharp
     public partial class SharpCodeForm : WeifenLuo.WinFormsUI.Docking.DockContent
     {
         SearchAndReplace _findForm;
+        private MainForm Parent;
         private bool _lastSearchLoopedAround = false, _lastSearchWasBackward = false;
         private int ToRefresh;
         Keys LastKeyPressed;
 
-        public SharpCodeForm(string Script)
+        public SharpCodeForm(MainForm Parent, string Script)
         {
             InitializeComponent();
 
+            this.Parent = Parent;
             SharpText.Text = Script;
 
             #region Code to load the Highlight rules(files in resources) and the folding strategy class
@@ -479,6 +481,21 @@ namespace Ez_SQL.CSharp
                     SharpText.Document.Replace(tokens.GetStartOf(t), tokens.GetLengthOf(t), t.Text.ToLower());
 
             }
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void closeAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.CloseAllTabs();
+        }
+
+        private void closeAllButThisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.CloseAllTabsButMe(this);
         }
 
 

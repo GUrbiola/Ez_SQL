@@ -1,0 +1,9 @@
+<Data type="Ez_SQL.Snippets.Snippet" assembly="Ez SQL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" version="1" culture="en-US" hasTypeCache="true">
+  <TypeCache>
+    <TypeInfo typeid="1" type="System.String" assembly="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  </TypeCache>
+  <Name value="Table Sizes" typeid="1" />
+  <ShortCut typeid="1" value="tbls" />
+  <Description typeid="1" value="Quick query to get thew sizes of all tables" />
+  <Script typeid="1" value="SELECT &#xD;&#xA;    t.NAME AS TableName,&#xD;&#xA;    s.Name AS SchemaName,&#xD;&#xA;    p.rows AS RowCounts,&#xD;&#xA;    SUM(a.total_pages) * 8 AS TotalSpaceKB, &#xD;&#xA;    CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB,&#xD;&#xA;    SUM(a.used_pages) * 8 AS UsedSpaceKB, &#xD;&#xA;    CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS UsedSpaceMB, &#xD;&#xA;    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB,&#xD;&#xA;    CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS UnusedSpaceMB&#xD;&#xA;FROM &#xD;&#xA;    sys.tables t INNER JOIN sys.indexes i ON t.OBJECT_ID = i.object_id&#xD;&#xA;	INNER JOIN sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id&#xD;&#xA;	INNER JOIN sys.allocation_units a ON p.partition_id = a.container_id&#xD;&#xA;	LEFT OUTER JOIN sys.schemas s ON t.schema_id = s.schema_id&#xD;&#xA;WHERE &#xD;&#xA;    t.NAME NOT LIKE 'dt%' &#xD;&#xA;    AND t.is_ms_shipped = 0&#xD;&#xA;    AND i.OBJECT_ID &gt; 255 &#xD;&#xA;GROUP BY &#xD;&#xA;    t.Name, s.Name, p.Rows&#xD;&#xA;ORDER BY &#xD;&#xA;    t.Name" />
+</Data>

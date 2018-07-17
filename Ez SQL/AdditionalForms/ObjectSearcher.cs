@@ -195,5 +195,20 @@ namespace Ez_SQL.AdditionalForms
                 Parent.AddQueryForm(obj.Name, obj.Script, DataProvider);
             }
         }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void closeAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.CloseAllTabs();
+        }
+
+        private void closeAllButThisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.CloseAllTabsButMe(this);
+        }
     }
 }

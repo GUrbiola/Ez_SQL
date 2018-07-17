@@ -16,6 +16,8 @@ namespace Ez_SQL.Snippets
     {
         List<Snippet> Snippets;
         Snippet NewSnippet = new Snippet() { Name = "New Snippet", Description = "", Script = "", ShortCut = "" };
+        private MainForm Parent;
+
         public Snippet SelectedSnippet
         {
             get
@@ -25,10 +27,11 @@ namespace Ez_SQL.Snippets
                 return null;
             }
         }
-        public SnippetEditor()
+        public SnippetEditor(MainForm Parent)
         {
             InitializeComponent();
 
+            this.Parent = Parent;
             try
             {
                 HighlightingManager.Manager.AddSyntaxModeFileProvider(new FileSyntaxModeProvider(MainForm.DataStorageDir + "\\SintaxHighLight\\"));
@@ -149,6 +152,21 @@ namespace Ez_SQL.Snippets
                     LoadSnippets();
                 }
             }
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void closeAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.CloseAllTabs();
+        }
+
+        private void closeAllButThisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.CloseAllTabsButMe(this);
         }
     }
 }
