@@ -376,4 +376,16 @@
   <data name="Table_Sizes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Table Sizes.snp;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="SP_Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Templates\SP_Add.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="SP_Update" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Templates\SP_Update.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="SP_Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Templates\SP_Delete.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="SP_Get" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Templates\SP_Get.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
 </root>

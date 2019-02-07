@@ -19,5 +19,6 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
         public bool IntegerIndexer { get; set; }
         public bool StringIndexer { get; set; }
         public bool FieldType { get; set; }
+        public bool IncludeComments { get; set; }
     }
 }

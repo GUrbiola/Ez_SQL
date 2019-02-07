@@ -55,8 +55,23 @@
     <Reference Include="AddressBarExt">
       <HintPath>..\References\AddressBarExt\AddressBarEx_2.0\bin\Release\AddressBarExt.dll</HintPath>
     </Reference>
+    <Reference Include="ClosedXML, Version=0.94.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ClosedXML net40\ClosedXML.dll</HintPath>
+    </Reference>
     <Reference Include="ColorPickerLib">
       <HintPath>..\References\ColorPicker\ColorPicker\bin\Debug\ColorPickerLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ClosedXML net40\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ClosedXML net40\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember">
+      <HintPath>..\References\ClosedXML net40\FastMember.dll</HintPath>
     </Reference>
     <Reference Include="HDesarrollo">
       <HintPath>..\References\HDesarrollo\HDesarrollo.dll</HintPath>
@@ -95,6 +110,11 @@
     <Compile Include="AdditionalForms\ObjectSearcher.Designer.cs">
       <DependentUpon>ObjectSearcher.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdditionalForms\SPAddGenerator.cs" />
+    <Compile Include="AdditionalForms\SPDeleteGenerator.cs" />
+    <Compile Include="AdditionalForms\SPGetGenerator.cs" />
+    <Compile Include="AdditionalForms\SPUpdateGenerator.cs" />
+    <Compile Include="Common Code\DataExporter.cs" />
     <Compile Include="ConnectionManagement\ConnectionGroup.cs" />
     <Compile Include="ConnectionManagement\ConnectionInfo.cs" />
     <Compile Include="ConnectionBarNodes\ConxGroupNode.cs" />
@@ -183,8 +203,8 @@
       <DependentUpon>DbComparer.cs</DependentUpon>
     </Compile>
     <Compile Include="DbComparer\DifferenceModel.cs" />
-    <Compile Include="Extensions\Extensions.cs" />
-    <Compile Include="Extensions\XmlSerializer.cs" />
+    <Compile Include="Common Code\Extensions.cs" />
+    <Compile Include="Common Code\XmlSerializer.cs" />
     <Compile Include="EzConfig\ColorConfig\ConfigItemDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,6 +252,12 @@
     <Compile Include="MultiQueryForm\Dialogs\GenerateClassModelSettings.cs" />
     <Compile Include="MultiQueryForm\Dialogs\GenerateNonQuerySpModelSettings.cs" />
     <Compile Include="MultiQueryForm\Dialogs\GenerateQuerySpModelSettings.cs" />
+    <Compile Include="MultiQueryForm\Dialogs\GetString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MultiQueryForm\Dialogs\GetString.Designer.cs">
+      <DependentUpon>GetString.cs</DependentUpon>
+    </Compile>
     <Compile Include="MultiQueryForm\Dialogs\NonQuerySp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MultiQueryForm\Dialogs\GenerateClass.resx">
       <DependentUpon>GenerateClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultiQueryForm\Dialogs\GetString.resx">
+      <DependentUpon>GetString.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MultiQueryForm\Dialogs\NonQuerySp.resx">
       <DependentUpon>NonQuerySp.cs</DependentUpon>
@@ -563,6 +592,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppIcon.ico" />
+    <None Include="Templates\SP_Get.sql" />
     <None Include="Resources\Delete_24.png" />
     <None Include="Resources\AppConfig.png" />
     <None Include="Resources\ColorCOnfig.png" />
@@ -587,9 +617,7 @@
     <None Include="Resources\CSharp_22.png" />
     <None Include="Resources\CSharp321.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Templates\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>
@@ -615,7 +643,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="YearStamp.MonthStamp.DayStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="YearStamp.MonthStamp.DayStamp.Increment" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

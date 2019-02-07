@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using System.Data;
-using Ez_SQL.Extensions;
+using Ez_SQL.Common_Code;
 using Ez_SQL.Custom_Controls;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -824,8 +824,15 @@ ORDER BY
         private void Loader_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
             string[] Data = e.UserState.ToString().Split(new char[] { '|' });
-            LoadDialog.SetInfo(Data[0], Data[1]);
-            LoadDialog.Refresh();
+            try
+            {
+                LoadDialog.SetInfo(Data[0], Data[1]);
+                LoadDialog.Refresh();
+            }
+            catch (Exception exception)
+            {
+                Thread.Sleep(1000);
+            }
         }
         private object LoadInfo(bool FullLoad = true)
         {
@@ -896,6 +903,101 @@ ORDER BY
             cmd.Dispose();
 
             return true;
+        }
+        public object ExecuteScalar(string sql)
+        {
+            SqlCommand cmd = new SqlCommand(sql, Connection);
+            object result = null;
+            try
+            {
+                cmd.Connection = Connection;
+                cmd.CommandText = sql;
+                cmd.Connection.Open();
+
+                cmd.CommandType = CommandType.Text;
+                result = cmd.ExecuteScalar();
+            }
+            catch (SqlException sqlex)
+            {
+                result = null;
+            }
+            catch (Exception ex)
+            {
+                result = null;
+            }
+            finally
+            {
+                if (cmd != null)
+                {
+                    if (cmd.Connection.State == ConnectionState.Open)
+                        cmd.Connection.Close();
+                }
+            }
+            return result;
+        }
+        public DataSet ExecuteDataSet(string sql)
+        {
+            SqlCommand cmd = new SqlCommand(sql, Connection);
+            SqlDataAdapter da = null;
+            DataSet result = new DataSet();
+
+            try
+            {
+                cmd.Connection = Connection;
+                cmd.CommandText = sql;
+                da = new SqlDataAdapter(cmd);
+                cmd.CommandType = CommandType.Text;
+
+                da.SelectCommand.Connection.Open();
+                da.Fill(result);
+            }
+            catch (SqlException sqlex)
+            {
+                result = null;
+            }
+            catch (Exception ex)
+            {
+                result = null;
+            }
+            finally
+            {
+                if (da != null && da.SelectCommand != null)
+                {
+                    if (da.SelectCommand.Connection.State == ConnectionState.Open)
+                        da.SelectCommand.Connection.Close();
+                }
+            }
+            return result;
+        }
+        public DataTable ExecuteTable(string sql, string tableName = "")
+        {
+            DataTable aux = null;
+            DataSet info;
+
+            info = ExecuteDataSet(sql);
+            if (info != null && info.Tables.Count > 0)
+            {
+                if (!String.IsNullOrEmpty(tableName))
+                {
+                    info.Tables[0].TableName = tableName;
+                }
+                aux = info.Tables[0];
+            }
+
+            return aux;
+        }
+        public List<string> ExecuteColumn(string sql)
+        {
+            List<string> back = new List<string>();
+            DataTable aux;
+            aux = ExecuteTable(sql);
+            if (aux != null && aux.Rows.Count > 0)
+            {
+                int rc = aux.Rows.Count;
+                for (int i = 0; i < rc; i++)
+                    back.Add(aux.Rows[i][0].ToString());
+            }
+            return back;
         }
 
         internal ISqlObject IsTableTypeObject(string TableName)

@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 using ICSharpCode.TextEditor;
 using ICSharpCode.TextEditor.Document;
-using Ez_SQL.Extensions;
+using Ez_SQL.Common_Code;
 
 
 namespace Ez_SQL.TextEditorClasses

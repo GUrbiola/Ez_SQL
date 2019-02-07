@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using ICSharpCode.TextEditor;
@@ -8,11 +10,13 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Drawing;
 using System.Diagnostics;
+using System.IO;
+using System.Xml;
 
-namespace Ez_SQL.Extensions
+namespace Ez_SQL.Common_Code
 {
     public enum SortDirection { Ascending, Decending };
-    public static class ExtensionHelper
+    public static class Extensions
     {
         #region Extensions for TextEditor
         public static void SelectLine(this TextEditorControl TxtEditor, int LineNumber)
@@ -859,6 +863,30 @@ namespace Ez_SQL.Extensions
         {
             return source.Substring(0, 1).ToLower() + source.Substring(1);
         }
+        public static bool IsEmpty(this string str)
+        {
+            return String.IsNullOrEmpty(str) || String.IsNullOrWhiteSpace(str);
+        }
+        public static string EnsureCSVField(this string str)
+        {
+            if (str.Contains("\""))
+                str = "\"" + str.Replace("\"", "\"\"") + "\"";
+
+            if (str.Contains(","))
+                str = str.EnsureQuotedString();
+
+            return str;
+        }
+        public static string EnsureQuotedString(this string str)
+        {
+            if (String.IsNullOrEmpty(str))
+                return "\"\"";
+            if (!str.StartsWith("\""))
+                str = "\"" + str;
+            if (!str.EndsWith("\""))
+                str = str + "\"";
+            return str;
+        }
         #endregion
 
         #region Extensions for IEnumerable
@@ -995,6 +1023,142 @@ namespace Ez_SQL.Extensions
             return DataTypes.Contains(Word.ToUpper());
         }
         #endregion
+
+        /// <summary>
+        /// Copies the contents of input to output. Doesn't close either stream.
+        /// </summary>
+        public static void CopyStream(Stream input, Stream output)
+        {
+            byte[] buffer = new byte[8 * 1024];
+            int len;
+            while ((len = input.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                output.Write(buffer, 0, len);
+            }
+        }
+        public static void SaveToCsv(this DataTable dt, string fileName)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            IEnumerable<string> columnNames = dt.Columns.Cast<DataColumn>().Select(column => column.ColumnName);
+            string headerLine = "";
+            foreach (string cn in columnNames)
+                headerLine += headerLine.IsEmpty() ? cn.EnsureCSVField() : "," + cn.EnsureCSVField();
+            sb.AppendLine(headerLine);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string line = "";
+                int index = 0;
+                foreach (string cell in row.ItemArray.Select(x => x.ToString()))
+                {
+                    if (index == 0)
+                        line += cell.EnsureCSVField();
+                    else
+                        line += "," + cell.EnsureCSVField();
+                    index++;
+                }
+                sb.AppendLine(line);
+            }
+
+            File.WriteAllText(fileName, sb.ToString());
+        }
+        public static void SaveToXlsx(this DataTable dt, string fileName, bool withStyles = true)
+        {
+            DataExporter dex = new DataExporter();
+            dex.ExportExcelStyle = ExcelStyle.Simple;
+            dex.ExportType = ExportTo.XLSX;
+            dex.ExportWithStyles = withStyles;
+            dex.UseAlternateRowStyles = withStyles;
+            dex.WriteHeaders = true;
+            dex.UseDefaultSheetNames = true;
+
+            dex.ExportToFile(fileName, dt);
+        }
+        public static DataTable ConvertToDataTable<T>(this IList<T> list, string tableName = "")
+        {
+            DataTable table = CreateTable<T>(tableName);
+            Type entityType = typeof(T);
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
+
+            foreach (T item in list)
+            {
+                DataRow row = table.NewRow();
+                foreach (PropertyDescriptor prop in properties)
+                {
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                }
+                table.Rows.Add(row);
+            }
+
+            return table;
+        }
+        public static DataTable ConvertToDataTable<T>(this ICollection<T> list, string tableName = "")
+        {
+            DataTable table = CreateTable<T>(tableName);
+            Type entityType = typeof(T);
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
+
+            foreach (T item in list)
+            {
+                DataRow row = table.NewRow();
+                foreach (PropertyDescriptor prop in properties)
+                {
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                }
+                table.Rows.Add(row);
+            }
+
+            return table;
+        }
+        public static DataTable CreateTable<T>(string tableName = "")
+        {
+            Type entityType = typeof(T);
+            DataTable table = new DataTable(String.IsNullOrEmpty(tableName) ? entityType.Name : tableName);
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
+
+            foreach (PropertyDescriptor prop in properties)
+            {
+                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+            }
+
+            return table;
+        }
+
+        public static void SerializeToXmlFile(this object obj, string fileName, string root = "Data", int ver = 1)
+        {
+            XmlDocument xDoc = XmlObjectSerializer.Serialize(obj, ver, root);
+            xDoc.Save(fileName);
+        }
+        public static string SerializeToXmlString(this object obj, string root = "Data", int ver = 1)
+        {
+            TextWriter tw = new StringWriter();
+            XmlDocument xDoc = XmlObjectSerializer.Serialize(obj, ver, root);
+            xDoc.Save(tw);
+            return tw.ToString();
+        }
+        public static object DeserializeFromXmlFile(this string fileName, int ver = 1, XmlObjectDeserializer.ITypeConverter typeConverter = null)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(fileName);
+            return XmlObjectDeserializer.Deserialize(doc.OuterXml, ver, typeConverter);
+        }
+        public static object DeserializeFromXmlString(this string xmlString, int ver = 1, XmlObjectDeserializer.ITypeConverter typeConverter = null)
+        {
+            return XmlObjectDeserializer.Deserialize(xmlString, ver, typeConverter);
+        }
+        public static bool IsStringOnList(this List<string> list, string str, bool caseSensitive)
+        {
+            if (caseSensitive)
+            {
+                return list.Contains(str);
+            }
+            else
+            {
+                return list.FindIndex(x => x.Equals(str, StringComparison.OrdinalIgnoreCase)) != -1;
+            }
+        }
+
     }
 
 }

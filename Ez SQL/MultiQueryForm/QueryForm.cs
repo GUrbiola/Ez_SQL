@@ -8,13 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Ez_SQL.DataBaseObjects;
-using Ez_SQL.Extensions;
+using Ez_SQL.Common_Code;
 using Ez_SQL.MultiQueryForm.Dialogs;
 using ICSharpCode.TextEditor.Document;
 using System.IO;
 using ICSharpCode.TextEditor;
 using Ez_SQL.QueryLog;
 using System.Collections;
+using Ez_SQL.AdditionalForms;
 using Ez_SQL.Snippets;
 
 namespace Ez_SQL.MultiQueryForm
@@ -60,6 +61,7 @@ namespace Ez_SQL.MultiQueryForm
         private FilteringType curFiltering = FilteringType.None;
         public string CurrentQuery { get { return Query.Text; } }
         public string CurrentConnectionString { get { return Executor.ConnectionString; } }
+        public bool RunOnShow { get; set; }
 
         public QueryForm(MainForm Parent, SqlConnector DataProvider, string Script = "")
         {
@@ -1895,12 +1897,13 @@ namespace Ez_SQL.MultiQueryForm
             {
                 GenerateClass curTableGenerationDialog;
                 curTableGenerationDialog = (Obj as Table) == null ? new GenerateClass(Obj as DataBaseObjects.View) : new GenerateClass(Obj as Table);
-                
+
                 if (curTableGenerationDialog.ShowDialog() == DialogResult.OK)
                 {
                     Parent.AddCSharpCodeForm(Obj.Name, curTableGenerationDialog.GenerateCSharpCode);
                 }
             }
+
         }
         //generate CSharp code for Stored Procedure Execution
         private void generateMethodForStoreProcedureExecutionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1937,6 +1940,291 @@ namespace Ez_SQL.MultiQueryForm
                 //return method.ToString();
             }
         }
+        //Create SP for adding record to a table
+        private void insertSPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int tokenIndex;
+            TokenList tokens = Query.Text.GetTokens();
+            Token t = tokens.GetTokenAtOffset(Query.CurrentOffset(), out tokenIndex);
+
+            if (t == null)
+                return;
+
+            ISqlObject SelectedObject = DataProvider.IsTableTypeObject(t.Text);
+
+            if (SelectedObject != null && SelectedObject.Kind == ObjectType.Table)
+            {
+                string script;
+                using (StreamReader rdr = new StreamReader(MainForm.DataStorageDir + "\\Templates\\SP_Add.sql"))
+                {
+                    script = rdr.ReadToEnd();
+                }
+                SPAddGenerator sp = new SPAddGenerator(script, (Table)SelectedObject);
+                Parent.AddQueryForm(SelectedObject.Name + "_Insert", sp.ToString(), DataProvider, false);
+            }
+        }
+        //Create sp to modify records in a table
+        private void updateSPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int tokenIndex;
+            TokenList tokens = Query.Text.GetTokens();
+            Token t = tokens.GetTokenAtOffset(Query.CurrentOffset(), out tokenIndex);
+
+            if (t == null)
+                return;
+
+            ISqlObject SelectedObject = DataProvider.IsTableTypeObject(t.Text);
+
+            if (SelectedObject != null && SelectedObject.Kind == ObjectType.Table)
+            {
+                string script;
+                using (StreamReader rdr = new StreamReader(MainForm.DataStorageDir + "\\Templates\\SP_Update.sql"))
+                {
+                    script = rdr.ReadToEnd();
+                }
+                SPUpdateGenerator sp = new SPUpdateGenerator(script, (Table)SelectedObject);
+                Parent.AddQueryForm(SelectedObject.Name + "_Update", sp.ToString(), DataProvider, false);
+            }
+        }
+        //Create sp to delete records from a table
+        private void deleteSPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int tokenIndex;
+            TokenList tokens = Query.Text.GetTokens();
+            Token t = tokens.GetTokenAtOffset(Query.CurrentOffset(), out tokenIndex);
+
+            if (t == null)
+                return;
+
+            ISqlObject SelectedObject = DataProvider.IsTableTypeObject(t.Text);
+
+            if (SelectedObject != null && SelectedObject.Kind == ObjectType.Table)
+            {
+                string script;
+                using (StreamReader rdr = new StreamReader(MainForm.DataStorageDir + "\\Templates\\SP_Delete.sql"))
+                {
+                    script = rdr.ReadToEnd();
+                }
+                SPDeleteGenerator sp = new SPDeleteGenerator(script, (Table)SelectedObject);
+                Parent.AddQueryForm(SelectedObject.Name + "_Delete", sp.ToString(), DataProvider, false);
+            }
+        }
+        //Create sp to get records from a table
+        private void selectSPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int tokenIndex;
+            TokenList tokens = Query.Text.GetTokens();
+            Token t = tokens.GetTokenAtOffset(Query.CurrentOffset(), out tokenIndex);
+
+            if (t == null)
+                return;
+
+            ISqlObject SelectedObject = DataProvider.IsTableTypeObject(t.Text);
+
+            if (SelectedObject != null && SelectedObject.Kind == ObjectType.Table)
+            {
+                string script;
+                using (StreamReader rdr = new StreamReader(MainForm.DataStorageDir + "\\Templates\\SP_Get.sql"))
+                {
+                    script = rdr.ReadToEnd();
+                }
+                SPGetGenerator sp = new SPGetGenerator(script, (Table)SelectedObject);
+                Parent.AddQueryForm(SelectedObject.Name + "_Get", sp.ToString(), DataProvider, false);
+            }
+        }
+        //Create all the CRUD SPs
+        private void allSPsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int tokenIndex;
+            TokenList tokens = Query.Text.GetTokens();
+            Token t = tokens.GetTokenAtOffset(Query.CurrentOffset(), out tokenIndex);
+
+            if (t == null)
+                return;
+
+            ISqlObject SelectedObject = DataProvider.IsTableTypeObject(t.Text);
+
+            if (SelectedObject != null && SelectedObject.Kind == ObjectType.Table)
+            {
+                string script;
+                using (StreamReader rdr = new StreamReader(MainForm.DataStorageDir + "\\Templates\\SP_Add.sql"))
+                {
+                    script = rdr.ReadToEnd();
+                }
+                SPAddGenerator spInsert = new SPAddGenerator(script, (Table)SelectedObject);
+                Parent.AddQueryForm(SelectedObject.Name + "_Insert", spInsert.ToString(), DataProvider, false);
+
+                using (StreamReader rdr = new StreamReader(MainForm.DataStorageDir + "\\Templates\\SP_Update.sql"))
+                {
+                    script = rdr.ReadToEnd();
+                }
+                SPUpdateGenerator spUpdate = new SPUpdateGenerator(script, (Table)SelectedObject);
+                Parent.AddQueryForm(SelectedObject.Name + "_Update", spUpdate.ToString(), DataProvider, false);
+
+                using (StreamReader rdr = new StreamReader(MainForm.DataStorageDir + "\\Templates\\SP_Delete.sql"))
+                {
+                    script = rdr.ReadToEnd();
+                }
+                SPDeleteGenerator spDelete = new SPDeleteGenerator(script, (Table)SelectedObject);
+                Parent.AddQueryForm(SelectedObject.Name + "_Delete", spDelete.ToString(), DataProvider, false);
+
+                using (StreamReader rdr = new StreamReader(MainForm.DataStorageDir + "\\Templates\\SP_Get.sql"))
+                {
+                    script = rdr.ReadToEnd();
+                }
+                SPGetGenerator spGet = new SPGetGenerator(script, (Table)SelectedObject);
+                Parent.AddQueryForm(SelectedObject.Name + "_Get", spGet.ToString(), DataProvider, false);
+            }
+        }
+        //Export table or view to excel file
+        private void excelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int tokenIndex;
+            TokenList tokens = Query.Text.GetTokens();
+            Token t = tokens.GetTokenAtOffset(Query.CurrentOffset(), out tokenIndex);
+
+            if (t == null)
+                return;
+
+            ISqlObject SelectedObject = DataProvider.IsTableTypeObject(t.Text);
+            if (SelectedObject != null && (SelectedObject.Kind == ObjectType.Table || SelectedObject.Kind == ObjectType.View))
+            {
+                SaveFileDialog svDlg = new SaveFileDialog();
+                svDlg.AddExtension = true;
+                svDlg.CheckFileExists = false;
+                svDlg.CheckPathExists = true;
+                svDlg.DefaultExt = "*.xlsx";
+                svDlg.Filter = "Excel files (*.xlsx)|*.xlsx";
+                svDlg.Title = "Export Table to Excel File";
+
+                if (svDlg.ShowDialog() == DialogResult.OK)
+                {
+                    DataTable buffer = DataProvider.ExecuteTable("Select top 50000 * from " + SelectedObject.Name);
+                    DataExporter dex = new DataExporter();
+                    dex.Author = "EZ Sql";
+                    dex.AutoCellAdjust = WidthAdjust.ByFirst10Rows;
+                    dex.Company = "El Cid";
+                    dex.ExportExcelStyle = ExcelStyle.Simple;
+                    dex.ExportType = ExportTo.XLSX;
+                    dex.ExportWithStyles = true;
+                    dex.Subject = "Data on " + SelectedObject.Schema + "." + SelectedObject.Name;
+                    dex.Title = "DB Table Export";
+                    dex.UseAlternateRowStyles = true;
+                    dex.WriteHeaders = true;
+
+                    dex.ExportToFile(svDlg.FileName, buffer);
+
+                    System.Diagnostics.Process.Start(svDlg.FileName);
+                }
+            }
+        }
+        //Export table or view to Csv file
+        private void csvToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int tokenIndex;
+            TokenList tokens = Query.Text.GetTokens();
+            Token t = tokens.GetTokenAtOffset(Query.CurrentOffset(), out tokenIndex);
+
+            if (t == null)
+                return;
+
+            ISqlObject SelectedObject = DataProvider.IsTableTypeObject(t.Text);
+            if (SelectedObject != null && (SelectedObject.Kind == ObjectType.Table || SelectedObject.Kind == ObjectType.View))
+            {
+
+                SaveFileDialog svDlg = new SaveFileDialog();
+                svDlg.AddExtension = true;
+                svDlg.CheckFileExists = false;
+                svDlg.CheckPathExists = true;
+                svDlg.DefaultExt = "*.csv";
+                svDlg.Filter = "CSV files (*.csv)|*.csv";
+                svDlg.Title = "Export Table to CSV File";
+
+                if (svDlg.ShowDialog() == DialogResult.OK)
+                {
+                    DataTable buffer = DataProvider.ExecuteTable("Select top 50000 * from " + SelectedObject.Name);
+                    buffer.SaveToCsv(svDlg.FileName);
+                    System.Diagnostics.Process.Start(svDlg.FileName);
+                }
+            }
+        }
+        //Export table or view to pipe delimited text file
+        private void pipeDelimitedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int tokenIndex;
+            TokenList tokens = Query.Text.GetTokens();
+            Token t = tokens.GetTokenAtOffset(Query.CurrentOffset(), out tokenIndex);
+
+            if (t == null)
+                return;
+
+            ISqlObject SelectedObject = DataProvider.IsTableTypeObject(t.Text);
+            if (SelectedObject != null && (SelectedObject.Kind == ObjectType.Table || SelectedObject.Kind == ObjectType.View))
+            {
+
+                SaveFileDialog svDlg = new SaveFileDialog();
+                svDlg.AddExtension = true;
+                svDlg.CheckFileExists = false;
+                svDlg.CheckPathExists = true;
+                svDlg.DefaultExt = "*.txt";
+                svDlg.Filter = "Text files (*.txt)|*.txt";
+                svDlg.Title = "Pipe Delimited Text File";
+
+                if (svDlg.ShowDialog() == DialogResult.OK)
+                {
+                    DataTable buffer = DataProvider.ExecuteTable("Select top 50000 * from " + SelectedObject.Name);
+                    buffer.SaveToCsv(svDlg.FileName);
+                    System.Diagnostics.Process.Start(svDlg.FileName);
+                }
+            }
+        }
+        //Generate C# class from the first query on the current query form
+        private void generateClassFromQueryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            string script = Query.Text;
+            DataTable buffer = DataProvider.ExecuteTable(script);
+
+            if (buffer != null && buffer.Columns.Count > 0)
+            {
+                buffer = buffer.Clone();
+                GetString dlg = new GetString();
+                dlg.Title = "Class Name";
+                dlg.AllowEmpty = false;
+                dlg.Message = "Introduce the name of the class that will be created";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    Table fake = new Table();
+                    fake.Comment = "";
+                    fake.Id = 1;
+                    fake.Name = dlg.Value;
+                    fake.Schema = "dbo";
+                    fake.Childs = new List<ISqlChild>();
+
+                    foreach (DataColumn dc in buffer.Columns)
+                    {
+                        Field child = new Field();
+                        child.Name = dc.ColumnName;
+                        child.IsPrimaryKey = false;
+                        child.Type = QueryForm.CSharpVsSql.ContainsKey(dc.DataType.ToString()) ? QueryForm.CSharpVsSql[dc.DataType.ToString()] : "varchar";
+                        child.Precision = dc.MaxLength;
+
+                        fake.Childs.Add(child);
+                    }
+
+                    GenerateClass curTableGenerationDialog;
+                    curTableGenerationDialog = new GenerateClass(fake);
+
+                    if (curTableGenerationDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        Parent.AddCSharpCodeForm(fake.Name, curTableGenerationDialog.GenerateCSharpCode);
+                    }
+                }
+            }
+
+
+        }
+
 
         private string GetCSharpForNonQueryMethod(Procedure proc)
         {
@@ -1966,11 +2254,11 @@ namespace Ez_SQL.MultiQueryForm
 
             if (parameterless)
             {
-                method.AppendLine(ExtensionHelper.Indent(buffer, 2) + ")");
+                method.AppendLine(Extensions.Indent(buffer, 2) + ")");
             }
             else
             {
-                method.AppendLine(ExtensionHelper.Indent(buffer.Substring(0, buffer.Length - 2), 2) + ")");
+                method.AppendLine(Extensions.Indent(buffer.Substring(0, buffer.Length - 2), 2) + ")");
             }
             #endregion
 
@@ -2133,11 +2421,11 @@ namespace Ez_SQL.MultiQueryForm
 
             if (parameterless)
             {
-                method.AppendLine(ExtensionHelper.Indent(buffer, 2) + ")");
+                method.AppendLine(Extensions.Indent(buffer, 2) + ")");
             }
             else
             {
-                method.AppendLine(ExtensionHelper.Indent(buffer.Substring(0, buffer.Length - 2), 2) + ")");
+                method.AppendLine(Extensions.Indent(buffer.Substring(0, buffer.Length - 2), 2) + ")");
             }
 
             #endregion
@@ -2625,6 +2913,18 @@ namespace Ez_SQL.MultiQueryForm
         {
             this.Parent.CloseAllTabsButMe(this);
         }
+
+        private void QueryForm_Shown(object sender, EventArgs e)
+        {
+            if (RunOnShow)
+            {
+                RunOnShow = false;
+                BtnExecute_Click(null, null);
+            }
+        }
+
+
+
 
     }
 

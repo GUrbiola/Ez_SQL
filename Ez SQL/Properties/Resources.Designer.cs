@@ -791,6 +791,135 @@ namespace Ez_SQL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE PROCEDURE @TableName@_Insert @Params@ AS
+        ///BEGIN
+        ///    SET NOCOUNT ON
+        ///
+        ///	BEGIN TRANSACTION @TableName@_Insert WITH MARK N&apos;Inserting new record into @TableName@&apos;;  
+        ///		BEGIN TRY
+        ///			
+        ///			INSERT INTO [@Schema@].[@TableName@]@Fields@
+        ///			VALUES @Values@
+        ///			
+        ///			SELECT
+        ///				@Id@ AS Result,
+        ///				&apos;Success&apos; AS Message
+        ///		
+        ///		END TRY
+        ///		BEGIN CATCH
+        ///			--return the data of the error
+        ///			SELECT 
+        ///				-1 AS Result,
+        ///				ERROR_MESSAGE() AS Message
+        ///		        
+        ///			IF @@TRANCOUNT &gt; 0
+        ///		        ROLLBACK TRANSACTI [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SP_Add {
+            get {
+                return ResourceManager.GetString("SP_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE PROCEDURE @TableName@_Delete @Params@ AS
+        ///BEGIN
+        ///    SET NOCOUNT ON
+        ///
+        ///	BEGIN TRANSACTION @TableName@_Delete WITH MARK N&apos;Deleting record from @TableName@&apos;;  
+        ///		BEGIN TRY
+        ///			
+        ///			DELETE 
+        ///				[@Schema@].[@TableName@]
+        ///			WHERE
+        ///				@Filter@
+        ///			
+        ///			SELECT
+        ///				@Id@ AS Result,
+        ///				&apos;Success&apos; AS Message
+        ///		
+        ///		END TRY
+        ///		BEGIN CATCH
+        ///			--return the data of the error
+        ///			SELECT 
+        ///				-1 AS Result,
+        ///				ERROR_MESSAGE() AS Message
+        ///		        
+        ///			IF @@TRANCOUNT &gt; 0
+        ///		        ROLLBACK TRANSACTION @Tabl [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SP_Delete {
+            get {
+                return ResourceManager.GetString("SP_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE PROCEDURE @TableName@_Get @Params@ AS
+        ///BEGIN
+        ///    SET NOCOUNT ON
+        ///
+        ///	BEGIN TRANSACTION @TableName@_Get WITH MARK N&apos;Extracting records from @TableName@&apos;;  
+        ///		BEGIN TRY
+        ///			SELECT
+        ///				@Fields@
+        ///			FROM
+        ///				[@Schema@].[@TableName@]
+        ///			WHERE
+        ///				@Filter@
+        ///			
+        ///		END TRY
+        ///		BEGIN CATCH
+        ///		        
+        ///			IF @@TRANCOUNT &gt; 0
+        ///		        ROLLBACK TRANSACTION @TableName@_Update;
+        ///		END CATCH
+        ///		
+        ///		IF @@TRANCOUNT &gt; 0
+        ///		    COMMIT TRANSACTION @TableName@_Update;
+        ///END.
+        /// </summary>
+        public static string SP_Get {
+            get {
+                return ResourceManager.GetString("SP_Get", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE PROCEDURE @TableName@_Update @Params@ AS
+        ///BEGIN
+        ///    SET NOCOUNT ON
+        ///
+        ///	BEGIN TRANSACTION @TableName@_Update WITH MARK N&apos;Updating existing record in @TableName@&apos;;  
+        ///		BEGIN TRY
+        ///			UPDATE
+        ///				[@Schema@].[@TableName@]
+        ///			SET
+        ///				@Updates@
+        ///			WHERE
+        ///				@Filter@
+        ///			
+        ///			SELECT
+        ///				@Id@ AS Result,
+        ///				&apos;Success&apos; AS Message
+        ///		
+        ///		END TRY
+        ///		BEGIN CATCH
+        ///			--return the data of the error
+        ///			SELECT 
+        ///				-1 AS Result,
+        ///				ERROR_MESSAGE() AS Message
+        ///		        
+        ///			IF @@TRANCOUNT &gt; 0
+        ///		        RO [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string SP_Update {
+            get {
+                return ResourceManager.GetString("SP_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         public static byte[] SQL {

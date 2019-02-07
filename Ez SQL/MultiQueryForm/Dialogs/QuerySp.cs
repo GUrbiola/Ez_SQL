@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Ez_SQL.Extensions;
+using Ez_SQL.Common_Code;
 
 namespace Ez_SQL.MultiQueryForm.Dialogs
 {

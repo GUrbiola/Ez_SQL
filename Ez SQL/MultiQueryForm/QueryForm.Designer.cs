@@ -50,6 +50,17 @@
             this.toggleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateClassForTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateMethodForStoreProcedureExecutionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cRUDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.insertSPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateSPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectSPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allSPsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.csvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pipeDelimitedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateClassFromQueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ActionsToolStrip = new System.Windows.Forms.ToolStrip();
             this.BtnExecute = new System.Windows.Forms.ToolStripButton();
             this.BtnStop = new System.Windows.Forms.ToolStripButton();
@@ -152,9 +163,12 @@
             this.selectionToolStripMenuItem,
             this.outlinningToolStripMenuItem,
             this.generateClassForTableToolStripMenuItem,
-            this.generateMethodForStoreProcedureExecutionToolStripMenuItem});
+            this.generateMethodForStoreProcedureExecutionToolStripMenuItem,
+            this.cRUDToolStripMenuItem,
+            this.dataExportToolStripMenuItem,
+            this.generateClassFromQueryToolStripMenuItem});
             this.popupMenu.Name = "popupMenu";
-            this.popupMenu.Size = new System.Drawing.Size(326, 136);
+            this.popupMenu.Size = new System.Drawing.Size(326, 224);
             // 
             // goToDefinitionToolStripMenuItem
             // 
@@ -178,7 +192,7 @@
             // 
             this.toUpperCaseToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.ToUpperCase;
             this.toUpperCaseToolStripMenuItem.Name = "toUpperCaseToolStripMenuItem";
-            this.toUpperCaseToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.toUpperCaseToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.toUpperCaseToolStripMenuItem.Text = "To upper case";
             this.toUpperCaseToolStripMenuItem.Click += new System.EventHandler(this.toUpperCaseToolStripMenuItem_Click);
             // 
@@ -186,7 +200,7 @@
             // 
             this.toLowerCaseToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.ToLowerCase;
             this.toLowerCaseToolStripMenuItem.Name = "toLowerCaseToolStripMenuItem";
-            this.toLowerCaseToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.toLowerCaseToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.toLowerCaseToolStripMenuItem.Text = "To lower case";
             this.toLowerCaseToolStripMenuItem.Click += new System.EventHandler(this.toLowerCaseToolStripMenuItem_Click);
             // 
@@ -204,7 +218,7 @@
             // 
             this.toUpperCseToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.ToUpperCase;
             this.toUpperCseToolStripMenuItem.Name = "toUpperCseToolStripMenuItem";
-            this.toUpperCseToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.toUpperCseToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.toUpperCseToolStripMenuItem.Text = "To upper case  (Ctrl + Shift + U)";
             this.toUpperCseToolStripMenuItem.Click += new System.EventHandler(this.toUpperCseToolStripMenuItem_Click);
             // 
@@ -212,7 +226,7 @@
             // 
             this.toLowerCaseToolStripMenuItem1.Image = global::Ez_SQL.Properties.Resources.ToLowerCase;
             this.toLowerCaseToolStripMenuItem1.Name = "toLowerCaseToolStripMenuItem1";
-            this.toLowerCaseToolStripMenuItem1.Size = new System.Drawing.Size(241, 22);
+            this.toLowerCaseToolStripMenuItem1.Size = new System.Drawing.Size(240, 22);
             this.toLowerCaseToolStripMenuItem1.Text = "To lower case (Ctrl + U)";
             this.toLowerCaseToolStripMenuItem1.Click += new System.EventHandler(this.toLowerCaseToolStripMenuItem1_Click);
             // 
@@ -266,6 +280,92 @@
             this.generateMethodForStoreProcedureExecutionToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
             this.generateMethodForStoreProcedureExecutionToolStripMenuItem.Text = "Generate Method for Store Procedure Execution";
             this.generateMethodForStoreProcedureExecutionToolStripMenuItem.Click += new System.EventHandler(this.generateMethodForStoreProcedureExecutionToolStripMenuItem_Click);
+            // 
+            // cRUDToolStripMenuItem
+            // 
+            this.cRUDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.insertSPToolStripMenuItem,
+            this.updateSPToolStripMenuItem,
+            this.deleteSPToolStripMenuItem,
+            this.selectSPToolStripMenuItem,
+            this.allSPsToolStripMenuItem});
+            this.cRUDToolStripMenuItem.Name = "cRUDToolStripMenuItem";
+            this.cRUDToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
+            this.cRUDToolStripMenuItem.Text = "CRUD";
+            // 
+            // insertSPToolStripMenuItem
+            // 
+            this.insertSPToolStripMenuItem.Name = "insertSPToolStripMenuItem";
+            this.insertSPToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.insertSPToolStripMenuItem.Text = "Insert SP";
+            this.insertSPToolStripMenuItem.Click += new System.EventHandler(this.insertSPToolStripMenuItem_Click);
+            // 
+            // updateSPToolStripMenuItem
+            // 
+            this.updateSPToolStripMenuItem.Name = "updateSPToolStripMenuItem";
+            this.updateSPToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.updateSPToolStripMenuItem.Text = "Update SP";
+            this.updateSPToolStripMenuItem.Click += new System.EventHandler(this.updateSPToolStripMenuItem_Click);
+            // 
+            // deleteSPToolStripMenuItem
+            // 
+            this.deleteSPToolStripMenuItem.Name = "deleteSPToolStripMenuItem";
+            this.deleteSPToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.deleteSPToolStripMenuItem.Text = "Delete SP";
+            this.deleteSPToolStripMenuItem.Click += new System.EventHandler(this.deleteSPToolStripMenuItem_Click);
+            // 
+            // selectSPToolStripMenuItem
+            // 
+            this.selectSPToolStripMenuItem.Name = "selectSPToolStripMenuItem";
+            this.selectSPToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.selectSPToolStripMenuItem.Text = "Select SP";
+            this.selectSPToolStripMenuItem.Click += new System.EventHandler(this.selectSPToolStripMenuItem_Click);
+            // 
+            // allSPsToolStripMenuItem
+            // 
+            this.allSPsToolStripMenuItem.Name = "allSPsToolStripMenuItem";
+            this.allSPsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.allSPsToolStripMenuItem.Text = "All SPs";
+            this.allSPsToolStripMenuItem.Click += new System.EventHandler(this.allSPsToolStripMenuItem_Click);
+            // 
+            // dataExportToolStripMenuItem
+            // 
+            this.dataExportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.excelToolStripMenuItem,
+            this.csvToolStripMenuItem,
+            this.pipeDelimitedToolStripMenuItem});
+            this.dataExportToolStripMenuItem.Name = "dataExportToolStripMenuItem";
+            this.dataExportToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
+            this.dataExportToolStripMenuItem.Text = "Data Export";
+            // 
+            // excelToolStripMenuItem
+            // 
+            this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
+            this.excelToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.excelToolStripMenuItem.Text = "Excel";
+            this.excelToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
+            // 
+            // csvToolStripMenuItem
+            // 
+            this.csvToolStripMenuItem.Name = "csvToolStripMenuItem";
+            this.csvToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.csvToolStripMenuItem.Text = "Csv";
+            this.csvToolStripMenuItem.Click += new System.EventHandler(this.csvToolStripMenuItem_Click);
+            // 
+            // pipeDelimitedToolStripMenuItem
+            // 
+            this.pipeDelimitedToolStripMenuItem.Name = "pipeDelimitedToolStripMenuItem";
+            this.pipeDelimitedToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.pipeDelimitedToolStripMenuItem.Text = "Pipe Delimited";
+            this.pipeDelimitedToolStripMenuItem.Click += new System.EventHandler(this.pipeDelimitedToolStripMenuItem_Click);
+            // 
+            // generateClassFromQueryToolStripMenuItem
+            // 
+            this.generateClassFromQueryToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.CSharpClass;
+            this.generateClassFromQueryToolStripMenuItem.Name = "generateClassFromQueryToolStripMenuItem";
+            this.generateClassFromQueryToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
+            this.generateClassFromQueryToolStripMenuItem.Text = "Generate Class from Query";
+            this.generateClassFromQueryToolStripMenuItem.Click += new System.EventHandler(this.generateClassFromQueryToolStripMenuItem_Click);
             // 
             // ActionsToolStrip
             // 
@@ -480,13 +580,13 @@
             this.tabMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LockTabButton});
             this.tabMenu.Name = "tabMenu";
-            this.tabMenu.Size = new System.Drawing.Size(123, 26);
+            this.tabMenu.Size = new System.Drawing.Size(122, 26);
             // 
             // LockTabButton
             // 
             this.LockTabButton.Image = global::Ez_SQL.Properties.Resources.LockTab;
             this.LockTabButton.Name = "LockTabButton";
-            this.LockTabButton.Size = new System.Drawing.Size(122, 22);
+            this.LockTabButton.Size = new System.Drawing.Size(121, 22);
             this.LockTabButton.Text = "Lock Tab";
             this.LockTabButton.Click += new System.EventHandler(this.LockTabButton_Click);
             // 
@@ -529,17 +629,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(954, 384);
             this.Controls.Add(this.MainContainer);
-            this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((((((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft) 
-            | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) 
-            | WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) 
-            | WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom) 
-            | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "QueryForm";
-            this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.Unknown;
             this.TabPageContextMenuStrip = this.ThisTabMenu;
             this.Text = "QueryForm";
             this.Load += new System.EventHandler(this.QueryForm_Load);
+            this.Shown += new System.EventHandler(this.QueryForm_Shown);
             this.MainContainer.Panel1.ResumeLayout(false);
             this.MainContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MainContainer)).EndInit();
@@ -598,5 +693,16 @@
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeAllButThisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cRUDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dataExportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem insertSPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateSPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteSPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectSPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem allSPsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem excelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem csvToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pipeDelimitedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generateClassFromQueryToolStripMenuItem;
     }
 }

@@ -10,7 +10,7 @@ using Ez_SQL.CSharp;
 using ICSharpCode.TextEditor.Document;
 using ICSharpCode.TextEditor;
 using System.Diagnostics;
-using Ez_SQL.Extensions;
+using Ez_SQL.Common_Code;
 
 namespace Ez_SQL.MultiQueryForm
 {

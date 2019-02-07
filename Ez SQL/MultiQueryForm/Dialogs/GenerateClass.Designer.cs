@@ -50,7 +50,17 @@
             this.chkGenerateProperties = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnGenerate = new System.Windows.Forms.Button();
+            this.groupFieldOptions = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panelFields = new System.Windows.Forms.Panel();
+            this.chkIncludeComments = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
+            this.groupFieldOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // labClassName
@@ -73,6 +83,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkIncludeComments);
             this.groupBox1.Controls.Add(this.chkFieldType);
             this.groupBox1.Controls.Add(this.chkStringIndexer);
             this.groupBox1.Controls.Add(this.chkIntegerIndexer);
@@ -92,7 +103,7 @@
             this.groupBox1.Controls.Add(this.chkGenerateProperties);
             this.groupBox1.Location = new System.Drawing.Point(4, 64);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(451, 526);
+            this.groupBox1.Size = new System.Drawing.Size(451, 559);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Creation Options";
@@ -103,7 +114,7 @@
             this.chkFieldType.Location = new System.Drawing.Point(6, 501);
             this.chkFieldType.Name = "chkFieldType";
             this.chkFieldType.Size = new System.Drawing.Size(337, 22);
-            this.chkFieldType.TabIndex = 17;
+            this.chkFieldType.TabIndex = 16;
             this.chkFieldType.Text = "Create Method string FieldType(string FieldName)";
             this.chkFieldType.UseVisualStyleBackColor = true;
             // 
@@ -113,7 +124,7 @@
             this.chkStringIndexer.Location = new System.Drawing.Point(26, 473);
             this.chkStringIndexer.Name = "chkStringIndexer";
             this.chkStringIndexer.Size = new System.Drawing.Size(255, 22);
-            this.chkStringIndexer.TabIndex = 16;
+            this.chkStringIndexer.TabIndex = 15;
             this.chkStringIndexer.Text = "String Indexer(PropertyName Based)";
             this.chkStringIndexer.UseVisualStyleBackColor = true;
             this.chkStringIndexer.CheckedChanged += new System.EventHandler(this.chkIntegerIndexer_CheckedChanged);
@@ -124,7 +135,7 @@
             this.chkIntegerIndexer.Location = new System.Drawing.Point(26, 443);
             this.chkIntegerIndexer.Name = "chkIntegerIndexer";
             this.chkIntegerIndexer.Size = new System.Drawing.Size(262, 22);
-            this.chkIntegerIndexer.TabIndex = 15;
+            this.chkIntegerIndexer.TabIndex = 14;
             this.chkIntegerIndexer.Text = "Generate Integer Indexer(Zero Based)";
             this.chkIntegerIndexer.UseVisualStyleBackColor = true;
             this.chkIntegerIndexer.CheckedChanged += new System.EventHandler(this.chkIntegerIndexer_CheckedChanged);
@@ -136,7 +147,7 @@
             this.chkIndexers.Location = new System.Drawing.Point(6, 411);
             this.chkIndexers.Name = "chkIndexers";
             this.chkIndexers.Size = new System.Drawing.Size(142, 22);
-            this.chkIndexers.TabIndex = 14;
+            this.chkIndexers.TabIndex = 13;
             this.chkIndexers.Text = "Generate Indexers";
             this.chkIndexers.UseVisualStyleBackColor = true;
             // 
@@ -146,7 +157,7 @@
             this.chkFieldCount.Location = new System.Drawing.Point(26, 175);
             this.chkFieldCount.Name = "chkFieldCount";
             this.chkFieldCount.Size = new System.Drawing.Size(220, 22);
-            this.chkFieldCount.TabIndex = 13;
+            this.chkFieldCount.TabIndex = 5;
             this.chkFieldCount.Text = "Create Property for Field Count";
             this.chkFieldCount.UseVisualStyleBackColor = true;
             // 
@@ -200,7 +211,7 @@
             this.chkPKAlias.Location = new System.Drawing.Point(26, 145);
             this.chkPKAlias.Name = "chkPKAlias";
             this.chkPKAlias.Size = new System.Drawing.Size(291, 22);
-            this.chkPKAlias.TabIndex = 8;
+            this.chkPKAlias.TabIndex = 4;
             this.chkPKAlias.Text = "Create Alias for PK, as property named \"Id\"";
             this.chkPKAlias.UseVisualStyleBackColor = true;
             // 
@@ -210,7 +221,7 @@
             this.chkLoadFromDataTable.Location = new System.Drawing.Point(6, 263);
             this.chkLoadFromDataTable.Name = "chkLoadFromDataTable";
             this.chkLoadFromDataTable.Size = new System.Drawing.Size(400, 22);
-            this.chkLoadFromDataTable.TabIndex = 7;
+            this.chkLoadFromDataTable.TabIndex = 8;
             this.chkLoadFromDataTable.Text = "Generate static converters, from DataTable to List<ThisClass>";
             this.chkLoadFromDataTable.UseVisualStyleBackColor = true;
             // 
@@ -220,7 +231,7 @@
             this.chkPKConstructor.Location = new System.Drawing.Point(26, 235);
             this.chkPKConstructor.Name = "chkPKConstructor";
             this.chkPKConstructor.Size = new System.Drawing.Size(176, 22);
-            this.chkPKConstructor.TabIndex = 5;
+            this.chkPKConstructor.TabIndex = 7;
             this.chkPKConstructor.Text = "Primary Key Constructor";
             this.chkPKConstructor.UseVisualStyleBackColor = true;
             // 
@@ -233,7 +244,7 @@
             this.chkDefaultConstructor.Location = new System.Drawing.Point(6, 205);
             this.chkDefaultConstructor.Name = "chkDefaultConstructor";
             this.chkDefaultConstructor.Size = new System.Drawing.Size(209, 22);
-            this.chkDefaultConstructor.TabIndex = 4;
+            this.chkDefaultConstructor.TabIndex = 6;
             this.chkDefaultConstructor.Text = "Generate Default Constructor";
             this.chkDefaultConstructor.UseVisualStyleBackColor = true;
             // 
@@ -285,22 +296,110 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(4, 596);
+            this.btnCancel.Location = new System.Drawing.Point(4, 629);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(198, 34);
-            this.btnCancel.TabIndex = 3;
+            this.btnCancel.TabIndex = 5000;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(257, 596);
+            this.btnGenerate.Location = new System.Drawing.Point(257, 629);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(198, 34);
-            this.btnGenerate.TabIndex = 4;
+            this.btnGenerate.TabIndex = 5001;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            // 
+            // groupFieldOptions
+            // 
+            this.groupFieldOptions.Controls.Add(this.panelFields);
+            this.groupFieldOptions.Controls.Add(this.label6);
+            this.groupFieldOptions.Controls.Add(this.label5);
+            this.groupFieldOptions.Controls.Add(this.label4);
+            this.groupFieldOptions.Controls.Add(this.label3);
+            this.groupFieldOptions.Controls.Add(this.label2);
+            this.groupFieldOptions.Controls.Add(this.label1);
+            this.groupFieldOptions.Location = new System.Drawing.Point(461, 9);
+            this.groupFieldOptions.Name = "groupFieldOptions";
+            this.groupFieldOptions.Size = new System.Drawing.Size(586, 614);
+            this.groupFieldOptions.TabIndex = 5;
+            this.groupFieldOptions.TabStop = false;
+            this.groupFieldOptions.Text = "Field Options";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 18);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "FieldName";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(131, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 18);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Include";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(182, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(31, 18);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Key";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(213, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 18);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Required";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(321, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 18);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Display Name";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(274, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(50, 18);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Length";
+            // 
+            // panelFields
+            // 
+            this.panelFields.AutoScroll = true;
+            this.panelFields.Location = new System.Drawing.Point(1, 40);
+            this.panelFields.Name = "panelFields";
+            this.panelFields.Size = new System.Drawing.Size(585, 574);
+            this.panelFields.TabIndex = 7;
+            // 
+            // chkIncludeComments
+            // 
+            this.chkIncludeComments.AutoSize = true;
+            this.chkIncludeComments.Location = new System.Drawing.Point(6, 529);
+            this.chkIncludeComments.Name = "chkIncludeComments";
+            this.chkIncludeComments.Size = new System.Drawing.Size(247, 22);
+            this.chkIncludeComments.TabIndex = 17;
+            this.chkIncludeComments.Text = "Include comments / documentation";
+            this.chkIncludeComments.UseVisualStyleBackColor = true;
             // 
             // GenerateClass
             // 
@@ -308,7 +407,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(461, 635);
+            this.ClientSize = new System.Drawing.Size(1059, 667);
+            this.Controls.Add(this.groupFieldOptions);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.groupBox1);
@@ -324,6 +424,8 @@
             this.Text = "Class Generation Dialog";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupFieldOptions.ResumeLayout(false);
+            this.groupFieldOptions.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,5 +455,14 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.CheckBox chkFieldType;
+        private System.Windows.Forms.GroupBox groupFieldOptions;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panelFields;
+        private System.Windows.Forms.CheckBox chkIncludeComments;
     }
 }

@@ -1,9 +1,0 @@
-<Data type="Ez_SQL.Snippets.Snippet" assembly="Ez SQL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" version="1" culture="es-MX" hasTypeCache="true">
-  <TypeCache>
-    <TypeInfo typeid="1" type="System.String" assembly="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  </TypeCache>
-  <Name value="Select top records" typeid="1" />
-  <ShortCut typeid="1" value="st" />
-  <Description typeid="1" value="select the top 100 records clause (selec top 100 from)" />
-  <Script typeid="1" value="SELECT TOP 100 $OBJF:1:, $ FROM $OBJ:1$" />
-</Data>

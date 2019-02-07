@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using Ez_SQL.Extensions;
+using Ez_SQL.Common_Code;
 
 namespace Ez_SQL.EzConfig
 {

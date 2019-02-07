@@ -12,7 +12,7 @@ using Ez_SQL.CSharp;
 using Ez_SQL.ConnectionBarNodes;
 using Ez_SQL.DataBaseObjects;
 using System.IO;
-using Ez_SQL.Extensions;
+using Ez_SQL.Common_Code;
 using Ez_SQL.EzConfig;
 using Ez_SQL.Models;
 using Ez_SQL.MultiQueryForm;
@@ -285,16 +285,30 @@ namespace Ez_SQL
                     writer.Flush();
                     writer.Close();
                 }
+                using (FileStream writer = new FileStream(String.Format("{0}\\Snippets\\Transaction.snp", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                {
+                    writer.Write(Properties.Resources.Transaction, 0, Properties.Resources.Transaction.Length);
+                    writer.Flush();
+                    writer.Close();
+                }
                 #endregion
             }
+
             if (!Directory.Exists(String.Format("{0}\\QueriesLog", DataStorageDir)))
             {
                 Directory.CreateDirectory(String.Format("{0}\\QueriesLog", DataStorageDir));
             }
+
             if (!Directory.Exists(MainForm.DataStorageDir + "\\SintaxHighLight"))
             {
                 Directory.CreateDirectory(MainForm.DataStorageDir + "\\SintaxHighLight\\");
             }
+
+            if (!Directory.Exists(MainForm.DataStorageDir + "\\Templates"))
+            {
+                Directory.CreateDirectory(MainForm.DataStorageDir + "\\Templates\\");
+            }
+
             if (!File.Exists(String.Format("{0}\\SintaxHighLight\\SQL.xshd", DataStorageDir)))
             {
                 using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\SQL.xshd", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
@@ -310,13 +324,29 @@ namespace Ez_SQL
                     Writer.Write(Properties.Resources.CSharp, 0, Properties.Resources.CSharp.Length);
                     Writer.Close();
                 }
-            } 
+            }
+
+            CheckForFile(String.Format("{0}\\Templates\\SP_Add.sql", DataStorageDir), Properties.Resources.SP_Add);
+            CheckForFile(String.Format("{0}\\Templates\\SP_Update.sql", DataStorageDir), Properties.Resources.SP_Update);
+            CheckForFile(String.Format("{0}\\Templates\\SP_Delete.sql", DataStorageDir), Properties.Resources.SP_Delete);
+            CheckForFile(String.Format("{0}\\Templates\\SP_Get.sql", DataStorageDir), Properties.Resources.SP_Get);
+
             LoadSnippets();
 
             this.MainMenu.MouseDown += new MouseEventHandler(MainMenu_MouseDown);
         }
 
-
+        private void CheckForFile(string fileName, string fileText)
+        {
+            if (!File.Exists(fileName))
+            {
+                using (StreamWriter Writer = new StreamWriter(fileName, false))
+                {
+                    Writer.Write(fileText);
+                    Writer.Close();
+                }
+            } 
+        }
 
         #region Basic Functionality, minimize, maximize, restore, move dialog and resizing
         //private bool _IsMinimized = false;
@@ -450,7 +480,10 @@ namespace Ez_SQL
                         return;
                     }
                 }
-                Connectors.Add(new SqlConnector(CurConStr));
+
+                SqlConnector buffer = new SqlConnector(CurConStr);
+                buffer.OnEndedLoad += Connection_OnEndedLoad;
+                Connectors.Add(buffer);
                 _CurrentConnection = Connectors[Connectors.Count - 1];
             }
             else
@@ -458,6 +491,11 @@ namespace Ez_SQL
                 _ConxGroup = "";
                 _ConxName = "";
             }
+        }
+
+        void _CurrentConnection_OnEndedLoad()
+        {
+            throw new NotImplementedException();
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -469,7 +507,11 @@ namespace Ez_SQL
         private void BtnRefreshConnection_Click(object sender, EventArgs e)
         {
             if (CurrentConnection != null && !CurrentConnection.Busy)
+            {
+                DisableButtons();
                 CurrentConnection.Initialize(LoadingDialogPosition, CurrentConnection.FullLoaded);
+            }
+
             LoadSnippets();
         }
         private void BtnAddConnection_Click(object sender, EventArgs e)
@@ -504,6 +546,7 @@ namespace Ez_SQL
 
             if (!CurrentConnection.Loaded)
             {
+                DisableButtons();
                 CurrentConnection.Initialize(LoadingDialogPosition, false);
             }
 
@@ -528,6 +571,7 @@ namespace Ez_SQL
 
             if (!CurrentConnection.Loaded)
             {
+                DisableButtons();
                 CurrentConnection.Initialize(LoadingDialogPosition, false);
             }
 
@@ -563,12 +607,18 @@ namespace Ez_SQL
             ColorConfigTab.TabText = "Syntax Highlighting Config";
             ColorConfigTab.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
         }
-
+        private void BtnDbCompare_Click(object sender, EventArgs e)
+        {
+            Ez_SQL.DbComparer.DbComparer dbcForm = new Ez_SQL.DbComparer.DbComparer(this);
+            dbcForm.TabText = "Database Comparer";
+            dbcForm.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
+        }
         #endregion
         #region Method to add a new tab query from an already opened form(can be a query form(F12 or ctrl + click) or can be from a search dialog)
-        public void AddQueryForm(string title, string text, SqlConnector DataProvider)
+        public void AddQueryForm(string title, string text, SqlConnector DataProvider, bool runOnShow = false)
         {
             MultiQueryForm.QueryForm dlg = new MultiQueryForm.QueryForm(this, DataProvider, text);
+            dlg.RunOnShow = runOnShow;
             dlg.ToolTipText = String.Format("{0} - {1} / {2} - {3}", DataProvider.Server, DataProvider.DataBase, ConxGroup, ConxName);
             dlg.Text = String.Format("{0}", title);
             dlg.ShowIcon = true;
@@ -580,6 +630,37 @@ namespace Ez_SQL
             sharpForm.Text = title;
             sharpForm.ShowIcon = true;
             sharpForm.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
+        }
+        #endregion
+
+        #region Private methods to prevent "double Db loading", disabing/enablig controls to prevent this
+        private void Connection_OnEndedLoad()
+        {
+            EnableButtons();
+        }
+        private void EnableButtons()
+        {
+            BtnRefreshConnection.Enabled = true;
+            BtnAddConnection.Enabled = true;
+
+            BtnNewQuery.Enabled = true;
+            BtnSearch.Enabled = true;
+            BtnHistoric.Enabled = true;
+            BtnSnippetEditor.Enabled = true;
+            BtnConfigColors.Enabled = true;
+            BtnDbCompare.Enabled = true;
+        }
+        private void DisableButtons()
+        {
+            BtnRefreshConnection.Enabled = false;
+            BtnAddConnection.Enabled = false;
+            
+            BtnNewQuery.Enabled = false;
+            BtnSearch.Enabled = false;
+            BtnHistoric.Enabled = false;
+            BtnSnippetEditor.Enabled = false;
+            BtnConfigColors.Enabled = false;
+            BtnDbCompare.Enabled = false;
         }
         #endregion
 
@@ -627,12 +708,6 @@ namespace Ez_SQL
         }
         #endregion
 
-        private void BtnDbCompare_Click(object sender, EventArgs e)
-        {
-            Ez_SQL.DbComparer.DbComparer dbcForm = new Ez_SQL.DbComparer.DbComparer(this);
-            dbcForm.TabText = "Database Comparer";
-            dbcForm.Show(WorkPanel, WeifenLuo.WinFormsUI.Docking.DockState.Document);
-        }
 
         public void CloseAllTabs()
         {

@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Ez_SQL.DataBaseObjects;
-using Ez_SQL.Extensions;
+using Ez_SQL.Common_Code;
 using Ez_SQL.EzConfig.ColorConfig;
 using Ez_SQL.EzConfig.ColorConfig.Nodes;
 using ICSharpCode.TextEditor.Document;

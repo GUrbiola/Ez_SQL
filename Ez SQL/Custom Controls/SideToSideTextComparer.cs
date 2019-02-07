@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ICSharpCode.TextEditor.Document;
-using Ez_SQL.Extensions;
+using Ez_SQL.Common_Code;
 using ICSharpCode.TextEditor;
 using Ez_SQL.Custom_Controls.DifferenceEngine.Implementations;
 using Ez_SQL.Custom_Controls.DifferenceEngine.Engine;

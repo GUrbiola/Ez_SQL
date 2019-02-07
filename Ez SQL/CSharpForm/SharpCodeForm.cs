@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 //using Ez_SQL.MultiQuery;
 using System.Drawing.Drawing2D;
-using Ez_SQL.Extensions;
+using Ez_SQL.Common_Code;
 using Ez_SQL.MultiQueryForm;
 using ICSharpCode.TextEditor.Document;
 using System.IO;

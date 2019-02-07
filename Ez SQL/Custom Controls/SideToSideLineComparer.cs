@@ -12,7 +12,7 @@ using Ez_SQL.Custom_Controls.DifferenceEngine.Engine;
 using System.Collections;
 using Ez_SQL.Custom_Controls.DifferenceEngine.Structure;
 using ICSharpCode.TextEditor;
-using Ez_SQL.Extensions;
+using Ez_SQL.Common_Code;
 
 namespace Ez_SQL.Custom_Controls
 {

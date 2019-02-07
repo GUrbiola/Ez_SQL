@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 using System.Collections;
 using System.Reflection;
 
-namespace Ez_SQL.Extensions
+namespace Ez_SQL.Common_Code
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
     public class XmlIgnoreBaseTypeAttribute : Attribute
@@ -672,31 +672,6 @@ namespace Ez_SQL.Extensions
         public interface ITypeConverter
         {
             void ProcessType(ref string assemblyFullName, ref string typeFullName);
-        }
-    }
-    public static class Extensions
-    {
-        public static void SerializeToXmlFile(this object obj, string fileName, string root = "Data", int ver = 1)
-        {
-            XmlDocument xDoc = XmlObjectSerializer.Serialize(obj, ver, root);
-            xDoc.Save(fileName);
-        }
-        public static string SerializeToXmlString(this object obj, string root = "Data", int ver = 1)
-        {
-            TextWriter tw = new StringWriter();
-            XmlDocument xDoc = XmlObjectSerializer.Serialize(obj, ver, root);
-            xDoc.Save(tw);
-            return tw.ToString();
-        }
-        public static object DeserializeFromXmlFile(this string fileName, int ver = 1, XmlObjectDeserializer.ITypeConverter typeConverter = null)
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(fileName);
-            return XmlObjectDeserializer.Deserialize(doc.OuterXml, ver, typeConverter);
-        }
-        public static object DeserializeFromXmlString(this string xmlString, int ver = 1, XmlObjectDeserializer.ITypeConverter typeConverter = null)
-        {
-            return XmlObjectDeserializer.Deserialize(xmlString, ver, typeConverter);
         }
     }
 

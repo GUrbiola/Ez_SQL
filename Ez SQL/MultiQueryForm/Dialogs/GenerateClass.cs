@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Ez_SQL.DataBaseObjects;
-using Ez_SQL.Extensions;
+using Ez_SQL.Common_Code;
 using View = Ez_SQL.DataBaseObjects.View;
 
 namespace Ez_SQL.MultiQueryForm.Dialogs
@@ -38,24 +38,50 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                         StringIndexer = chkStringIndexer.Checked,
                         ToObjectArray = chkObjectArray.Checked,
                         ToObjectDictionary = chkDictionary.Checked,
-                        ToObjectList = chkObjectList.Checked
+                        ToObjectList = chkObjectList.Checked,
+                        IncludeComments = chkIncludeComments.Checked
                     };
                 return curSettings;
             }
         }
-        public string GenerateCSharpClassFromTable(ISqlObject curTable, GenerateClassModelSettings settings, string modelName = "")
+        public string GenerateCSharpClassFromTable(ISqlObject table, GenerateClassModelSettings settings, string modelName = "")
         {
-            List<Field> Pks;
-            Pks = curTable.Childs.Any(x => x.IsPrimaryKey) ? curTable.Childs.Where(x => x.IsPrimaryKey).Select(x => x as Field).ToList() : new List<Field>();
+            ISqlObject curTable = new Table();
+            //curTable.IsScriptLoaded = table.IsScriptLoaded;
+            //curTable.Kind = table.Kind;
+            curTable.Comment = table.Comment;
+            curTable.Id = curTable.Id;
+            curTable.Name = table.Name;
+            curTable.Schema = table.Schema;
+            curTable.Childs = new List<ISqlChild>();
+
+            foreach (ISqlChild child in table.Childs)
+            {
+                CheckBox _chkInclude = panelFields.Controls[child.Name + "_chkInclude"]  as CheckBox;
+                if(_chkInclude != null && _chkInclude.Checked)
+                    curTable.Childs.Add(child);
+            }
+
+            List<Field> Pks = new List<Field>();
+            foreach (ISqlChild child in curTable.Childs)
+            {
+                CheckBox _chkKey = panelFields.Controls[child.Name + "_chkKey"] as CheckBox;
+                if (_chkKey != null && _chkKey.Checked)
+                    Pks.Add(child as Field);
+            }
             
             string TableName, aux;
             StringBuilder SbBll = new StringBuilder();
             
             TableName = String.IsNullOrEmpty(modelName) ? curTable.Name : modelName;
 
-            SbBll.AppendLine("/// <summary>".Indent());
-            SbBll.AppendLine("/// Business layer class to manipulate the table: ".Indent() + curTable.Name);
-            SbBll.AppendLine("/// </summary>".Indent());
+            if (settings.IncludeComments)
+            {
+                SbBll.AppendLine("/// <summary>".Indent());
+                SbBll.AppendLine("/// Business layer class to manipulate the table: ".Indent() + curTable.Name);
+                SbBll.AppendLine("/// </summary>".Indent());
+            }
+
             SbBll.AppendLine(String.Format("public class {0}".Indent(), TableName));
             SbBll.AppendLine("{".Indent());
 
@@ -81,31 +107,67 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
 
                 F.DefaultValue = F.Nullable ? "null" : DefaultValueFor(F.CSharpType.EndsWith("?") ? F.CSharpType.Replace("?", "") : F.CSharpType);
 
+                CheckBox _chkRequired = panelFields.Controls[F.Name + "_chkRequired"] as CheckBox;
+                CheckBox _chkLength = panelFields.Controls[F.Name + "_chkLength"] as CheckBox;
+                TextBox _txtDisplay = panelFields.Controls[F.Name + "_txtDisplay"] as TextBox;
+
                 if (settings.AutoImplementedProperties)
                 {
-                    SbBll.AppendLine("/// <summary>".Indent(2));
-                    SbBll.AppendLine(String.Format("/// Field Map, From {0}.{1} {2} -> To {3} {1}".Indent(2), curTable.Name, F.Name, F.Type, F.CSharpType));
-                    SbBll.AppendLine("/// </summary>".Indent(2));
+                    if (settings.IncludeComments)
+                    {
+                        SbBll.AppendLine("/// <summary>".Indent(2));
+                        SbBll.AppendLine(String.Format("/// Field Map, From {0}.{1} {2} -> To {3} {1}".Indent(2), curTable.Name, F.Name, F.Type, F.CSharpType));
+                        SbBll.AppendLine("/// </summary>".Indent(2));
+                    }
+
+                    if (_chkRequired.Checked)
+                        SbBll.AppendLine("[Required(ErrorMessage = \"This is a required field.\")]".Indent(2));
+
+                    if (_chkLength.Checked)
+                        SbBll.AppendLine(("[StringLength(" + F.Precision + ")]").Indent(2));
+
+                    if (!_txtDisplay.Text.IsEmpty())
+                        SbBll.AppendLine(("[DisplayName(\"" + _txtDisplay.Text + "\")]").Indent(2));
+
                     if (settings.DataMemberDecoration)
                         SbBll.AppendLine("[DataMember]".Indent(2));
+
                     SbBll.AppendLine(String.Format("public {0} {1} {{ get; set; }}".Indent(2), F.CSharpType, F.Name));
 
                     if (F.IsPrimaryKey && Pks.Count == 1 && !F.Name.Equals("id", StringComparison.CurrentCultureIgnoreCase))
                     {
-                        SbBll.AppendLine("/// <summary>".Indent(2));
-                        SbBll.AppendLine("/// Alias for primary key field".Indent(2));
-                        SbBll.AppendLine("/// </summary>".Indent(2));
+                        if (settings.IncludeComments)
+                        {
+                            SbBll.AppendLine("/// <summary>".Indent(2));
+                            SbBll.AppendLine("/// Alias for primary key field".Indent(2));
+                            SbBll.AppendLine("/// </summary>".Indent(2));
+                        }
+
                         SbBll.AppendLine(String.Format("public {0} {1} {{ get{{ return {2}; }} set {{ {2} = value; }} }}".Indent(2), F.CSharpType, "Id", F.Name));
                     }
                 }
                 else
                 {
                     SbBll.AppendLine(String.Format("private {0} _{1} = {2};".Indent(2), F.CSharpType, F.Name, F.DefaultValue));
-                    SbBll.AppendLine("/// <summary>".Indent(2));
-                    SbBll.AppendLine(String.Format("/// Field Map, From {0}.{1} {2} -> To {3} {1}".Indent(2), curTable.Name, F.Name, F.Type, F.CSharpType));
-                    SbBll.AppendLine("/// </summary>".Indent(2));
+                    if (settings.IncludeComments)
+                    {
+                        SbBll.AppendLine("/// <summary>".Indent(2));
+                        SbBll.AppendLine(String.Format("/// Field Map, From {0}.{1} {2} -> To {3} {1}".Indent(2), curTable.Name, F.Name, F.Type, F.CSharpType));
+                        SbBll.AppendLine("/// </summary>".Indent(2));
+                    }
+
+                    if (_chkRequired.Checked)
+                        SbBll.AppendLine("[Required(ErrorMessage = \"This is a required field.\")]".Indent(2));
+
+                    if (_chkLength.Checked)
+                        SbBll.AppendLine(("[StringLength(" + F.Precision + ")]").Indent(2));
+
+                    if (!_txtDisplay.Text.IsEmpty())
+                        SbBll.AppendLine(("[DisplayName(\"" + _txtDisplay.Text + "\")]").Indent(2));
+                    
                     if (settings.DataMemberDecoration)
                         SbBll.AppendLine("[DataMember]".Indent(2));
+
                     SbBll.AppendLine(String.Format("public {0} {1}".Indent(2), F.CSharpType, F.Name));
                     SbBll.AppendLine("{".Indent(2));
                     SbBll.AppendLine(String.Format("get {{ return _{0}; }}".Indent(3), F.Name));
@@ -114,9 +176,13 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
 
                     if (F.IsPrimaryKey && Pks.Count == 1 && !F.Name.Equals("id", StringComparison.CurrentCultureIgnoreCase))
                     {
-                        SbBll.AppendLine("/// <summary>".Indent(2));
-                        SbBll.AppendLine("/// Alias for primary key field".Indent(2));
-                        SbBll.AppendLine("/// </summary>".Indent(2));
+                        if (settings.IncludeComments)
+                        {
+                            SbBll.AppendLine("/// <summary>".Indent(2));
+                            SbBll.AppendLine("/// Alias for primary key field".Indent(2));
+                            SbBll.AppendLine("/// </summary>".Indent(2));
+                        }
+
                         SbBll.AppendLine(String.Format("public {0} {1}".Indent(2), F.CSharpType, "Id"));
                         SbBll.AppendLine("{".Indent(2));
                         SbBll.AppendLine(String.Format("get {{ return _{0}; }}".Indent(3), F.Name));
@@ -129,9 +195,13 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
 
             if (settings.FieldCount)
             {
-                SbBll.AppendLine("/// <summary>".Indent(2));
-                SbBll.AppendLine("/// Total number of fields, for this table".Indent(2));
-                SbBll.AppendLine("/// </summary>".Indent(2));
+                if (settings.IncludeComments)
+                {
+                    SbBll.AppendLine("/// <summary>".Indent(2));
+                    SbBll.AppendLine("/// Total number of fields, for this table".Indent(2));
+                    SbBll.AppendLine("/// </summary>".Indent(2));
+                }
+
                 SbBll.AppendLine(String.Format("public int FieldCount {{ get {{ return {0}; }} }}".Indent(2), curTable.Childs.Count.ToString()));
             }
             SbBll.AppendLine("#endregion".Indent(2));
@@ -139,18 +209,26 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
 
             #region Class constructors
             SbBll.AppendLine("#region Class contructors, default, and one with only the Id(PK)".Indent(2));
-            SbBll.AppendLine("/// <summary>".Indent(2));
-            SbBll.AppendLine("/// Basic constructor, parameterless".Indent(2));
-            SbBll.AppendLine("/// </summary>".Indent(2));
+            if (settings.IncludeComments)
+            {
+                SbBll.AppendLine("/// <summary>".Indent(2));
+                SbBll.AppendLine("/// Basic constructor, parameterless".Indent(2));
+                SbBll.AppendLine("/// </summary>".Indent(2));
+            }
+
             SbBll.AppendLine(String.Format("public {0}()".Indent(2), TableName));
             SbBll.AppendLine("{".Indent(2));
             SbBll.AppendLine("}".Indent(2));
 
             if (settings.PkConstructor && Pks.Count > 0)
             {
-                SbBll.AppendLine("/// <summary>".Indent(2));
-                SbBll.AppendLine("/// Constructor with only PK fields".Indent(2));
-                SbBll.AppendLine("/// </summary>".Indent(2));
+                if (settings.IncludeComments)
+                {
+                    SbBll.AppendLine("/// <summary>".Indent(2));
+                    SbBll.AppendLine("/// Constructor with only PK fields".Indent(2));
+                    SbBll.AppendLine("/// </summary>".Indent(2));
+                }
+
                 foreach (Field Pk in Pks)
                     SbBll.AppendLine(String.Format("/// <param name=\"{0}\">Field that is part of the PK of the record.</param>".Indent(2), Pk.Name));
                 aux = String.Format("public {0}(".Indent(2), TableName);
@@ -171,22 +249,30 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
             if (settings.StaticDataTableConverters)
             {
                 SbBll.AppendLine("#region Static function to convert and create from a datatable objects".Indent(2));
-                SbBll.AppendLine("/// <summary>".Indent(2));
-                SbBll.AppendLine("/// Converts a datatable to a list of objects of this class.".Indent(2));
-                SbBll.AppendLine("/// </summary>".Indent(2));
-                SbBll.AppendLine("/// <param name=\"table\">The datatable to convert.</param>".Indent(2));
-                SbBll.AppendLine("/// <returns>List of objects of this class, created from ther datatable</returns>".Indent(2));
+                if (settings.IncludeComments)
+                {
+                    SbBll.AppendLine("/// <summary>".Indent(2));
+                    SbBll.AppendLine("/// Converts a datatable to a list of objects of this class.".Indent(2));
+                    SbBll.AppendLine("/// </summary>".Indent(2));
+                    SbBll.AppendLine("/// <param name=\"table\">The datatable to convert.</param>".Indent(2));
+                    SbBll.AppendLine("/// <returns>List of objects of this class, created from ther datatable</returns>".Indent(2));
+                }
+
                 SbBll.AppendLine(String.Format("public static List<{0}> ConvertToObject(DataTable table)".Indent(2), TableName));
                 SbBll.AppendLine("{".Indent(2));
                 SbBll.AppendLine("return ConvertToObject(table, -1);".Indent(3));
                 SbBll.AppendLine("}".Indent(2));
 
-                SbBll.AppendLine("/// <summary>".Indent(2));
-                SbBll.AppendLine("/// Converts a datatable to a list of objects of this class.".Indent(2));
-                SbBll.AppendLine("/// </summary>".Indent(2));
-                SbBll.AppendLine("/// <param name=\"table\">The datatable to convert.</param>".Indent(2));
-                SbBll.AppendLine("/// <param name=\"firstRecords\">Number of records to convert, if -1 then all the records are converted.</param>".Indent(2));
-                SbBll.AppendLine("/// <returns>List of objects of this class, created from ther datatable</returns>".Indent(2));
+                if (settings.IncludeComments)
+                {
+                    SbBll.AppendLine("/// <summary>".Indent(2));
+                    SbBll.AppendLine("/// Converts a datatable to a list of objects of this class.".Indent(2));
+                    SbBll.AppendLine("/// </summary>".Indent(2));
+                    SbBll.AppendLine("/// <param name=\"table\">The datatable to convert.</param>".Indent(2));
+                    SbBll.AppendLine("/// <param name=\"firstRecords\">Number of records to convert, if -1 then all the records are converted.</param>".Indent(2));
+                    SbBll.AppendLine("/// <returns>List of objects of this class, created from ther datatable</returns>".Indent(2));
+                }
+
                 SbBll.AppendLine(String.Format("public static List<{0}> ConvertToObject(DataTable table, int firstRecords)".Indent(2), TableName));
                 SbBll.AppendLine("{".Indent(2));
                 SbBll.AppendLine(String.Format("List<{0}> back = new List<{0}>();".Indent(3), TableName));
@@ -252,10 +338,14 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                 #region Conversion to an array of objects
                 if (settings.ToObjectArray)
                 {
-                    SbBll.AppendLine("/// <summary>".Indent(2));
-                    SbBll.AppendLine(String.Format("/// Converts the current object to an array of his fields values ({0} -> object[]).".Indent(2), TableName));
-                    SbBll.AppendLine("/// </summary>".Indent(2));
-                    SbBll.AppendLine("/// <returns>Arreglo de objetos(object[]) creado a partir del objeto actual.</returns>".Indent(2));
+                    if (settings.IncludeComments)
+                    {
+                        SbBll.AppendLine("/// <summary>".Indent(2));
+                        SbBll.AppendLine(String.Format("/// Converts the current object to an array of his fields values ({0} -> object[]).".Indent(2), TableName));
+                        SbBll.AppendLine("/// </summary>".Indent(2));
+                        SbBll.AppendLine("/// <returns>Arreglo de objetos(object[]) creado a partir del objeto actual.</returns>".Indent(2));
+                    }
+
                     SbBll.AppendLine("public object[] ToParams()".Indent(2));
                     SbBll.AppendLine("{".Indent(2));
                     SbBll.AppendLine("List<object> objs = new List<object>();".Indent(3));
@@ -273,10 +363,14 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                 #region Conversion to a list of objects
                 if (settings.ToObjectList)
                 {
-                    SbBll.AppendLine("/// <summary>".Indent(2));
-                    SbBll.AppendLine(String.Format("/// Converts the current object to alist of his field values ({0} -> <![CDATA[List<object>]]>).".Indent(2), TableName));
-                    SbBll.AppendLine("/// </summary>".Indent(2));
-                    SbBll.AppendLine("/// <returns>List of objects created from the current object.</returns>".Indent(2));
+                    if (settings.IncludeComments)
+                    {
+                        SbBll.AppendLine("/// <summary>".Indent(2));
+                        SbBll.AppendLine(String.Format("/// Converts the current object to alist of his field values ({0} -> <![CDATA[List<object>]]>).".Indent(2), TableName));
+                        SbBll.AppendLine("/// </summary>".Indent(2));
+                        SbBll.AppendLine("/// <returns>List of objects created from the current object.</returns>".Indent(2));
+                    }
+
                     SbBll.AppendLine("public List<object> ToList()".Indent(2));
                     SbBll.AppendLine("{".Indent(2));
                     SbBll.AppendLine("List<object> objs = new List<object>();".Indent(3));
@@ -294,10 +388,14 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                 #region Conversion to a dictionary
                 if (settings.ToObjectDictionary)
                 {
-                    SbBll.AppendLine("/// <summary>".Indent(2));
-                    SbBll.AppendLine(String.Format("/// Converts the current object to a dictionary of his fields(<![CDATA[Dictionary<string, object>]]>) ({0} -> <![CDATA[Dictionary<string, object>]]>).".Indent(2), TableName));
-                    SbBll.AppendLine("/// </summary>".Indent(2));
-                    SbBll.AppendLine("/// <returns>Object dictionary, the key is the name of the field(<![CDATA[Dictionary<string, object>]]>).</returns>".Indent(2));
+                    if (settings.IncludeComments)
+                    {
+                        SbBll.AppendLine("/// <summary>".Indent(2));
+                        SbBll.AppendLine(String.Format("/// Converts the current object to a dictionary of his fields(<![CDATA[Dictionary<string, object>]]>) ({0} -> <![CDATA[Dictionary<string, object>]]>).".Indent(2), TableName));
+                        SbBll.AppendLine("/// </summary>".Indent(2));
+                        SbBll.AppendLine("/// <returns>Object dictionary, the key is the name of the field(<![CDATA[Dictionary<string, object>]]>).</returns>".Indent(2));
+                    }
+
                     SbBll.AppendLine("public Dictionary<string, object> ToDictionary()".Indent(2));
                     SbBll.AppendLine("{".Indent(2));
                     SbBll.AppendLine("Dictionary<string, object> Dict = new Dictionary<string, object>();".Indent(3));
@@ -325,9 +423,13 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                 #region Integer indexer
                 if (settings.IntegerIndexer)
                 {
-                    SbBll.AppendLine("/// <summary>".Indent(2));
-                    SbBll.AppendLine("/// Gets or sets the value of the field with an \"index == i\" as an object.".Indent(2));
-                    SbBll.AppendLine("/// </summary>".Indent(2));
+                    if (settings.IncludeComments)
+                    {
+                        SbBll.AppendLine("/// <summary>".Indent(2));
+                        SbBll.AppendLine("/// Gets or sets the value of the field with an \"index == i\" as an object.".Indent(2));
+                        SbBll.AppendLine("/// </summary>".Indent(2));
+                    }
+
                     SbBll.AppendLine("public object this[int i]".Indent(2));
                     SbBll.AppendLine("{".Indent(2));
                     SbBll.AppendLine("get".Indent(3));
@@ -391,9 +493,13 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                 #region String indexer
                 if (settings.StringIndexer)
                 {
-                    SbBll.AppendLine("/// <summary>".Indent(2));
-                    SbBll.AppendLine("/// Gets or sets the value of the field whose name is: \"fieldName\" as an object (case insensitive.)".Indent(2));
-                    SbBll.AppendLine("/// </summary>".Indent(2));
+                    if (settings.IncludeComments)
+                    {
+                        SbBll.AppendLine("/// <summary>".Indent(2));
+                        SbBll.AppendLine("/// Gets or sets the value of the field whose name is: \"fieldName\" as an object (case insensitive.)".Indent(2));
+                        SbBll.AppendLine("/// </summary>".Indent(2));
+                    }
+
                     //string aux = field.ToLower();
                     SbBll.AppendLine("public object this[string fieldName]".Indent(2));
                     SbBll.AppendLine("{".Indent(2));
@@ -474,7 +580,7 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                     SbBll.AppendLine(String.Format("return \"{0}\";".Indent(5), QueryForm.SqlVsCSharp[F.Type].ToLower()));
                 }
                 SbBll.AppendLine("}".Indent(3));
-                SbBll.AppendLine("return \"string\";".Indent(2));
+                SbBll.AppendLine("return \"string\";".Indent(3));
                 SbBll.AppendLine("}".Indent(2));
                 SbBll.AppendLine("#endregion".Indent(2));
             }
@@ -533,7 +639,8 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                         ToObjectArray = false,
                         ToObjectDictionary = false,
                         ToObjectList = false,
-                        FieldType = false
+                        FieldType = false,
+                        IncludeComments = false
                     };
                 settings.SerializeToXmlFile(SettingsFileName);
             }
@@ -556,8 +663,100 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
             chkObjectList.Checked = settings.ToObjectList;
             chkDictionary.Checked = settings.ToObjectDictionary;
             chkInstanceConverters.Checked = settings.ToObjectArray || settings.ToObjectList || settings.ToObjectDictionary;
+            chkIncludeComments.Checked = settings.IncludeComments;
+
+            GenerateFieldOptions();
+        }
+
+        private void GenerateFieldOptions()
+        {
+            List<Field> fields;
+            if (BaseSQLView != null)
+            {
+                fields = BaseSQLView.Childs.Select(x => x as Field).ToList();
+            }
+            else
+            {
+                fields = BaseSQLTable.Childs.Select(x => x as Field).ToList();
+            }
+
+            int index = 0, initialY = 10, yStep = 31, tabIndex = 17;
+            foreach (Field f in fields)
+            {
+                Label labFieldName;
+                CheckBox chkInclude, chkKey, chkRequired, chkLength;
+                NumericUpDown numLength;
+                TextBox txtDisplay;
+
+                labFieldName = new Label();
+                panelFields.Controls.Add(labFieldName);
+                labFieldName.AutoSize = true;
+                labFieldName.Location = new System.Drawing.Point(9, (initialY + index * yStep) - 4);
+                labFieldName.Name = f.Name + "_FieldName";
+                labFieldName.Size = new System.Drawing.Size(46, 18);
+                labFieldName.TabIndex = tabIndex;
+                labFieldName.Text = f.Name;
+                tabIndex++;
+
+                chkInclude = new CheckBox();
+                panelFields.Controls.Add(chkInclude);
+                chkInclude.AutoSize = true;
+                chkInclude.Location = new System.Drawing.Point(147, initialY + index * yStep);
+                chkInclude.Name = f.Name + "_chkInclude";
+                chkInclude.Size = new System.Drawing.Size(15, 14);
+                chkInclude.TabIndex = tabIndex;
+                chkInclude.Text = "";
+                chkInclude.UseVisualStyleBackColor = true;
+                chkInclude.Checked = true;
+                tabIndex++;
+
+                chkKey = new CheckBox();
+                panelFields.Controls.Add(chkKey);
+                chkKey.AutoSize = true;
+                chkKey.Location = new System.Drawing.Point(189, initialY + index * yStep);
+                chkKey.Name = f.Name + "_chkKey";
+                chkKey.Size = new System.Drawing.Size(15, 14);
+                chkKey.TabIndex = tabIndex;
+                chkKey.Text = "";
+                chkKey.UseVisualStyleBackColor = true;
+                chkKey.Checked = f.IsPrimaryKey;
+                tabIndex++;
+                
+                chkRequired = new CheckBox();
+                panelFields.Controls.Add(chkRequired);
+                chkRequired.AutoSize = true;
+                chkRequired.Location = new System.Drawing.Point(236, initialY + index * yStep);
+                chkRequired.Name = f.Name + "_chkRequired";
+                chkRequired.Size = new System.Drawing.Size(15, 14);
+                chkRequired.TabIndex = tabIndex;
+                chkRequired.Text = "";
+                chkRequired.UseVisualStyleBackColor = true;
+                tabIndex++;
+
+                chkLength = new CheckBox();
+                panelFields.Controls.Add(chkLength);
+                chkLength.AutoSize = true;
+                chkLength.Location = new System.Drawing.Point(292, initialY + index * yStep);
+                chkLength.Name = f.Name + "_chkLength";
+                chkLength.Size = new System.Drawing.Size(15, 14);
+                chkLength.TabIndex = tabIndex;
+                chkLength.Text = "";
+                chkLength.UseVisualStyleBackColor = true;
+                tabIndex++;
+
+                txtDisplay = new TextBox();
+                panelFields.Controls.Add(txtDisplay);
+                txtDisplay.Location = new System.Drawing.Point(324, (initialY + index * yStep) - 8);
+                txtDisplay.Name = f.Name + "_txtDisplay";
+                txtDisplay.Size = new System.Drawing.Size(236, 26);
+                txtDisplay.TabIndex = tabIndex;
+                tabIndex++;
+                
+                index++;
+            }
 
         }
+
         private void SaveSettings()
         {
             GenerateClassModelSettings CurrentSettings = DialogSettings;
