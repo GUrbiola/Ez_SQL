@@ -27,7 +27,8 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                     MeasureTimeElapsed = chkTimeElapsed.Checked,
                     SaveRowsAffectedCount = chkSaveRowsAffected.Checked,
                     SaveRowsReadCount = chkSaveRowsRead.Checked,
-                    UseTransaction = chkUseTransaction.Checked
+                    UseTransaction = chkUseTransaction.Checked,
+                    ReturnSPR = chkReturnSPR.Checked
                 };
             }
         }
@@ -60,7 +61,8 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                     MeasureTimeElapsed = true,
                     SaveRowsAffectedCount = true,
                     SaveRowsReadCount = false,
-                    UseTransaction = false
+                    UseTransaction = false,
+                    ReturnSPR = false
                 };
                 settings.SerializeToXmlFile(SettingsFileName);
             }
@@ -73,6 +75,7 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
             chkSaveRowsAffected.Checked = settings.SaveRowsAffectedCount;
             chkSaveRowsRead.Checked = settings.SaveRowsReadCount;
             chkUseTransaction.Checked = settings.UseTransaction;
+            chkReturnSPR.Checked = settings.ReturnSPR;
 
         }
 

@@ -289,42 +289,48 @@
             this.deleteSPToolStripMenuItem,
             this.selectSPToolStripMenuItem,
             this.allSPsToolStripMenuItem});
+            this.cRUDToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Table_Operation;
             this.cRUDToolStripMenuItem.Name = "cRUDToolStripMenuItem";
             this.cRUDToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
             this.cRUDToolStripMenuItem.Text = "CRUD";
             // 
             // insertSPToolStripMenuItem
             // 
+            this.insertSPToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Add_22;
             this.insertSPToolStripMenuItem.Name = "insertSPToolStripMenuItem";
-            this.insertSPToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.insertSPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.insertSPToolStripMenuItem.Text = "Insert SP";
             this.insertSPToolStripMenuItem.Click += new System.EventHandler(this.insertSPToolStripMenuItem_Click);
             // 
             // updateSPToolStripMenuItem
             // 
+            this.updateSPToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Table_Operation;
             this.updateSPToolStripMenuItem.Name = "updateSPToolStripMenuItem";
-            this.updateSPToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.updateSPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.updateSPToolStripMenuItem.Text = "Update SP";
             this.updateSPToolStripMenuItem.Click += new System.EventHandler(this.updateSPToolStripMenuItem_Click);
             // 
             // deleteSPToolStripMenuItem
             // 
+            this.deleteSPToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Remove_22;
             this.deleteSPToolStripMenuItem.Name = "deleteSPToolStripMenuItem";
-            this.deleteSPToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.deleteSPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.deleteSPToolStripMenuItem.Text = "Delete SP";
             this.deleteSPToolStripMenuItem.Click += new System.EventHandler(this.deleteSPToolStripMenuItem_Click);
             // 
             // selectSPToolStripMenuItem
             // 
+            this.selectSPToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Filter;
             this.selectSPToolStripMenuItem.Name = "selectSPToolStripMenuItem";
-            this.selectSPToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.selectSPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.selectSPToolStripMenuItem.Text = "Select SP";
             this.selectSPToolStripMenuItem.Click += new System.EventHandler(this.selectSPToolStripMenuItem_Click);
             // 
             // allSPsToolStripMenuItem
             // 
+            this.allSPsToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Star;
             this.allSPsToolStripMenuItem.Name = "allSPsToolStripMenuItem";
-            this.allSPsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.allSPsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.allSPsToolStripMenuItem.Text = "All SPs";
             this.allSPsToolStripMenuItem.Click += new System.EventHandler(this.allSPsToolStripMenuItem_Click);
             // 
@@ -334,12 +340,14 @@
             this.excelToolStripMenuItem,
             this.csvToolStripMenuItem,
             this.pipeDelimitedToolStripMenuItem});
+            this.dataExportToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Export;
             this.dataExportToolStripMenuItem.Name = "dataExportToolStripMenuItem";
             this.dataExportToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
             this.dataExportToolStripMenuItem.Text = "Data Export";
             // 
             // excelToolStripMenuItem
             // 
+            this.excelToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Excel;
             this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
             this.excelToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.excelToolStripMenuItem.Text = "Excel";
@@ -347,6 +355,7 @@
             // 
             // csvToolStripMenuItem
             // 
+            this.csvToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Csv;
             this.csvToolStripMenuItem.Name = "csvToolStripMenuItem";
             this.csvToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.csvToolStripMenuItem.Text = "Csv";
@@ -354,6 +363,7 @@
             // 
             // pipeDelimitedToolStripMenuItem
             // 
+            this.pipeDelimitedToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.PipeDelimited;
             this.pipeDelimitedToolStripMenuItem.Name = "pipeDelimitedToolStripMenuItem";
             this.pipeDelimitedToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.pipeDelimitedToolStripMenuItem.Text = "Pipe Delimited";

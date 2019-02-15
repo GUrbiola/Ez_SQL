@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectSearcher));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.CmbSearchType = new System.Windows.Forms.ComboBox();
@@ -60,6 +60,9 @@
             this.exToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.csvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateCClassForTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.spContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.generateMethodForStoreProcedureExecutionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TxtFilter = new Ez_SQL.Custom_Controls.AnimatedWaitTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -68,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridFields)).BeginInit();
             this.ThisTabMenu.SuspendLayout();
             this.tableContextMenu.SuspendLayout();
+            this.spContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -189,11 +193,11 @@
             this.GridFields.AllowUserToAddRows = false;
             this.GridFields.AllowUserToDeleteRows = false;
             this.GridFields.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.GridFields.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.GridFields.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.GridFields.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.GridFields.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.GridFields.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -201,14 +205,14 @@
             this.GridFields.Location = new System.Drawing.Point(0, 18);
             this.GridFields.Name = "GridFields";
             this.GridFields.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridFields.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridFields.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.GridFields.Size = new System.Drawing.Size(484, 116);
             this.GridFields.TabIndex = 12;
             // 
@@ -287,14 +291,16 @@
             this.tableContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewDataToolStripMenuItem,
             this.cRUDToolStripMenuItem,
-            this.dataToolStripMenuItem});
+            this.dataToolStripMenuItem,
+            this.generateCClassForTableToolStripMenuItem});
             this.tableContextMenu.Name = "tableContextMenu";
-            this.tableContextMenu.Size = new System.Drawing.Size(153, 92);
+            this.tableContextMenu.Size = new System.Drawing.Size(219, 92);
             // 
             // viewDataToolStripMenuItem
             // 
+            this.viewDataToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Run;
             this.viewDataToolStripMenuItem.Name = "viewDataToolStripMenuItem";
-            this.viewDataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewDataToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.viewDataToolStripMenuItem.Text = "View Data";
             this.viewDataToolStripMenuItem.Click += new System.EventHandler(this.viewDataToolStripMenuItem_Click);
             // 
@@ -306,12 +312,14 @@
             this.deleteSPToolStripMenuItem,
             this.selectSPToolStripMenuItem,
             this.allOperationsToolStripMenuItem});
+            this.cRUDToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Table_Operation;
             this.cRUDToolStripMenuItem.Name = "cRUDToolStripMenuItem";
-            this.cRUDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cRUDToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.cRUDToolStripMenuItem.Text = "CRUD";
             // 
             // insertSPToolStripMenuItem
             // 
+            this.insertSPToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Add_22;
             this.insertSPToolStripMenuItem.Name = "insertSPToolStripMenuItem";
             this.insertSPToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.insertSPToolStripMenuItem.Text = "Insert SP";
@@ -319,6 +327,7 @@
             // 
             // updateSPToolStripMenuItem
             // 
+            this.updateSPToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Table_Operation;
             this.updateSPToolStripMenuItem.Name = "updateSPToolStripMenuItem";
             this.updateSPToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.updateSPToolStripMenuItem.Text = "Update SP";
@@ -326,6 +335,7 @@
             // 
             // deleteSPToolStripMenuItem
             // 
+            this.deleteSPToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Remove_22;
             this.deleteSPToolStripMenuItem.Name = "deleteSPToolStripMenuItem";
             this.deleteSPToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.deleteSPToolStripMenuItem.Text = "Delete SP";
@@ -333,6 +343,7 @@
             // 
             // selectSPToolStripMenuItem
             // 
+            this.selectSPToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Filter;
             this.selectSPToolStripMenuItem.Name = "selectSPToolStripMenuItem";
             this.selectSPToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.selectSPToolStripMenuItem.Text = "Select SP";
@@ -340,6 +351,7 @@
             // 
             // allOperationsToolStripMenuItem
             // 
+            this.allOperationsToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Star;
             this.allOperationsToolStripMenuItem.Name = "allOperationsToolStripMenuItem";
             this.allOperationsToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.allOperationsToolStripMenuItem.Text = "All Operations";
@@ -351,30 +363,57 @@
             this.exToolStripMenuItem,
             this.csvToolStripMenuItem,
             this.txtToolStripMenuItem});
+            this.dataToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Export;
             this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
-            this.dataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dataToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.dataToolStripMenuItem.Text = "Data Export";
             // 
             // exToolStripMenuItem
             // 
+            this.exToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Excel;
             this.exToolStripMenuItem.Name = "exToolStripMenuItem";
-            this.exToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.exToolStripMenuItem.Text = "Excel";
             this.exToolStripMenuItem.Click += new System.EventHandler(this.exToolStripMenuItem_Click);
             // 
             // csvToolStripMenuItem
             // 
+            this.csvToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Csv;
             this.csvToolStripMenuItem.Name = "csvToolStripMenuItem";
-            this.csvToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.csvToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.csvToolStripMenuItem.Text = "Csv";
             this.csvToolStripMenuItem.Click += new System.EventHandler(this.csvToolStripMenuItem_Click);
             // 
             // txtToolStripMenuItem
             // 
+            this.txtToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.PipeDelimited;
             this.txtToolStripMenuItem.Name = "txtToolStripMenuItem";
-            this.txtToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.txtToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.txtToolStripMenuItem.Text = "Pipe Delimited";
             this.txtToolStripMenuItem.Click += new System.EventHandler(this.txtToolStripMenuItem_Click);
+            // 
+            // generateCClassForTableToolStripMenuItem
+            // 
+            this.generateCClassForTableToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.CSharpClass;
+            this.generateCClassForTableToolStripMenuItem.Name = "generateCClassForTableToolStripMenuItem";
+            this.generateCClassForTableToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.generateCClassForTableToolStripMenuItem.Text = "Generate C# Class for Table";
+            this.generateCClassForTableToolStripMenuItem.Click += new System.EventHandler(this.generateCClassForTableToolStripMenuItem_Click);
+            // 
+            // spContextMenu
+            // 
+            this.spContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.generateMethodForStoreProcedureExecutionToolStripMenuItem});
+            this.spContextMenu.Name = "spContextMenu";
+            this.spContextMenu.Size = new System.Drawing.Size(326, 26);
+            // 
+            // generateMethodForStoreProcedureExecutionToolStripMenuItem
+            // 
+            this.generateMethodForStoreProcedureExecutionToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.CSharpClass;
+            this.generateMethodForStoreProcedureExecutionToolStripMenuItem.Name = "generateMethodForStoreProcedureExecutionToolStripMenuItem";
+            this.generateMethodForStoreProcedureExecutionToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
+            this.generateMethodForStoreProcedureExecutionToolStripMenuItem.Text = "Generate Method for Store Procedure Execution";
+            this.generateMethodForStoreProcedureExecutionToolStripMenuItem.Click += new System.EventHandler(this.generateMethodForStoreProcedureExecutionToolStripMenuItem_Click);
             // 
             // TxtFilter
             // 
@@ -413,6 +452,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridFields)).EndInit();
             this.ThisTabMenu.ResumeLayout(false);
             this.tableContextMenu.ResumeLayout(false);
+            this.spContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,5 +489,8 @@
         private System.Windows.Forms.ToolStripMenuItem csvToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem txtToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generateCClassForTableToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip spContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem generateMethodForStoreProcedureExecutionToolStripMenuItem;
     }
 }

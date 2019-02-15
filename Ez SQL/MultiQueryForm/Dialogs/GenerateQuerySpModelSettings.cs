@@ -18,5 +18,6 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
         public bool IsObject { get; set; }
         public string ReturnName { get; set; }
         public bool IsList { get; set; }
+        public bool IsSPR { get; set; }
     }
 }

@@ -15,6 +15,7 @@ using System.IO;
 using ICSharpCode.TextEditor;
 using Ez_SQL.QueryLog;
 using System.Collections;
+using System.Runtime.InteropServices;
 using Ez_SQL.AdditionalForms;
 using Ez_SQL.Snippets;
 
@@ -53,10 +54,6 @@ namespace Ez_SQL.MultiQueryForm
 
         string clickedTab = "";
         List<string> lockedTabs = new List<string>();
-
-        public static Dictionary<string, string> SqlVsCSharp;
-        public static Dictionary<string, string> SqlVsCSharpDb;
-        public static Dictionary<string, string> CSharpVsSql;
 
         private FilteringType curFiltering = FilteringType.None;
         public string CurrentQuery { get { return Query.Text; } }
@@ -113,88 +110,6 @@ namespace Ez_SQL.MultiQueryForm
             TabHolder.MouseClick += new MouseEventHandler(TabHolder_MouseClick);
             //for locked tabs there can be some "comments" shown as tooltip
             TabHolder.ShowToolTips = true;
-
-            #region Matching types, between SQL and C#, both ways
-            if (SqlVsCSharp == null)
-            {
-                SqlVsCSharp = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-                SqlVsCSharp.Add("bigint", "int");
-                SqlVsCSharp.Add("binary", "int");
-                SqlVsCSharp.Add("bit", "bool");
-                SqlVsCSharp.Add("char", "string");
-                SqlVsCSharp.Add("date", "DateTime");
-                SqlVsCSharp.Add("datetime", "DateTime");
-                SqlVsCSharp.Add("datetime2", "DateTime");
-                SqlVsCSharp.Add("float", "double");
-                SqlVsCSharp.Add("int", "int");
-                SqlVsCSharp.Add("decimal", "double");
-                SqlVsCSharp.Add("money", "double");
-                SqlVsCSharp.Add("nchar", "string");
-                SqlVsCSharp.Add("ntext", "string");
-                SqlVsCSharp.Add("numeric", "int");
-                SqlVsCSharp.Add("nvarchar", "string");
-                SqlVsCSharp.Add("real", "double");
-                SqlVsCSharp.Add("smalldatetime", "DateTime");
-                SqlVsCSharp.Add("smallint", "int");
-                SqlVsCSharp.Add("smallmoney", "double");
-                SqlVsCSharp.Add("sysname", "string");
-                SqlVsCSharp.Add("text", "string");
-                SqlVsCSharp.Add("timestamp", "DateTime");
-                SqlVsCSharp.Add("tinyint", "int");
-                SqlVsCSharp.Add("varbinary", "int");
-                SqlVsCSharp.Add("varchar", "string");
-
-                SqlVsCSharp.Add("System.Boolean", "bool");
-                SqlVsCSharp.Add("System.Int32", "int");
-                SqlVsCSharp.Add("System.String", "string");
-                SqlVsCSharp.Add("System.Decimal", "float");
-                SqlVsCSharp.Add("System.Double", "float");
-                SqlVsCSharp.Add("System.DateTime", "DateTime");
-            }
-            if (SqlVsCSharpDb == null)
-            {
-                SqlVsCSharpDb = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-                SqlVsCSharpDb.Add("bigint", "SqlDbType.BigInt");
-                SqlVsCSharpDb.Add("binary", "SqlDbType.Binary");
-                SqlVsCSharpDb.Add("bit", "SqlDbType.Bit");
-                SqlVsCSharpDb.Add("char", "SqlDbType.Char");
-                SqlVsCSharpDb.Add("datetime", "SqlDbType.DateTime");
-                SqlVsCSharpDb.Add("float", "SqlDbType.Float");
-                SqlVsCSharpDb.Add("int", "SqlDbType.Int");
-                SqlVsCSharpDb.Add("decimal", "SqlDbType.Decimal");
-                SqlVsCSharpDb.Add("money", "SqlDbType.Float");
-                SqlVsCSharpDb.Add("nchar", "SqlDbType.NChar");
-                SqlVsCSharpDb.Add("ntext", "SqlDbType.NText");
-                SqlVsCSharpDb.Add("numeric", "SqlDbType.Int");
-                SqlVsCSharpDb.Add("nvarchar", "SqlDbType.NVarChar");
-                SqlVsCSharpDb.Add("real", "SqlDbType.Real");
-                SqlVsCSharpDb.Add("smalldatetime", "SqlDbType.SmallDateTime");
-                SqlVsCSharpDb.Add("smallint", "SqlDbType.SmallInt");
-                SqlVsCSharpDb.Add("smallmoney", "SqlDbType.SmallMoney");
-                SqlVsCSharpDb.Add("sysname", "SqlDbType.Text");
-                SqlVsCSharpDb.Add("text", "SqlDbType.Text");
-                SqlVsCSharpDb.Add("timestamp", "SqlDbType.Timestamp");
-                SqlVsCSharpDb.Add("tinyint", "SqlDbType.TinyInt");
-                SqlVsCSharpDb.Add("varbinary", "SqlDbType.VarBinary");
-                SqlVsCSharpDb.Add("varchar", "SqlDbType.VarChar");
-            }
-
-            if (CSharpVsSql == null)
-            {
-                CSharpVsSql = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-                CSharpVsSql.Add("System.Char", "char");
-                CSharpVsSql.Add("System.Boolean", "bit");
-                CSharpVsSql.Add("System.Int16", "int");
-                CSharpVsSql.Add("System.Int32", "int");
-                CSharpVsSql.Add("System.Int64", "int");
-                CSharpVsSql.Add("System.String", "varchar");
-                CSharpVsSql.Add("System.Single", "float");
-                CSharpVsSql.Add("System.Decimal", "float");
-                CSharpVsSql.Add("System.Double", "float");
-                CSharpVsSql.Add("System.DateTime", "DateTime");
-            }
- 
-            #endregion
         }
 
         #region Events to manage the lock/unlock of the results tab
@@ -1339,6 +1254,7 @@ namespace Ez_SQL.MultiQueryForm
         #region Snippet inserting and processing methods
         private void InsertSnippet(string SnippetScript)
         {
+            bool isInsertInto = SnippetScript.StartsWith("insert into", StringComparison.OrdinalIgnoreCase);
             string ProcessedSnippet = SnippetScript;
             List<string> Objs;
             List<SnippetInnerObject> InnerObjects = new List<SnippetInnerObject>();
@@ -1409,13 +1325,20 @@ namespace Ez_SQL.MultiQueryForm
                             }
                             else
                             {
-                                ProcessedSnippet = ProcessedSnippet.Replace(Obj.Name, String.Format("{0}.{1} AS {2}", Obj.Object.Schema, Obj.Object.Name, Obj.Alias));
+                                if (isInsertInto)
+                                {
+                                    ProcessedSnippet = ProcessedSnippet.Replace(Obj.Name, String.Format("{0}.{1}", Obj.Object.Schema, Obj.Object.Name));
+                                }
+                                else
+                                {
+                                    ProcessedSnippet = ProcessedSnippet.Replace(Obj.Name, String.Format("{0}.{1} AS {2}", Obj.Object.Schema, Obj.Object.Name, Obj.Alias));
+                                }
                             }
                             InnerObjects.Add(Obj);
                             //check for all fields
-                            ProcessedSnippet = ProcessSnippetChilds(Obj, ProcessedSnippet, "Fields", true);
+                            ProcessedSnippet = ProcessSnippetChilds(Obj, ProcessedSnippet, "Fields", true, isInsertInto);
                             //check for field selector
-                            ProcessedSnippet = ProcessSnippetChilds(Obj, ProcessedSnippet, "Fields", false);
+                            ProcessedSnippet = ProcessSnippetChilds(Obj, ProcessedSnippet, "Fields", false, isInsertInto);
                             //check for all Params
                             ProcessedSnippet = ProcessSnippetChilds(Obj, ProcessedSnippet, "Parameters", true);
                             //check for param selector
@@ -1438,7 +1361,7 @@ namespace Ez_SQL.MultiQueryForm
 
             Query.InsertString(ProcessedSnippet);
         }
-        private string ProcessSnippetChilds(SnippetInnerObject Obj, string ProcessedSnippet, string Type, bool All)
+        private string ProcessSnippetChilds(SnippetInnerObject Obj, string ProcessedSnippet, string Type, bool All, bool isInsertInto = false)
         {
             string sep, buff = "", searchString, fname, bkup = ProcessedSnippet;
             int ocstart, oclen;
@@ -1489,10 +1412,20 @@ namespace Ez_SQL.MultiQueryForm
                         }
                         else
                         {//object with an alias, must be a table, a view, or a table function
-                            if (String.IsNullOrEmpty(buff))
-                                buff += String.Format("{0}.{1}", Obj.Alias, child.Name);
+                            if (isInsertInto)
+                            {
+                                if (String.IsNullOrEmpty(buff))
+                                    buff += String.Format("{0}", child.Name);
+                                else
+                                    buff += String.Format("{0}{1}", sep, child.Name);
+                            }
                             else
-                                buff += String.Format("{0}{1}.{2}", sep, Obj.Alias, child.Name);
+                            {
+                                if (String.IsNullOrEmpty(buff))
+                                    buff += String.Format("{0}.{1}", Obj.Alias, child.Name);
+                                else
+                                    buff += String.Format("{0}{1}.{2}", sep, Obj.Alias, child.Name);
+                            }
                         }
                     }
                     ProcessedSnippet = ProcessedSnippet.Replace(String.Format("${0}$", fname), buff);
@@ -1517,10 +1450,20 @@ namespace Ez_SQL.MultiQueryForm
                                 }
                                 else
                                 {//object with an alias, must be a table, a view, or a table function
-                                    if (String.IsNullOrEmpty(buff))
-                                        buff += String.Format("{0}.{1}", Obj.Alias, child);
+                                    if (isInsertInto)
+                                    {
+                                        if (String.IsNullOrEmpty(buff))
+                                            buff += String.Format("{0}", child);
+                                        else
+                                            buff += String.Format("{0}{1}", sep, child);
+                                    }
                                     else
-                                        buff += String.Format("{0}{1}.{2}", sep, Obj.Alias, child);
+                                    {
+                                        if (String.IsNullOrEmpty(buff))
+                                            buff += String.Format("{0}.{1}", Obj.Alias, child);
+                                        else
+                                            buff += String.Format("{0}{1}.{2}", sep, Obj.Alias, child);
+                                    }
                                 }
                             }
                         }
@@ -1542,10 +1485,20 @@ namespace Ez_SQL.MultiQueryForm
                             }
                             else
                             {//object with an alias, must be a table, a view, or a table function
-                                if (String.IsNullOrEmpty(buff))
-                                    buff += String.Format("{0}.{1}", Obj.Alias, child);
+                                if (isInsertInto)
+                                {
+                                    if (String.IsNullOrEmpty(buff))
+                                        buff += String.Format("{0}", child);
+                                    else
+                                        buff += String.Format("{0}{1}", sep, child);
+                                }
                                 else
-                                    buff += String.Format("{0}{1}.{2}", sep, Obj.Alias, child);
+                                {
+                                    if (String.IsNullOrEmpty(buff))
+                                        buff += String.Format("{0}.{1}", Obj.Alias, child);
+                                    else
+                                        buff += String.Format("{0}{1}.{2}", sep, Obj.Alias, child);
+                                }
                             }
                         }
                     }
@@ -1935,9 +1888,6 @@ namespace Ez_SQL.MultiQueryForm
                     if (!String.IsNullOrEmpty(csharpCodeResult))
                         Parent.AddCSharpCodeForm(Obj.Name, csharpCodeResult);                    
                 }
-
-
-                //return method.ToString();
             }
         }
         //Create SP for adding record to a table
@@ -2206,7 +2156,7 @@ namespace Ez_SQL.MultiQueryForm
                         Field child = new Field();
                         child.Name = dc.ColumnName;
                         child.IsPrimaryKey = false;
-                        child.Type = QueryForm.CSharpVsSql.ContainsKey(dc.DataType.ToString()) ? QueryForm.CSharpVsSql[dc.DataType.ToString()] : "varchar";
+                        child.Type = MainForm.CSharpVsSql.ContainsKey(dc.DataType.ToString()) ? MainForm.CSharpVsSql[dc.DataType.ToString()] : "varchar";
                         child.Precision = dc.MaxLength;
 
                         fake.Childs.Add(child);
@@ -2242,12 +2192,17 @@ namespace Ez_SQL.MultiQueryForm
 
             #region write the first line of real code, the signature of the method
             bool parameterless = true;
-            buffer = String.Format("public void {0}(", proc.Name);
+
+            if(settings.ReturnSPR)
+                buffer = String.Format("public SP_Result {0}(", proc.Name);
+            else
+                buffer = String.Format("public void {0}(", proc.Name);
+
             foreach (ISqlChild parameter in proc.Childs.Where(x => x.Kind == ChildType.Parameter))
             {
                 parameterless = false;
-                if (SqlVsCSharp.ContainsKey(parameter.Type))
-                    buffer += String.Format("{0} {1}, ", SqlVsCSharp[parameter.Type], parameter.Name.Trim('@'));
+                if (MainForm.SqlVsCSharp.ContainsKey(parameter.Type))
+                    buffer += String.Format("{0} {1}, ", MainForm.SqlVsCSharp[parameter.Type], parameter.Name.Trim('@'));
                 else
                     buffer += String.Format("??? {0}, ", parameter.Name.Trim('@'));
             }
@@ -2272,6 +2227,12 @@ namespace Ez_SQL.MultiQueryForm
                 method.AppendLine("SqlTransaction transaction = null;".Indent(3));
             #endregion
 
+            if (settings.ReturnSPR)
+            {
+                method.AppendLine("SP_Response back = new SP_Response();".Indent(3));
+                method.AppendLine();
+            }
+
             #region creation of the command object
             method.AppendLine(String.Format("SqlCommand sqlCommand = new SqlCommand(\"{0}.{1}\", this.Connection);", proc.Schema, proc.Name).Indent(3));
             method.AppendLine("sqlCommand.CommandType = CommandType.StoredProcedure;".Indent(3));
@@ -2281,8 +2242,8 @@ namespace Ez_SQL.MultiQueryForm
             #region assignation of the parameters
             foreach (ISqlChild parameter in proc.Childs.Where(x => x.Kind == ChildType.Parameter))
             {
-                if (SqlVsCSharpDb.ContainsKey(parameter.Type))
-                    method.AppendLine(String.Format("sqlCommand.Parameters.Add(new SqlParameter(\"{0}\", {1}, {2}));", parameter.Name, SqlVsCSharpDb[parameter.Type], parameter.Precision).Indent(3));
+                if (MainForm.SqlVsCSharpDb.ContainsKey(parameter.Type))
+                    method.AppendLine(String.Format("sqlCommand.Parameters.Add(new SqlParameter(\"{0}\", {1}, {2}));", parameter.Name, MainForm.SqlVsCSharpDb[parameter.Type], parameter.Precision).Indent(3));
                 else
                     method.AppendLine(String.Format("sqlCommand.Parameters.Add(new SqlParameter(\"{0}\", {1}, {2}));", parameter.Name, "??", parameter.Precision).Indent(3));
                 method.AppendLine(String.Format("sqlCommand.Parameters[\"{0}\"].Value = {1};", parameter.Name, parameter.Name.Trim('@')).Indent(3));
@@ -2306,18 +2267,18 @@ namespace Ez_SQL.MultiQueryForm
                 method.AppendLine("sqlCommand.Transaction = transaction;".Indent(4));
             }
 
-            if (settings.SaveRowsAffectedCount)
+            method.AppendLine(settings.SaveRowsAffectedCount ? "RowsAffected = sqlCommand.ExecuteNonQuery();".Indent(4) : "sqlCommand.ExecuteNonQuery();".Indent(4));
+
+            if (settings.ReturnSPR)
             {
-                method.AppendLine("RowsAffected = sqlCommand.ExecuteNonQuery();".Indent(4));
-            }
-            else
-            {
-                method.AppendLine("sqlCommand.ExecuteNonQuery();".Indent(4));
+                method.AppendLine("back.Result = 1;".Indent(4));
+                method.AppendLine("back.Message = \"Success\";".Indent(4));
             }
 
             if (settings.UseTransaction)
                 method.AppendLine("transaction.Commit();".Indent(4));
 
+            method.AppendLine("LastMessage = \"OK\";".Indent(4));
             method.AppendLine("}".Indent(3)); //end of try
 
             #region SQL Exception Handling
@@ -2335,8 +2296,15 @@ namespace Ez_SQL.MultiQueryForm
                 method.AppendLine("transaction.Rollback();".Indent(5));
             }
 
-
-            method.AppendLine("throw;".Indent(4));
+            if (settings.ReturnSPR)
+            {
+                method.AppendLine("back.Result = -1;".Indent(4));
+                method.AppendLine("back.Message = sqlex.Errors[0].Message;".Indent(4));
+            }
+            else
+            {
+                method.AppendLine("throw;".Indent(4));
+            }
 
             method.AppendLine("}".Indent(3)); //end of Sql Exception Catch
             #endregion
@@ -2356,9 +2324,16 @@ namespace Ez_SQL.MultiQueryForm
                 method.AppendLine("transaction.Rollback();".Indent(5));
             }
 
-            
-            method.AppendLine("throw;".Indent(4));
 
+            if (settings.ReturnSPR)
+            {
+                method.AppendLine("back.Result = -2;".Indent(4));
+                method.AppendLine("back.Message = ex.Message;".Indent(4));
+            }
+            else
+            {
+                method.AppendLine("throw;".Indent(4));
+            }
             method.AppendLine("}".Indent(3)); //end of Exception Catch
             #endregion
 
@@ -2404,17 +2379,24 @@ namespace Ez_SQL.MultiQueryForm
             #region write the first line of real code, the signature of the method
             bool parameterless = true;
             buffer = "public ";
-            if (settings.IsList)
+            if (settings.IsSPR)
+            {
+                buffer += "SPR_Collection<";
+            }
+            else if (settings.IsList)
+            {
                 buffer += "List<";
+            }
             buffer += settings.ReturnName;
-            if (settings.IsList)
+            if (settings.IsList || settings.IsSPR)
                 buffer += ">";
+
             buffer += String.Format(" {0}(", proc.Name);
             foreach (ISqlChild parameter in proc.Childs.Where(x => x.Kind == ChildType.Parameter))
             {
                 parameterless = false;
-                if (SqlVsCSharp.ContainsKey(parameter.Type))
-                    buffer += String.Format("{0} {1}, ", SqlVsCSharp[parameter.Type], parameter.Name.Trim('@'));
+                if (MainForm.SqlVsCSharp.ContainsKey(parameter.Type))
+                    buffer += String.Format("{0} {1}, ", MainForm.SqlVsCSharp[parameter.Type], parameter.Name.Trim('@'));
                 else
                     buffer += String.Format("??? {0}, ", parameter.Name.Trim('@'));
             }
@@ -2443,6 +2425,13 @@ namespace Ez_SQL.MultiQueryForm
                 else
                     method.AppendLine(String.Format("List<{0}> back = List<{0}>();", settings.ReturnName).Indent(3));
             }
+            else if (settings.IsSPR)
+            {
+                if (settings.IsObject)
+                    method.AppendLine(String.Format("SPR_Collection<{0}> back = new SPR_Collection<{0}>();", settings.ReturnName).Indent(3));
+                else
+                    method.AppendLine(String.Format("SPR_Collection<{0}> back = SPR_Collection<{0}>();", settings.ReturnName).Indent(3));
+            }
             else
             {
                 if (settings.IsObject)
@@ -2450,6 +2439,9 @@ namespace Ez_SQL.MultiQueryForm
                 else
                     method.AppendLine(String.Format("{0} back = {1};", settings.ReturnName, PrimitiveInitialization(settings.ReturnName)).Indent(3));
             }
+
+
+
             #region creation of transaction object
             if (settings.UseTransaction)
                 method.AppendLine("SqlTransaction transaction = null;".Indent(3));
@@ -2465,8 +2457,8 @@ namespace Ez_SQL.MultiQueryForm
             #region assignation of the parameters
             foreach (ISqlChild parameter in proc.Childs.Where(x => x.Kind == ChildType.Parameter))
             {
-                if (SqlVsCSharpDb.ContainsKey(parameter.Type))
-                    method.AppendLine(String.Format("sqlCommand.Parameters.Add(new SqlParameter(\"{0}\", {1}, {2}));", parameter.Name, SqlVsCSharpDb[parameter.Type], parameter.Precision).Indent(3));
+                if (MainForm.SqlVsCSharpDb.ContainsKey(parameter.Type))
+                    method.AppendLine(String.Format("sqlCommand.Parameters.Add(new SqlParameter(\"{0}\", {1}, {2}));", parameter.Name, MainForm.SqlVsCSharpDb[parameter.Type], parameter.Precision).Indent(3));
                 else
                     method.AppendLine(String.Format("sqlCommand.Parameters.Add(new SqlParameter(\"{0}\", {1}, {2}));", parameter.Name, "??", parameter.Precision).Indent(3));
                 method.AppendLine(String.Format("sqlCommand.Parameters[\"{0}\"].Value = {1};", parameter.Name, parameter.Name.Trim('@')).Indent(3));
@@ -2516,50 +2508,36 @@ namespace Ez_SQL.MultiQueryForm
                         }
                         else if (f.CSharpType.Equals("bool"))
                         {
-                            method.AppendLine(
-                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
-                            method.AppendLine(
-                                String.Format("obj.{0} = Convert.ToBoolean(sqlDataReader[\"{0}\"].ToString());", f.Name)
-                                      .Indent(7));
+                            method.AppendLine(String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(String.Format("obj.{0} = Convert.ToBoolean(sqlDataReader[\"{0}\"].ToString());", f.Name).Indent(7));
                             method.AppendLine("else".Indent(6));
                             method.AppendLine(String.Format("obj.{0} = false;", f.Name).Indent(7));
                         }
                         else if (f.CSharpType.Equals("int"))
                         {
-                            method.AppendLine(
-                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
-                            method.AppendLine(
-                                String.Format("obj.{0} = Convert.ToInt32(sqlDataReader[\"{0}\"].ToString());", f.Name).Indent(7));
+                            method.AppendLine(String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(String.Format("obj.{0} = Convert.ToInt32(sqlDataReader[\"{0}\"].ToString());", f.Name).Indent(7));
                             method.AppendLine("else".Indent(6));
                             method.AppendLine(String.Format("obj.{0} = 0;", f.Name).Indent(7));
                         }
                         else if (f.CSharpType.Equals("decimal"))
                         {
-                            method.AppendLine(
-                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
-                            method.AppendLine(
-                                String.Format("obj.{0} = Convert.ToDecimal(sqlDataReader[\"{0}\"].ToString());", f.Name)
-                                      .Indent(7));
+                            method.AppendLine(String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(String.Format("obj.{0} = Convert.ToDecimal(sqlDataReader[\"{0}\"].ToString());", f.Name).Indent(7));
                             method.AppendLine("else".Indent(6));
                             method.AppendLine(String.Format("obj.{0} = 0;", f.Name).Indent(7));
                         }
                         else if (f.CSharpType.Equals("double") || f.CSharpType.Equals("float"))
                         {
-                            method.AppendLine(
-                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
-                            method.AppendLine(
-                                String.Format("obj.{0} = Convert.ToDouble(sqlDataReader[\"{0}\"].ToString());", f.Name)
-                                      .Indent(7));
+                            method.AppendLine(String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(String.Format("obj.{0} = Convert.ToDouble(sqlDataReader[\"{0}\"].ToString());", f.Name).Indent(7));
                             method.AppendLine("else".Indent(6));
                             method.AppendLine(String.Format("obj.{0} = 0;", f.Name).Indent(7));
                         }
                         else if (f.CSharpType.Equals("DateTime"))
                         {
-                            method.AppendLine(
-                                String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
-                            method.AppendLine(
-                                String.Format("obj.{0} = Convert.ToDateTime(sqlDataReader[\"{0}\"].ToString());", f.Name)
-                                      .Indent(7));
+                            method.AppendLine(String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(6));
+                            method.AppendLine(String.Format("obj.{0} = Convert.ToDateTime(sqlDataReader[\"{0}\"].ToString());", f.Name).Indent(7));
                             method.AppendLine("else".Indent(6));
                             method.AppendLine(String.Format("obj.{0} = new DateTime(1900, 1, 1);", f.Name).Indent(7));
                         }
@@ -2621,6 +2599,153 @@ namespace Ez_SQL.MultiQueryForm
                 method.AppendLine();
                 method.AppendLine("back.Add(obj);".Indent(6));
                 method.AppendLine("}".Indent(5));
+
+                method.AppendLine("LastMessage = \"OK\";".Indent(5));
+                #endregion
+            }
+            else if (settings.IsSPR)
+            {
+                #region Code to Handle SPR_Collection
+                if (settings.SaveRowsReadCount)
+                    method.AppendLine("RowsRead = 0;".Indent(4));
+
+                method.AppendLine("using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())".Indent(4));
+                method.AppendLine("{".Indent(4)); //start of using statement
+                
+                method.AppendLine("bool hasColumn = false;".Indent(5));
+                method.AppendLine("for (int i = 0; i < sqlDataReader.FieldCount; i++)".Indent(5));
+                method.AppendLine("{".Indent(5));
+                method.AppendLine("if (sqlDataReader.GetName(i).Equals(\"Message\", StringComparison.InvariantCultureIgnoreCase))".Indent(6));
+                method.AppendLine("hasColumn = true;".Indent(6));
+                method.AppendLine("}".Indent(5));
+
+                method.AppendLine("if(hasColumn)".Indent(5));
+                method.AppendLine("{".Indent(5));
+                method.AppendLine("if (!String.IsNullOrEmpty(sqlDataReader[\"Result\"].ToString()))".Indent(6));
+                method.AppendLine("back.Result = Convert.ToInt32(sqlDataReader[\"Result\"].ToString());".Indent(7));
+                method.AppendLine("else".Indent(6));
+                method.AppendLine("back.Result = 0;".Indent(7));
+                method.AppendLine("back.Message = sqlDataReader[\"Message\"].ToString();".Indent(6));
+                method.AppendLine("}".Indent(5));
+                
+                
+                method.AppendLine("else".Indent(5));
+                method.AppendLine("{".Indent(5));
+                method.AppendLine("while (sqlDataReader.Read())".Indent(6));
+                method.AppendLine("{".Indent(6));
+
+                if (settings.SaveRowsReadCount)
+                    method.AppendLine("RowsRead++;".Indent(7));
+
+                if (settings.IsObject)
+                {
+                    #region Map results to an object and add it to the list
+                    method.AppendLine(String.Format("{0} obj = new {0}();", settings.ReturnName).Indent(7));
+                    foreach (Field f in returnColumns)
+                    {
+                        if (f.Name.Equals("Result", StringComparison.OrdinalIgnoreCase) || f.Name.Equals("Message", StringComparison.OrdinalIgnoreCase))
+                            continue;
+
+                        if (f.CSharpType.Equals("string"))
+                        {
+                            method.AppendLine(String.Format("obj.{0} = sqlDataReader[\"{0}\"].ToString();", f.Name).Indent(7));
+                        }
+                        else if (f.CSharpType.Equals("bool"))
+                        {
+                            method.AppendLine(String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(7));
+                            method.AppendLine(String.Format("obj.{0} = Convert.ToBoolean(sqlDataReader[\"{0}\"].ToString());", f.Name).Indent(7));
+                            method.AppendLine("else".Indent(7));
+                            method.AppendLine(String.Format("obj.{0} = false;", f.Name).Indent(8));
+                        }
+                        else if (f.CSharpType.Equals("int"))
+                        {
+                            method.AppendLine(String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(7));
+                            method.AppendLine(String.Format("obj.{0} = Convert.ToInt32(sqlDataReader[\"{0}\"].ToString());", f.Name).Indent(8));
+                            method.AppendLine("else".Indent(7));
+                            method.AppendLine(String.Format("obj.{0} = 0;", f.Name).Indent(8));
+                        }
+                        else if (f.CSharpType.Equals("decimal"))
+                        {
+                            method.AppendLine(String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(7));
+                            method.AppendLine(String.Format("obj.{0} = Convert.ToDecimal(sqlDataReader[\"{0}\"].ToString());", f.Name).Indent(8));
+                            method.AppendLine("else".Indent(7));
+                            method.AppendLine(String.Format("obj.{0} = 0;", f.Name).Indent(8));
+                        }
+                        else if (f.CSharpType.Equals("double") || f.CSharpType.Equals("float"))
+                        {
+                            method.AppendLine(String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(7));
+                            method.AppendLine(String.Format("obj.{0} = Convert.ToDouble(sqlDataReader[\"{0}\"].ToString());", f.Name).Indent(8));
+                            method.AppendLine("else".Indent(7));
+                            method.AppendLine(String.Format("obj.{0} = 0;", f.Name).Indent(8));
+                        }
+                        else if (f.CSharpType.Equals("DateTime"))
+                        {
+                            method.AppendLine(String.Format("if(!String.IsNullOrEmpty(sqlDataReader[\"{0}\"].ToString()))", f.Name).Indent(7));
+                            method.AppendLine(String.Format("obj.{0} = Convert.ToDateTime(sqlDataReader[\"{0}\"].ToString());", f.Name).Indent(8));
+                            method.AppendLine("else".Indent(7));
+                            method.AppendLine(String.Format("obj.{0} = new DateTime(1900, 1, 1);", f.Name).Indent(8));
+                        }
+                    }
+
+                    #endregion
+                }
+                else
+                {
+                    #region Map first column of the results to a primitive and add it to the list
+
+                    method.AppendLine(String.Format("{0} obj = {1};", settings.ReturnName, PrimitiveInitialization(settings.ReturnName)).Indent(7));
+                    Field primitiveField = returnColumns[0];
+
+                    if (primitiveField.CSharpType.Equals("string"))
+                    {
+                        method.AppendLine("obj = sqlDataReader[0].ToString();".Indent(7));
+                    }
+                    else if (primitiveField.CSharpType.Equals("bool"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(7));
+                        method.AppendLine("obj = Convert.ToBoolean(sqlDataReader[0].ToString());".Indent(8));
+                        method.AppendLine("else".Indent(7));
+                        method.AppendLine("obj = false;".Indent(8));
+                    }
+                    else if (primitiveField.CSharpType.Equals("int"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(7));
+                        method.AppendLine("obj = Convert.ToInt32(sqlDataReader[0].ToString());".Indent(8));
+                        method.AppendLine("else".Indent(7));
+                        method.AppendLine("obj = 0;".Indent(8));
+                    }
+                    else if (primitiveField.CSharpType.Equals("decimal"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(7));
+                        method.AppendLine("obj = Convert.ToDecimal(sqlDataReader[0].ToString());".Indent(8));
+                        method.AppendLine("else".Indent(7));
+                        method.AppendLine("obj = 0;".Indent(8));
+                    }
+                    else if (primitiveField.CSharpType.Equals("double") || primitiveField.CSharpType.Equals("float"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(7));
+                        method.AppendLine("obj = Convert.ToDouble(sqlDataReader[0].ToString());".Indent(8));
+                        method.AppendLine("else".Indent(7));
+                        method.AppendLine("obj = 0;".Indent(8));
+                    }
+                    else if (primitiveField.CSharpType.Equals("DateTime"))
+                    {
+                        method.AppendLine("if(!String.IsNullOrEmpty(sqlDataReader[0].ToString()))".Indent(7));
+                        method.AppendLine("obj = Convert.ToDateTime(sqlDataReader[0].ToString());".Indent(8));
+                        method.AppendLine("else".Indent(7));
+                        method.AppendLine("obj = new DateTime(1900, 1, 1);".Indent(8));
+                    }
+
+                    #endregion
+                }
+                method.AppendLine();
+                method.AppendLine("back.Add(obj);".Indent(7));
+                method.AppendLine("}".Indent(6));
+
+                method.AppendLine("LastMessage = \"OK\";".Indent(6));
+                method.AppendLine("back.Result = 1;".Indent(6));
+                method.AppendLine("back.Message = \"Success\";".Indent(6));
+                method.AppendLine("}".Indent(5));
                 #endregion
             }
             else
@@ -2629,8 +2754,7 @@ namespace Ez_SQL.MultiQueryForm
                 if (settings.SaveRowsReadCount)
                     method.AppendLine("RowsRead = 0;".Indent(4));
 
-                method.AppendLine(
-                    "using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader(CommandBehavior.SingleResult))".Indent(4));
+                method.AppendLine("using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader(CommandBehavior.SingleResult))".Indent(4));
                 method.AppendLine("{".Indent(4)); //start of using statement
                 method.AppendLine("if (sqlDataReader.Read())".Indent(5));
                 method.AppendLine("{".Indent(5));
@@ -2747,6 +2871,8 @@ namespace Ez_SQL.MultiQueryForm
                     }
                     #endregion
                 }
+                method.AppendLine("LastMessage = \"OK\";".Indent(6));
+
                 method.AppendLine("}".Indent(5));
                 #endregion
             }
@@ -2771,7 +2897,15 @@ namespace Ez_SQL.MultiQueryForm
                 method.AppendLine("transaction.Rollback();".Indent(5));
             }
 
-            method.AppendLine("throw;".Indent(4));
+            if (settings.IsSPR)
+            {
+                method.AppendLine("back.Result = -1;".Indent(4));
+                method.AppendLine("back.Message = sqlex.Errors[0].Message;".Indent(4));
+            }
+            else
+            {
+                method.AppendLine("throw;".Indent(4));
+            }
 
             method.AppendLine("}".Indent(3)); //end of Sql Exception Catch
             #endregion
@@ -2791,8 +2925,15 @@ namespace Ez_SQL.MultiQueryForm
                 method.AppendLine("transaction.Rollback();".Indent(5));
             }
 
-
-            method.AppendLine("throw;".Indent(4));
+            if (settings.IsSPR)
+            {
+                method.AppendLine("back.Result = -1;".Indent(4));
+                method.AppendLine("back.Message = ex.Message;".Indent(4));
+            }
+            else
+            {
+                method.AppendLine("throw;".Indent(4));
+            }
 
             method.AppendLine("}".Indent(3)); //end of Exception Catch
             #endregion
@@ -2872,13 +3013,13 @@ namespace Ez_SQL.MultiQueryForm
                     {
                         foreach (DataColumn col in tab.Columns)
                         {
-                            if (SqlVsCSharp.ContainsKey(col.DataType.ToString()))
+                            if (MainForm.SqlVsCSharp.ContainsKey(col.DataType.ToString()))
                             {
                                 Field aux = new Field()
                                     {
                                         Name = col.Caption,
                                         Type = col.DataType.ToString(),
-                                        CSharpType = SqlVsCSharp[col.DataType.ToString()]
+                                        CSharpType = MainForm.SqlVsCSharp[col.DataType.ToString()]
                                     };
                                
                                 if (!Back.Exists(x => x.Name.Equals(col.Caption, StringComparison.CurrentCultureIgnoreCase)))

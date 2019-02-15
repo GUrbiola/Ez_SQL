@@ -592,7 +592,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppIcon.ico" />
-    <None Include="Templates\SP_Get.sql" />
+    <None Include="Resources\Run.png" />
+    <None Include="Resources\Star.png" />
+    <None Include="Resources\Table Operation.png" />
+    <None Include="Resources\PipeDelimited.png" />
+    <None Include="Resources\Csv.png" />
+    <None Include="Resources\Excel.png" />
+    <None Include="Resources\Export.png" />
     <None Include="Resources\Delete_24.png" />
     <None Include="Resources\AppConfig.png" />
     <None Include="Resources\ColorCOnfig.png" />
@@ -617,7 +623,9 @@
     <None Include="Resources\CSharp_22.png" />
     <None Include="Resources\CSharp321.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Templates\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>

@@ -93,12 +93,12 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                 if (F == null)
                     continue;
 
-                if (QueryForm.SqlVsCSharp.ContainsKey(F.Type))
+                if (MainForm.SqlVsCSharp.ContainsKey(F.Type))
                 {
-                    if (F.Nullable && !QueryForm.SqlVsCSharp[F.Type].Equals("string", StringComparison.CurrentCultureIgnoreCase))
-                        F.CSharpType = QueryForm.SqlVsCSharp[F.Type] + "?";
+                    if (F.Nullable && !MainForm.SqlVsCSharp[F.Type].Equals("string", StringComparison.CurrentCultureIgnoreCase))
+                        F.CSharpType = MainForm.SqlVsCSharp[F.Type] + "?";
                     else
-                        F.CSharpType = QueryForm.SqlVsCSharp[F.Type];
+                        F.CSharpType = MainForm.SqlVsCSharp[F.Type];
                 }
                 else
                 {
@@ -573,11 +573,11 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                 for (int i = 0; i < curTable.Childs.Count; i++)
                 {
                     Field F = curTable.Childs[i] as Field;
-                    if (F == null || !QueryForm.SqlVsCSharp.ContainsKey(F.Type))
+                    if (F == null || !MainForm.SqlVsCSharp.ContainsKey(F.Type))
                         continue;
                     
                     SbBll.AppendLine(String.Format("case \"{0}\":".Indent(4), F.Name.ToLower()));
-                    SbBll.AppendLine(String.Format("return \"{0}\";".Indent(5), QueryForm.SqlVsCSharp[F.Type].ToLower()));
+                    SbBll.AppendLine(String.Format("return \"{0}\";".Indent(5), MainForm.SqlVsCSharp[F.Type].ToLower()));
                 }
                 SbBll.AppendLine("}".Indent(3));
                 SbBll.AppendLine("return \"string\";".Indent(3));

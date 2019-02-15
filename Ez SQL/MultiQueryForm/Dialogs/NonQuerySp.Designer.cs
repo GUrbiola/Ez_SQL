@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NonQuerySp));
             this.wizardNonQuery = new Crownwood.Magic.Controls.WizardControl();
             this.FinalSettings = new Crownwood.Magic.Controls.WizardPage();
             this.chkRegion = new System.Windows.Forms.CheckBox();
@@ -39,6 +38,7 @@
             this.chkLogExc = new System.Windows.Forms.CheckBox();
             this.chkLogEnd = new System.Windows.Forms.CheckBox();
             this.chkLogStart = new System.Windows.Forms.CheckBox();
+            this.chkReturnSPR = new System.Windows.Forms.CheckBox();
             this.FinalSettings.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +47,6 @@
             this.wizardNonQuery.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wizardNonQuery.Location = new System.Drawing.Point(0, 0);
             this.wizardNonQuery.Name = "wizardNonQuery";
-            this.wizardNonQuery.Picture = ((System.Drawing.Image)(resources.GetObject("wizardNonQuery.Picture")));
             this.wizardNonQuery.SelectedIndex = 0;
             this.wizardNonQuery.Size = new System.Drawing.Size(709, 462);
             this.wizardNonQuery.TabIndex = 0;
@@ -60,6 +59,7 @@
             // FinalSettings
             // 
             this.FinalSettings.CaptionTitle = "(Page Title)";
+            this.FinalSettings.Controls.Add(this.chkReturnSPR);
             this.FinalSettings.Controls.Add(this.chkRegion);
             this.FinalSettings.Controls.Add(this.chkTimeElapsed);
             this.FinalSettings.Controls.Add(this.chkUseTransaction);
@@ -158,6 +158,16 @@
             this.chkLogStart.Text = "Log Start Execution";
             this.chkLogStart.UseVisualStyleBackColor = true;
             // 
+            // chkReturnSPR
+            // 
+            this.chkReturnSPR.AutoSize = true;
+            this.chkReturnSPR.Location = new System.Drawing.Point(12, 284);
+            this.chkReturnSPR.Name = "chkReturnSPR";
+            this.chkReturnSPR.Size = new System.Drawing.Size(139, 23);
+            this.chkReturnSPR.TabIndex = 8;
+            this.chkReturnSPR.Text = "Return SP_Result";
+            this.chkReturnSPR.UseVisualStyleBackColor = true;
+            // 
             // NonQuerySp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,5 +199,6 @@
         private System.Windows.Forms.CheckBox chkLogExc;
         private System.Windows.Forms.CheckBox chkLogEnd;
         private System.Windows.Forms.CheckBox chkRegion;
+        private System.Windows.Forms.CheckBox chkReturnSPR;
     }
 }

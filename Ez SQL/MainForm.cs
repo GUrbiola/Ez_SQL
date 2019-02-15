@@ -90,6 +90,10 @@ namespace Ez_SQL
         //EzConfig.SyntaxColorsConfigurator ColorConfigTab;
         private List<Snippet> Snippets;
 
+        public static Dictionary<string, string> SqlVsCSharp;
+        public static Dictionary<string, string> SqlVsCSharpDb;
+        public static Dictionary<string, string> CSharpVsSql;
+
         public MainForm()
         {
             InitializeComponent();
@@ -334,6 +338,89 @@ namespace Ez_SQL
             LoadSnippets();
 
             this.MainMenu.MouseDown += new MouseEventHandler(MainMenu_MouseDown);
+
+            #region Matching types, between SQL and C#, both ways
+            if (SqlVsCSharp == null)
+            {
+                SqlVsCSharp = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                SqlVsCSharp.Add("bigint", "int");
+                SqlVsCSharp.Add("binary", "int");
+                SqlVsCSharp.Add("bit", "bool");
+                SqlVsCSharp.Add("char", "string");
+                SqlVsCSharp.Add("date", "DateTime");
+                SqlVsCSharp.Add("datetime", "DateTime");
+                SqlVsCSharp.Add("datetime2", "DateTime");
+                SqlVsCSharp.Add("float", "double");
+                SqlVsCSharp.Add("int", "int");
+                SqlVsCSharp.Add("decimal", "double");
+                SqlVsCSharp.Add("money", "double");
+                SqlVsCSharp.Add("nchar", "string");
+                SqlVsCSharp.Add("ntext", "string");
+                SqlVsCSharp.Add("numeric", "int");
+                SqlVsCSharp.Add("nvarchar", "string");
+                SqlVsCSharp.Add("real", "double");
+                SqlVsCSharp.Add("smalldatetime", "DateTime");
+                SqlVsCSharp.Add("smallint", "int");
+                SqlVsCSharp.Add("smallmoney", "double");
+                SqlVsCSharp.Add("sysname", "string");
+                SqlVsCSharp.Add("text", "string");
+                SqlVsCSharp.Add("timestamp", "DateTime");
+                SqlVsCSharp.Add("tinyint", "int");
+                SqlVsCSharp.Add("varbinary", "int");
+                SqlVsCSharp.Add("varchar", "string");
+
+                SqlVsCSharp.Add("System.Boolean", "bool");
+                SqlVsCSharp.Add("System.Int32", "int");
+                SqlVsCSharp.Add("System.String", "string");
+                SqlVsCSharp.Add("System.Decimal", "float");
+                SqlVsCSharp.Add("System.Double", "float");
+                SqlVsCSharp.Add("System.DateTime", "DateTime");
+            }
+            if (SqlVsCSharpDb == null)
+            {
+                SqlVsCSharpDb = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                SqlVsCSharpDb.Add("bigint", "SqlDbType.BigInt");
+                SqlVsCSharpDb.Add("binary", "SqlDbType.Binary");
+                SqlVsCSharpDb.Add("bit", "SqlDbType.Bit");
+                SqlVsCSharpDb.Add("char", "SqlDbType.Char");
+                SqlVsCSharpDb.Add("datetime", "SqlDbType.DateTime");
+                SqlVsCSharpDb.Add("float", "SqlDbType.Float");
+                SqlVsCSharpDb.Add("int", "SqlDbType.Int");
+                SqlVsCSharpDb.Add("decimal", "SqlDbType.Decimal");
+                SqlVsCSharpDb.Add("money", "SqlDbType.Float");
+                SqlVsCSharpDb.Add("nchar", "SqlDbType.NChar");
+                SqlVsCSharpDb.Add("ntext", "SqlDbType.NText");
+                SqlVsCSharpDb.Add("numeric", "SqlDbType.Int");
+                SqlVsCSharpDb.Add("nvarchar", "SqlDbType.NVarChar");
+                SqlVsCSharpDb.Add("real", "SqlDbType.Real");
+                SqlVsCSharpDb.Add("smalldatetime", "SqlDbType.SmallDateTime");
+                SqlVsCSharpDb.Add("smallint", "SqlDbType.SmallInt");
+                SqlVsCSharpDb.Add("smallmoney", "SqlDbType.SmallMoney");
+                SqlVsCSharpDb.Add("sysname", "SqlDbType.Text");
+                SqlVsCSharpDb.Add("text", "SqlDbType.Text");
+                SqlVsCSharpDb.Add("timestamp", "SqlDbType.Timestamp");
+                SqlVsCSharpDb.Add("tinyint", "SqlDbType.TinyInt");
+                SqlVsCSharpDb.Add("varbinary", "SqlDbType.VarBinary");
+                SqlVsCSharpDb.Add("varchar", "SqlDbType.VarChar");
+            }
+
+            if (CSharpVsSql == null)
+            {
+                CSharpVsSql = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                CSharpVsSql.Add("System.Char", "char");
+                CSharpVsSql.Add("System.Boolean", "bit");
+                CSharpVsSql.Add("System.Int16", "int");
+                CSharpVsSql.Add("System.Int32", "int");
+                CSharpVsSql.Add("System.Int64", "int");
+                CSharpVsSql.Add("System.String", "varchar");
+                CSharpVsSql.Add("System.Single", "float");
+                CSharpVsSql.Add("System.Decimal", "float");
+                CSharpVsSql.Add("System.Double", "float");
+                CSharpVsSql.Add("System.DateTime", "DateTime");
+            }
+
+            #endregion
+
         }
 
         private void CheckForFile(string fileName, string fileText)

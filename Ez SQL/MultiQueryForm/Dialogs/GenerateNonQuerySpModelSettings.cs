@@ -15,5 +15,6 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
         public bool SaveRowsAffectedCount { get; set; }
         public bool UseTransaction { get; set; }
         public bool MeasureTimeElapsed { get; set; }
+        public bool ReturnSPR { get; set; }
     }
 }

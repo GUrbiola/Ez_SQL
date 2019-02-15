@@ -1,6 +1,11 @@
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.exe
+C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.pdb
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\AddressBarExt.dll
+C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ClosedXML.dll
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ColorPickerLib.dll
+C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ExcelNumberFormat.dll
+C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\FastMember.dll
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\HDesarrollo.dll
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ICSharpCode.TextEditor.dll
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\MagicLibrary.dll
@@ -16,11 +21,12 @@ C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Interop.MSWinsockLib.dll
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.Extensions.dll
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Microsoft.Data.ConnectionUI.dll
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\AddressBarExt.pdb
+C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ClosedXML.pdb
+C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ClosedXML.xml
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ColorPickerLib.pdb
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\PopupControl.xml
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.ExcelXml.xml
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.Extensions.xml
-C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csprojResolveAssemblyReference.cache
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.AdditionalForms.ObjectSearcher.resources
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.ConxAdmin.resources
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.InputBox.resources
@@ -35,6 +41,7 @@ C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.EzConfig.ColorConfig.
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.EzConfig.SyntaxColorsConfigurator.resources
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ChildSelector.resources
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.Dialogs.GenerateClass.resources
+C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.Dialogs.GetString.resources
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.Dialogs.NonQuerySp.resources
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.Dialogs.QuerySp.resources
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ObjectSelector.resources
@@ -48,11 +55,3 @@ C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Snippets.SnippetEdito
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.GenerateResource.Cache
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
-C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.pdb
-C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ClosedXML.dll
-C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ClosedXML.pdb
-C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ClosedXML.xml
-C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\DocumentFormat.OpenXml.dll
-C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ExcelNumberFormat.dll
-C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\FastMember.dll
-C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.Dialogs.GetString.resources

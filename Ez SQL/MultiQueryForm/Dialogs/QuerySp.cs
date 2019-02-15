@@ -29,6 +29,7 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                     {
                         InsideRegion          = chkRegion.Checked,
                         IsList                = radList.Checked,
+                        IsSPR                 = radSPR.Checked,
                         IsObject              = radObject.Checked,
                         LogEnd                = chkLogEnd.Checked,
                         LogException          = chkLogExc.Checked,
@@ -65,6 +66,7 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                     InsideRegion          = true,
                     IsList                = false,
                     IsObject              = false,
+                    IsSPR                 = false,
                     LogEnd                = false,
                     LogException          = true,
                     LogStart              = false,
@@ -78,10 +80,35 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
             }
             
             chkRegion.Checked           = settings.InsideRegion;
-            radList.Checked             = settings.IsList;
-            //radOnlyOne.Checked          = !settings.IsList;
-            radObject.Checked           = settings.IsObject;
-            //radPrimitive.Checked        = !settings.IsObject;
+            if (settings.IsSPR)
+            {
+                radSPR.Checked = true;
+                radList.Checked = false;
+                radObject.Checked = false;
+
+                txtClassName.Text = "ClassX";
+                cmbPrimitives.SelectedItem = settings.ReturnName;
+
+            }
+            else if (settings.IsList)
+            {
+                radList.Checked = true;
+                radSPR.Checked = false;
+                radObject.Checked = false;
+
+                txtClassName.Text = "ClassX";
+                cmbPrimitives.SelectedItem = settings.ReturnName;
+            }
+            else
+            {
+                radObject.Checked = true;
+                radSPR.Checked = false;
+                radList.Checked = false;
+
+                txtClassName.Text = settings.ReturnName;
+                cmbPrimitives.SelectedItem = "string";
+            }
+
             chkLogEnd.Checked           = settings.LogEnd;
             chkLogExc.Checked           = settings.LogException;
             chkLogStart.Checked         = settings.LogStart;
@@ -89,18 +116,7 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
             chkSaveRowsAffected.Checked = settings.SaveRowsAffectedCount;
             chkSaveRowsRead.Checked     = settings.SaveRowsReadCount;
             chkUseTransaction.Checked   = settings.UseTransaction;
-            if (settings.IsObject)
-            {
-                txtClassName.Text          = settings.ReturnName;
-                cmbPrimitives.SelectedItem = "string";
-            }
-            else
-            {
-                txtClassName.Text          = "ClassX";
-                cmbPrimitives.SelectedItem = settings.ReturnName;
-            }
-
-
+            
         }
 
         private void wizardControl1_FinishClick(object sender, EventArgs e)
