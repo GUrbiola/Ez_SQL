@@ -55,3 +55,6 @@ C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Snippets.SnippetEdito
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.GenerateResource.Cache
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
+C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csprojAssemblyReference.cache
+C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.CoreCompileInputs.cache
+C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.CopyComplete
