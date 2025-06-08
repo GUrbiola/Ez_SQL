@@ -71,7 +71,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(111, 433);
+            this.panel1.Size = new System.Drawing.Size(121, 433);
             this.panel1.TabIndex = 0;
             // 
             // labKeywords
@@ -80,7 +80,7 @@
             this.labKeywords.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labKeywords.Location = new System.Drawing.Point(0, 168);
             this.labKeywords.Name = "labKeywords";
-            this.labKeywords.Size = new System.Drawing.Size(111, 21);
+            this.labKeywords.Size = new System.Drawing.Size(121, 21);
             this.labKeywords.TabIndex = 8;
             this.labKeywords.Text = "Key Words";
             this.labKeywords.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -91,7 +91,7 @@
             this.labBackground.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labBackground.Location = new System.Drawing.Point(0, 147);
             this.labBackground.Name = "labBackground";
-            this.labBackground.Size = new System.Drawing.Size(111, 21);
+            this.labBackground.Size = new System.Drawing.Size(121, 21);
             this.labBackground.TabIndex = 7;
             this.labBackground.Text = "Background Color";
             this.labBackground.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -102,7 +102,7 @@
             this.labColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labColor.Location = new System.Drawing.Point(0, 126);
             this.labColor.Name = "labColor";
-            this.labColor.Size = new System.Drawing.Size(111, 21);
+            this.labColor.Size = new System.Drawing.Size(121, 21);
             this.labColor.TabIndex = 6;
             this.labColor.Text = "Color";
             this.labColor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -113,7 +113,7 @@
             this.labRule.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labRule.Location = new System.Drawing.Point(0, 105);
             this.labRule.Name = "labRule";
-            this.labRule.Size = new System.Drawing.Size(111, 21);
+            this.labRule.Size = new System.Drawing.Size(121, 21);
             this.labRule.TabIndex = 4;
             this.labRule.Text = "Rule";
             this.labRule.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -124,7 +124,7 @@
             this.labIgnoreCase.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labIgnoreCase.Location = new System.Drawing.Point(0, 84);
             this.labIgnoreCase.Name = "labIgnoreCase";
-            this.labIgnoreCase.Size = new System.Drawing.Size(111, 21);
+            this.labIgnoreCase.Size = new System.Drawing.Size(121, 21);
             this.labIgnoreCase.TabIndex = 3;
             this.labIgnoreCase.Text = "Ignore Case";
             this.labIgnoreCase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -135,7 +135,7 @@
             this.labEOL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labEOL.Location = new System.Drawing.Point(0, 63);
             this.labEOL.Name = "labEOL";
-            this.labEOL.Size = new System.Drawing.Size(111, 21);
+            this.labEOL.Size = new System.Drawing.Size(121, 21);
             this.labEOL.TabIndex = 2;
             this.labEOL.Text = "Stop at End Of Line";
             this.labEOL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -146,7 +146,7 @@
             this.labBold.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labBold.Location = new System.Drawing.Point(0, 42);
             this.labBold.Name = "labBold";
-            this.labBold.Size = new System.Drawing.Size(111, 21);
+            this.labBold.Size = new System.Drawing.Size(121, 21);
             this.labBold.TabIndex = 1;
             this.labBold.Text = "Bold";
             this.labBold.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -157,7 +157,7 @@
             this.labItalic.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labItalic.Location = new System.Drawing.Point(0, 21);
             this.labItalic.Name = "labItalic";
-            this.labItalic.Size = new System.Drawing.Size(111, 21);
+            this.labItalic.Size = new System.Drawing.Size(121, 21);
             this.labItalic.TabIndex = 0;
             this.labItalic.Text = "Italic";
             this.labItalic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -168,7 +168,7 @@
             this.labName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labName.Location = new System.Drawing.Point(0, 0);
             this.labName.Name = "labName";
-            this.labName.Size = new System.Drawing.Size(111, 21);
+            this.labName.Size = new System.Drawing.Size(121, 21);
             this.labName.TabIndex = 5;
             this.labName.Text = "Name";
             this.labName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -188,9 +188,9 @@
             this.panel2.Controls.Add(this.chkItalic);
             this.panel2.Controls.Add(this.txtName);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(111, 0);
+            this.panel2.Location = new System.Drawing.Point(121, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(308, 433);
+            this.panel2.Size = new System.Drawing.Size(298, 433);
             this.panel2.TabIndex = 1;
             // 
             // txtAddKeyword
@@ -228,7 +228,7 @@
             this.listKeywords.FormattingEnabled = true;
             this.listKeywords.Location = new System.Drawing.Point(0, 170);
             this.listKeywords.Name = "listKeywords";
-            this.listKeywords.Size = new System.Drawing.Size(308, 212);
+            this.listKeywords.Size = new System.Drawing.Size(298, 212);
             this.listKeywords.TabIndex = 8;
             // 
             // cpickBackground
@@ -237,7 +237,7 @@
             this.cpickBackground.Location = new System.Drawing.Point(0, 147);
             this.cpickBackground.Name = "cpickBackground";
             this.cpickBackground.SelectedItem = System.Drawing.Color.Wheat;
-            this.cpickBackground.Size = new System.Drawing.Size(308, 23);
+            this.cpickBackground.Size = new System.Drawing.Size(298, 23);
             this.cpickBackground.TabIndex = 7;
             this.cpickBackground.Text = "colorPickerCombobox2";
             // 
@@ -247,7 +247,7 @@
             this.cpickColor.Location = new System.Drawing.Point(0, 126);
             this.cpickColor.Name = "cpickColor";
             this.cpickColor.SelectedItem = System.Drawing.Color.Wheat;
-            this.cpickColor.Size = new System.Drawing.Size(308, 21);
+            this.cpickColor.Size = new System.Drawing.Size(298, 21);
             this.cpickColor.TabIndex = 6;
             this.cpickColor.Text = "colorPickerCombobox1";
             // 
@@ -258,7 +258,7 @@
             this.txtRule.Location = new System.Drawing.Point(0, 105);
             this.txtRule.Margin = new System.Windows.Forms.Padding(0);
             this.txtRule.Name = "txtRule";
-            this.txtRule.Size = new System.Drawing.Size(308, 21);
+            this.txtRule.Size = new System.Drawing.Size(298, 21);
             this.txtRule.TabIndex = 5;
             // 
             // chkIgnoreCase
@@ -266,7 +266,7 @@
             this.chkIgnoreCase.Dock = System.Windows.Forms.DockStyle.Top;
             this.chkIgnoreCase.Location = new System.Drawing.Point(0, 84);
             this.chkIgnoreCase.Name = "chkIgnoreCase";
-            this.chkIgnoreCase.Size = new System.Drawing.Size(308, 21);
+            this.chkIgnoreCase.Size = new System.Drawing.Size(298, 21);
             this.chkIgnoreCase.TabIndex = 4;
             this.chkIgnoreCase.UseVisualStyleBackColor = true;
             // 
@@ -275,7 +275,7 @@
             this.chkEOL.Dock = System.Windows.Forms.DockStyle.Top;
             this.chkEOL.Location = new System.Drawing.Point(0, 63);
             this.chkEOL.Name = "chkEOL";
-            this.chkEOL.Size = new System.Drawing.Size(308, 21);
+            this.chkEOL.Size = new System.Drawing.Size(298, 21);
             this.chkEOL.TabIndex = 3;
             this.chkEOL.UseVisualStyleBackColor = true;
             // 
@@ -284,7 +284,7 @@
             this.chkBold.Dock = System.Windows.Forms.DockStyle.Top;
             this.chkBold.Location = new System.Drawing.Point(0, 42);
             this.chkBold.Name = "chkBold";
-            this.chkBold.Size = new System.Drawing.Size(308, 21);
+            this.chkBold.Size = new System.Drawing.Size(298, 21);
             this.chkBold.TabIndex = 2;
             this.chkBold.UseVisualStyleBackColor = true;
             // 
@@ -293,7 +293,7 @@
             this.chkItalic.Dock = System.Windows.Forms.DockStyle.Top;
             this.chkItalic.Location = new System.Drawing.Point(0, 21);
             this.chkItalic.Name = "chkItalic";
-            this.chkItalic.Size = new System.Drawing.Size(308, 21);
+            this.chkItalic.Size = new System.Drawing.Size(298, 21);
             this.chkItalic.TabIndex = 1;
             this.chkItalic.UseVisualStyleBackColor = true;
             // 
@@ -303,7 +303,7 @@
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Location = new System.Drawing.Point(0, 0);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(308, 21);
+            this.txtName.Size = new System.Drawing.Size(298, 21);
             this.txtName.TabIndex = 0;
             // 
             // btnCancel

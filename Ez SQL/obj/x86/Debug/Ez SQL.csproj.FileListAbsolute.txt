@@ -58,3 +58,81 @@ C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csprojAssemblyReference.cache
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.CoreCompileInputs.cache
 C:\Gonzalo\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.CopyComplete
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.exe.config
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.exe
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.pdb
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\AddressBarExt.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\ClosedXML.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\ClosedXML.Parser.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\ColorPickerLib.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\DocumentFormat.OpenXml.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\DocumentFormat.OpenXml.Framework.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\ExcelNumberFormat.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\HDesarrollo.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\ICSharpCode.TextEditor.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\MagicLibrary.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\Microsoft.Bcl.HashCode.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\PopupControl.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\RBush.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\SixLabors.Fonts.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\System.Buffers.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\System.Memory.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\System.Numerics.Vectors.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\AxInterop.MSWinsockLib.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\OpenNETCF.Desktop.Communication.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\Yogesh.ExcelXml.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\Interop.NiceLabel5WR.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\Microsoft.Data.ConnectionUI.Dialog.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\Microsoft.Data.ConnectionUI.SqlCeDataProvider.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\Interop.MSWinsockLib.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\Yogesh.Extensions.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\Microsoft.Data.ConnectionUI.dll
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\AddressBarExt.pdb
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\ClosedXML.pdb
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\ClosedXML.xml
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\ClosedXML.Parser.xml
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\DocumentFormat.OpenXml.xml
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\DocumentFormat.OpenXml.Framework.xml
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\ExcelNumberFormat.xml
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\Microsoft.Bcl.HashCode.xml
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\PopupControl.xml
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\RBush.xml
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\SixLabors.Fonts.xml
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\System.Buffers.xml
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\System.Memory.xml
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\System.Numerics.Vectors.xml
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\Yogesh.ExcelXml.xml
+D:\Restart\Ez_SQL\Ez SQL\bin\Debug\Yogesh.Extensions.xml
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.AssemblyReference.cache
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.AdditionalForms.ObjectSearcher.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.ConxAdmin.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.InputBox.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.SQLConnectForm.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.CSharp.SharpCodeForm.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.AnimatedWaitTextBox.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.LoadingInfo.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.SideToSideLineComparer.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Custom_Controls.SideToSideTextComparer.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.DbComparer.DbComparer.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.EzConfig.ColorConfig.ConfigItemDialog.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.EzConfig.SyntaxColorsConfigurator.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ChildSelector.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.Dialogs.GenerateClass.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.Dialogs.GetString.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.Dialogs.NonQuerySp.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.Dialogs.QuerySp.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.ObjectSelector.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.SearchAndReplace.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.QueryLog.HistoricForm.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MainForm.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.MultiQueryForm.QueryForm.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Properties.Resources.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.SideToSideTester.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Snippets.SnippetEditor.resources
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.GenerateResource.cache
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.CoreCompileInputs.cache
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.Up2Date
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb

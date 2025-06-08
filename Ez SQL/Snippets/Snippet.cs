@@ -57,26 +57,26 @@ namespace Ez_SQL.Snippets
 
             Xw = XmlWriter.Create(Sb, new XmlWriterSettings() { Encoding = Encoding.UTF8, Indent = true, IndentChars = "    " }); 
             Xw.WriteStartDocument(false);
-            Xw.WriteStartElement("Snippet");
+                Xw.WriteStartElement("Snippet");
 
-            Xw.WriteStartElement("Name");
-            Xw.WriteString(Name);
-            Xw.WriteEndElement();
+                    Xw.WriteStartElement("Name");
+                    Xw.WriteString(Name);
+                    Xw.WriteEndElement();
 
-            Xw.WriteStartElement("ShortCut");
-            Xw.WriteString(ShortCut);
-            Xw.WriteEndElement();
+                    Xw.WriteStartElement("ShortCut");
+                    Xw.WriteString(ShortCut);
+                    Xw.WriteEndElement();
 
-            Xw.WriteStartElement("Description");
-            Xw.WriteString(Description);
-            Xw.WriteEndElement();
+                    Xw.WriteStartElement("Description");
+                    Xw.WriteString(Description);
+                    Xw.WriteEndElement();
 
 
-            Xw.WriteStartElement("Script");
-            Xw.WriteString(Script);
-            Xw.WriteEndElement();
+                    Xw.WriteStartElement("Script");
+                    Xw.WriteString(Script);
+                    Xw.WriteEndElement();
 
-            Xw.WriteEndElement();
+                Xw.WriteEndElement();
             Xw.WriteEndDocument();
             Xw.Flush();
             Xw.Close();

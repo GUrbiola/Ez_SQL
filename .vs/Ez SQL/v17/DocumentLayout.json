@@ -1,0 +1,429 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Restart\\Ez_SQL\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|d:\\restart\\ez_sql\\ez sql\\multiqueryform\\dialogs\\generateclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\dialogs\\generateclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\dialogs\\generateclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\dialogs\\generateclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\csharpform\\sharpcodeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\csharpform\\sharpcodeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\queryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\queryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\csharpform\\sharpcodeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\csharpform\\sharpcodeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\dialogs\\getstring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\dialogs\\getstring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\queryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\queryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\dialogs\\querysp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\dialogs\\querysp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\dialogs\\nonquerysp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\dialogs\\nonquerysp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\dialogs\\generateclassmodelsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\dialogs\\generateclassmodelsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\dialogs\\generatenonqueryspmodelsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\dialogs\\generatenonqueryspmodelsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\dialogs\\generatequeryspmodelsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\dialogs\\generatequeryspmodelsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\dialogs\\generateclass.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\dialogs\\generateclass.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\searchandreplace.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\searchandreplace.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\searchandreplace.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\searchandreplace.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\csharpform\\sharpcodeform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\csharpform\\sharpcodeform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\queryexecutor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\queryexecutor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\ezconfig\\colorconfig\\configitemdialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\ezconfig\\colorconfig\\configitemdialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\ezconfig\\syntaxcolorsconfigurator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\ezconfig\\syntaxcolorsconfigurator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\ezconfig\\syntaxcolorsconfigurator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\ezconfig\\syntaxcolorsconfigurator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\objectselector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\objectselector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|D:\\Restart\\Ez_SQL\\ez sql\\multiqueryform\\childselector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}|Ez SQL\\Ez SQL.csproj|solutionrelative:ez sql\\multiqueryform\\childselector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 213,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GenerateClass.cs",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClass.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClass.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClass.cs",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClass.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T23:35:59.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "QuerySp.cs [Design]",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\QuerySp.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\Dialogs\\QuerySp.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\QuerySp.cs [Design]",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\Dialogs\\QuerySp.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T08:27:20.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "NonQuerySp.cs [Design]",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\NonQuerySp.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\Dialogs\\NonQuerySp.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\NonQuerySp.cs [Design]*",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\Dialogs\\NonQuerySp.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T08:27:18.843Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GetString.cs [Design]",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\GetString.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\Dialogs\\GetString.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\GetString.cs [Design]",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\Dialogs\\GetString.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T08:27:16.97Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "GenerateQuerySpModelSettings.cs",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\GenerateQuerySpModelSettings.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\Dialogs\\GenerateQuerySpModelSettings.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\GenerateQuerySpModelSettings.cs",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\Dialogs\\GenerateQuerySpModelSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T08:27:15.26Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "GenerateNonQuerySpModelSettings.cs",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\GenerateNonQuerySpModelSettings.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\Dialogs\\GenerateNonQuerySpModelSettings.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\GenerateNonQuerySpModelSettings.cs",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\Dialogs\\GenerateNonQuerySpModelSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T08:27:14.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "GenerateClassModelSettings.cs",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClassModelSettings.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClassModelSettings.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClassModelSettings.cs",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClassModelSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T08:27:05.141Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GenerateClass.cs [Design]",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClass.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClass.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClass.cs [Design]",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClass.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T08:00:16.887Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "GenerateClass.Designer.cs",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClass.Designer.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClass.Designer.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClass.Designer.cs",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\Dialogs\\GenerateClass.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T08:00:06.855Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SharpCodeForm.cs",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\CSharpForm\\SharpCodeForm.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\CSharpForm\\SharpCodeForm.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\CSharpForm\\SharpCodeForm.cs",
+              "RelativeToolTip": "Ez SQL\\CSharpForm\\SharpCodeForm.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAswCcAAABpAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T12:52:27.511Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SharpCodeForm.cs [Design]",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\CSharpForm\\SharpCodeForm.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\CSharpForm\\SharpCodeForm.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\CSharpForm\\SharpCodeForm.cs [Design]",
+              "RelativeToolTip": "Ez SQL\\CSharpForm\\SharpCodeForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T12:49:09.637Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "SharpCodeForm.designer.cs",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\CSharpForm\\SharpCodeForm.designer.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\CSharpForm\\SharpCodeForm.designer.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\CSharpForm\\SharpCodeForm.designer.cs",
+              "RelativeToolTip": "Ez SQL\\CSharpForm\\SharpCodeForm.designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T12:48:58.413Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SearchAndReplace.cs",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\SearchAndReplace.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\SearchAndReplace.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\SearchAndReplace.cs*",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\SearchAndReplace.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T12:32:41.051Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MainForm.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MainForm.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MainForm.cs [Design]",
+              "RelativeToolTip": "Ez SQL\\MainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T16:47:25.817Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MainForm.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MainForm.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MainForm.cs",
+              "RelativeToolTip": "Ez SQL\\MainForm.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAvwF0AAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T15:32:56.184Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\Program.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\Program.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\Program.cs",
+              "RelativeToolTip": "Ez SQL\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T15:32:52.357Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "QueryExecutor.cs",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\QueryExecutor.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\QueryExecutor.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\QueryExecutor.cs",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\QueryExecutor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T14:43:55.372Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ConfigItemDialog.cs [Design]",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\EzConfig\\ColorConfig\\ConfigItemDialog.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\EzConfig\\ColorConfig\\ConfigItemDialog.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\EzConfig\\ColorConfig\\ConfigItemDialog.cs [Design]",
+              "RelativeToolTip": "Ez SQL\\EzConfig\\ColorConfig\\ConfigItemDialog.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T14:41:00.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "SyntaxColorsConfigurator.cs",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\EzConfig\\SyntaxColorsConfigurator.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\EzConfig\\SyntaxColorsConfigurator.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\EzConfig\\SyntaxColorsConfigurator.cs",
+              "RelativeToolTip": "Ez SQL\\EzConfig\\SyntaxColorsConfigurator.cs",
+              "ViewState": "AgIAAIUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T14:26:45.268Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "SyntaxColorsConfigurator.cs [Design]",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\EzConfig\\SyntaxColorsConfigurator.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\EzConfig\\SyntaxColorsConfigurator.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\EzConfig\\SyntaxColorsConfigurator.cs [Design]",
+              "RelativeToolTip": "Ez SQL\\EzConfig\\SyntaxColorsConfigurator.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T14:39:43.887Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "QueryForm.cs",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\QueryForm.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\QueryForm.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\QueryForm.cs",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\QueryForm.cs",
+              "ViewState": "AgIAAAsHAAAAAAAAAAAswD8HAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T14:38:10.16Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "SearchAndReplace.cs [Design]",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\SearchAndReplace.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\SearchAndReplace.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\SearchAndReplace.cs [Design]*",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\SearchAndReplace.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T14:27:41.784Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "QueryForm.cs [Design]",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\QueryForm.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\QueryForm.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\QueryForm.cs [Design]",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\QueryForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T14:27:40.256Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ObjectSelector.cs [Design]",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\ObjectSelector.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\ObjectSelector.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\ObjectSelector.cs [Design]",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\ObjectSelector.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T14:27:37.563Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "ChildSelector.cs [Design]",
+              "DocumentMoniker": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\ChildSelector.cs",
+              "RelativeDocumentMoniker": "Ez SQL\\MultiQueryForm\\ChildSelector.cs",
+              "ToolTip": "D:\\Restart\\Ez_SQL\\Ez SQL\\MultiQueryForm\\ChildSelector.cs [Design]",
+              "RelativeToolTip": "Ez SQL\\MultiQueryForm\\ChildSelector.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T14:27:34.537Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

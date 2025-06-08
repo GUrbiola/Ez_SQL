@@ -483,7 +483,7 @@ namespace Ez_SQL.Common_Code
                     }
                     else
                     {
-                        newSheet.Cell(curRow, curCol).Value = data.Rows[rowNum][colNum];
+                        newSheet.Cell(curRow, curCol).Value = data.Rows[rowNum][colNum].ToString();
                     }
 
                     if (Remarks != null && Remarks.Count > 0 && Remarks.Any(x => x.Row == curRow && x.Col == curCol))
@@ -491,7 +491,7 @@ namespace Ez_SQL.Common_Code
                         CellRemark remark = Remarks.FirstOrDefault(x => x.Row == curRow && x.Col == curCol);
                         newSheet.Cell(curRow, curCol).Style.SetCustomStyle(remark.Style);
                         if (String.IsNullOrEmpty(remark.Comment))
-                            newSheet.Cell(curRow, curCol).Comment.AddText(remark.Comment);
+                            newSheet.Cell(curRow, curCol).CreateComment().AddText(remark.Comment);
                     }
 
                     curCol++;

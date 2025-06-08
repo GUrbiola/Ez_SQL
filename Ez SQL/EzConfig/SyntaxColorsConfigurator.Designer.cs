@@ -180,13 +180,13 @@
             this.closeAllToolStripMenuItem,
             this.closeAllButThisToolStripMenuItem});
             this.ThisTabMenu.Name = "ThisTabMenu";
-            this.ThisTabMenu.Size = new System.Drawing.Size(167, 70);
+            this.ThisTabMenu.Size = new System.Drawing.Size(166, 70);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Image = global::Ez_SQL.Properties.Resources.Delete_24;
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -194,7 +194,7 @@
             // 
             this.closeAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("closeAllToolStripMenuItem.Image")));
             this.closeAllToolStripMenuItem.Name = "closeAllToolStripMenuItem";
-            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.closeAllToolStripMenuItem.Text = "Close All";
             this.closeAllToolStripMenuItem.Click += new System.EventHandler(this.closeAllToolStripMenuItem_Click);
             // 
@@ -202,7 +202,7 @@
             // 
             this.closeAllButThisToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("closeAllButThisToolStripMenuItem.Image")));
             this.closeAllButThisToolStripMenuItem.Name = "closeAllButThisToolStripMenuItem";
-            this.closeAllButThisToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeAllButThisToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.closeAllButThisToolStripMenuItem.Text = "Close All But This";
             this.closeAllButThisToolStripMenuItem.Click += new System.EventHandler(this.closeAllButThisToolStripMenuItem_Click);
             // 
