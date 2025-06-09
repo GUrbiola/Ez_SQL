@@ -1,9 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.36107.64
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ez SQL", "Ez SQL\Ez SQL.csproj", "{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Ez SQL Setup", "Ez SQL Setup\Ez SQL Setup.vdproj", "{51A37041-6B41-4C09-A7DE-F85DB57DA9A9}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Ez SQL Installer", "Ez SQL Installer\Ez SQL Installer.vdproj", "{4B4AE8F3-D3E5-4F43-84B0-064365D189FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,15 +17,16 @@ Global
 		{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}.Debug|x86.Build.0 = Debug|x86
 		{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}.Release|x86.ActiveCfg = Release|x86
 		{B6209F85-E4FA-4C15-8DB8-4B20C3E82923}.Release|x86.Build.0 = Release|x86
-		{51A37041-6B41-4C09-A7DE-F85DB57DA9A9}.Debug|x86.ActiveCfg = Debug
-		{51A37041-6B41-4C09-A7DE-F85DB57DA9A9}.Release|x86.ActiveCfg = Release
+		{4B4AE8F3-D3E5-4F43-84B0-064365D189FA}.Debug|x86.ActiveCfg = Debug
+		{4B4AE8F3-D3E5-4F43-84B0-064365D189FA}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_BuildVersioningStyle = YearStamp.MonthStamp.DayStamp.Increment
-		BuildVersion_UpdateFileVersion = True
 		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_UpdateFileVersion = True
+		BuildVersion_BuildVersioningStyle = YearStamp.MonthStamp.DayStamp.Increment
+		SolutionGuid = {908FFB6C-0236-4A5C-9BED-F030F99BCEBF}
 	EndGlobalSection
 EndGlobal

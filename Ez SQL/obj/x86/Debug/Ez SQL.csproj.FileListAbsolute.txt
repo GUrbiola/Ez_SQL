@@ -133,6 +133,6 @@ D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.SideToSideTester.resources
 D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez_SQL.Snippets.SnippetEditor.resources
 D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.GenerateResource.cache
 D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.CoreCompileInputs.cache
-D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.Up2Date
+D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.CopyComplete
 D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
 D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
