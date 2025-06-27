@@ -1,41 +1,41 @@
 <?xml version = "1.0"?>
-<SyntaxDefinition name = "TurboC" extensions = ".sql">
+<SyntaxDefinition name = "SQL" extensions = ".sql">
     <Environment>
-        <Default color="#FFFFFF" bgcolor="#0000AE"/>
+        <Default color="#DFDFBF" bgcolor="#333333"/>
         <VRuler color = "#0000FF"/>
-        <Selection bgcolor="#06AFB1"/>
-        <LineNumbers color="#3FBEBF" bgcolor="#0000AE"/>
+        <Selection bgcolor="#999999"/>
+        <LineNumbers color="#798D5F" bgcolor="#333333"/>
         <InvalidLines color = "#FF0000"/>
         <EOLMarkers color = "#FFFFFF"/>
         <SpaceMarkers color = "#E0E0E5"/>
         <TabMarkers color = "#E0E0E5"/>
         <CaretMarker color = "#FFFF00"/>
         <FoldLine color = "#808080" bgcolor="#000000"/>
-        <FoldMarker color = "#808080" bgcolor="#0000AE"/>
+        <FoldMarker color = "#808080" bgcolor="#333333"/>
     </Environment>
 
     <Properties>
         <Property name="LineComment" value="--"/>
     </Properties>
-    <Digits name="Digits" bold="true" italic="false" color="#CBCBF3"/>
+    <Digits name="Digits" bold="true" italic="false" color="#5085BE"/>
     <RuleSets>
         <RuleSet ignorecase="true">
             <Delimiters>=!&gt;&lt;+-/*%&amp;|^~.}{,;][?:()</Delimiters>
-            <Span name="LineComment" rule="SpecialComments" bold="false" italic="true" color="#2897C1" stopateol="true" >
+            <Span name="LineComment" rule="SpecialComments" bold="false" italic="true" color="#7A8756" stopateol="true" >
                 <Begin>--</Begin>
             </Span>
 
-            <Span name="BlockComment" bold="false" italic="true" color="#2898C1" stopateol ="false" >
+            <Span name="BlockComment" bold="false" italic="true" color="#7A8756" stopateol ="false" >
                 <Begin>/*</Begin>
                 <End>*/</End>
             </Span>
 
-            <Span name="String" bold="true" italic="false" color="#C6174B" stopateol ="false" >
+            <Span name="String" bold="true" italic="false" color="#FF0012" stopateol ="false" >
                 <Begin>&apos;</Begin>
                 <End>&apos;</End>
             </Span>
 
-            <KeyWords name="JoinKeywords" bold="true" italic="false" color="#5FE88F" >
+            <KeyWords name="JoinKeywords" bold="true" italic="false" color="#808080" >
                 <Key word="INNER" />
                 <Key word="JOIN" />
                 <Key word="LEFT" />
@@ -50,11 +50,11 @@
                 <Key word="MERGE" />
             </KeyWords>
 
-            <KeyWords name="AliasKeywords" bold="true" italic="false" color="#FD6345" >
+            <KeyWords name="AliasKeywords" bold="true" italic="false" color="#EFC985" >
                 <Key word="AS" />
             </KeyWords>
 
-            <KeyWords name="ComparisonKeyWords" bold="true" italic="true" color="#E7FF40" >
+            <KeyWords name="ComparisonKeyWords" bold="true" italic="false" color="#808080" >
                 <Key word="AND" />
                 <Key word="OR" />
                 <Key word="LIKE" />
@@ -62,37 +62,37 @@
                 <Key word="EXISTS" />
             </KeyWords>
 
-            <KeyWords name="DestructiveKeyWords" bold="true" italic="false" color="#FF1111" >
+            <KeyWords name="DestructiveKeyWords" bold="true" italic="false" color="#00FF3E" >
                 <Key word="DROP" />
                 <Key word="DELETE" />
                 <Key word="TRUNCATE" />
             </KeyWords>
 
-            <KeyWords name="RestrictiveKeywords" bold="true" italic="false" color="#08D625" >
+            <KeyWords name="RestrictiveKeywords" bold="true" italic="false" color="#92C75A" >
                 <Key word="TOP" />
                 <Key word="DISTINCT" />
                 <Key word="LIMIT" />
             </KeyWords>
 
-            <KeyWords name="DeclarativeKeywords" bold="true" italic="false" color="#55FB57" >
+            <KeyWords name="DeclarativeKeywords" bold="true" italic="false" color="#93C763" >
                 <Key word="DECLARE" />
                 <Key word="BEGIN" />
                 <Key word="END" />
             </KeyWords>
 
-            <KeyWords name="TransactionKeyWords" bold="true" italic="false" color="#F7B053" >
+            <KeyWords name="TransactionKeyWords" bold="true" italic="false" color="#93C763" >
                 <Key word="COMMMIT" />
                 <Key word="ROLLBACK" />
                 <Key word="TRANSACTION" />
             </KeyWords>
 
-            <KeyWords name="DebugKeyWords" bold="true" italic="false" color="#289928" >
+            <KeyWords name="DebugKeyWords" bold="true" italic="false" color="#93C763" >
                 <Key word="TRY" />
                 <Key word="CATCH" />
                 <Key word="RAISERROR" />
             </KeyWords>
 
-            <KeyWords name="CursorKeyWords" bold="true" italic="false" color="#19DCFF" >
+            <KeyWords name="CursorKeyWords" bold="true" italic="false" color="#86C763" >
                 <Key word="FOR" />
                 <Key word="OPEN" />
                 <Key word="FETCH" />
@@ -101,7 +101,7 @@
                 <Key word="DEALLOCATE" />
             </KeyWords>
 
-            <KeyWords name="SQLKeyWords" bold="false" italic="false" color="#6FE875" >
+            <KeyWords name="SQLKeyWords" bold="true" italic="false" color="#808071" >
                 <Key word="NOT" />
                 <Key word="SET" />
                 <Key word="DESC" />
@@ -115,7 +115,7 @@
                 <Key word="BY" />
             </KeyWords>
 
-            <KeyWords name="SQLActionKeyWords" bold="true" italic="false" color="#FDFF00" >
+            <KeyWords name="SQLActionKeyWords" bold="true" italic="false" color="#93C356" >
                 <Key word="INSERT" />
                 <Key word="SELECT" />
                 <Key word="UPDATE" />
@@ -130,7 +130,7 @@
                 <Key word="INTO" />
             </KeyWords>
 
-            <KeyWords name="SQLTypes" bold="true" italic="false" color="#A6FF9A" >
+            <KeyWords name="SQLTypes" bold="true" italic="false" color="#93C763" >
                 <Key word="BIGINT" />
                 <Key word="NUMERIC" />
                 <Key word="BIT" />
@@ -166,7 +166,7 @@
                 <Key word="SYSNAME" />
             </KeyWords>
 
-            <KeyWords name="SqlObjects" bold="true" italic="true" color="#FF9F00" >
+            <KeyWords name="SqlObjects" bold="true" italic="true" color="#93C051" >
                 <Key word="TABLE" />
                 <Key word="PROC" />
                 <Key word="PROCEDURE" />
@@ -177,7 +177,7 @@
                 <Key word="DATABASE" />
             </KeyWords>
 
-            <KeyWords name="FlowControlKeyWords" bold="true" italic="true" color="#818181" >
+            <KeyWords name="FlowControlKeyWords" bold="true" italic="true" color="#93C65F" >
                 <Key word="IF" />
                 <Key word="ELSE" />
                 <Key word="CASE" />
@@ -191,7 +191,7 @@
                 <Key word="BREAK" />
             </KeyWords>
 
-            <KeyWords name="SpecialKeywords" bold="true" italic="false" color="#00FEFF" >
+            <KeyWords name="SpecialKeywords" bold="true" italic="false" color="#93C356" >
                 <Key word="GO" />
                 <Key word="NOCOUNT" />
                 <Key word="OFF" />
@@ -201,7 +201,7 @@
                 <Key word="LEVEL" />
             </KeyWords>
 
-            <KeyWords name="SpecialConstructionKeywords" bold="true" italic="true" color="#FFFFFF" >
+            <KeyWords name="SpecialConstructionKeywords" bold="true" italic="false" color="#93C763" >
                 <Key word="CHECK" />
                 <Key word="NOCHECK" />
                 <Key word="CONSTRAINT" />
@@ -212,7 +212,7 @@
                 <Key word="IDENTITY" />
             </KeyWords>
 
-            <KeyWords name="TSqlFlags" bold="true" italic="false" color="#BFFF00" >
+            <KeyWords name="TSqlFlags" bold="true" italic="false" color="#93C763" >
                 <Key word="XACT_ABORT" />
                 <Key word="SERIALIZABLE" />
                 <Key word="NUMERIC_ROUNDABORT" />
@@ -227,20 +227,20 @@
                 <Key word="READ" />
             </KeyWords>
 
-            <KeyWords name="Punctuation" bold="true" italic="false" color="#BF3FBE" >
+            <KeyWords name="Punctuation" bold="false" italic="false" color="#808080" >
                 <Key word="(" />
                 <Key word=")" />
                 <Key word="[" />
                 <Key word="]" />
             </KeyWords>
 
-            <KeyWords name="ComparisonOperators" bold="true" italic="false" color="#40FF57" >
-                <Key word="&lt;" />
+            <KeyWords name="ComparisonOperators" bold="true" italic="false" color="#808080" >
+                <Key word="&amp;lt;" />
                 <Key word="&gt;" />
                 <Key word="=" />
             </KeyWords>
 
-            <KeyWords name="TransactSQLFunctions" bold="true" italic="false" color="#00EDF4" >
+            <KeyWords name="TransactSQLFunctions" bold="true" italic="false" color="#FFBE00" >
                 <Key word="PRINT" />
                 <Key word="STUFF" />
                 <Key word="SUBSTRING" />
@@ -262,7 +262,7 @@
                 <Key word="OVER" />
             </KeyWords>
 
-            <KeyWords name="GroupByFunctions" bold="true" italic="false" color="#5B5B5B" >
+            <KeyWords name="GroupByFunctions" bold="true" italic="false" color="#FF00FE" >
                 <Key word="AVG" />
                 <Key word="MIN" />
                 <Key word="CHECKSUM_AGG" />
@@ -278,7 +278,7 @@
                 <Key word="MAX" />
             </KeyWords>
 
-            <KeyWords name="SystemTables" bold="true" italic="false" color="#FF0000" >
+            <KeyWords name="SystemTables" bold="true" italic="false" color="#AFFFB5" >
                 <Key word="SYSALTFILES" />
                 <Key word="SYSLOCKINFO" />
                 <Key word="SYSCACHEOBJECTS" />
@@ -325,19 +325,17 @@
                 <Key word="SYSTARGETSERVERS" />
                 <Key word="SYSJOBSERVERS" />
                 <Key word="SYSTASKIDS" />
-                <Key word="SYSDATABASES" />
-                <Key word="SYSSERVERS" />
             </KeyWords>
 
         </RuleSet>
 
-        <RuleSet name="SpecialComments" ignorecase="true">
-            <Delimiters>=!&gt;&lt;+-/*%&amp;|^~.}{,;][?()</Delimiters>
-            <KeyWords name="QueryName" bold="true" italic="false" color="#FFFFFF" >
+        <RuleSet name="SpecialComments" ignorecase="false">
+            <Delimiters>=!&gt;&lt;+-/*%&amp;|^~.}{,;][?:()</Delimiters>
+            <KeyWords name="QueryName" bold="true" italic="false" color="#191970" >
                 <Key word="NAME:" />
             </KeyWords>
 
-            <KeyWords name="UserFlags" bold="true" italic="false" color="#B0E2A9" >
+            <KeyWords name="UserFlags" bold="true" italic="false" color="#FF0000" >
                 <Key word="HACK" />
                 <Key word="TODO" />
                 <Key word="FIXME" />

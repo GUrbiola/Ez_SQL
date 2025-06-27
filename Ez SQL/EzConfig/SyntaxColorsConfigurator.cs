@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
+﻿using Ez_SQL.Common_Code;
 using Ez_SQL.DataBaseObjects;
-using Ez_SQL.Common_Code;
 using Ez_SQL.EzConfig.ColorConfig;
 using Ez_SQL.EzConfig.ColorConfig.Nodes;
+using Ez_SQL.Properties;
 using ICSharpCode.TextEditor.Document;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Resources;
+using System.Windows.Forms;
 
 namespace Ez_SQL.EzConfig
 {
@@ -42,9 +46,37 @@ namespace Ez_SQL.EzConfig
             #endregion
 
             colorConfig = new TextEditorColorConfig(MainForm.DataStorageDir + "\\SintaxHighLight\\SQL.xshd");
+            LoadDropDown();
             LoadTree();
             cmbStyles.SelectedIndex = 0;
         }
+
+        private void LoadDropDown()
+        {
+            ResourceManager MyResourceClass = new ResourceManager(typeof(Resources));
+            ResourceSet resourceSet = SyntaxHighlightingThemes.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+
+            cmbStyles.Items.Clear();
+            cmbStyles.Items.Add("Current Style");
+            cmbStyles.Items.Add("Default Style");
+            List<string> styles = new List<string>();
+
+
+            foreach (DictionaryEntry entry in resourceSet)
+            {
+                string resourceKey = entry.Key.ToString();
+                if(resourceKey.Contains("-"))
+                {
+                    resourceKey = resourceKey.Replace("SQL-", "");
+                    styles.Add(resourceKey);
+                }
+            }
+
+            styles.Sort();
+            foreach (string style in styles)
+                cmbStyles.Items.Add(style);
+        }
+
         private void LoadTree()
         {
             syntaxTreeView.Nodes.Clear();
@@ -305,28 +337,31 @@ namespace Ez_SQL.EzConfig
                         LoadTree();
                         btnRefreshPreview_Click(null, null);
                         break;
-                    case 2:
-                        using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\Preview.xshd", MainForm.DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                    //case 2:
+                    //    using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\Preview.xshd", MainForm.DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                    //    {
+                    //        Writer.Write(Properties.Resources.Almost_Son_of_Obsidian, 0, Properties.Resources.Almost_Son_of_Obsidian.Length);
+                    //        Writer.Close();
+                    //    }
+                    //    break;
+                    default:
+                        string resourceName = $"SQL-{cmbStyles.Text}";
+                        ResourceManager MyResourceClass = new ResourceManager(typeof(Resources));
+                        ResourceSet resourceSet = SyntaxHighlightingThemes.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+                        foreach (DictionaryEntry entry in resourceSet)
                         {
-                            Writer.Write(Properties.Resources.Almost_Son_of_Obsidian, 0, Properties.Resources.Almost_Son_of_Obsidian.Length);
-                            Writer.Close();
+                            string resourceKey = entry.Key.ToString();
+                            if(resourceKey == resourceName)
+                            {
+                                using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\Preview.xshd", MainForm.DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                                {
+                                    Writer.Write((byte[])entry.Value, 0, ((byte[])entry.Value).Length);
+                                    Writer.Close();
+                                }
+                                break;
+                            }
                         }
                         break;
-                    case 3:
-                        using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\Preview.xshd", MainForm.DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
-                        {
-                            Writer.Write(Properties.Resources.Almost_Selenitic, 0, Properties.Resources.Almost_Selenitic.Length);
-                            Writer.Close();
-                        }
-                        break;
-                    case 4:
-                        using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\Preview.xshd", MainForm.DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
-                        {
-                            Writer.Write(Properties.Resources.TurboC, 0, Properties.Resources.TurboC.Length);
-                            Writer.Close();
-                        }
-                        break;
-
                 }
                 colorConfig = new TextEditorColorConfig(MainForm.DataStorageDir + "\\SintaxHighLight\\Preview.xshd");
                 LoadTree();

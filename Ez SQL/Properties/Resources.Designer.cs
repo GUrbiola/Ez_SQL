@@ -81,26 +81,6 @@ namespace Ez_SQL.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] Almost_Selenitic {
-            get {
-                object obj = ResourceManager.GetObject("Almost_Selenitic", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] Almost_Son_of_Obsidian {
-            get {
-                object obj = ResourceManager.GetObject("Almost_Son_of_Obsidian", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap AppConfig {
@@ -970,16 +950,6 @@ namespace Ez_SQL.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] SQL {
-            get {
-                object obj = ResourceManager.GetObject("SQL", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Star {
@@ -1065,16 +1035,6 @@ namespace Ez_SQL.Properties {
         public static byte[] Truncate_Table {
             get {
                 object obj = ResourceManager.GetObject("Truncate_Table", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] TurboC {
-            get {
-                object obj = ResourceManager.GetObject("TurboC", resourceCulture);
                 return ((byte[])(obj));
             }
         }

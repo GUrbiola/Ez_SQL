@@ -317,7 +317,7 @@ namespace Ez_SQL
             {
                 using (FileStream Writer = new FileStream(String.Format("{0}\\SintaxHighLight\\SQL.xshd", DataStorageDir), System.IO.FileMode.Create, System.IO.FileAccess.Write))
                 {
-                    Writer.Write(Properties.Resources.SQL, 0, Properties.Resources.SQL.Length);
+                    Writer.Write(SyntaxHighlightingThemes.SQL, 0, SyntaxHighlightingThemes.SQL.Length);
                     Writer.Close();
                 }
             }

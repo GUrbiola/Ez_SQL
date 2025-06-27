@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuerySp));
             this.wizardControl1 = new Crownwood.Magic.Controls.WizardControl();
             this.TypeOfReturnData = new Crownwood.Magic.Controls.WizardPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radSPR = new System.Windows.Forms.RadioButton();
             this.radList = new System.Windows.Forms.RadioButton();
             this.radOnlyOne = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -48,7 +50,6 @@
             this.chkLogExc = new System.Windows.Forms.CheckBox();
             this.chkLogEnd = new System.Windows.Forms.CheckBox();
             this.chkLogStart = new System.Windows.Forms.CheckBox();
-            this.radSPR = new System.Windows.Forms.RadioButton();
             this.TypeOfReturnData.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -60,6 +61,7 @@
             this.wizardControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wizardControl1.Location = new System.Drawing.Point(0, 0);
             this.wizardControl1.Name = "wizardControl1";
+            this.wizardControl1.Picture = ((System.Drawing.Image)(resources.GetObject("wizardControl1.Picture")));
             this.wizardControl1.SelectedIndex = 0;
             this.wizardControl1.Size = new System.Drawing.Size(709, 462);
             this.wizardControl1.TabIndex = 0;
@@ -94,6 +96,16 @@
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Return Count";
+            // 
+            // radSPR
+            // 
+            this.radSPR.AutoSize = true;
+            this.radSPR.Location = new System.Drawing.Point(20, 93);
+            this.radSPR.Name = "radSPR";
+            this.radSPR.Size = new System.Drawing.Size(124, 23);
+            this.radSPR.TabIndex = 2;
+            this.radSPR.Text = "SPR_Collection";
+            this.radSPR.UseVisualStyleBackColor = true;
             // 
             // radList
             // 
@@ -287,16 +299,6 @@
             this.chkLogStart.TabIndex = 8;
             this.chkLogStart.Text = "Log Start Execution";
             this.chkLogStart.UseVisualStyleBackColor = true;
-            // 
-            // radSPR
-            // 
-            this.radSPR.AutoSize = true;
-            this.radSPR.Location = new System.Drawing.Point(20, 93);
-            this.radSPR.Name = "radSPR";
-            this.radSPR.Size = new System.Drawing.Size(124, 23);
-            this.radSPR.TabIndex = 2;
-            this.radSPR.Text = "SPR_Collection";
-            this.radSPR.UseVisualStyleBackColor = true;
             // 
             // QuerySp
             // 

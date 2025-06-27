@@ -145,7 +145,11 @@
             "Default",
             "Son of Obsidian",
             "Selenitic",
-            "Old Timer(Turbo C)"});
+            "Old Timer(Turbo C)",
+            "SQL Dark",
+            "SQL Monokai",
+            "SQL Solarized",
+            "SQL Dracula"});
             this.cmbStyles.Location = new System.Drawing.Point(0, 13);
             this.cmbStyles.Name = "cmbStyles";
             this.cmbStyles.Size = new System.Drawing.Size(420, 21);

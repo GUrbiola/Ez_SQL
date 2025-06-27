@@ -347,6 +347,11 @@
       <DependentUpon>SnippetEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Snippets\SnippetInnerObject.cs" />
+    <Compile Include="SyntaxHighlightingThemes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SyntaxHighlightingThemes.resx</DependentUpon>
+    </Compile>
     <Compile Include="TextEditorClasses\FoldingStrategy.cs" />
     <Compile Include="TextEditorClasses\FormatStrategy.cs" />
     <Compile Include="Token.cs" />
@@ -434,6 +439,10 @@
     <EmbeddedResource Include="Snippets\SnippetEditor.resx">
       <DependentUpon>SnippetEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SyntaxHighlightingThemes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SyntaxHighlightingThemes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="bin\Debug\SintaxHighLight\SQL.xshd" />
     <None Include="bin\Debug\Snippets\Begin - end.snp" />
@@ -491,8 +500,6 @@
     <None Include="Resources\AddConnection.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Almost Selenitic.xshd" />
-    <None Include="Resources\Almost Son of Obsidian.xshd" />
     <None Include="Resources\AppIcon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -609,14 +616,12 @@
     <None Include="Resources\Select some from.snp" />
     <None Include="Resources\Select top records.snp" />
     <None Include="Resources\select.snp" />
-    <None Include="Resources\SQL.xshd" />
     <None Include="Resources\Stop.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Table Sizes.snp" />
     <None Include="Resources\Transaction.snp" />
     <None Include="Resources\Truncate Table.snp" />
-    <None Include="Resources\TurboC.xshd" />
     <None Include="Resources\UnComment.png" />
   </ItemGroup>
   <ItemGroup>
@@ -680,7 +685,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="YearStamp.MonthStamp.DayStamp.Increment" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" />
+      <UserProperties BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="YearStamp.MonthStamp.DayStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

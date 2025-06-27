@@ -325,8 +325,6 @@
                 <Key word="SYSTARGETSERVERS" />
                 <Key word="SYSJOBSERVERS" />
                 <Key word="SYSTASKIDS" />
-                <Key word="SYSDATABASES" />
-                <Key word="SYSSERVERS" />
             </KeyWords>
 
         </RuleSet>

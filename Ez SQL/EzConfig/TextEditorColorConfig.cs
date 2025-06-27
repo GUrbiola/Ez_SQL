@@ -594,9 +594,7 @@ namespace Ez_SQL.EzConfig
                             "SYSJOBSCHEDULES",
                             "SYSTARGETSERVERS",
                             "SYSJOBSERVERS",
-                            "SYSTASKIDS",
-                            "SYSDATABASES",
-                            "SYSSERVERS"
+                            "SYSTASKIDS"
                         }
                 };
             Rl1.Rules.Add(SystemTables);

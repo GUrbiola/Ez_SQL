@@ -2131,7 +2131,6 @@ namespace Ez_SQL.MultiQueryForm
         //Generate C# class from the first query on the current query form
         private void generateClassFromQueryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             string script = Query.Text;
             DataTable buffer = DataProvider.ExecuteTable(script);
 
@@ -2171,8 +2170,6 @@ namespace Ez_SQL.MultiQueryForm
                     }
                 }
             }
-
-
         }
 
 
