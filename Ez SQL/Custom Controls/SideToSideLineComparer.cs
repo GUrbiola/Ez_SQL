@@ -131,6 +131,77 @@ namespace Ez_SQL.Custom_Controls
 
         }
 
+        public void LoadTokenizers(string txt1, string txt2)
+        {
+            Line1.Text = "";
+            Line2.Text = "";
+
+            DiffListLineToken t1, t2;
+
+            List<Tuple<string, LineHighlight>> finalT1 = new List<Tuple<string, LineHighlight>>();
+            List<Tuple<string, LineHighlight>> finalT2 = new List<Tuple<string, LineHighlight>>();
+
+            t1 = new DiffListLineToken(txt1);
+            t2 = new DiffListLineToken(txt2);
+
+            DiffEngine Engine = new DiffEngine();
+            Engine.ProcessDiff(t1, t2, DiffEngineLevel.SlowPerfect);
+            ArrayList rep = Engine.DiffReport();
+
+            foreach (DiffResultSpan drs in rep)
+            {
+                switch (drs.Status)
+                {
+                    case DiffResultSpanStatus.DeleteSource:
+                        for (int i = 0; i < drs.Length; i++)
+                        {
+                            string h1 = t1.GetByIndex(drs.SourceIndex + i).ToString();
+                            string h2 = "".PadLeft(h1.Length);
+                            finalT1.Add(new Tuple<string, LineHighlight>(h1, LineHighlight.Remove));
+                            finalT2.Add(new Tuple<string, LineHighlight>(h2, LineHighlight.Missing));
+                        }
+                        break;
+                    case DiffResultSpanStatus.NoChange:
+                        for (int i = 0; i < drs.Length; i++)
+                        {
+                            string h1 = t1.GetByIndex(drs.SourceIndex + i).ToString();
+                            string h2 = t2.GetByIndex(drs.DestIndex + i).ToString();
+
+                            finalT1.Add(new Tuple<string, LineHighlight>(h1, LineHighlight.None));
+                            finalT2.Add(new Tuple<string, LineHighlight>(h2, LineHighlight.None));
+                        }
+                        break;
+                    case DiffResultSpanStatus.AddDestination:
+                        for (int i = 0; i < drs.Length; i++)
+                        {
+                            string h2 = t2.GetByIndex(drs.DestIndex + i).ToString();
+                            string h1 = "".PadLeft(h2.Length);
+                            finalT1.Add(new Tuple<string, LineHighlight>(h1, LineHighlight.Missing));
+                            finalT2.Add(new Tuple<string, LineHighlight>(h2, LineHighlight.Add));
+                        }
+
+                        break;
+                    case DiffResultSpanStatus.Replace:
+                        for (int i = 0; i < drs.Length; i++)
+                        {
+                            string h1 = t1.GetByIndex(drs.SourceIndex + i).ToString();
+                            string h2 = t2.GetByIndex(drs.DestIndex + i).ToString();
+                            finalT1.Add(new Tuple<string, LineHighlight>(h1, LineHighlight.Update));
+                            finalT2.Add(new Tuple<string, LineHighlight>(h2, LineHighlight.Update));
+                        }
+                        break;
+                }
+            }
+
+            LoadDiffResults(Line1, finalT1);
+            LoadDiffResults(Line2, finalT2);
+
+            Line1.Refresh();
+            Line2.Refresh();
+
+        }
+
+
         private void LoadDiffResults(TextEditorControl txtEditor, List<Tuple<char, LineHighlight>> diffResults)
         {
             StringBuilder buff = new StringBuilder();
@@ -157,6 +228,37 @@ namespace Ez_SQL.Custom_Controls
                     default:
                         break;
                 }
+            }
+        }
+
+        private void LoadDiffResults(TextEditorControl txtEditor, List<Tuple<string, LineHighlight>> diffResults)
+        {
+            StringBuilder buff = new StringBuilder();
+            foreach (Tuple<string, LineHighlight> t in diffResults)
+            {
+                buff.Append(t.Item1);
+            }
+            txtEditor.Text = buff.ToString();
+
+
+            int startPos = 0;
+            for (int i = 0; i < diffResults.Count; i++)
+            {
+                switch (diffResults[i].Item2)
+                {
+                    case LineHighlight.Add:
+                    case LineHighlight.Remove:
+                    case LineHighlight.Update:
+                        txtEditor.SetMarker(startPos, diffResults[i].Item1.Length, Color.Khaki);
+                        break;
+                    case LineHighlight.Missing:
+                        txtEditor.SetMarker(startPos, diffResults[i].Item1.Length, Color.Gainsboro);
+                        break;
+                    case LineHighlight.None:
+                    default:
+                        break;
+                }
+                startPos += diffResults[i].Item1.Length;
             }
         }
 

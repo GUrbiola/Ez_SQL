@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using AddressBarExt;
 using System.Drawing;
 using Ez_SQL.ConnectionManagement;
+using Ez_SQL.Custom_Controls.AddressBarExt;
 
 
 namespace Ez_SQL.ConnectionBarNodes
@@ -10,7 +10,7 @@ namespace Ez_SQL.ConnectionBarNodes
 	/// <summary>
 	/// Description of ConxNode.
 	/// </summary>
-	public class ConxNode : AddressBarExt.IAddressNode
+	public class ConxNode : Ez_SQL.Custom_Controls.AddressBarExt.IAddressNode
 	{
 
         #region Class Variables

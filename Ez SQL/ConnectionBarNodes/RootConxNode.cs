@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using AddressBarExt;
 using System.Drawing;
 using Ez_SQL.ConnectionManagement;
+using Ez_SQL.Custom_Controls.AddressBarExt;
 
 namespace Ez_SQL.ConnectionBarNodes
 {
 	/// <summary>
 	/// Description of RootConxNode.
 	/// </summary>
-	public class RootConxNode : AddressBarExt.IAddressNode
+	public class RootConxNode : Custom_Controls.AddressBarExt.IAddressNode
 	{
 	
         #region Class Variables

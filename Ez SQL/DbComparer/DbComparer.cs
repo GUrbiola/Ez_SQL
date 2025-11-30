@@ -17,8 +17,8 @@ namespace Ez_SQL.DbComparer
 {
     public partial class DbComparer : WeifenLuo.WinFormsUI.Docking.DockContent
     {
-        private AddressBarExt.Controls.AddressBarExt AdBarSource = null;
-        private AddressBarExt.Controls.AddressBarExt AdBarDestination = null;
+        private Custom_Controls.AddressBarExt.AddressBar AdBarSource = null;
+        private Custom_Controls.AddressBarExt.AddressBar AdBarDestination = null;
         private SqlConnector sourceConx;
         private SqlConnector destinationConx;
         private List<DifferenceModel> differencesFound;
@@ -38,7 +38,7 @@ namespace Ez_SQL.DbComparer
             Connectors = new List<SqlConnector>();
 
             #region Connection Bar (Source)
-            AdBarSource = new AddressBarExt.Controls.AddressBarExt();
+            AdBarSource = new Custom_Controls.AddressBarExt.AddressBar();
             this.AdBarSource.BackColor = System.Drawing.Color.White;
             this.AdBarSource.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.AdBarSource.CurrentNode = null;
@@ -52,7 +52,7 @@ namespace Ez_SQL.DbComparer
             this.AdBarSource.SelectedStyle = ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline)));
             this.AdBarSource.Size = new System.Drawing.Size(482, 31);
             this.AdBarSource.TabIndex = 2;
-            this.AdBarSource.SelectionChange += new AddressBarExt.Controls.AddressBarExt.SelectionChanged(SourceConnectionChange);
+            this.AdBarSource.SelectionChange += new Custom_Controls.AddressBarExt.AddressBar.SelectionChanged(SourceConnectionChange);
 
             ToolStripControlHost Helper = new ToolStripControlHost(AdBarSource);
             Helper.Width = 350;
@@ -60,7 +60,7 @@ namespace Ez_SQL.DbComparer
             #endregion
 
             #region Connection Bar (Destination)
-            AdBarDestination = new AddressBarExt.Controls.AddressBarExt();
+            AdBarDestination = new Custom_Controls.AddressBarExt.AddressBar();
             this.AdBarDestination.BackColor = System.Drawing.Color.White;
             this.AdBarDestination.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.AdBarDestination.CurrentNode = null;
@@ -74,7 +74,7 @@ namespace Ez_SQL.DbComparer
             this.AdBarDestination.SelectedStyle = ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline)));
             this.AdBarDestination.Size = new System.Drawing.Size(482, 31);
             this.AdBarDestination.TabIndex = 2;
-            this.AdBarDestination.SelectionChange += new AddressBarExt.Controls.AddressBarExt.SelectionChanged(DestinationConnectionChange);
+            this.AdBarDestination.SelectionChange += new Custom_Controls.AddressBarExt.AddressBar.SelectionChanged(DestinationConnectionChange);
 
 
             ToolStripControlHost Helper1 = new ToolStripControlHost(AdBarDestination);
@@ -92,7 +92,7 @@ namespace Ez_SQL.DbComparer
         #endregion
 
         #region Control Events
-        private void DestinationConnectionChange(object sender, AddressBarExt.Controls.NodeChangedArgs nca)
+        private void DestinationConnectionChange(object sender, Custom_Controls.AddressBarExt.NodeChangedArgs nca)
         {
             string[] Data;
             if (nca.OUniqueID.ToString().Contains("Name"))
@@ -119,7 +119,7 @@ namespace Ez_SQL.DbComparer
             }
         }
 
-        private void SourceConnectionChange(object sender, AddressBarExt.Controls.NodeChangedArgs nca)
+        private void SourceConnectionChange(object sender, Custom_Controls.AddressBarExt.NodeChangedArgs nca)
         {
             string[] Data;
             if (nca.OUniqueID.ToString().Contains("Name"))
@@ -322,7 +322,8 @@ namespace Ez_SQL.DbComparer
                 dm = differencesFound.FirstOrDefault(x => x.DiffType == dt && x.Name == name);
                 if (dm != null)
                 {
-                    sideToSideTextComparer1.LoadTexts(dm.SourceScript, dm.DestinationScript);
+                    //sideToSideTextComparer1.LoadTexts(dm.SourceScript, dm.DestinationScript);
+                    sideToSideTextComparer1.LoadTokenizers(dm.SourceScript, dm.DestinationScript);
                 }
             }
         }
@@ -365,6 +366,7 @@ namespace Ez_SQL.DbComparer
                     if (dm != null)
                     {
                         sideToSideTextComparer1.LoadTexts(dm.SourceScript, dm.DestinationScript);
+                        sideToSideTextComparer1.LoadTokenizers(dm.SourceScript, dm.DestinationScript);
                     }
                 }
                 

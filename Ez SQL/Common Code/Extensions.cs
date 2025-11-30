@@ -1065,15 +1065,15 @@ namespace Ez_SQL.Common_Code
         }
         public static void SaveToXlsx(this DataTable dt, string fileName, bool withStyles = true)
         {
-            DataExporter dex = new DataExporter();
-            dex.ExportExcelStyle = ExcelStyle.Simple;
-            dex.ExportType = ExportTo.XLSX;
-            dex.ExportWithStyles = withStyles;
-            dex.UseAlternateRowStyles = withStyles;
-            dex.WriteHeaders = true;
-            dex.UseDefaultSheetNames = true;
+            //DataExporter dex = new DataExporter();
+            //dex.ExportExcelStyle = ExcelStyle.Simple;
+            //dex.ExportType = ExportTo.XLSX;
+            //dex.ExportWithStyles = withStyles;
+            //dex.UseAlternateRowStyles = withStyles;
+            //dex.WriteHeaders = true;
+            //dex.UseDefaultSheetNames = true;
 
-            dex.ExportToFile(fileName, dt);
+            //dex.ExportToFile(fileName, dt);
         }
         public static DataTable ConvertToDataTable<T>(this IList<T> list, string tableName = "")
         {

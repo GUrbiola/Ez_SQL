@@ -14,3 +14,12 @@ G:\Mis Proyectos\Ez SQL\Ez SQL\Referencias\AddressBarExt\AddressBarEx_2.0\obj\Re
 G:\Mis Proyectos\Ez SQL\Ez SQL\Referencias\AddressBarExt\AddressBarEx_2.0\obj\Release\AddressBarExt_2.0.csproj.GenerateResource.Cache
 G:\Mis Proyectos\Ez SQL\Ez SQL\Referencias\AddressBarExt\AddressBarEx_2.0\obj\Release\AddressBarExt.dll
 G:\Mis Proyectos\Ez SQL\Ez SQL\Referencias\AddressBarExt\AddressBarEx_2.0\obj\Release\AddressBarExt.pdb
+D:\Just For Fun\Ez_SQL\References\AddressBarExt\AddressBarEx_2.0\bin\Release\AddressBarExt.dll
+D:\Just For Fun\Ez_SQL\References\AddressBarExt\AddressBarEx_2.0\bin\Release\AddressBarExt.pdb
+D:\Just For Fun\Ez_SQL\References\AddressBarExt\AddressBarEx_2.0\obj\Release\AddressBarExt_2.0.csproj.AssemblyReference.cache
+D:\Just For Fun\Ez_SQL\References\AddressBarExt\AddressBarEx_2.0\obj\Release\AddressBarExt.Controls.AddressBarExt.resources
+D:\Just For Fun\Ez_SQL\References\AddressBarExt\AddressBarEx_2.0\obj\Release\AddressBarExt.Properties.Resources.resources
+D:\Just For Fun\Ez_SQL\References\AddressBarExt\AddressBarEx_2.0\obj\Release\AddressBarExt_2.0.csproj.GenerateResource.cache
+D:\Just For Fun\Ez_SQL\References\AddressBarExt\AddressBarEx_2.0\obj\Release\AddressBarExt_2.0.csproj.CoreCompileInputs.cache
+D:\Just For Fun\Ez_SQL\References\AddressBarExt\AddressBarEx_2.0\obj\Release\AddressBarExt.dll
+D:\Just For Fun\Ez_SQL\References\AddressBarExt\AddressBarEx_2.0\obj\Release\AddressBarExt.pdb

@@ -28,7 +28,7 @@ namespace Ez_SQL
         DateTime lastClickTime;
         Point lastClickLocation;
 
-        private AddressBarExt.Controls.AddressBarExt AdBar = null;
+        private Custom_Controls.AddressBarExt.AddressBar AdBar = null;
         private string _ConxGroup;
         public string ConxGroup
         {
@@ -101,7 +101,7 @@ namespace Ez_SQL
             StatusBar.Padding = new Padding(StatusBar.Padding.Left, StatusBar.Padding.Top, StatusBar.Padding.Left, StatusBar.Padding.Bottom);
 
             #region Connection Bar
-            AdBar = new AddressBarExt.Controls.AddressBarExt();
+            AdBar = new Custom_Controls.AddressBarExt.AddressBar();
             this.AdBar.BackColor = System.Drawing.Color.White;
             this.AdBar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.AdBar.CurrentNode = null;
@@ -115,7 +115,7 @@ namespace Ez_SQL
             this.AdBar.SelectedStyle = ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline)));
             this.AdBar.Size = new System.Drawing.Size(482, 31);
             this.AdBar.TabIndex = 2;
-            this.AdBar.SelectionChange += new AddressBarExt.Controls.AddressBarExt.SelectionChanged(this.AddressBarSelectionChange);
+            this.AdBar.SelectionChange += new Custom_Controls.AddressBarExt.AddressBar.SelectionChanged(this.AddressBarSelectionChange);
 
             ToolStripControlHost Helper = new ToolStripControlHost(AdBar);
             Helper.Width = 350;
@@ -547,7 +547,8 @@ namespace Ez_SQL
         {
             AdBar.InitializeRoot(new RootConxNode("Start"));
         }
-        private void AddressBarSelectionChange(object sender, AddressBarExt.Controls.NodeChangedArgs nca)
+
+        private void AddressBarSelectionChange(object sender, Custom_Controls.AddressBarExt.NodeChangedArgs nca)
         {
             string[] Data;
             if (nca.OUniqueID.ToString().Contains("Name"))

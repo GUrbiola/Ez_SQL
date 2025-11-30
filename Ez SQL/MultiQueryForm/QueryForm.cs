@@ -2049,22 +2049,22 @@ namespace Ez_SQL.MultiQueryForm
 
                 if (svDlg.ShowDialog() == DialogResult.OK)
                 {
-                    DataTable buffer = DataProvider.ExecuteTable("Select top 50000 * from " + SelectedObject.Name);
-                    DataExporter dex = new DataExporter();
-                    dex.Author = "EZ Sql";
-                    dex.AutoCellAdjust = WidthAdjust.ByFirst10Rows;
-                    dex.Company = "El Cid";
-                    dex.ExportExcelStyle = ExcelStyle.Simple;
-                    dex.ExportType = ExportTo.XLSX;
-                    dex.ExportWithStyles = true;
-                    dex.Subject = "Data on " + SelectedObject.Schema + "." + SelectedObject.Name;
-                    dex.Title = "DB Table Export";
-                    dex.UseAlternateRowStyles = true;
-                    dex.WriteHeaders = true;
+                    //DataTable buffer = DataProvider.ExecuteTable("Select top 50000 * from " + SelectedObject.Name);
+                    //DataExporter dex = new DataExporter();
+                    //dex.Author = "EZ Sql";
+                    //dex.AutoCellAdjust = WidthAdjust.ByFirst10Rows;
+                    //dex.Company = "El Cid";
+                    //dex.ExportExcelStyle = ExcelStyle.Simple;
+                    //dex.ExportType = ExportTo.XLSX;
+                    //dex.ExportWithStyles = true;
+                    //dex.Subject = "Data on " + SelectedObject.Schema + "." + SelectedObject.Name;
+                    //dex.Title = "DB Table Export";
+                    //dex.UseAlternateRowStyles = true;
+                    //dex.WriteHeaders = true;
 
-                    dex.ExportToFile(svDlg.FileName, buffer);
+                    //dex.ExportToFile(svDlg.FileName, buffer);
 
-                    System.Diagnostics.Process.Start(svDlg.FileName);
+                    //System.Diagnostics.Process.Start(svDlg.FileName);
                 }
             }
         }

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using AddressBarExt;
 using System.Drawing;
 using Ez_SQL.ConnectionManagement;
+using Ez_SQL.Custom_Controls.AddressBarExt;
 
 namespace Ez_SQL.ConnectionBarNodes
 {
-	public class ConxGroupNode : AddressBarExt.IAddressNode
+	public class ConxGroupNode : Ez_SQL.Custom_Controls.AddressBarExt.IAddressNode
 	{
 	
 		

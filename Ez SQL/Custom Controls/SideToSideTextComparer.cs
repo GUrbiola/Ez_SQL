@@ -89,7 +89,9 @@ namespace Ez_SQL.Custom_Controls
 
             string txt1 = Txt1.GetLineText(clickAtLine), txt2 = Txt2.GetLineText(clickAtLine);
 
-            LineComparer.LoadTexts(txt1, txt2);
+            //LineComparer.LoadTexts(txt1, txt2);
+
+            LineComparer.LoadTokenizers(txt1, txt2);
         }
 
         private void Txt1VerticalScrollChange(object sender, EventArgs e)
@@ -107,6 +109,7 @@ namespace Ez_SQL.Custom_Controls
         public void LoadTexts(string txt1, string txt2)
         {
             DiffListText t1, t2;
+            //DiffListToken t1, t2;
 
             Txt1.Text = "";
             Txt2.Text = "";
@@ -170,6 +173,81 @@ namespace Ez_SQL.Custom_Controls
 
             LineComparer.Clean();
         }
+
+        public void LoadTokenizers(string txt1, string txt2)
+        {
+            DiffListToken t1, t2;
+
+            Txt1.Text = "";
+            Txt2.Text = "";
+
+            List<Tuple<string, LineHighlight>> finalT1 = new List<Tuple<string, LineHighlight>>();
+            List<Tuple<string, LineHighlight>> finalT2 = new List<Tuple<string, LineHighlight>>();
+
+            t1 = new DiffListToken(txt1);
+            t2 = new DiffListToken(txt2);
+
+            DiffEngine Engine = new DiffEngine();
+            Engine.ProcessDiff(t1, t2, DiffEngineLevel.SlowPerfect);
+            ArrayList rep = Engine.DiffReport();
+
+            foreach (DiffResultSpan drs in rep)
+            {
+                switch (drs.Status)
+                {
+                    case DiffResultSpanStatus.DeleteSource:
+                        for (int i = 0; i < drs.Length; i++)
+                        {
+                            TextLine l1 = new TextLine(t1.GetByIndex(drs.SourceIndex + i).ToString());
+                            TextLine l2 = new TextLine("".PadLeft(l1.Line.Length));
+
+                            finalT1.Add(new Tuple<string, LineHighlight>(l1.Line + Environment.NewLine, LineHighlight.Remove));
+                            finalT2.Add(new Tuple<string, LineHighlight>(l2.Line + Environment.NewLine, LineHighlight.Missing));
+                        }
+                        break;
+                    case DiffResultSpanStatus.NoChange:
+                        for (int i = 0; i < drs.Length; i++)
+                        {
+                            TextLine l1 = new TextLine(t1.GetByIndex(drs.SourceIndex + i).ToString());
+                            TextLine l2 = new TextLine(t2.GetByIndex(drs.DestIndex + i).ToString());
+
+                            finalT1.Add(new Tuple<string, LineHighlight>(l1.Line + Environment.NewLine, LineHighlight.None));
+                            finalT2.Add(new Tuple<string, LineHighlight>(l2.Line + Environment.NewLine, LineHighlight.None));
+                        }
+                        break;
+                    case DiffResultSpanStatus.AddDestination:
+                        for (int i = 0; i < drs.Length; i++)
+                        {
+                            TextLine l2 = new TextLine(t2.GetByIndex(drs.DestIndex + i).ToString());
+                            TextLine l1 = new TextLine("".PadLeft(l2.Line.Length));
+
+                            finalT1.Add(new Tuple<string, LineHighlight>(l1.Line + Environment.NewLine, LineHighlight.Missing));
+                            finalT2.Add(new Tuple<string, LineHighlight>(l2.Line + Environment.NewLine, LineHighlight.Add));
+                        }
+
+                        break;
+                    case DiffResultSpanStatus.Replace:
+                        for (int i = 0; i < drs.Length; i++)
+                        {
+                            TextLine l1 = new TextLine(t1.GetByIndex(drs.SourceIndex + i).ToString());
+                            TextLine l2 = new TextLine(t2.GetByIndex(drs.DestIndex + i).ToString());
+
+                            finalT1.Add(new Tuple<string, LineHighlight>(l1.Line + Environment.NewLine, LineHighlight.Update));
+                            finalT2.Add(new Tuple<string, LineHighlight>(l2.Line + Environment.NewLine, LineHighlight.Update));
+                        }
+                        break;
+                }
+            }
+
+            LoadDiffResults(Txt1, finalT1);
+            LoadDiffResults(Txt2, finalT2);
+
+            Txt1.Refresh();
+            Txt2.Refresh();
+
+            LineComparer.Clean();
+        }
+
         private void LoadDiffResults(TextEditorControl txtEditor, List<Tuple<string, LineHighlight>> diffResults)
         {
             StringBuilder buff = new StringBuilder();

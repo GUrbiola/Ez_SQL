@@ -362,37 +362,37 @@ namespace Ez_SQL.AdditionalForms
 
         private void exToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedObject != null)
-            {
-                SaveFileDialog svDlg = new SaveFileDialog();
-                svDlg.AddExtension = true;
-                svDlg.CheckFileExists = false;
-                svDlg.CheckPathExists = true;
-                svDlg.DefaultExt = "*.xlsx";
-                svDlg.Filter = "Excel files (*.xlsx)|*.xlsx";
-                svDlg.Title = "Export Table to Excel File";
+            //if (SelectedObject != null)
+            //{
+            //    SaveFileDialog svDlg = new SaveFileDialog();
+            //    svDlg.AddExtension = true;
+            //    svDlg.CheckFileExists = false;
+            //    svDlg.CheckPathExists = true;
+            //    svDlg.DefaultExt = "*.xlsx";
+            //    svDlg.Filter = "Excel files (*.xlsx)|*.xlsx";
+            //    svDlg.Title = "Export Table to Excel File";
 
-                if (svDlg.ShowDialog() == DialogResult.OK)
-                {
-                    DataTable buffer = DataProvider.ExecuteTable("Select top 50000 * from " + SelectedObject.Name);
-                    DataExporter dex = new DataExporter();
-                    dex.Author = "EZ Sql";
-                    dex.AutoCellAdjust = WidthAdjust.ByFirst10Rows;
-                    dex.Company = "El Cid";
-                    dex.ExportExcelStyle = ExcelStyle.Simple;
-                    dex.ExportType = ExportTo.XLSX;
-                    dex.ExportWithStyles = true;
-                    dex.Subject = "Data on " + SelectedObject.Schema + "." + SelectedObject.Name;
-                    dex.Title = "DB Table Export";
-                    dex.UseAlternateRowStyles = true;
-                    dex.WriteHeaders = true;
+            //    if (svDlg.ShowDialog() == DialogResult.OK)
+            //    {
+            //        DataTable buffer = DataProvider.ExecuteTable("Select top 50000 * from " + SelectedObject.Name);
+            //        DataExporter dex = new DataExporter();
+            //        dex.Author = "EZ Sql";
+            //        dex.AutoCellAdjust = WidthAdjust.ByFirst10Rows;
+            //        dex.Company = "El Cid";
+            //        dex.ExportExcelStyle = ExcelStyle.Simple;
+            //        dex.ExportType = ExportTo.XLSX;
+            //        dex.ExportWithStyles = true;
+            //        dex.Subject = "Data on " + SelectedObject.Schema + "." + SelectedObject.Name;
+            //        dex.Title = "DB Table Export";
+            //        dex.UseAlternateRowStyles = true;
+            //        dex.WriteHeaders = true;
 
-                    dex.ExportToFile(svDlg.FileName, buffer);
+            //        dex.ExportToFile(svDlg.FileName, buffer);
 
-                    System.Diagnostics.Process.Start(svDlg.FileName);
+            //        System.Diagnostics.Process.Start(svDlg.FileName);
 
-                }
-            }
+            //    }
+            //}
         }
 
         private void csvToolStripMenuItem_Click(object sender, EventArgs e)
@@ -430,15 +430,15 @@ namespace Ez_SQL.AdditionalForms
 
                 if (svDlg.ShowDialog() == DialogResult.OK)
                 {
-                    DataTable buffer = DataProvider.ExecuteTable("Select top 50000 * from " + SelectedObject.Name);
-                    DataExporter dex = new DataExporter();
-                    dex.ExportType = ExportTo.TXT;
-                    dex.Separator = "|";
-                    dex.WriteHeaders = true;
+                    //DataTable buffer = DataProvider.ExecuteTable("Select top 50000 * from " + SelectedObject.Name);
+                    //DataExporter dex = new DataExporter();
+                    //dex.ExportType = ExportTo.TXT;
+                    //dex.Separator = "|";
+                    //dex.WriteHeaders = true;
 
-                    dex.ExportToFile(svDlg.FileName, buffer);
+                    //dex.ExportToFile(svDlg.FileName, buffer);
 
-                    System.Diagnostics.Process.Start(svDlg.FileName);
+                    //System.Diagnostics.Process.Start(svDlg.FileName);
 
                 }
             }

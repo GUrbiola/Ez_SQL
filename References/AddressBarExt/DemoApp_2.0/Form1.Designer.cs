@@ -90,14 +90,14 @@ namespace AddressBarExt
             this.AdBar.Size = new System.Drawing.Size(544, 23);
             this.AdBar.TabIndex = 0;
             this.AdBar.SelectionChange += new AddressBarExt.Controls.AddressBarExt.SelectionChanged(this.AdBar_SelectionChange);
-            this.AdBar.DoubleClick += new System.EventHandler(this.AdBar_DoubleClick);
             this.AdBar.NodeDoubleClick += new AddressBarExt.Controls.AddressBarExt.NodeDoubleClicked(this.AdBar_NodeDoubleClick);
+            this.AdBar.DoubleClick += new System.EventHandler(this.AdBar_DoubleClick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 149);
+            this.ClientSize = new System.Drawing.Size(560, 146);
             this.Controls.Add(this.btn_fake);
             this.Controls.Add(this.btn_d);
             this.Controls.Add(this.btn_c);

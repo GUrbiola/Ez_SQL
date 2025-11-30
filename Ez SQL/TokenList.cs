@@ -8,7 +8,7 @@ using Ez_SQL.Common_Code;
 
 namespace Ez_SQL
 {
-    public class TokenList
+    public class TokenList : IComparable
     {
         public List<Token> List { get; set; }
         public List<int> StartOffsets { get; set; }
@@ -321,6 +321,27 @@ namespace Ez_SQL
             }
 
 
+        }
+
+        public int CompareTo(object obj)
+        {
+            TokenList other = obj as TokenList;
+
+            if (other == null) 
+                return 1;
+
+            int countComparison = this.TokenCount.CompareTo(other.TokenCount);
+            if (countComparison != 0) 
+                return countComparison;
+
+            for (int i = 0; i < this.TokenCount; i++)
+            {
+                int tokenComparison = this[i].CompareTo(other[i]);
+                if (tokenComparison != 0) 
+                    return tokenComparison;
+            }
+
+            return 0;
         }
     }
 }
