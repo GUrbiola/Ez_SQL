@@ -136,6 +136,7 @@ D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.CoreCompileInputs.cache
 D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.CopyComplete
 D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
 D:\Restart\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\EzSql2.ico
 D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.exe.config
 D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.exe
 D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Ez SQL.pdb
@@ -148,6 +149,7 @@ D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\ICSharpCode.TextEditor.dll
 D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\MagicLibrary.dll
 D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\PopupControl.dll
 D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\System.IO.Packaging.dll
+D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\WeifenLuo.WinFormsUI.Docking.dll
 D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\AxInterop.MSWinsockLib.dll
 D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\OpenNETCF.Desktop.Communication.dll
 D:\Just For Fun\Ez_SQL\Ez SQL\bin\Debug\Yogesh.ExcelXml.dll
@@ -197,4 +199,3 @@ D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.CoreCompileInputs.cach
 D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.csproj.Up2Date
 D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe
 D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.pdb
-D:\Just For Fun\Ez_SQL\Ez SQL\obj\x86\Debug\Ez SQL.exe.config
