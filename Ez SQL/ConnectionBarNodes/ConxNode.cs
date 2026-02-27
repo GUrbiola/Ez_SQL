@@ -8,8 +8,13 @@ using Ez_SQL.Custom_Controls.AddressBarExt;
 namespace Ez_SQL.ConnectionBarNodes
 {
 	/// <summary>
-	/// Description of ConxNode.
-	/// </summary>
+    /// Represents a single database connection leaf node in the breadcrumb address bar.
+    /// Wraps a <see cref="ConnectionInfo"/> and implements <see cref="IAddressNode"/> so
+    /// the address bar can display and select individual connections. This is a leaf node —
+    /// it has no children and <see cref="UpdateNode"/> is a no-op.
+    /// The <see cref="IAddressNode.UniqueID"/> encodes the parent group, connection name, and
+    /// connection string to uniquely identify the node in the tree.
+    /// </summary>
 	public class ConxNode : Ez_SQL.Custom_Controls.AddressBarExt.IAddressNode
 	{
 

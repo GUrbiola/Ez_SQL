@@ -3,15 +3,37 @@ using Ez_SQL.DataBaseObjects;
 
 namespace Ez_SQL.AdditionalForms
 {
+    /// <summary>
+    /// Generates the SQL source for an INSERT stored procedure from a table template.
+    /// The template file (e.g. <c>SP_Add.sql</c>) contains named placeholders that are
+    /// replaced with table-specific values: <c>@TableName@</c>, <c>@Schema@</c>,
+    /// <c>@Params@</c> (SP parameter list), <c>@Fields@</c> (INSERT field list),
+    /// <c>@Values@</c> (VALUES clause), and <c>@Id@</c> (SCOPE_IDENTITY() or 1).
+    /// Identity columns are excluded from all generated lists.
+    /// </summary>
     public class SPAddGenerator
     {
+        /// <summary>Gets or sets the SQL template string whose placeholders will be replaced.</summary>
         public String TemplateString { get; set; }
+
+        /// <summary>Gets or sets the SQL Server table used to drive placeholder substitution.</summary>
         public Table DbTable { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="SPAddGenerator"/> with the given template and table.
+        /// </summary>
+        /// <param name="script">The raw SQL template text containing placeholder tokens.</param>
+        /// <param name="table">The table whose metadata is used to fill in the placeholders.</param>
         public SPAddGenerator(string script, Table table)
         {
             this.TemplateString = script;
             this.DbTable = table;
         }
+
+        /// <summary>
+        /// Replaces all template placeholders with table-specific values and returns the completed SQL script.
+        /// </summary>
+        /// <returns>The fully rendered INSERT stored procedure SQL script.</returns>
         public override string ToString()
         {
             TemplateString = TemplateString.Replace("@TableName@", DbTable.Name);

@@ -7,8 +7,13 @@ using Ez_SQL.Custom_Controls.AddressBarExt;
 namespace Ez_SQL.ConnectionBarNodes
 {
 	/// <summary>
-	/// Description of RootConxNode.
-	/// </summary>
+    /// The root node of the connection breadcrumb address bar tree.
+    /// Implements <see cref="IAddressNode"/> and serves as the top-level parent for all
+    /// <see cref="ConxGroupNode"/> children. On construction and on <see cref="UpdateNode"/>,
+    /// the node reads all connection groups from the saved connections file and populates
+    /// its child array with one <see cref="ConxGroupNode"/> per group.
+    /// Its <see cref="IAddressNode.UniqueID"/> is always <c>"ROOT"</c>.
+    /// </summary>
 	public class RootConxNode : Custom_Controls.AddressBarExt.IAddressNode
 	{
 	

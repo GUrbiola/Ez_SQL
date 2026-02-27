@@ -6,8 +6,15 @@ using System.Data.SqlClient;
 
 namespace Ez_SQL.DataBaseObjects
 {
+    /// <summary>
+    /// Represents a user-defined alias for a SQL Server database object in the object browser.
+    /// An alias maps a short name to an underlying object (<see cref="AliasedObject"/>).
+    /// <see cref="ISqlObject.LoadScript"/> is a no-op; aliases have no DDL script.
+    /// The auto-complete insert strips a leading <c>@</c> character if present.
+    /// </summary>
     public class Alias : ISqlObject
     {
+        /// <summary>Initializes a new <see cref="Alias"/> with an empty children list and <see cref="ObjectType.Alias"/> kind.</summary>
         public Alias()
         {
             Childs = new List<ISqlChild>();
@@ -15,6 +22,7 @@ namespace Ez_SQL.DataBaseObjects
             _Script = "";
         }
         public int Id { get; set; }
+        /// <summary>Gets or sets the name of the underlying SQL Server object this alias points to.</summary>
         public string AliasedObject { get; set; }
         public string Name { get; set; }
         private ObjectType _Kind;

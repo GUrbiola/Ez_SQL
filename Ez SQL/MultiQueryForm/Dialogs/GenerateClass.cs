@@ -13,14 +13,42 @@ using View = Ez_SQL.DataBaseObjects.View;
 
 namespace Ez_SQL.MultiQueryForm.Dialogs
 {
+    /// <summary>
+    /// A dialog that generates a C# model class from a SQL Server table or view.
+    /// The user can configure which fields to include, mark primary keys, set data annotations
+    /// (Required, StringLength, DisplayName), and toggle code-generation options via
+    /// <see cref="GenerateClassModelSettings"/>. Settings are persisted to <c>Poco.cfg</c>.
+    /// <para>
+    /// After the user clicks Generate (<see cref="DialogResult.OK"/>), the caller reads
+    /// <see cref="GenerateCSharpCode"/> to obtain the fully rendered C# class source code.
+    /// </para>
+    /// </summary>
     public partial class GenerateClass : Form
     {
+        /// <summary>
+        /// Gets or sets whether the dialog was opened in POCO-generator mode (bound to a real table or view).
+        /// When <c>false</c>, no base SQL object is set and field options are not populated.
+        /// </summary>
         private bool PocoGenerator { get; set; }
-        //private bool ClassGenerator { get { return !PocoGenerator; } set { PocoGenerator = !value; } }
+
+        /// <summary>Gets or sets the SQL Server table whose fields drive the generated class.</summary>
         public Table BaseSQLTable { get; set; }
+
+        /// <summary>Gets or sets the SQL Server view whose columns drive the generated class.</summary>
         public View BaseSQLView { get; set; }
+
+        /// <summary>
+        /// Gets the class name for the generated code. Returns the text-box value if non-empty;
+        /// otherwise falls back to the name of <see cref="BaseSQLTable"/> or <see cref="BaseSQLView"/>.
+        /// </summary>
         public string ModelName { get { return String.IsNullOrEmpty(txtClassName.Text) ? (BaseSQLTable == null ? BaseSQLView.Name : BaseSQLTable.Name) : txtClassName.Text; } }
+
+        /// <summary>Gets the full path to the settings file used to persist and restore dialog state.</summary>
         public string SettingsFileName { get { return MainForm.DataStorageDir + "\\Poco.cfg"; } }
+
+        /// <summary>
+        /// Gets a <see cref="GenerateClassModelSettings"/> snapshot reflecting the current state of all dialog controls.
+        /// </summary>
         public GenerateClassModelSettings DialogSettings
         {
             get
@@ -44,6 +72,20 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                 return curSettings;
             }
         }
+        /// <summary>
+        /// Generates a complete C# class source string from a SQL table or view object.
+        /// The output is controlled by <paramref name="settings"/> and may include:
+        /// auto-implemented or field-backed properties, data annotations, PK alias, PK constructor,
+        /// static DataTable converters, instance-to-array/list/dictionary converters, integer and string
+        /// indexers, a <c>FieldType()</c> helper method, and optional XML doc comments on each member.
+        /// Only fields whose Include checkbox is ticked in the dialog are written to the class.
+        /// </summary>
+        /// <param name="table">The SQL object (table or view) that provides the field/column metadata.</param>
+        /// <param name="settings">Code-generation options selected by the user.</param>
+        /// <param name="modelName">
+        /// Optional override for the generated class name. When empty, <see cref="ModelName"/> is used.
+        /// </param>
+        /// <returns>A string containing the fully rendered C# class source code.</returns>
         public string GenerateCSharpClassFromTable(ISqlObject table, GenerateClassModelSettings settings, string modelName = "")
         {
             ISqlObject curTable = new Table();
@@ -590,8 +632,16 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
 
             return SbBll.ToString();
         }
-        public string GenerateCSharpCode { get { return GenerateCSharpClassFromTable((ISqlObject) BaseSQLTable ?? BaseSQLView, DialogSettings, txtClassName.Text); }  }
+        /// <summary>
+        /// Gets the fully rendered C# class source by invoking <see cref="GenerateCSharpClassFromTable"/>
+        /// with the bound SQL object, the current <see cref="DialogSettings"/>, and the text-box class name.
+        /// </summary>
+        public string GenerateCSharpCode { get { return GenerateCSharpClassFromTable((ISqlObject) BaseSQLTable ?? BaseSQLView, DialogSettings, txtClassName.Text); } }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="GenerateClass"/> in non-POCO mode
+        /// (no SQL object bound; field options panel will be empty).
+        /// </summary>
         public GenerateClass()
         {
             InitializeComponent();
@@ -599,6 +649,11 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
             PocoGenerator = false;
         }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="GenerateClass"/> bound to a SQL Server table.
+        /// The dialog populates the field-options panel with the table's columns.
+        /// </summary>
+        /// <param name="table">The table whose fields will be used for class generation.</param>
         public GenerateClass(Table table)
         {
             InitializeComponent();
@@ -607,6 +662,12 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
             PocoGenerator = true;
             txtClassName.Text = table.Name;
         }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="GenerateClass"/> bound to a SQL Server view.
+        /// The dialog populates the field-options panel with the view's columns.
+        /// </summary>
+        /// <param name="view">The view whose columns will be used for class generation.</param>
         public GenerateClass(Ez_SQL.DataBaseObjects.View view)
         {
             InitializeComponent();
@@ -616,6 +677,12 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
             txtClassName.Text = view.Name;
         }
 
+        /// <summary>
+        /// Deserializes settings from <see cref="SettingsFileName"/> and applies them to all dialog controls.
+        /// If the file does not exist or deserialization fails, all options default to <c>false</c>
+        /// and the defaults are persisted for future sessions.
+        /// Also calls <see cref="GenerateFieldOptions"/> to populate the per-field control rows.
+        /// </summary>
         private void LoadSettings()
         {
             GenerateClassModelSettings settings = null;
@@ -668,6 +735,13 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
             GenerateFieldOptions();
         }
 
+        /// <summary>
+        /// Dynamically creates a row of controls for each field in <see cref="BaseSQLTable"/> or
+        /// <see cref="BaseSQLView"/> inside <c>panelFields</c>. Each row includes a field-name label,
+        /// Include checkbox, Key checkbox, Required checkbox, StringLength checkbox, and a DisplayName text box.
+        /// Controls are named using the pattern <c>{fieldName}_{controlSuffix}</c> so that
+        /// <see cref="GenerateCSharpClassFromTable"/> can look them up by name at generation time.
+        /// </summary>
         private void GenerateFieldOptions()
         {
             List<Field> fields;
@@ -757,12 +831,20 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
 
         }
 
+        /// <summary>Serializes the current dialog state to <see cref="SettingsFileName"/> as XML.</summary>
         private void SaveSettings()
         {
             GenerateClassModelSettings CurrentSettings = DialogSettings;
             CurrentSettings.SerializeToXmlFile(SettingsFileName);
         }
 
+        /// <summary>
+        /// Returns a C# default-value literal string for the given C# type name.
+        /// For example, <c>"string"</c> returns <c>"String.Empty"</c>, <c>"bool"</c> returns <c>"false"</c>,
+        /// and numeric types return <c>"0"</c>. Unknown types also return <c>"0"</c>.
+        /// </summary>
+        /// <param name="Type">The C# type name (case-insensitive).</param>
+        /// <returns>A string literal representing the default value for that type.</returns>
         private string DefaultValueFor(string Type)
         {
             string back = "0";

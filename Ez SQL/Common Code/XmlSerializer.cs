@@ -11,10 +11,19 @@ using System.Reflection;
 
 namespace Ez_SQL.Common_Code
 {
+    /// <summary>
+    /// Applied to a class or struct to instruct <see cref="XmlObjectSerializer"/> to exclude
+    /// the base type's fields from XML serialization.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
     public class XmlIgnoreBaseTypeAttribute : Attribute
     {
     }
+
+    /// <summary>
+    /// Applied to a class or struct to provide custom serialization options
+    /// (type caching and object-graph serialization) to <see cref="XmlObjectSerializer"/>.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
     public class CustomXmlSerializationOptionsAttribute : Attribute
     {
@@ -26,10 +35,20 @@ namespace Ez_SQL.Common_Code
             SerializationOptions.UseGraphSerialization = useGraphSerialization;
         }
     }
+    /// <summary>
+    /// Applied to a class or struct to force <see cref="XmlObjectSerializer"/> to serialize it
+    /// as a complex type (field-by-field) even when it implements <see cref="IEnumerable"/>.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
     public class XmlSerializeAsCustomTypeAttribute : Attribute
     {
     }
+
+    /// <summary>
+    /// Base class for <see cref="XmlObjectSerializer"/> and <see cref="XmlObjectDeserializer"/>.
+    /// Provides shared infrastructure: a cached map of type→field metadata
+    /// and a working <see cref="XmlDocument"/> instance.
+    /// </summary>
     public abstract class BaseSerializer
     {
         static Dictionary<string, IDictionary<string, FieldInfo>> fieldInfoCache = new Dictionary<string, IDictionary<string, FieldInfo>>();
@@ -102,6 +121,12 @@ namespace Ez_SQL.Common_Code
             }
         }
     }
+    /// <summary>
+    /// Reflection-based XML serializer that converts any .NET object graph to an <see cref="XmlDocument"/>.
+    /// Supports type caching (compact typeid attributes), object-graph serialization (shared object references),
+    /// and delegates to <see cref="IXmlSerializable"/> when available.
+    /// Use the static <see cref="Serialize"/> factory method to serialize an object.
+    /// </summary>
     public class XmlObjectSerializer : BaseSerializer
     {
 
@@ -388,6 +413,13 @@ namespace Ez_SQL.Common_Code
             public bool UseGraphSerialization = true;
         }
     }
+    /// <summary>
+    /// Reflection-based XML deserializer that reconstructs a .NET object graph from an XML string
+    /// previously produced by <see cref="XmlObjectSerializer.Serialize"/>.
+    /// Handles type caching, object-graph references, arrays, lists, dictionaries,
+    /// and <see cref="IXmlSerializable"/> types. Supports versioning via <c>maxSupportedVer</c>.
+    /// Use the static <see cref="Deserialize(string, int, ITypeConverter)"/> factory method.
+    /// </summary>
     public class XmlObjectDeserializer : BaseSerializer
     {
         CultureInfo cult;

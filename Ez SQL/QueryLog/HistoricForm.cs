@@ -14,12 +14,30 @@ using ICSharpCode.TextEditor.Document;
 
 namespace Ez_SQL.QueryLog
 {
+    /// <summary>
+    /// A dockable panel that displays the query execution history for the current session.
+    /// On load, it reads the XML query log from <c>DataStorageDir\QueriesLog\LogFile.xml</c>
+    /// (via a safe copy to <c>Helper.xml</c>) and shows each entry in a grid.
+    /// Selecting a row populates the detail area with connection info, execution metrics
+    /// (start/end time, lapse, rows read/affected, grid count, success), the SQL script with
+    /// syntax highlighting, and any errors that were raised during execution.
+    /// </summary>
     public partial class HistoricForm : WeifenLuo.WinFormsUI.Docking.DockContent
     {
+        /// <summary>The application data-storage directory path, used to locate the log file.</summary>
         readonly string path = MainForm.DataStorageDir;
+
+        /// <summary>The in-memory list of query log entries loaded from the XML log file.</summary>
         private List<QueryInfo> Qs;
+
+        /// <summary>Reference to the main form, used for tab management commands.</summary>
         private MainForm Parent;
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="HistoricForm"/>, reads the query log,
+        /// configures the grid display, and sets up SQL syntax highlighting on the script viewer.
+        /// </summary>
+        /// <param name="Parent">The main form, used for tab management commands.</param>
         public HistoricForm(MainForm Parent)
         {
             InitializeComponent();
@@ -56,6 +74,7 @@ namespace Ez_SQL.QueryLog
                 CleanData();
             }
         }
+        /// <summary>Clears all detail fields in the UI, resetting them to empty values.</summary>
         private void CleanData()
         {
             //Connection data
@@ -76,6 +95,10 @@ namespace Ez_SQL.QueryLog
             //No errors to show
             ErrorGrid.DataSource = null;
         }
+        /// <summary>
+        /// Populates the detail area with the data from the <see cref="QueryInfo"/> identified by <paramref name="QueryKey"/>.
+        /// </summary>
+        /// <param name="QueryKey">The unique key of the log entry to display.</param>
         private void LoadInfoFrom(int QueryKey)
         {
             QueryInfo Current = Qs.FindLast(X => X.Key == QueryKey);
@@ -112,6 +135,12 @@ namespace Ez_SQL.QueryLog
                 ErrorGrid.DataSource = Ers;
             }
         }
+        /// <summary>
+        /// Reads the XML query log from disk by copying <c>LogFile.xml</c> to <c>Helper.xml</c>,
+        /// appending a closing <c>&lt;/QueriesRoot&gt;</c> tag to make it well-formed, and
+        /// parsing all <c>&lt;Query&gt;</c> elements into <see cref="QueryInfo"/> objects.
+        /// The resulting list is sorted descending by key (most-recent first).
+        /// </summary>
         private void ReadQueryLog()
         {
             if (Qs == null)
@@ -167,6 +196,11 @@ namespace Ez_SQL.QueryLog
             }
             Qs.Sort((Q1, Q2) => Q2.Key - Q1.Key);
         }
+        /// <summary>
+        /// Parses an ANSI-formatted date string (<c>yyyyMMdd HH:mm:ss.fff</c>) into a <see cref="DateTime"/>.
+        /// </summary>
+        /// <param name="p">The date string in <c>yyyyMMdd HH:mm:ss.fff</c> format.</param>
+        /// <returns>The parsed <see cref="DateTime"/> value.</returns>
         private DateTime AnsiToDate(string p)
         {
             int year, month, day, hour, minute, second, ms;
@@ -185,6 +219,7 @@ namespace Ez_SQL.QueryLog
         {
             ShowInfo();
         }
+        /// <summary>Binds the in-memory <see cref="Qs"/> list to the summary grid for display.</summary>
         private void ShowInfo()
         {
             using (DataTable aux = new DataTable("LogQuery"))
@@ -213,6 +248,13 @@ namespace Ez_SQL.QueryLog
                 SGrid.DataSource = aux;
             }
         }
+        /// <summary>
+        /// Decodes XML-escaped character entities in the given string, reversing the encoding
+        /// applied by <see cref="QueryRecord.ValidXmlText"/>.
+        /// Handles <c>&amp;lt;</c>, <c>&amp;gt;</c>, <c>&amp;quot;</c>, <c>&amp;apos;</c>, and <c>&amp;amp;</c>.
+        /// </summary>
+        /// <param name="Text">The XML-escaped string to decode.</param>
+        /// <returns>The decoded plain-text string.</returns>
         public string TextFromXml(string Text)
         {
             StringBuilder sb = new StringBuilder(Text);

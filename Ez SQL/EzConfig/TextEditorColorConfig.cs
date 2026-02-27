@@ -9,12 +9,30 @@ using Ez_SQL.Common_Code;
 
 namespace Ez_SQL.EzConfig
 {
+    /// <summary>
+    /// The complete syntax-highlighting configuration for the SQL text editor.
+    /// Encapsulates editor environment colors (<see cref="Environment"/>), digit formatting (<see cref="Digits"/>),
+    /// and the ordered list of keyword/span rule sets (<see cref="RuleSets"/>).
+    /// Can be loaded from an ICSharpCode SyntaxDefinition XML file or initialized with built-in defaults.
+    /// Serializes back to XML via <see cref="ToString()"/> for saving custom themes.
+    /// </summary>
     public class TextEditorColorConfig
     {
+        /// <summary>Gets or sets the editor environment colors (background, font, selection, line numbers).</summary>
         public Environment Environment { get; set; }
+
+        /// <summary>Gets or sets the display style for numeric literals in the editor.</summary>
         public Digits Digits { get; set; }
+
+        /// <summary>Gets or sets the ordered list of syntax rule sets (main + named sub-rule-sets).</summary>
         public List<RuleSet> RuleSets { get; set; }
 
+        /// <summary>
+        /// Initializes a new <see cref="TextEditorColorConfig"/>.
+        /// If <paramref name="filePath"/> is non-empty and the file is valid, the configuration is loaded from XML.
+        /// On any error (missing file, invalid XML), the built-in default theme is applied.
+        /// </summary>
+        /// <param name="filePath">Path to a SyntaxDefinition XML file, or an empty string to use defaults.</param>
         public TextEditorColorConfig(string filePath)
         {
             try
@@ -646,6 +664,11 @@ namespace Ez_SQL.EzConfig
             RuleSets.Add(Rl2);
         }
 
+        /// <summary>
+        /// Parses a SyntaxDefinition XML file and populates <see cref="Environment"/>, <see cref="Digits"/>,
+        /// and <see cref="RuleSets"/> from its elements.
+        /// </summary>
+        /// <param name="filePath">Full path to the SyntaxDefinition XML file to load.</param>
         public void DeserializeFromFile(string filePath)
         {
             XDocument settings = XDocument.Load(filePath);
@@ -725,6 +748,12 @@ namespace Ez_SQL.EzConfig
         {
             return this.ToString(false);
         }
+        /// <summary>
+        /// Serializes this configuration to a SyntaxDefinition XML string.
+        /// When <paramref name="IsPreview"/> is <c>true</c>, the syntax name is set to <c>"Preview"</c>
+        /// so the live preview in the configurator doesn't persist as the real SQL definition.
+        /// </summary>
+        /// <param name="IsPreview">Pass <c>true</c> when generating a preview-only XML string.</param>
         public string ToString(bool IsPreview)
         {
             StringBuilder sb = new StringBuilder();

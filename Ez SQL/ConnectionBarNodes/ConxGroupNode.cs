@@ -6,6 +6,13 @@ using Ez_SQL.Custom_Controls.AddressBarExt;
 
 namespace Ez_SQL.ConnectionBarNodes
 {
+    /// <summary>
+    /// Represents a connection group node in the breadcrumb address bar.
+    /// Implements <see cref="IAddressNode"/> so the address bar can navigate into the group
+    /// and display its child <see cref="ConxNode"/> connections.
+    /// On <see cref="UpdateNode"/>, the node reloads the corresponding <see cref="ConnectionGroup"/>
+    /// from the saved connections file and recreates its child array.
+    /// </summary>
 	public class ConxGroupNode : Ez_SQL.Custom_Controls.AddressBarExt.IAddressNode
 	{
 	

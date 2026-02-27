@@ -16,14 +16,44 @@ using ICSharpCode.TextEditor;
 
 namespace Ez_SQL.CSharp
 {
+    /// <summary>
+    /// A dockable panel that displays and edits C# source code with syntax highlighting,
+    /// code folding, bookmarks, and find/replace support.
+    /// Used to present the output of the C# class and stored-procedure wrapper code generators.
+    /// <para>
+    /// Keyboard shortcuts follow the Visual Studio convention: Ctrl+K,C to comment, Ctrl+K,U to
+    /// uncomment, Ctrl+O,C/E/T to collapse/expand/toggle folding, F2/Shift+F2/Ctrl+F2 for bookmarks,
+    /// F3/Shift+F3 for find next/previous, Ctrl+F to open the search dialog, Ctrl+G to save, and
+    /// Ctrl+L to load a file. A timer-based mechanism (<c>FoldingRefresher</c>) defers folding
+    /// recalculation by a few ticks after every document change.
+    /// </para>
+    /// </summary>
     public partial class SharpCodeForm : WeifenLuo.WinFormsUI.Docking.DockContent
     {
+        /// <summary>The shared find/replace dialog instance, lazily created on first use.</summary>
         SearchAndReplace _findForm;
+
+        /// <summary>Reference to the main form, used for tab management commands.</summary>
         private MainForm Parent;
-        private bool _lastSearchLoopedAround = false, _lastSearchWasBackward = false;
+
+        /// <summary>Tracks whether the last search wrapped around the document end.</summary>
+        private bool _lastSearchLoopedAround = false;
+
+        /// <summary>Tracks whether the last search was a backward search.</summary>
+        private bool _lastSearchWasBackward = false;
+
+        /// <summary>Countdown counter used by the folding-refresh timer to delay recalculation.</summary>
         private int ToRefresh;
+
+        /// <summary>Stores the most recently pressed key chord for two-key shortcut detection.</summary>
         Keys LastKeyPressed;
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="SharpCodeForm"/> with the given C# script content.
+        /// Sets up C# syntax highlighting, the bracket-matching formatting strategy, and folding.
+        /// </summary>
+        /// <param name="Parent">The main form, used for tab management commands.</param>
+        /// <param name="Script">The initial C# source code to display in the editor.</param>
         public SharpCodeForm(MainForm Parent, string Script)
         {
             InitializeComponent();
@@ -351,6 +381,15 @@ namespace Ez_SQL.CSharp
                 _findForm = new SearchAndReplace();
             _findForm.ShowFor(this, SharpText, false);
         }
+        /// <summary>
+        /// Searches the editor document for the pattern configured in <c>_findForm</c>.
+        /// Updates the caret and selection to the found range. If the text is not found and
+        /// <paramref name="messageIfNotFound"/> is non-null, a message box is shown.
+        /// </summary>
+        /// <param name="viaF3">When <c>true</c>, clears the scan region if the caret moved outside it.</param>
+        /// <param name="searchBackward">When <c>true</c>, searches toward the beginning of the document.</param>
+        /// <param name="messageIfNotFound">Message to display if no match is found; pass <c>null</c> to suppress.</param>
+        /// <returns>The matched <see cref="TextRange"/>, or <c>null</c> if no match was found.</returns>
         public TextRange FindNext(bool viaF3, bool searchBackward, string messageIfNotFound)
         {
             if (_findForm == null)

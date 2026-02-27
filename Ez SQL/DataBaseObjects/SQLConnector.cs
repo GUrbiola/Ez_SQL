@@ -13,31 +13,56 @@ using System.Drawing;
 
 namespace Ez_SQL.DataBaseObjects
 {
+    /// <summary>
+    /// Delegate invoked when the asynchronous database object load operation completes.
+    /// </summary>
     public delegate void EndingLoad();
+
+    /// <summary>
+    /// Core database connectivity and object-loading class.
+    /// Wraps a <see cref="SqlConnection"/> and asynchronously populates <see cref="DbObjects"/>
+    /// with all SQL Server schema objects (tables, views, procedures, scalar functions, table functions)
+    /// using a <see cref="BackgroundWorker"/> so the UI remains responsive.
+    /// Raises <see cref="OnEndedLoad"/> when the background load completes.
+    /// </summary>
     public class SqlConnector
     {
         private bool _Loaded;
+        /// <summary>Gets a value indicating whether a partial (tables-only) load has been completed.</summary>
         public bool Loaded { get { return _Loaded; } }
+
         private bool _FullLoaded;
-        public bool FullLoaded { get { return _FullLoaded; } }        
+        /// <summary>Gets a value indicating whether a full load (all object types) has completed.</summary>
+        public bool FullLoaded { get { return _FullLoaded; } }
+
         private string _ConnectionString;
-        public string ConnectionString 
+        /// <summary>Gets or sets the ADO.NET connection string used to open <see cref="Connection"/>.</summary>
+        public string ConnectionString
         {
             get { return _ConnectionString; }
             set { _ConnectionString = value; }
         }
+
+        /// <summary>Gets or sets a flag indicating that this connector is currently executing a query.</summary>
         public bool _IsBusy;
-        public bool IsBusy 
-        { 
+        /// <inheritdoc cref="_IsBusy"/>
+        public bool IsBusy
+        {
             get { return _IsBusy; }
-            set { _IsBusy = value; } 
+            set { _IsBusy = value; }
         }
+
         private SqlConnection _Connection;
-        public SqlConnection Connection 
+        /// <summary>Gets or sets the underlying <see cref="SqlConnection"/> for this connector.</summary>
+        public SqlConnection Connection
         {
             get { return _Connection; }
             set { _Connection = value; }
         }
+
+        /// <summary>
+        /// Gets a value indicating whether the background object-loader <see cref="BackgroundWorker"/> is still running.
+        /// </summary>
         public bool Busy
         {
             get
@@ -47,6 +72,8 @@ namespace Ez_SQL.DataBaseObjects
                 return true;
             }
         }
+
+        /// <summary>Gets the SQL Server instance name from <see cref="Connection"/>; empty string if not yet connected.</summary>
         public string Server
         {
             get
@@ -56,6 +83,8 @@ namespace Ez_SQL.DataBaseObjects
                 return "";
             }
         }
+
+        /// <summary>Gets the database name from <see cref="Connection"/>; empty string if not yet connected.</summary>
         public string DataBase
         {
             get
@@ -66,18 +95,30 @@ namespace Ez_SQL.DataBaseObjects
             }
         }
 
+        /// <summary>Gets or sets whether the tables collection has been loaded into <see cref="DbObjects"/>.</summary>
         public bool TablesLoaded { get; set; }
+        /// <summary>Gets or sets whether the views collection has been loaded into <see cref="DbObjects"/>.</summary>
         public bool ViewsLoaded { get; set; }
+        /// <summary>Gets or sets whether stored procedures have been loaded into <see cref="DbObjects"/>.</summary>
         public bool SPsLoaded { get; set; }
+        /// <summary>Gets or sets whether table-valued functions have been loaded into <see cref="DbObjects"/>.</summary>
         public bool TableFunctionsLoaded { get; set; }
+        /// <summary>Gets or sets whether scalar functions have been loaded into <see cref="DbObjects"/>.</summary>
         public bool ScalarFunctionsLoaded { get; set; }
 
         #region Loading dialog
+        /// <summary>Raised on the UI thread when the background object-loading operation finishes.</summary>
         public event EndingLoad OnEndedLoad;
         LoadingInfo LoadDialog;
         BackgroundWorker Loader;
         PopupControl.Popup ISenseRect;
         #endregion
+
+        /// <summary>
+        /// Initializes a new <see cref="SqlConnector"/> with the specified connection string.
+        /// All "loaded" flags are set to <c>false</c>; call <see cref="Initialize"/> to begin loading.
+        /// </summary>
+        /// <param name="ConnectionString">The ADO.NET connection string to use.</param>
         public SqlConnector(string ConnectionString)
         {
             Connection = new SqlConnection(ConnectionString);
@@ -90,13 +131,25 @@ namespace Ez_SQL.DataBaseObjects
             ScalarFunctionsLoaded = false;
         }
         private List<ISqlObject> _DbObjects = new List<ISqlObject>();
-        public List<ISqlObject> DbObjects 
+        /// <summary>
+        /// Gets or sets the flat list of all loaded database objects (tables, views, procedures, functions, etc.)
+        /// available for display in the object browser and for auto-complete suggestions.
+        /// </summary>
+        public List<ISqlObject> DbObjects
         {
             get { return _DbObjects; }
             set { _DbObjects = value; }
         }
 
-        
+        /// <summary>
+        /// Begins the asynchronous database object load operation.
+        /// Shows a semi-transparent loading popup near <paramref name="Location"/> while the
+        /// <see cref="BackgroundWorker"/> queries the server.
+        /// When <paramref name="FullLoad"/> is <c>true</c>, all object types are loaded;
+        /// otherwise only tables are loaded in the first pass.
+        /// </summary>
+        /// <param name="Location">Screen position at which to show the loading indicator.</param>
+        /// <param name="FullLoad">When <c>true</c>, loads all object types (views, procedures, functions) in addition to tables.</param>
         internal void Initialize(Point Location, bool FullLoad = false)
         {
             try
@@ -142,6 +195,15 @@ namespace Ez_SQL.DataBaseObjects
 
         }
 
+        /// <summary>
+        /// Synchronously loads all user tables and their columns (including primary key, foreign key,
+        /// identity, and default-value metadata) from the connected database into <see cref="DbObjects"/>.
+        /// </summary>
+        /// <param name="FullLoad">
+        /// When <c>true</c>, each table's <see cref="ISqlObject.Childs"/> collection is fully populated
+        /// with <see cref="Field"/> objects including foreign-key resolution.
+        /// </param>
+        /// <returns>The number of tables loaded.</returns>
         public int LoadTables(bool FullLoad = false)
         {
             string sql;

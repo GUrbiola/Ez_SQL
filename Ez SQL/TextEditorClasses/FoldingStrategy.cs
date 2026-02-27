@@ -15,7 +15,11 @@ using Ez_SQL.Common_Code;
 namespace Ez_SQL.TextEditorClasses
 {
     /// <summary>
-    /// The class to generate the foldings, it implements ICSharpCode.TextEditor.Document.IFoldingStrategy
+    /// A line-text-based folding strategy for the SQL editor that recognizes
+    /// <c>BEGIN</c>/<c>END</c>, <c>--fold</c>/<c>--/fold</c>, and <c>/* */</c> block comments
+    /// by scanning raw line text with case-insensitive string matching.
+    /// Also exposes two overloads of <c>GenerateFoldMarkers</c> that accept custom
+    /// start/end token pairs for flexible folding of arbitrary delimiters.
     /// </summary>
     public class SqlFoldingStrategy : IFoldingStrategy
     {
@@ -168,7 +172,11 @@ namespace Ez_SQL.TextEditorClasses
         }
     }
     /// <summary>
-    /// The class to generate the foldings, it implements ICSharpCode.TextEditor.Document.IFoldingStrategy
+    /// A line-text-based folding strategy for the C# editor that recognizes
+    /// <c>#region</c>/<c>#endregion</c> blocks and <c>/* */</c> block comments
+    /// by scanning raw line text with case-insensitive string matching.
+    /// Also exposes two overloads of <c>GenerateFoldMarkers</c> that accept custom
+    /// start/end token pairs for flexible folding of arbitrary delimiters.
     /// </summary>
     public class CSharpFoldingStrategy : IFoldingStrategy
     {
@@ -319,8 +327,21 @@ namespace Ez_SQL.TextEditorClasses
         }
     }
 
+    /// <summary>
+    /// A token-based folding strategy for the SQL editor that uses the application's own
+    /// <see cref="TokenList"/> lexer instead of line-by-line string scanning.
+    /// <para>
+    /// Produces three categories of fold markers:
+    /// <list type="bullet">
+    ///   <item><description><c>BEGIN</c> / <c>END</c> blocks, matched using <see cref="TokenType.BLOCKSTART"/> and <see cref="TokenType.BLOCKEND"/> tokens.</description></item>
+    ///   <item><description>Block comments (<c>/* … */</c>), matched using <see cref="TokenType.BLOCKCOMMENT"/> tokens.</description></item>
+    ///   <item><description>Custom fold markers (<c>--fold … --/fold</c>), matched via <c>TokenList.GetCustomFolders</c>.</description></item>
+    /// </list>
+    /// </para>
+    /// </summary>
     public class SqlFolder : IFoldingStrategy
     {
+        /// <inheritdoc/>
         public List<FoldMarker> GenerateFoldMarkers(IDocument document, string fileName, object parseInformation)
         {
             List<FoldMarker> Back = new List<FoldMarker>();

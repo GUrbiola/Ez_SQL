@@ -10,11 +10,19 @@ using Ez_SQL.DataBaseObjects;
 
 namespace Ez_SQL.MultiQueryForm
 {
+    /// <summary>
+    /// General-purpose single-selection list dialog with live filtering.
+    /// Displays a filterable list of string items and returns the user's selection via <see cref="SelectedObject"/>.
+    /// Supports an optional <paramref name="Displays"/> list for showing friendly names while storing separate underlying values.
+    /// Filtering can be configured to use <c>StartsWith</c> or <c>Contains</c> matching.
+    /// </summary>
     public partial class ObjectSelector : Form
     {
         private List<string> Values;
         private List<string> Displays;
         private string _SelectedObject;
+
+        /// <summary>Gets the underlying value that the user selected, or an empty string if cancelled.</summary>
         public string SelectedObject { get { return _SelectedObject; } }
         private bool StartsWith;
         public ObjectSelector(string Title, string ObjectDescription, List<string> Values, bool StartsWith = false, int Decimals = 1)

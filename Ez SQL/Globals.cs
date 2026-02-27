@@ -10,8 +10,19 @@ using System.IO;
 
 namespace Ez_SQL
 {
+    /// <summary>
+    /// Application-wide static helper methods shared across all modules.
+    /// Handles persistence of SQL Server connections to XML files, icon creation utilities,
+    /// and query log I/O.
+    /// </summary>
     public static class Globals
     {
+        /// <summary>
+        /// Loads the saved connection groups from the specified XML file.
+        /// Returns an empty list if the file does not exist.
+        /// </summary>
+        /// <param name="filename">Full path to the XML connections file.</param>
+        /// <returns>A list of <see cref="ConnectionGroup"/> objects, each containing its child <see cref="ConnectionManagement.ConnectionInfo"/> entries.</returns>
         public static List<ConnectionGroup> GetConnections(string filename)
         {
             List<ConnectionGroup> CGs = new List<ConnectionGroup>();
@@ -43,6 +54,12 @@ namespace Ez_SQL
 
             return CGs;
         }
+        /// <summary>
+        /// Serializes all connection groups and their connections to an XML file.
+        /// Does nothing if <paramref name="filename"/> is empty or <paramref name="CGs"/> is null or empty.
+        /// </summary>
+        /// <param name="filename">Full path of the destination XML file.</param>
+        /// <param name="CGs">The list of <see cref="ConnectionGroup"/> objects to persist.</param>
         public static void SaveConnections(string filename, List<ConnectionGroup> CGs)
         {
             XmlTextWriter Writer;
@@ -128,6 +145,11 @@ namespace Ez_SQL
             // it wouldn't look as nice.
             return Icon.FromHandle(square.GetHicon());
         }
+        /// <summary>
+        /// Appends a single executed query record to the application's XML query log file.
+        /// Creates the file with proper XML headers on the first write.
+        /// </summary>
+        /// <param name="CurQR">The <see cref="QueryRecord"/> to persist.</param>
         internal static void SaveToQueryLog(QueryRecord CurQR)
         {
             string FileName = String.Format("{0}\\QueriesLog\\LogFile.xml", MainForm.DataStorageDir);

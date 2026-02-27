@@ -15,21 +15,48 @@ using Ez_SQL.DataBaseObjects;
 
 namespace Ez_SQL.DbComparer
 {
+    /// <summary>
+    /// A dockable panel that compares the schemas of two SQL Server databases side-by-side.
+    /// The user selects a source and a destination database via breadcrumb address bars.
+    /// The panel enumerates all programmatic objects (views, procedures, functions) in both
+    /// databases, compares their DDL scripts, and builds a list of <see cref="DifferenceModel"/>
+    /// records describing which objects need to be added, updated, or deleted in the destination.
+    /// Differences can be reviewed and the corresponding migration script can be generated.
+    /// </summary>
     public partial class DbComparer : WeifenLuo.WinFormsUI.Docking.DockContent
     {
+        /// <summary>Breadcrumb address bar for selecting the source database connection.</summary>
         private Custom_Controls.AddressBarExt.AddressBar AdBarSource = null;
+
+        /// <summary>Breadcrumb address bar for selecting the destination database connection.</summary>
         private Custom_Controls.AddressBarExt.AddressBar AdBarDestination = null;
+
+        /// <summary>The <see cref="SqlConnector"/> representing the source database.</summary>
         private SqlConnector sourceConx;
+
+        /// <summary>The <see cref="SqlConnector"/> representing the destination database.</summary>
         private SqlConnector destinationConx;
+
+        /// <summary>The list of detected differences from the most recent comparison run.</summary>
         private List<DifferenceModel> differencesFound;
+
         private List<SqlConnector> _Connectors;
+
+        /// <summary>Gets or sets the list of all open database connections available for selection.</summary>
         public List<SqlConnector> Connectors
         {
             get { return _Connectors; }
             set { _Connectors = value; }
         }
+
+        /// <summary>Reference to the main form, used to open new query tabs for migration scripts.</summary>
         private MainForm Parent;
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="DbComparer"/> and builds the two address-bar controls
+        /// that let the user select the source and destination database connections.
+        /// </summary>
+        /// <param name="Parent">The main form, used to open migration-script tabs.</param>
         public DbComparer(MainForm Parent)
         {
             InitializeComponent();

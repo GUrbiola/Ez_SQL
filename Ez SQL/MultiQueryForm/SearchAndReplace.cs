@@ -14,8 +14,17 @@ using Ez_SQL.Common_Code;
 
 namespace Ez_SQL.MultiQueryForm
 {
+    /// <summary>
+    /// Find-and-Replace dialog for the SQL text editor.
+    /// Wraps a <see cref="TextEditorSearcher"/> to locate occurrences within an
+    /// ICSharpCode <see cref="TextEditorControl"/> document, with support for:
+    /// case-sensitive matching, whole-word matching, forward/backward search,
+    /// replace-one, replace-all, and highlight-all modes.
+    /// The form is kept alive between invocations (closed → hidden) to preserve search state.
+    /// </summary>
     public partial class SearchAndReplace : Form
     {
+        /// <summary>Initializes the dialog and creates its internal <see cref="TextEditorSearcher"/>.</summary>
         public SearchAndReplace()
 		{
 			InitializeComponent();
@@ -314,9 +323,16 @@ namespace Ez_SQL.MultiQueryForm
 
         public bool MatchWholeWordOnly { get { return WholeWords.Checked; } }
     }
+    /// <summary>
+    /// Represents a contiguous region of text in an ICSharpCode <see cref="IDocument"/>,
+    /// identified by a document character offset and a length.
+    /// Returned by <see cref="TextEditorSearcher.FindNext"/> to describe a search match.
+    /// </summary>
     public class TextRange : AbstractSegment
     {
         IDocument _document;
+
+        /// <summary>Creates a new <see cref="TextRange"/> anchored at <paramref name="offset"/> with the given <paramref name="length"/>.</summary>
         public TextRange(IDocument document, int offset, int length)
         {
             _document = document;

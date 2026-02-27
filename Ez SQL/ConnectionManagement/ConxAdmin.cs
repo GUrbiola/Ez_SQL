@@ -6,9 +6,18 @@ using Ez_SQL.ConnectionManagement;
 
 namespace Ez_SQL
 {
+    /// <summary>
+    /// Connection manager dialog that allows users to create, rename, and delete
+    /// connection groups and their individual SQL Server connections.
+    /// On close (OK) the updated list is persisted via <see cref="Globals.SaveConnections"/>.
+    /// </summary>
 	public partial class ConxAdmin : Form
 	{
+        /// <summary>The in-memory list of connection groups being edited in this session.</summary>
 		List<ConnectionGroup> CGs;
+
+        /// <summary>Zero-based index of the currently selected group in <see cref="LGroup"/>; -1 when none selected.</summary>
+        /// <remarks>Also tracks the selected connection index (<c>SelC</c>) within the active group.</remarks>
 		int SelG, SelC;
 		public ConxAdmin()
 		{
@@ -94,6 +103,11 @@ namespace Ez_SQL
             Globals.SaveConnections(MainForm.ConDataFileName, CGs);
             DialogResult = DialogResult.OK;
 		}
+        /// <summary>
+        /// Refreshes the group list view from <see cref="CGs"/>.
+        /// If <paramref name="Current"/> is supplied, that group is automatically re-selected.
+        /// </summary>
+        /// <param name="Current">The group to keep selected after the refresh, or <c>null</c> to clear selection.</param>
         private void LoadInfo(ConnectionGroup Current = null)
         {
             LGroup.Items.Clear();

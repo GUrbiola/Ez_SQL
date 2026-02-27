@@ -15,7 +15,23 @@ using System.Xml;
 
 namespace Ez_SQL.Common_Code
 {
+    /// <summary>Specifies the direction for a sort operation.</summary>
     public enum SortDirection { Ascending, Decending };
+
+    /// <summary>
+    /// Application-wide static extension methods shared across all modules.
+    /// Organized into the following categories:
+    /// <list type="bullet">
+    ///   <item><description><b>TextEditor</b> — helpers for ICSharpCode <see cref="ICSharpCode.TextEditor.TextEditorControl"/>:
+    ///     SelectLine, InsertString, SetSelectionByOffset, SelectText, CurrentLineNumber, GetLineText, etc.</description></item>
+    ///   <item><description><b>String</b> — SQL-aware string utilities: IsReserved, IsDataType, AsValidXML,
+    ///     ColorToString/StringToColor, BoolAsString, EnsureCSVField, Indent, and more.</description></item>
+    ///   <item><description><b>Collections</b> — List/DataTable helpers: sorting, searching, DataTable-to-list conversion.</description></item>
+    ///   <item><description><b>Numeric</b> — InRange, HalfMix for color blending.</description></item>
+    ///   <item><description><b>IO</b> — Stream copy utility.</description></item>
+    ///   <item><description><b>UI</b> — DataGridView and TreeView helpers.</description></item>
+    /// </list>
+    /// </summary>
     public static class Extensions
     {
         #region Extensions for TextEditor

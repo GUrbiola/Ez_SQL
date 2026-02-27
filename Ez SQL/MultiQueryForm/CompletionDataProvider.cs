@@ -9,13 +9,31 @@ using ICSharpCode.TextEditor;
 
 namespace Ez_SQL.MultiQueryForm
 {
+    /// <summary>
+    /// Determines what category of database objects to include in the auto-complete list.
+    /// <see cref="Smart"/> uses the parsed qualifier context (schema, object, child) to decide automatically.
+    /// </summary>
     public enum FilteringType { Table, View, Procedure, ScalarFunction, TableFunction, FieldItem, ScriptItem, Any, Smart, None }
-    public class CompletionDataProvider: ICompletionDataProvider
+
+    /// <summary>
+    /// Implements <see cref="ICompletionDataProvider"/> for Ez SQL's SQL editor.
+    /// Generates auto-complete suggestions from a <see cref="SqlConnector"/>'s loaded object list,
+    /// filtered by <see cref="FilteringOption"/> and an optional qualifier context
+    /// (schema → object → child hierarchy parsed from the user's typed prefix).
+    /// </summary>
+    public class CompletionDataProvider : ICompletionDataProvider
     {
         private ImageList imageList;
         SqlConnector SqlServerData;
+
+        /// <summary>Gets or sets which object category to show in the completion list.</summary>
         public FilteringType FilteringOption { get; set; }
         private string FSchema, FObject, FChild;
+
+        /// <summary>
+        /// Gets the dot-separated filter string built from the parsed qualifier parts
+        /// (e.g., <c>"schema.object.child"</c>).
+        /// </summary>
         public string FilterString 
         { 
             get 
@@ -36,6 +54,11 @@ namespace Ez_SQL.MultiQueryForm
                 }
             } 
         }
+        /// <summary>
+        /// Gets the nesting depth of the parsed qualifier:
+        /// 1 = object only, 2 = object.child, 3 = schema.object, 4 = schema.object.child.
+        /// Used by <see cref="FilteringType.Smart"/> to select the correct completion strategy.
+        /// </summary>
         public int FilteringLevel
         {
             get
@@ -56,7 +79,11 @@ namespace Ez_SQL.MultiQueryForm
                 }
             } 
         }
-        public List<ISqlObject> ComplementaryObjects{ get; set; }
+        /// <summary>
+        /// Gets or sets extra <see cref="ISqlObject"/> instances (e.g., query aliases) to merge into the
+        /// completion list alongside the objects loaded from the server.
+        /// </summary>
+        public List<ISqlObject> ComplementaryObjects { get; set; }
 
         
         public CompletionDataProvider(SqlConnector SqlServerData, ImageList imageList)

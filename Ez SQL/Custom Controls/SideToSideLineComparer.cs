@@ -16,8 +16,21 @@ using Ez_SQL.Common_Code;
 
 namespace Ez_SQL.Custom_Controls
 {
+    /// <summary>
+    /// A side-by-side character-level diff viewer for a single line of text.
+    /// Displays two read-only SQL text editor panes whose horizontal scroll bars are
+    /// synchronized. When <see cref="LoadTexts"/> is called, it runs a character-level
+    /// <see cref="DiffEngine"/> comparison and highlights each character as Added,
+    /// Removed, Updated, or unchanged. Used as a sub-component of
+    /// <see cref="SideToSideTextComparer"/> to show intra-line differences for the
+    /// currently selected row.
+    /// </summary>
     public partial class SideToSideLineComparer : UserControl
     {
+        /// <summary>
+        /// Initializes the control, sets both editor panes to read-only, hides vertical scroll bars,
+        /// applies SQL syntax highlighting, and synchronizes horizontal scroll bars.
+        /// </summary>
         public SideToSideLineComparer()
         {
             InitializeComponent();
@@ -61,6 +74,14 @@ namespace Ez_SQL.Custom_Controls
             Line1.ActiveTextAreaControl.Refresh();
         }
 
+        /// <summary>
+        /// Runs a character-level diff between two strings and displays the result
+        /// side-by-side with per-character highlighting (Add / Remove / Update / unchanged).
+        /// Characters deleted from <paramref name="txt1"/> are shown with a Remove highlight;
+        /// characters added in <paramref name="txt2"/> are shown with an Add highlight.
+        /// </summary>
+        /// <param name="txt1">The source (left) text.</param>
+        /// <param name="txt2">The destination (right) text.</param>
         public void LoadTexts(string txt1, string txt2)
         {
             Line1.Text = "";

@@ -7,8 +7,14 @@ using System.Data.SqlClient;
 
 namespace Ez_SQL.DataBaseObjects
 {
+    /// <summary>
+    /// Represents a SQL Server schema (e.g., <c>dbo</c>) in the object browser.
+    /// Acts as a top-level grouping node; <see cref="ISqlObject.LoadScript"/> is a no-op
+    /// since schemas have no meaningful DDL script to display.
+    /// </summary>
     public class Scheme : ISqlObject
     {
+        /// <summary>Initializes a new <see cref="Scheme"/> with an empty children list and <see cref="ObjectType.Schema"/> kind.</summary>
         public Scheme()
         {
             Childs = new List<ISqlChild>();

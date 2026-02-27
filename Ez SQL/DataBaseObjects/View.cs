@@ -7,8 +7,14 @@ using ICSharpCode.TextEditor.Gui.CompletionWindow;
 
 namespace Ez_SQL.DataBaseObjects
 {
+    /// <summary>
+    /// Represents a SQL Server view in the object browser.
+    /// <see cref="ISqlObject.LoadScript"/> retrieves the view definition from <c>syscomments</c>
+    /// by joining on the object's system ID.
+    /// </summary>
     public class View : ISqlObject
     {
+        /// <inheritdoc/>
         public int Id { get; set; }
         public string Name { get; set; }
         private ObjectType _Kind;

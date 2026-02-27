@@ -3,6 +3,11 @@ using System.Windows.Forms;
 
 namespace Ez_SQL.Custom_Controls
 {
+    /// <summary>
+    /// A custom <see cref="DataGridViewColumnHeaderCell"/> that renders a checkbox in the column header.
+    /// Clicking the checkbox toggles its state and raises the <see cref="OnCheckBoxClicked"/> event,
+    /// which is handled by <see cref="CustomGridViewCheckBoxColumn"/> to check or uncheck all rows.
+    /// </summary>
     class DatagridViewCheckBoxHeaderCell : DataGridViewColumnHeaderCell
     {
         Point checkBoxLocation;

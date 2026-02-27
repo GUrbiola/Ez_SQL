@@ -6,8 +6,15 @@ using System.Data.SqlClient;
 
 namespace Ez_SQL.DataBaseObjects
 {
+    /// <summary>
+    /// Represents a SQL Server table-valued function (TVF) in the object browser.
+    /// <see cref="ISqlObject.LoadScript"/> retrieves the function body from <c>syscomments</c>.
+    /// The auto-complete insert action writes <c>schema.FunctionName(param /*type*/, …)</c> at the cursor,
+    /// using only <see cref="ChildType.Parameter"/> children (excluding any column-type children).
+    /// </summary>
     public class TableFunction : ISqlObject
     {
+        /// <inheritdoc/>
         public int Id { get; set; }
         public string Name { get; set; }
         private ObjectType _Kind;

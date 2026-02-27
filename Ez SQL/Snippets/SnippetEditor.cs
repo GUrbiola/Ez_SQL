@@ -12,12 +12,28 @@ using System.IO;
 
 namespace Ez_SQL.Snippets
 {
+    /// <summary>
+    /// A dockable panel that provides a full CRUD interface for managing SQL code snippets.
+    /// Snippets are stored as <c>.snp</c> XML files in <c>DataStorageDir\Snippets\</c>.
+    /// The panel loads and displays all saved snippets in a combo box; selecting one populates
+    /// the name, shortcut, description, and SQL script editor fields (with SQL syntax highlighting).
+    /// The user can create new snippets, edit and save existing ones, or delete them.
+    /// </summary>
     public partial class SnippetEditor : WeifenLuo.WinFormsUI.Docking.DockContent
     {
+        /// <summary>The in-memory list of all loaded snippets, including the transient "New Snippet" entry.</summary>
         List<Snippet> Snippets;
+
+        /// <summary>A placeholder snippet pre-populated in the combo box for creating a new entry.</summary>
         Snippet NewSnippet = new Snippet() { Name = "New Snippet", Description = "", Script = "", ShortCut = "" };
+
+        /// <summary>Reference to the main form, used for tab management commands.</summary>
         private MainForm Parent;
 
+        /// <summary>
+        /// Gets the currently selected <see cref="Snippet"/> from the combo box,
+        /// or <c>null</c> if nothing is selected.
+        /// </summary>
         public Snippet SelectedSnippet
         {
             get
@@ -27,6 +43,11 @@ namespace Ez_SQL.Snippets
                 return null;
             }
         }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="SnippetEditor"/> and sets up SQL syntax highlighting.
+        /// </summary>
+        /// <param name="Parent">The main form, used for tab management commands.</param>
         public SnippetEditor(MainForm Parent)
         {
             InitializeComponent();

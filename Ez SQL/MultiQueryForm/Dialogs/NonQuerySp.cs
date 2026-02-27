@@ -11,9 +11,22 @@ using Ez_SQL.Common_Code;
 
 namespace Ez_SQL.MultiQueryForm.Dialogs
 {
+    /// <summary>
+    /// A wizard-style dialog for configuring the options used when generating a C# data-access method
+    /// that wraps a non-query stored procedure (INSERT / UPDATE / DELETE).
+    /// Settings are persisted to <c>NonQuerySp.cfg</c> and reloaded on the next launch.
+    /// On finish, the dialog returns <see cref="DialogResult.OK"/> and the caller reads
+    /// <see cref="CurrentSettings"/> to drive code generation.
+    /// </summary>
     public partial class NonQuerySp : Form
     {
+        /// <summary>Gets the full path to the settings file used to persist and restore dialog state.</summary>
         public string SettingsFileName { get { return MainForm.DataStorageDir + "\\NonQuerySp.cfg"; } }
+
+        /// <summary>
+        /// Gets a <see cref="GenerateNonQuerySpModelSettings"/> snapshot that reflects the current state
+        /// of all wizard checkboxes. Each call constructs and returns a new settings instance.
+        /// </summary>
         public GenerateNonQuerySpModelSettings CurrentSettings
         {
             get
@@ -32,16 +45,23 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                 };
             }
         }
+        /// <summary>Initializes a new instance of <see cref="NonQuerySp"/> and sets up the designer components.</summary>
         public NonQuerySp()
         {
             InitializeComponent();
         }
 
+        /// <summary>Serializes the current dialog state to <see cref="SettingsFileName"/> as XML.</summary>
         private void SaveSettings()
         {
             GenerateNonQuerySpModelSettings curSettings = CurrentSettings;
             curSettings.SerializeToXmlFile(SettingsFileName);
         }
+        /// <summary>
+        /// Deserializes settings from <see cref="SettingsFileName"/>.
+        /// If the file does not exist or deserialization fails, sensible defaults are applied
+        /// and written to the file for future sessions.
+        /// </summary>
         private void LoadSettings()
         {
             GenerateNonQuerySpModelSettings settings = null;

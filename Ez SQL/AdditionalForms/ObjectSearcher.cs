@@ -16,14 +16,44 @@ using View = System.Windows.Forms.View;
 
 namespace Ez_SQL.AdditionalForms
 {
+    /// <summary>
+    /// A dockable panel that lets users search the loaded database objects by name, object type,
+    /// field name, parameter name, or source-code content.
+    /// <para>
+    /// The panel shows a filtered <see cref="ListView"/> of matching objects. Selecting an entry
+    /// populates a detail grid with the object's children (columns, parameters). Double-clicking
+    /// or pressing Enter opens the object's script in a new query tab.
+    /// </para>
+    /// <para>
+    /// Right-clicking a table or view exposes a context menu for common operations: view data,
+    /// export to CSV, generate C# class, and generate CRUD stored procedures (Insert / Update /
+    /// Delete / Get / All) using the SP generator classes and templates from
+    /// <c>DataStorageDir\Templates\</c>. Right-clicking a procedure offers stored-procedure
+    /// code-generation via <see cref="GenerateMethodForStoreProcedureExecution"/>.
+    /// </para>
+    /// </summary>
     public partial class ObjectSearcher : WeifenLuo.WinFormsUI.Docking.DockContent
     {
+        /// <summary>The currently selected database object in the results list, or <c>null</c> if none.</summary>
         private ISqlObject SelectedObject;
+
+        /// <summary>The <see cref="SqlConnector"/> that provides the loaded database object catalog.</summary>
         private SqlConnector DataProvider;
+
+        /// <summary>A <see cref="QueryExecutor"/> used to introspect stored-procedure return schemas via ADO.NET.</summary>
         private QueryExecutor Executor;
+
+        /// <summary>Reference to the application's main form, used to open new query and C# code tabs.</summary>
         private MainForm Parent;
+
+        /// <summary>The current subset of <see cref="SqlConnector.DbObjects"/> that match the active search filter.</summary>
         private List<ISqlObject> FilteredObjs;
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="ObjectSearcher"/> and wires it to the application context.
+        /// </summary>
+        /// <param name="Parent">The main form used to open new tabs when the user activates a result.</param>
+        /// <param name="DataProvider">The database connector whose <see cref="SqlConnector.DbObjects"/> will be searched.</param>
         public ObjectSearcher(MainForm Parent, SqlConnector DataProvider)
         {
             InitializeComponent();
@@ -42,6 +72,14 @@ namespace Ez_SQL.AdditionalForms
         {
             ApplyFilter();
         }
+        /// <summary>
+        /// Rebuilds the results list by filtering <see cref="SqlConnector.DbObjects"/> according to
+        /// the selected search type and the text in <c>TxtFilter</c>.
+        /// Search modes include: any object, tables, views, procedures, scalar functions,
+        /// table functions, search-in-code (searches the object's script body), search-by-field-name,
+        /// and search-by-parameter-name. The "starts with" vs "contains" toggle is respected for
+        /// name-based searches; code-search always uses Contains.
+        /// </summary>
         private void ApplyFilter()
         {
             SelectedObject = null;
@@ -136,6 +174,7 @@ namespace Ez_SQL.AdditionalForms
             }
             label3.Text = String.Format("Objects found: {0}", ResultsList.Items.Count.ToString());
         }
+        /// <summary>Clears all items from the results <see cref="ListView"/>.</summary>
         private void CleanSearchResults()
         {
             ResultsList.Items.Clear();
@@ -481,6 +520,18 @@ namespace Ez_SQL.AdditionalForms
             }
         }
 
+        /// <summary>
+        /// Introspects a stored procedure's return schema by executing
+        /// <see cref="SqlDataAdapter.FillSchema"/> against a live connection.
+        /// Uses <see cref="SqlCommandBuilder.DeriveParameters"/> to discover parameters,
+        /// then maps each output column to a <see cref="Field"/> with its C# type.
+        /// Returns an empty list if the procedure returns no result set or if an error occurs.
+        /// </summary>
+        /// <param name="proc">The stored procedure to introspect.</param>
+        /// <returns>
+        /// A list of <see cref="Field"/> objects representing the columns in the first result set,
+        /// or an empty list if the procedure is non-query or introspection fails.
+        /// </returns>
         private List<Field> GetReturnColumnsFromProcedure(Procedure proc)
         {
             List<Field> Back = new List<Field>();
@@ -533,6 +584,17 @@ namespace Ez_SQL.AdditionalForms
             return Back;
         }
 
+        /// <summary>
+        /// Shows the <see cref="NonQuerySp"/> settings wizard and, if confirmed, generates a C#
+        /// data-access method for executing a non-query stored procedure (INSERT / UPDATE / DELETE).
+        /// The generated method includes a typed signature derived from the procedure's parameters,
+        /// optional region/logging/transaction/timing code based on the user's settings, and
+        /// either a <c>void</c> or <c>SP_Result</c> return type.
+        /// </summary>
+        /// <param name="proc">The stored procedure for which to generate the C# wrapper method.</param>
+        /// <returns>
+        /// The generated C# method source as a string, or an empty string if the user cancelled.
+        /// </returns>
         private string GetCSharpForNonQueryMethod(Procedure proc)
         {
             string buffer;
@@ -719,6 +781,21 @@ namespace Ez_SQL.AdditionalForms
             return method.ToString();
         }
 
+        /// <summary>
+        /// Shows the <see cref="QuerySp"/> settings wizard and, if confirmed, generates a C#
+        /// data-access method for executing a query stored procedure (SELECT).
+        /// The return type is determined by the user's choice: a single object, a typed list,
+        /// or a StoredProcedureResult (SPR). The reader loop maps each column from
+        /// <paramref name="returnColumns"/> to the appropriate typed property assignment.
+        /// </summary>
+        /// <param name="proc">The stored procedure for which to generate the C# wrapper method.</param>
+        /// <param name="returnColumns">
+        /// The list of columns returned by the procedure, obtained via
+        /// <see cref="GetReturnColumnsFromProcedure"/>.
+        /// </param>
+        /// <returns>
+        /// The generated C# method source as a string, or an empty string if the user cancelled.
+        /// </returns>
         private string GetCSharpForQueryMethod(Procedure proc, List<Field> returnColumns)
         {
             string buffer;

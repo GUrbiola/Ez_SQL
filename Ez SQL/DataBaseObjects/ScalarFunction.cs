@@ -7,8 +7,14 @@ using ICSharpCode.TextEditor.Gui.CompletionWindow;
 
 namespace Ez_SQL.DataBaseObjects
 {
+    /// <summary>
+    /// Represents a SQL Server scalar-valued function in the object browser.
+    /// <see cref="ISqlObject.LoadScript"/> retrieves the function body from <c>syscomments</c>.
+    /// The auto-complete insert action writes <c>schema.FunctionName(param /*type*/, …)</c> at the cursor.
+    /// </summary>
     public class ScalarFunction : ISqlObject
     {
+        /// <inheritdoc/>
         public int Id { get; set; }
         public string Name { get; set; }
         private ObjectType _Kind;

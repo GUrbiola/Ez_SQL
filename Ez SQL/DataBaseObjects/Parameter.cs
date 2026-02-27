@@ -6,9 +6,18 @@ using ICSharpCode.TextEditor.Gui.CompletionWindow;
 
 namespace Ez_SQL.DataBaseObjects
 {
+    /// <summary>
+    /// Represents a stored procedure or function parameter (<c>ISqlChild.Kind == ChildType.Parameter</c>).
+    /// Implements <see cref="ISqlChild"/> with full parameter metadata including data type and precision.
+    /// Many ISqlChild members (e.g., <see cref="ISqlChild.IsPrimaryKey"/>, <see cref="ISqlChild.IsIdentity"/>)
+    /// are present for interface compliance but are not meaningful for parameters.
+    /// </summary>
     public class Parameter : ISqlChild
     {
+        /// <inheritdoc/>
         public int Id { get; set; }
+
+        /// <inheritdoc/>
         public string Name { get; set; }
         private ChildType _Kind;
         public ChildType Kind { get { return _Kind; } }
@@ -30,6 +39,7 @@ namespace Ez_SQL.DataBaseObjects
         public string ReferenceParentName { get; set; }
         public ISqlChild ReferenceChild { get; set; }
         public string ReferenceChildName { get; set; }
+        /// <summary>Initializes a new <see cref="Parameter"/> with <see cref="ChildType.Parameter"/> kind.</summary>
         public Parameter()
         {
             _Kind = ChildType.Parameter;

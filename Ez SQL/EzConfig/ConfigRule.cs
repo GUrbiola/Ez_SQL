@@ -7,16 +7,48 @@ using Ez_SQL.Common_Code;
 
 namespace Ez_SQL.EzConfig
 {
+    /// <summary>
+    /// Represents a single highlighting rule within a <see cref="RuleSet"/>.
+    /// A rule is either a <c>Span</c> (delimited region such as a comment or string literal)
+    /// or a <c>KeyWords</c> group (a list of exact token matches).
+    /// Serializes to the corresponding ICSharpCode SyntaxDefinition XML element via <see cref="ToString"/>.
+    /// </summary>
     public class ConfigRule
     {
+        /// <summary>Gets or sets the rule type: <c>"Span"</c> or <c>"KeyWords"</c>.</summary>
         public string Type { get; set; }
+
+        /// <summary>Gets or sets the display name of this rule (used as the XML <c>name</c> attribute).</summary>
         public string Name { get; set; }
+
+        /// <summary>Gets or sets whether tokens matched by this rule are rendered in bold.</summary>
         public bool Bold { get; set; }
+
+        /// <summary>Gets or sets whether tokens matched by this rule are rendered in italic.</summary>
         public bool Italic { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether a span rule stops at end-of-line (e.g., <c>true</c> for single-line comments).
+        /// Not used for <c>KeyWords</c> rules.
+        /// </summary>
         public bool StopAtEOL { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of a nested <see cref="RuleSet"/> to apply inside this span.
+        /// Only relevant for <c>Span</c> rules.
+        /// </summary>
         public string Rule { get; set; }
+
+        /// <summary>Gets or sets the foreground color used for tokens matched by this rule.</summary>
         public Color Color { get; set; }
+
+        /// <summary>Gets or sets the keyword list for <c>KeyWords</c>-type rules.</summary>
         public List<string> Words { get; set; }
+
+        /// <summary>
+        /// Gets or sets the begin/end delimiters for <c>Span</c>-type rules
+        /// (keys: <c>"Begin"</c> and optionally <c>"End"</c>).
+        /// </summary>
         public Dictionary<string, string> SpecialSymbols;
         
         public override string ToString()

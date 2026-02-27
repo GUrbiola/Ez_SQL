@@ -4,16 +4,31 @@ using Ez_SQL.Custom_Controls.DifferenceEngine.Structure;
 
 namespace Ez_SQL.Custom_Controls.DifferenceEngine.Engine
 {
+    /// <summary>
+    /// Longest-Common-Subsequence (LCS) diff engine that compares two <see cref="IDiffList"/>
+    /// sequences and produces an ordered list of <see cref="DiffResultSpan"/> records.
+    /// <para>
+    /// Usage: call <see cref="ProcessDiff(IDiffList,IDiffList,DiffEngineLevel)"/> to run the diff,
+    /// then call <see cref="DiffReport"/> to retrieve the result spans. The quality/speed trade-off
+    /// is controlled by <see cref="DiffEngineLevel"/>; <see cref="DiffEngineLevel.SlowPerfect"/>
+    /// always finds the optimal LCS, while <see cref="DiffEngineLevel.FastImperfect"/> skips
+    /// over already-matched spans for a faster but potentially suboptimal result.
+    /// </para>
+    /// </summary>
     public class DiffEngine
     {
+        /// <summary>The source (left/original) list being diffed.</summary>
         private IDiffList _source;
+        /// <summary>The destination (right/modified) list being diffed.</summary>
         private IDiffList _dest;
+        /// <summary>Accumulates <see cref="DiffResultSpan.CreateNoChange"/> matches found during <c>ProcessRange</c>.</summary>
         private ArrayList _matchList;
-
+        /// <summary>The quality level used by the current diff run.</summary>
         private DiffEngineLevel _level;
-
+        /// <summary>Per-element state cache for the destination list, reused across recursive <c>ProcessRange</c> calls.</summary>
         private DiffStateList _stateList;
 
+        /// <summary>Initializes a new engine instance with default <see cref="DiffEngineLevel.FastImperfect"/> quality.</summary>
         public DiffEngine()
         {
             _source = null;
@@ -168,12 +183,25 @@ namespace Ez_SQL.Custom_Controls.DifferenceEngine.Engine
             }
         }
 
+        /// <summary>
+        /// Runs the diff at the specified <paramref name="level"/> of quality.
+        /// </summary>
+        /// <param name="source">The original (left) list.</param>
+        /// <param name="destination">The modified (right) list.</param>
+        /// <param name="level">Controls the quality/speed trade-off of the LCS search.</param>
+        /// <returns>Elapsed seconds for the diff operation.</returns>
         public double ProcessDiff(IDiffList source, IDiffList destination, DiffEngineLevel level)
         {
             _level = level;
             return ProcessDiff(source, destination);
         }
 
+        /// <summary>
+        /// Runs the diff using the engine's current <see cref="_level"/> setting.
+        /// </summary>
+        /// <param name="source">The original (left) list.</param>
+        /// <param name="destination">The modified (right) list.</param>
+        /// <returns>Elapsed seconds for the diff operation.</returns>
         public double ProcessDiff(IDiffList source, IDiffList destination)
         {
             DateTime dt = DateTime.Now;
@@ -244,6 +272,16 @@ namespace Ez_SQL.Custom_Controls.DifferenceEngine.Engine
             return retval;
         }
 
+        /// <summary>
+        /// Builds and returns the final ordered list of <see cref="DiffResultSpan"/> records
+        /// after <see cref="ProcessDiff(IDiffList,IDiffList,DiffEngineLevel)"/> has been called.
+        /// Adjacent identical no-change spans are merged. The list covers the entire source and
+        /// destination, including any leading or trailing unmatched elements.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="ArrayList"/> of <see cref="DiffResultSpan"/> instances sorted by
+        /// destination index, ready for enumeration by the caller (e.g. <see cref="Ez_SQL.Custom_Controls.SideToSideTextComparer.LoadTexts"/>).
+        /// </returns>
         public ArrayList DiffReport()
         {
             ArrayList retval = new ArrayList();

@@ -8,7 +8,19 @@ using System.Data;
 
 namespace Ez_SQL.MultiQueryForm
 {
+    /// <summary>
+    /// Delegate fired when a SQL query begins or finishes execution.
+    /// </summary>
+    /// <param name="Query">The SQL text being executed.</param>
+    /// <param name="Hora">The timestamp at which the event fired.</param>
     public delegate void ProcessingQuery(string Query, DateTime Hora);
+
+    /// <summary>
+    /// Handles the execution of SQL queries against a SQL Server connection.
+    /// Supports both synchronous (<see cref="ExecuteDataset"/>, <see cref="ExecuteTable"/>)
+    /// and asynchronous (<see cref="AsyncExecuteDataSet"/>) execution on a background thread.
+    /// Results are stored in <see cref="Results"/> and execution timing is exposed via <see cref="ExecutionLapse"/>.
+    /// </summary>
     public class QueryExecutor
     {
         private DateTime Start, End;
@@ -19,56 +31,82 @@ namespace Ez_SQL.MultiQueryForm
         private SqlDataReader rdr = null;
         private string curquery;
         private bool _CancelExecution;
+
+        /// <summary>Gets or sets the list of informational messages received via <c>SqlConnection.InfoMessage</c> during execution.</summary>
         public List<string> _Messages;
+        /// <inheritdoc cref="_Messages"/>
         public List<string> Messages
         {
             get { return _Messages; }
             set { _Messages = value; }
         }
-        private string _LastMessage;
+
+        /// <summary>
+        /// Gets or sets the last status message from the executor.
+        /// Set to <c>"OK"</c> on success, or the exception message on failure.
+        /// </summary>
         public string LastMessage
         {
             get { return _LastMessage; }
             set { _LastMessage = value; }
         }
-        private SqlConnection _Connection;
+        private string _LastMessage;
+
+        /// <summary>Gets or sets the <see cref="SqlConnection"/> used to execute queries.</summary>
         public SqlConnection Connection
         {
             get { return _Connection; }
             set { _Connection = value; }
         }
-        private Exception _NrEx;
+        private SqlConnection _Connection;
+
+        /// <summary>Gets or sets the last non-SQL exception thrown during execution.</summary>
         public Exception NrEx
         {
             get { return _NrEx; }
             set { _NrEx = value; }
         }
+        private Exception _NrEx;
+
+        /// <summary>Gets or sets the last <see cref="SqlException"/> thrown during execution.</summary>
         public SqlException _SqlEx;
+        /// <inheritdoc cref="_SqlEx"/>
         public SqlException SqlEx
         {
             get { return _SqlEx; }
             set { _SqlEx = value; }
         }
-        private DataSet _Results;
+
+        /// <summary>Gets or sets the <see cref="DataSet"/> containing all result sets from the last query execution.</summary>
         public DataSet Results
         {
             get { return _Results; }
             set { _Results = value; }
         }
-        private int _TimeOut;
+        private DataSet _Results;
+
+        /// <summary>Gets or sets the query command timeout in seconds (currently unused; the async path uses 0 for no timeout).</summary>
         public int TimeOut
         {
             get { return _TimeOut; }
             set { _TimeOut = value; }
         }
-        private int _AsyncResult;
+        private int _TimeOut;
+
+        /// <summary>
+        /// Gets or sets the result code of the last async execution:
+        /// 0 = cancelled, 1 = success, -1 = error.
+        /// </summary>
         public int AsyncResult
         {
             get { return _AsyncResult; }
             set { _AsyncResult = value; }
         }
+        private int _AsyncResult;
 
+        /// <summary>Raised when an asynchronous query execution begins.</summary>
         public event ProcessingQuery StartExec;
+        /// <summary>Raised when an asynchronous query execution completes (success, error, or cancel).</summary>
         public event ProcessingQuery FinishExec;
 
         public string ConnectionString
@@ -145,6 +183,12 @@ namespace Ez_SQL.MultiQueryForm
             }
         }
 
+        /// <summary>
+        /// Initializes the executor with a new <see cref="SqlConnection"/> built from <paramref name="ConnectionString"/>.
+        /// Clears all error state and attaches an <c>InfoMessage</c> handler to capture server print output.
+        /// Must be called before any query execution methods.
+        /// </summary>
+        /// <param name="ConnectionString">The ADO.NET connection string to use for all queries.</param>
         public void Initialize(string ConnectionString)
         {
             Connection = new SqlConnection(ConnectionString);
@@ -159,6 +203,13 @@ namespace Ez_SQL.MultiQueryForm
         {
             Messages.Add(String.Format("{0} - {1}", DateTime.Now.ToString("hh:mm:ss.fff"), e.Message));
         }
+        /// <summary>
+        /// Executes <paramref name="Query"/> asynchronously on a background thread.
+        /// Results are stored in <see cref="Results"/> when the thread finishes.
+        /// Raises <see cref="StartExec"/> immediately and <see cref="FinishExec"/> on completion.
+        /// Does nothing if an execution is already in progress.
+        /// </summary>
+        /// <param name="Query">The SQL text to execute.</param>
         public void AsyncExecuteDataSet(string Query)
         {
             if (!String.IsNullOrEmpty(Query) && Query.Trim().Length > 0)
@@ -187,10 +238,18 @@ namespace Ez_SQL.MultiQueryForm
             }
 
         }
+        /// <summary>
+        /// Signals the currently running async query to stop reading rows at the next 1-second polling checkpoint.
+        /// The query is not interrupted mid-row; use <see cref="ExtremeStop"/> for an immediate abort.
+        /// </summary>
         public void CancelExecute()
         {
             _CancelExecution = true;
         }
+        /// <summary>
+        /// Immediately cancels the active <see cref="SqlCommand"/>, waits for the executor thread to finish,
+        /// and fires <see cref="FinishExec"/>. Use this for a hard stop when <see cref="CancelExecute"/> is insufficient.
+        /// </summary>
         public void ExtremeStop()
         {
             if (Executor.IsAlive)
@@ -214,6 +273,11 @@ namespace Ez_SQL.MultiQueryForm
                     FinishExec("", DateTime.Now);
             }
         }
+        /// <summary>
+        /// Opens and immediately closes the connection to verify that it is reachable.
+        /// Sets <see cref="NrEx"/> or <see cref="SqlEx"/> on failure.
+        /// </summary>
+        /// <returns><c>true</c> if the connection test succeeded; <c>false</c> otherwise.</returns>
         public bool TestConnection()
         {
             if (Connection != null && Connection.ConnectionString != null && Connection.ConnectionString.Length > 0)
@@ -359,6 +423,12 @@ namespace Ez_SQL.MultiQueryForm
             AsyncResult = 1;
         }
 
+        /// <summary>
+        /// Synchronously executes <paramref name="sql"/> and returns all result sets as a <see cref="DataSet"/>.
+        /// Returns <c>null</c> if another query is already running.
+        /// </summary>
+        /// <param name="sql">The SQL query to execute.</param>
+        /// <returns>A <see cref="DataSet"/> with one <see cref="System.Data.DataTable"/> per result set, or <c>null</c> on error.</returns>
         public DataSet ExecuteDataset(string sql)
         {
             DataSet dataSet = null;
@@ -401,6 +471,11 @@ namespace Ez_SQL.MultiQueryForm
             }
             return dataSet;
         }
+        /// <summary>
+        /// Convenience wrapper around <see cref="ExecuteDataset"/> that returns only the first result table.
+        /// </summary>
+        /// <param name="sql">The SQL query to execute.</param>
+        /// <returns>The first <see cref="System.Data.DataTable"/> from the result set, or <c>null</c> if the query returned no tables.</returns>
         public DataTable ExecuteTable(string sql)
         {
             DataSet aux = null;

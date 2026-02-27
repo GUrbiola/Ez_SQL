@@ -11,9 +11,25 @@ using Ez_SQL.Common_Code;
 
 namespace Ez_SQL.MultiQueryForm.Dialogs
 {
+    /// <summary>
+    /// A wizard-style dialog for configuring the options used when generating a C# data-access method
+    /// that wraps a query stored procedure (SELECT).
+    /// The user selects a return-type strategy — a single object, a <c>List&lt;T&gt;</c>, or a
+    /// StoredProcedureResult (SPR) — and optionally specifies the class or primitive name.
+    /// Settings are persisted to <c>QuerySp.cfg</c> and reloaded on the next launch.
+    /// On finish, the caller reads <see cref="CurrentSettings"/> to drive code generation.
+    /// </summary>
     public partial class QuerySp : Form
     {
+        /// <summary>Gets the full path to the settings file used to persist and restore dialog state.</summary>
         public string SettingsFileName { get { return MainForm.DataStorageDir + "\\QuerySp.cfg"; } }
+
+        /// <summary>
+        /// Gets a <see cref="GenerateQuerySpModelSettings"/> snapshot that reflects the current state
+        /// of all wizard controls. The <see cref="GenerateQuerySpModelSettings.ReturnName"/> is resolved
+        /// from either the class-name text box or the primitives combo box, depending on the selected
+        /// return-type radio button.
+        /// </summary>
         public GenerateQuerySpModelSettings CurrentSettings
         {
             get
@@ -42,15 +58,23 @@ namespace Ez_SQL.MultiQueryForm.Dialogs
                     };
             }
         }
+        /// <summary>Initializes a new instance of <see cref="QuerySp"/> and sets up the designer components.</summary>
         public QuerySp()
         {
             InitializeComponent();
         }
+
+        /// <summary>Serializes the current dialog state to <see cref="SettingsFileName"/> as XML.</summary>
         private void SaveSettings()
         {
             GenerateQuerySpModelSettings curSettings = CurrentSettings;
             curSettings.SerializeToXmlFile(SettingsFileName);
         }
+        /// <summary>
+        /// Deserializes settings from <see cref="SettingsFileName"/> and applies them to the wizard controls.
+        /// If the file does not exist or deserialization fails, sensible defaults are applied
+        /// and written to the file for future sessions.
+        /// </summary>
         private void LoadSettings()
         {
             GenerateQuerySpModelSettings settings = null;

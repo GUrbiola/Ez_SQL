@@ -9,14 +9,24 @@ using ICSharpCode.TextEditor;
 
 namespace Ez_SQL.MultiQueryForm
 {
+    /// <summary>
+    /// Custom SQL auto-complete popup window that extends <c>AbstractCompletionWindow</c> from ICSharpCode.TextEditor.
+    /// Displays a scrollable list of <see cref="ICompletionData"/> items (database objects, keywords, etc.)
+    /// with a side declaration-view tooltip showing the selected item's description.
+    /// Supports keyboard navigation, mouse wheel scrolling, and smart qualifier-aware insertion
+    /// (when <c>qualifierBehind</c> is set, it inserts only the object name without its schema prefix).
+    /// </summary>
     public class AutoCompleteWindow : AbstractCompletionWindow
     {
         static ICompletionData[] completionData;
         CodeCompletionListView codeCompletionListView;
         VScrollBar vScrollBar = new VScrollBar();
 
+        /// <summary>When <c>true</c>, a schema qualifier already exists in the editor before the cursor; insert only the object name.</summary>
         bool qualifierBehind;
+        /// <summary>Document offset at which the current completion session began (start of the token being typed).</summary>
         int startOffset;
+        /// <summary>Document offset at which the current completion token ends; updated as the user types.</summary>
         int endOffset;
         DeclarationViewWindow declarationViewWindow = null;
         Rectangle workingScreen;
@@ -24,10 +34,24 @@ namespace Ez_SQL.MultiQueryForm
         const int ScrollbarWidth = 16;
         bool showDeclarationWindow = true;
 
+        /// <summary>
+        /// Shows the auto-complete window with default settings (declaration window visible).
+        /// </summary>
         public static AutoCompleteWindow ShowCompletionWindow(Form parent, TextEditorControl control, string fileName, ICompletionDataProvider completionDataProvider, char firstChar)
         {
             return ShowCompletionWindow(parent, control, fileName, completionDataProvider, firstChar, true);
         }
+
+        /// <summary>
+        /// Shows the auto-complete window and configures the token offsets and qualifier-behind flag
+        /// for schema-aware insertion (e.g., when the user typed <c>dbo.</c> before the cursor).
+        /// </summary>
+        /// <param name="IOffset">Start document offset of the token to replace.</param>
+        /// <param name="FOffset">End document offset of the token to replace.</param>
+        /// <param name="QualifierBehind">
+        /// When <c>true</c>, the schema qualifier precedes the cursor;
+        /// the inserted text will be the object name only (no schema prefix).
+        /// </param>
         public static AutoCompleteWindow ShowCompletionWindow(Form parent, TextEditorControl control, string fileName, ICompletionDataProvider completionDataProvider, char firstChar, int IOffset, int FOffset, bool QualifierBehind)
         {
             AutoCompleteWindow aux = ShowCompletionWindow(parent, control, fileName, completionDataProvider, firstChar, true);

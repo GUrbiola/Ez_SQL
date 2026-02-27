@@ -7,12 +7,26 @@ using Ez_SQL.Common_Code;
 
 namespace Ez_SQL.EzConfig
 {
+    /// <summary>
+    /// Stores the global color settings for the SQL text editor's visual environment,
+    /// including background, font, line-number area, and text-selection colors.
+    /// Serializes to the <c>&lt;Environment&gt;</c> block in a SyntaxDefinition XML file.
+    /// </summary>
     public class Environment
     {
+        /// <summary>The editor background color (Default bgcolor).</summary>
         public Color BackgroundColor;
+
+        /// <summary>The default text foreground color (Default color).</summary>
         public Color FontColor;
+
+        /// <summary>The background color of the line-number gutter.</summary>
         public Color LineNumberBackgroundColor;
+
+        /// <summary>The foreground color used to render line numbers.</summary>
         public Color LineNumberFontColor;
+
+        /// <summary>The background color of the selected text region.</summary>
         public Color SelectionColor;
 
 

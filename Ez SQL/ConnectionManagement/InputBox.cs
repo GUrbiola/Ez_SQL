@@ -4,11 +4,14 @@ using System.Windows.Forms;
 
 namespace Ez_SQL
 {
-	/// <summary>
-	/// Description of InputBox.
-	/// </summary>
+    /// <summary>
+    /// Generic single-field text input dialog.
+    /// Supports an optional forced-entry mode that prevents the user from confirming with an empty value.
+    /// Title and label text are configurable at construction time or through properties.
+    /// </summary>
 	public partial class InputBox : Form
 	{
+        /// <summary>When <c>true</c>, the OK button is blocked if the input text is empty or whitespace.</summary>
 		bool ForceEntry;
 		public InputBox()
 		{
@@ -60,7 +63,8 @@ namespace Ez_SQL
 			Title = title;
 			LabelText = label;
 		}
-		public string LabelText
+	    /// <summary>Gets or sets the label text shown above the input field.</summary>
+	public string LabelText
 		{
 			get
 			{
@@ -71,7 +75,8 @@ namespace Ez_SQL
 				label1.Text = value;
 			}
 		}
-		public string Title
+	    /// <summary>Gets or sets the dialog window title.</summary>
+	public string Title
 		{
 			get
 			{
@@ -82,13 +87,16 @@ namespace Ez_SQL
 				Text = value;
 			}
 		}
-		public string Input
+	    /// <summary>Gets the text the user has typed into the input field.</summary>
+	public string Input
 		{
 			get
 			{
 				return textBox1.Text;
 			}
 		}
+        /// <summary>Programmatically pre-fills the input field with <paramref name="Txt"/>.</summary>
+        /// <param name="Txt">The default text to display in the input field.</param>
         public void SetInput(string Txt)
         {
             textBox1.Text = Txt;

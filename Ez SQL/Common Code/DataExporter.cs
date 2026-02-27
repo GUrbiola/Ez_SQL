@@ -8,6 +8,11 @@ using System.Text;
 
 namespace Ez_SQL.Common_Code
 {
+    // NOTE: The DataExporter class (and its associated enums/helpers) is currently disabled (commented out).
+    // It was designed to export DataSet/DataTable results to XLSX, CSV, or pipe-delimited text files
+    // using ClosedXML, with optional async export via BackgroundWorker.
+    // Re-enable and remove these comment markers if export functionality is needed again.
+
     ///// <summary>
     ///// Type of exportations supported
     ///// </summary>

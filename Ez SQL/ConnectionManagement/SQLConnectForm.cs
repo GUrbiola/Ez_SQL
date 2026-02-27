@@ -11,9 +11,19 @@ using System.Data.SqlClient;
 
 namespace Ez_SQL
 {
+    /// <summary>
+    /// Dialog for configuring a new or existing SQL Server connection.
+    /// Supports both Windows Authentication and SQL Server Authentication.
+    /// Discovers available servers via <see cref="System.Data.Sql.SqlDataSourceEnumerator"/> and
+    /// populates the database list by connecting to the <c>master</c> database.
+    /// Returns a validated ADO.NET connection string via the <see cref="ConnectionString"/> property.
+    /// </summary>
     public partial class SQLConnectForm : Form
     {
+        /// <summary>Internal builder used to parse and compose the connection string.</summary>
         SqlConnectionStringBuilder StrBuilder;
+
+        /// <summary>Gets the name of the database that was selected when the dialog was confirmed.</summary>
         public string SelectedDB { get { return StrBuilder.InitialCatalog; } }
         public SQLConnectForm()
         {
@@ -139,6 +149,16 @@ namespace Ez_SQL
             }
             Conexion.Close();
         }
+        /// <summary>
+        /// Gets or sets the ADO.NET connection string for this form.
+        /// <para>
+        /// On get: validates that a server and database have been selected, then builds and returns the string.
+        /// Returns an empty string and shows an error message if validation fails.
+        /// </para>
+        /// <para>
+        /// On set: parses the supplied string into the UI controls, restoring a previously saved connection.
+        /// </para>
+        /// </summary>
         public string ConnectionString
         {
             get

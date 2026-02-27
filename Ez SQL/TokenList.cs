@@ -8,12 +8,28 @@ using Ez_SQL.Common_Code;
 
 namespace Ez_SQL
 {
+    /// <summary>
+    /// An ordered, offset-aware collection of <see cref="Token"/> objects produced by the SQL lexer.
+    /// Each token's start/end document offsets and character length are tracked in parallel lists,
+    /// enabling O(1) lookup of a token's position within the source text.
+    /// Provides helpers for folding-region detection, WORD-type re-classification (reserved words,
+    /// data types, variables, temp tables), and <see cref="ISqlObject"/>-based semantic parsing.
+    /// </summary>
     public class TokenList : IComparable
     {
+        /// <summary>Gets or sets the ordered list of tokens.</summary>
         public List<Token> List { get; set; }
+
+        /// <summary>Gets or sets the start document-character offset for each token (parallel to <see cref="List"/>).</summary>
         public List<int> StartOffsets { get; set; }
+
+        /// <summary>Gets or sets the end document-character offset (inclusive) for each token.</summary>
         public List<int> EndOffsets { get; set; }
+
+        /// <summary>Gets or sets the character length of each token.</summary>
         public List<int> TokenLengths { get; set; }
+
+        /// <summary>Gets the number of tokens in this list.</summary>
         public int TokenCount { get { return List.Count; } } 
        
         public TokenList()
@@ -24,6 +40,13 @@ namespace Ez_SQL
             TokenLengths = new List<int>();
         }
 
+        /// <summary>
+        /// Appends <paramref name="Current"/> to the token list, automatically updating offset and length metadata.
+        /// <see cref="TokenType.WORD"/> tokens are reclassified to the appropriate type
+        /// (RESERVED, DATATYPE, TEMPTABLE, VARIABLE, BLOCKSTART, or BLOCKEND) before insertion.
+        /// Null or empty tokens are silently ignored.
+        /// </summary>
+        /// <param name="Current">The token to append.</param>
         public void AddToken(Token Current)
         {
             if (Current == null || Current.IsTextEmpty)

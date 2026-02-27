@@ -9,8 +9,16 @@ using System.Drawing.Drawing2D;
 
 namespace Ez_SQL.Custom_Controls
 {
+    /// <summary>
+    /// A lightweight floating overlay control that displays a database name and a current action label
+    /// inside a rounded-rectangle border. Used to show loading-progress feedback (e.g., "Loading tables…")
+    /// while the <see cref="Ez_SQL.DataBaseObjects.SqlConnector"/> populates its object catalog.
+    /// The rounded shape is achieved by setting the control's <c>Region</c> to a <see cref="GraphicsPath"/>
+    /// created at construction time.
+    /// </summary>
     public partial class LoadingInfo : UserControl
     {
+        /// <summary>Initializes the control and clips its bounds to a rounded rectangle.</summary>
         public LoadingInfo()
         {
             InitializeComponent();
@@ -42,6 +50,11 @@ namespace Ez_SQL.Custom_Controls
             }
             e.Graphics.ResetTransform();
         }
+        /// <summary>
+        /// Updates the displayed database name and action label.
+        /// </summary>
+        /// <param name="DB">The database name to display.</param>
+        /// <param name="Action">A short description of the current loading action (e.g., "Loading tables…").</param>
         public void SetInfo(string DB, string Action)
         {
             LDB.Text = DB;

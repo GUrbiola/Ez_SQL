@@ -9,10 +9,19 @@ using System.Windows.Forms;
 
 namespace Ez_SQL.MultiQueryForm
 {
+    /// <summary>
+    /// Multi-selection checklist dialog with live filtering.
+    /// Displays a filterable <see cref="CheckedListBox"/> of string items (typically column names)
+    /// and returns all checked selections via <see cref="SelectedChilds"/>.
+    /// All items start checked; a "Check All" toggle is provided. Arrow keys move the selection
+    /// and Left/Right keys toggle the check state of the focused item.
+    /// </summary>
     public partial class ChildSelector : Form
     {
         private List<string> Objects;
         private List<string> _SelectedChilds;
+
+        /// <summary>Gets the list of item texts that were checked when the user confirmed the dialog.</summary>
         public List<string> SelectedChilds { get { return _SelectedChilds; } }
         private bool StartsWith;
         public ChildSelector(string Title, string ObjectDescription, List<string> Objects, bool StartsWith = false, int Decimals = 1)

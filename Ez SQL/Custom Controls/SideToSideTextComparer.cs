@@ -16,13 +16,25 @@ using Ez_SQL.Custom_Controls.DifferenceEngine.Structure;
 
 namespace Ez_SQL.Custom_Controls
 {
+    /// <summary>
+    /// A side-by-side line-level text diff viewer with synchronized scrolling.
+    /// Displays two read-only SQL editor panes whose vertical and horizontal scroll bars are
+    /// linked. When <see cref="LoadTexts"/> is called, it runs a line-level
+    /// <see cref="DiffEngine"/> comparison (<see cref="DiffListText"/>) and highlights
+    /// each line as Added, Removed, Updated, or unchanged using background colors.
+    /// Clicking a line in either pane selects the same line in both panes and loads the
+    /// intra-line character diff into the embedded <see cref="SideToSideLineComparer"/>.
+    /// </summary>
     public partial class SideToSideTextComparer : UserControl
     {
+        /// <summary>Gets or sets the label text shown above the left (source) editor pane.</summary>
         public string Text1Label
         {
             get { return LabTxt1.Text; }
             set { LabTxt1.Text = value; }
         }
+
+        /// <summary>Gets or sets the label text shown above the right (destination) editor pane.</summary>
         public string Text2Label
         {
             get { return LabTxt2.Text; }
@@ -106,6 +118,13 @@ namespace Ez_SQL.Custom_Controls
             Txt1.ActiveTextAreaControl.Refresh();
         }
 
+        /// <summary>
+        /// Runs a line-level diff between two multi-line SQL text strings and displays the result
+        /// side-by-side with per-line highlighting (Add / Remove / Update / unchanged).
+        /// Both editor panes are cleared and repopulated; scroll positions are reset.
+        /// </summary>
+        /// <param name="txt1">The source (left) text, typically the original script.</param>
+        /// <param name="txt2">The destination (right) text, typically the modified script.</param>
         public void LoadTexts(string txt1, string txt2)
         {
             DiffListText t1, t2;

@@ -7,8 +7,15 @@ using ICSharpCode.TextEditor.Gui.CompletionWindow;
 
 namespace Ez_SQL.DataBaseObjects
 {
+    /// <summary>
+    /// Represents a SQL Server stored procedure in the object browser.
+    /// <see cref="ISqlObject.LoadScript"/> retrieves the procedure body from <c>syscomments</c>.
+    /// The <see cref="ISqlObject.InsertAction"/> implementation inserts a ready-to-use
+    /// <c>EXEC schema.ProcedureName @param = '' --type</c> template at the cursor position.
+    /// </summary>
     public class Procedure : ISqlObject
     {
+        /// <inheritdoc/>
         public int Id { get; set; }
         public string Name { get; set; }
         private ObjectType _Kind;

@@ -9,10 +9,27 @@ using Ez_SQL.Common_Code;
 
 namespace Ez_SQL.TextEditorClasses
 {
+    /// <summary>Indicates whether a position in the SQL text is inside executable code, a comment, or a string literal.</summary>
     public enum CodeStartType { Code, Comment, String };
 
+    /// <summary>
+    /// A formatting strategy that extends <see cref="DefaultFormattingStrategy"/> with
+    /// token-aware bracket matching for the SQL editor.
+    /// Overrides <c>SearchBracketForward</c> and <c>SearchBracketBackward</c> to use the
+    /// application's <see cref="TokenList"/> lexer, which correctly skips brackets that appear
+    /// inside SQL string literals, line comments, or block comments.
+    /// </summary>
     public class SqlBracketMatcher : DefaultFormattingStrategy
     {
+        /// <summary>
+        /// Searches forward from <paramref name="offset"/> for the matching closing bracket,
+        /// skipping any brackets inside comments or string literals.
+        /// </summary>
+        /// <param name="document">The document to search.</param>
+        /// <param name="offset">The character offset of the opening bracket.</param>
+        /// <param name="openBracket">The opening bracket character.</param>
+        /// <param name="closingBracket">The closing bracket character to find.</param>
+        /// <returns>The offset of the matching closing bracket, or -1 if not found.</returns>
         public override int SearchBracketForward(IDocument document, int offset, char openBracket, char closingBracket)
         {
             int tokenIndex, bracketTrick = 1;
@@ -51,6 +68,15 @@ namespace Ez_SQL.TextEditorClasses
             }
             return -1;            
         }
+        /// <summary>
+        /// Searches backward from <paramref name="offset"/> for the matching opening bracket,
+        /// skipping any brackets inside comments or string literals.
+        /// </summary>
+        /// <param name="document">The document to search.</param>
+        /// <param name="offset">The character offset of the closing bracket.</param>
+        /// <param name="openBracket">The opening bracket character to find.</param>
+        /// <param name="closingBracket">The closing bracket character.</param>
+        /// <returns>The offset of the matching opening bracket, or -1 if not found.</returns>
         public override int SearchBracketBackward(IDocument document, int offset, char openBracket, char closingBracket)
         {
             int tokenIndex, bracketTrick = -1;

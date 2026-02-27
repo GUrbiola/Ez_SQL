@@ -3,13 +3,20 @@ using System.Windows.Forms;
 
 namespace Ez_SQL.Custom_Controls
 {
+    /// <summary>
+    /// Attaches a right-click column-visibility popup to a <see cref="DataGridView"/>.
+    /// When the user right-clicks the top-left header cell (row -1, column 0), a
+    /// <see cref="ToolStripDropDown"/> containing a <see cref="CheckedListBox"/> appears,
+    /// listing every column by header text. Checking or unchecking an item immediately
+    /// toggles the corresponding column's <see cref="DataGridViewColumn.Visible"/> property.
+    /// </summary>
     class DataGridViewColumnSelector
     {
-        // the DataGridView to which the DataGridViewColumnSelector is attached
+        /// <summary>The <see cref="DataGridView"/> to which this selector is currently attached.</summary>
         private DataGridView mDataGridView = null;
-        // a CheckedListBox containing the column header text and checkboxes
+        /// <summary>The checklist that lists column names with visibility checkboxes.</summary>
         private CheckedListBox mCheckedListBox;
-        // a ToolStripDropDown object used to show the popup
+        /// <summary>The drop-down container that hosts the <see cref="mCheckedListBox"/>.</summary>
         private ToolStripDropDown mPopup;
 
         /// <summary>
@@ -61,6 +68,11 @@ namespace Ez_SQL.Custom_Controls
         // The constructor creates an instance of CheckedListBox and ToolStripDropDown.
         // the CheckedListBox is hosted by ToolStripControlHost, which in turn is
         // added to ToolStripDropDown.
+        /// <summary>
+        /// Initializes the internal <see cref="CheckedListBox"/> and <see cref="ToolStripDropDown"/>
+        /// used for the column-visibility popup. The <see cref="DataGridView"/> property must be set
+        /// separately to activate the right-click behavior.
+        /// </summary>
         public DataGridViewColumnSelector()
         {
             mCheckedListBox = new CheckedListBox();
@@ -77,6 +89,10 @@ namespace Ez_SQL.Custom_Controls
             mPopup.Items.Add(mControlHost);
         }
 
+        /// <summary>
+        /// Initializes the selector and immediately attaches it to the specified <see cref="DataGridView"/>.
+        /// </summary>
+        /// <param name="dgv">The <see cref="DataGridView"/> to attach the column-visibility popup to.</param>
         public DataGridViewColumnSelector(DataGridView dgv)
             : this()
         {

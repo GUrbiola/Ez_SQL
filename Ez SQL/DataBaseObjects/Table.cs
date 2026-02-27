@@ -7,8 +7,15 @@ using ICSharpCode.TextEditor.Gui.CompletionWindow;
 
 namespace Ez_SQL.DataBaseObjects
 {
+    /// <summary>
+    /// Represents a SQL Server table in the object browser.
+    /// Implements <see cref="ISqlObject"/> and generates a <c>CREATE TABLE</c> DDL script
+    /// including column definitions, PRIMARY KEY constraints, and FOREIGN KEY constraints
+    /// derived from the loaded <see cref="ISqlObject.Childs"/> collection.
+    /// </summary>
     public class Table : ISqlObject
     {
+        /// <summary>Initializes a new <see cref="Table"/> with an empty child list and <see cref="ObjectType.Table"/> kind.</summary>
         public Table()
         {
             Childs = new List<ISqlChild>();
@@ -24,6 +31,12 @@ namespace Ez_SQL.DataBaseObjects
         public string Schema { get; set; }
         public string Comment { get; set; }
         public List<ISqlChild> Childs { get; set; }
+        /// <summary>
+        /// Builds the <c>CREATE TABLE</c> DDL script from the loaded <see cref="ISqlObject.Childs"/> collection.
+        /// The generated script includes all column definitions, a PRIMARY KEY constraint (if applicable),
+        /// and FOREIGN KEY constraints for any columns with <see cref="ISqlChild.IsForeignKey"/> set.
+        /// </summary>
+        /// <param name="cmd">Not used for tables; pass <c>null</c>.</param>
         public void LoadScript(SqlCommand cmd = null)
         {
             //Generate script for the creation of table
